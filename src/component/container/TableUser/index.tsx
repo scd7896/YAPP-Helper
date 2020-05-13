@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TableUserProps } from "../../../model/propsModel";
+
 import TrUser from "../../atomic/TrUser";
 import "./index.scss";
 const TableUser = ({ users, isError }: TableUserProps) => {

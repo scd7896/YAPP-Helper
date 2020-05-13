@@ -4,8 +4,7 @@ import FileInput from '../../atomic/File/Input'
 const Index = () => {
   return (
     <div>
-      <div draggable={true}>hello world</div>
-      <FileInput />
+      
     </div>
   )
 }

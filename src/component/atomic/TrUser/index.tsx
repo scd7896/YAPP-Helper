@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TrUserProps } from "../../../model/propsModel";
+
 
 import "./index.scss";
 const TrUser = ({ user }: TrUserProps) => {

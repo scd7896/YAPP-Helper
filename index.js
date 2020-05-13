@@ -18,9 +18,9 @@ app.use(
 );
 
 app.use("/static", express.static(__dirname + "/dist")); // react 쓰기위한 것
-app.use("/file", fileRouter);
-app.use("/login", loginRouter);
-app.use("/recruit", recruitRouter);
+app.use("/api/file", fileRouter);
+app.use("/api/login", loginRouter);
+app.use("/api/recruit", recruitRouter);
 app.set("view engine", "ejs"); // .env를 사용하기 위한 ejs
 
 app.get("/", (req, res) => {

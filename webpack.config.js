@@ -1,17 +1,11 @@
 const path = require('path')
-const fs = require('fs')
-const files= fs.readdirSync(__dirname+'/src/view/views')
 
-var obj = files.reduce((o, val)=> { 
-    const key = val.split('.')[0]
-    o[key] = __dirname+'/src/view/views/'+val; 
-    return o; 
-}, {});
+
 
 module.exports = {
     mode: "development", devtool: "inline-source-map",
     entry: {
-        ...obj
+        index: './src/index.tsx'
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".css", ".scss"]
