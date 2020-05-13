@@ -6,12 +6,12 @@
         "target": "es5",
         "jsx": "react",
         "noImplicitAny": true,
+        "types": ["node"],
         "typeRoots": [
             "src/types",
-            "./action"
+            "./action",
         ],
     },
-    
     "exclude": [
         "node_modules",
     ],

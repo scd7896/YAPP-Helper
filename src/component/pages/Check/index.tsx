@@ -4,7 +4,6 @@ import * as io from "socket.io-client";
 import * as axios from "axios";
 import TableUser from "../../container/TableUser";
 import { url } from "../../../_data";
-import { User } from "../../../types/index";
 
 import "./index.scss";
 
