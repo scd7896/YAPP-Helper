@@ -6,7 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import { BrowserRouter } from 'react-router-dom';
 import reducer from './reducer';
 import rootSaga from './saga';
-
+import RouterController from './component/pages/RouteController'
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
 	reducer,
@@ -19,6 +19,7 @@ const App = () => {
 	return (
 		<Provider store={store}>
 			<BrowserRouter>
+				<RouterController />
 			</BrowserRouter>
 		</Provider>
 	)

@@ -1,10 +1,12 @@
 import * as React from 'react'
-import FileInput from '../../atomic/File/Input'
+
+import './styles.scss'
+import GoogleLogin from '../../atomic/GoogleLogin'
 
 const Index = () => {
   return (
-    <div>
-      
+    <div className="index-test-wrapper">
+      <GoogleLogin />        
     </div>
   )
 }

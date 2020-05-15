@@ -55,3 +55,5 @@ router.delete("/connection", (req, res) => {
 	io.close();
 	res.status(200).end();
 });
+
+module.exports = router;
