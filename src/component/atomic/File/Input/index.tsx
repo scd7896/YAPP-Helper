@@ -1,15 +1,16 @@
 import * as React from 'react'
 import { useState } from 'react';
+import { xlsxRead } from '../../../../util/xlsxreader'
 import './styles.scss';
 
 const FileInput = () => {
 	const [isOver, setIsOver] = useState(false);
-	const drapHandler = (event: React.DragEvent<HTMLDivElement>) => {
-		console.log('드랍함')
+	const drapHandler = async (event: React.DragEvent<HTMLDivElement>) => {
 		event.preventDefault();
 		event.stopPropagation();
 		if (event.dataTransfer.items) {
-			console.log(event.dataTransfer.items[0].getAsFile());
+			const rows = await xlsxRead(event.dataTransfer.items[0].getAsFile());
+			console.log('돌아옴', rows)
 			setIsOver(false);
 		}
 	}
