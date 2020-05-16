@@ -3,7 +3,7 @@ import * as React from 'react'
 const SendEmail = () => {
 	return (
 		<div>
-			he
+			합격 메일 보내는 페이지
 		</div>
 	)
 }

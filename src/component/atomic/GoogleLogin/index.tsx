@@ -1,11 +1,14 @@
 import * as React from 'react';
+import { useHistory } from 'react-router-dom';
 import GoogleLoginComponent, { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 const GoogleLogin = () => {
+	const history = useHistory();
 	const errorCallback = (response: any) => {
 
 	}
 	const successCallback = (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
 		console.log(response);
+		history.push('/select')
 	}
 	const autoLoadFinishCallback = (sucessLogin: boolean) => {
 
