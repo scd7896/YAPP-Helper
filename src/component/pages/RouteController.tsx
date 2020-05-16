@@ -1,24 +1,19 @@
 import * as React from 'react';
-import { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import FileInput from '../atomic/File/Input';
 
-const Recruit = lazy(() => import('./Recruit'));
-const SelectPage = lazy(() => import('./Select'));
-const Index = lazy(() => import('./Index'));
-const SendEmail = lazy(() => import('./SendEmail'));
+import Recruit from './Recruit'
+import SelectPage from './Select';
+import Index from './Index';
+import SendEmail from './SendEmail';
 
 const RouteController = () => {
 	return (
-		<Suspense fallback={<div>Loading...</div>}>
-			<Switch>
-				<FileInput />
-				<Route path="/" exact={true} component={Index} />
-				<Route path="/select" component={SelectPage} />
-				<Route path="/recruit" component={Recruit} />
-				<Route path="/email" component={SendEmail} />
-			</Switch>
-		</Suspense>
+		<Switch>
+			<Route path="/" exact={true} component={Index} />
+			<Route path="/select" exact={true} component={SelectPage} />
+			<Route path="/recruit" exact={true} component={Recruit} />
+			<Route path="/email" exact={true} component={SendEmail} />
+		</Switch>
 	)
 }
 
