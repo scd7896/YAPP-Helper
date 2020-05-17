@@ -26,7 +26,6 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                
                 use: [
                     {
                         loader: "style-loader"
@@ -40,6 +39,10 @@ module.exports = {
                     }     
                 ]
             },
+            {
+                test: /\.css/,
+                use: ['style-loader', 'css-loader']
+            }
         ]
     },
     output: {
