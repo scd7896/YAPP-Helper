@@ -12,4 +12,4 @@ const config = {
 }
 const database = firebase.initializeApp(config).database();
 
-
+module.exports = database;
