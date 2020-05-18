@@ -1,9 +1,12 @@
 import * as React from 'react'
+import SelectLayout from '../../template/SelectLayout'
 
 const Recruit = () => {
 	return (
 		<div>
-			모집 컨트롤하는 페이지
+			<SelectLayout>
+				<p>모집 컨트롤하는 페이지</p>
+			</SelectLayout>
 		</div>
 	)
 }
