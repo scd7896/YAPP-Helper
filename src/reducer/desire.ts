@@ -9,7 +9,7 @@ const initialState: DesireState = {
 const desire = (state: DesireState = initialState, action: DesireACtionTypes): DesireState => {
 	switch(action.type) {
 		case SET_KEY_VALUES :
-			const copyState = { ...state };
+			const copyState = JSON.parse(JSON.stringify(state));
 			const [keys, ...users] = action.payload;
 			copyState.keys = keys;
 			copyState.users = users;
