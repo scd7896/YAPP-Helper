@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import loadable from '@loadable/component';
+const Recruit = loadable(() => import('./Recruit'), { ssr: false })
+const SelectPage = loadable(() => import('./Select'), { ssr: false })
+const Index = loadable(() => import('./Index'), { ssr: false })
+const SendEmail = loadable(() => import('./SendEmail'), { ssr: false })
 
-import Recruit from './Recruit'
-import SelectPage from './Select';
-import Index from './Index';
-import SendEmail from './SendEmail';
 
 const RouteController = () => {
 	return (

@@ -1,5 +1,6 @@
+const LoadablePlugin = require('@loadable/webpack-plugin')
 const path = require('path')
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 
 module.exports = {
@@ -27,9 +28,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    {
-                        loader: "style-loader"
-                    },
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: "css-loader",
 
@@ -50,5 +49,5 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: './dist',
     },
-    
+    plugins: [new LoadablePlugin(), new MiniCssExtractPlugin()]
 };
