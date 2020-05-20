@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import loadable from '@loadable/component';
-const Recruit = loadable(() => import('./Recruit'), { ssr: false })
-const SelectPage = loadable(() => import('./Select'), { ssr: false })
-const Index = loadable(() => import('./Index'), { ssr: false })
-const SendEmail = loadable(() => import('./SendEmail'), { ssr: false })
+const Recruit = loadable(() => import('./Recruit'))
+const SelectPage = loadable(() => import('./Select'))
+const Index = loadable(() => import('./Index'))
+const SendEmail = loadable(() => import('./SendEmail'))
 
 
 const RouteController = () => {
 	return (
 		<Switch>
-			<Route path="/" exact={true} component={Index} />
-			<Route path="/select" exact={true} component={SelectPage} />
-			<Route path="/recruit" exact={true} component={Recruit} />
-			<Route path="/email" exact={true} component={SendEmail} />
+			<Route path="/" exact={true} render={() => <Index/>}/>
+			<Route path="/select" exact={true} render={() => <SelectPage/>}/>
+			<Route path="/recruit" exact={true} render={() => <Recruit/>}/>
+			<Route path="/email" exact={true} render={() => <SendEmail/>}/>
 		</Switch>
 	)
 }

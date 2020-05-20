@@ -1,15 +1,18 @@
-const LoadablePlugin = require('@loadable/webpack-plugin')
 const path = require('path')
+const LoadablePlugin = require('@loadable/webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
+const nodeExternals  = require('webpack-node-externals')
 
 module.exports = {
-    mode: "development", devtool: "inline-source-map",
+    mode: "development",
     entry: {
         index: './src/index.tsx'
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".css", ".scss"]
+        extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
+        alias: {
+            pages: path.resolve('src/component/pages')
+        }
     },
 
     module: {
@@ -47,7 +50,8 @@ module.exports = {
     output: {
         filename: "[name].js",
         path: path.resolve(__dirname, 'dist'),
-        publicPath: './dist',
+        publicPath: '/dist/',
     },
-    plugins: [new LoadablePlugin(), new MiniCssExtractPlugin()]
+    plugins: [new LoadablePlugin(), new MiniCssExtractPlugin()],
+    externals: ["@loadable/component", nodeExternals()]
 };
