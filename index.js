@@ -18,7 +18,8 @@ app.use(
   })
 );
 
-app.use(express.static("/dist")); // react 쓰기위한 것
+app.use('/static',express.static("dist")); // react 쓰기위한 것
+app.use(express.static('public'));
 // app.use("/api/file", fileRouter);
 // app.use("/api/email", emailRouter);
 // app.use("/api/login", loginRouter);
