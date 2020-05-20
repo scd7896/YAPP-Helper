@@ -31,7 +31,7 @@ app.get("*", (req, res) => {
   const stats = path.resolve(__dirname, './dist/loadable-stats.json');
   console.log(stats)
   const extractor = new ChunkExtractor({ statsFile: stats });
-  console.log(extractor)
+  console.log(extractor.stats.assets)
   // console.log(extractor.getScriptTags())
   return res.status(200).send('hello world')
 });
