@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import loadable from '@loadable/component';
-const Recruit = loadable(() => import( /* webpackChunkName: "recruit", webpackPrefetch: true */ './Recruit'))
-const SelectPage = loadable(() => import( /* webpackChunkName: "select", webpackPrefetch: true */ './Select'))
-const Index = loadable(() => import( /* webpackChunkName: "root", webpackPrefetch: true */ './Index'))
-const SendEmail = loadable(() => import( /* webpackChunkName: "email", webpackPrefetch: true */ './SendEmail'))
+const Recruit = loadable(() => import( /* webpackChunkName: "recruit" */ './Recruit'))
+const SelectPage = loadable(() => import( /* webpackChunkName: "select" */ './Select'))
+const Index = loadable(() => import( /* webpackChunkName: "root" */ './Index'))
+const SendEmail = loadable(() => import( /* webpackChunkName: "email" */ './SendEmail'))
 
 
 const RouteController = () => {
