@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-server": "webpack --config=webpack.server.js && cd ./dist && node server.js",
-    "dev-client": "webpack",
-    "watch": "webpack --watch"
+    "dev:client": "webpack --env=client",
+    "dev:server": "webpack --env=server",
+    "watch": "npm run dev:client --watch",
+    "start:server": "npm run dev:server && node server_bundle.js"
   },
   "author": "",
   "license": "ISC",
