@@ -1,11 +1,25 @@
-import { SET_KEY_VALUES } from './actionTypes';
+import { SET_KEY_VALUES, SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE } from './actionTypes';
 
-export const setKeysByExcelHead = (payload: Array<Array<String>>) => {
+export const setExcelValueRequset = (payload: File) => {
 	return {
-		type: SET_KEY_VALUES,
+		type: SET_EXCEL_REQUEST,
+		payload
+	}
+}
+
+const setExcelValueSuccess = (payload: Array<Array<String>>) => {
+	return {
+		type: SET_EXCEL_SUCCESS,
 		payload: payload
 	}
 }
 
+const setExcelValueFailure = () => {
+	return {
+		type: SET_EXCEL_FAILURE
+	}
+}
 export type DesireACtionTypes = 
-| ReturnType<typeof setKeysByExcelHead>
+| ReturnType<typeof setExcelValueSuccess>
+| ReturnType<typeof setExcelValueRequset>
+| ReturnType<typeof setExcelValueFailure>

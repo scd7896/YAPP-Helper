@@ -1,6 +1,7 @@
 interface DesireState {
-	keys: Array<String>,
-	users: Array<Array<String>>,
-	passList: Array<User>,
-	failList: Array<User>
+	keys: Array<String> | null,
+	users: Array<Array<String>> | null,
+	passList: Array<User> | null,
+	failList: Array<User> | null,
+	isError: boolean
 }

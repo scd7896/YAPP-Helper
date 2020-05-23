@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { xlsxRead } from '../../../../util/xlsxreader'
 import './styles.scss';
 import { useDispatch } from 'react-redux';
-import { setKeysByExcelHead } from '../../../../store/action/desire';
+import { setExcelValueRequset } from '../../../../store/action/desire';
 
 const FileInput = () => {
 	const [isOver, setIsOver] = useState(false);
@@ -12,8 +12,10 @@ const FileInput = () => {
 		event.preventDefault();
 		event.stopPropagation();
 		if (event.dataTransfer.items) {
-			const rows = await xlsxRead(event.dataTransfer.items[0].getAsFile());
-			dispatch(setKeysByExcelHead(rows))
+			const excelFile = event.dataTransfer.items[0].getAsFile();
+			dispatch(setExcelValueRequset(excelFile))
+			// const rows = await xlsxRead(event.dataTransfer.items[0].getAsFile());
+			// dispatch(setKeysByExcelHead(rows))
 			setIsOver(false);
 		}
 	}
