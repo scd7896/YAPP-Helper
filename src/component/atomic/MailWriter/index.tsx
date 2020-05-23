@@ -1,17 +1,25 @@
 import * as React from 'react'
-import { useRef } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Quill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { setMailTextValue } from '../../../store/action/mail';
+
+import 'react-quill/dist/quill.snow.css';
 
 const MailWriter = () => {
-	const ref = useRef(null);
+	const dispatch = useDispatch()
+	const { text } = useSelector<RootStore>(state => state.mail) as MailState;
 	const valueCheck = () => {
-		console.log(ref!.current!.state.value)
+		console.log(text)
 	}
+	const handleChange = useCallback((value) => {
+		dispatch(setMailTextValue(value))
+	}, [])
 	return (
 		<div>
 			<div>
-				<Quill ref={ref}
+				<Quill value={text}
+				onChange={handleChange}
 				style={{ height : '100px' }}/>
 			</div>
 			<div style={{marginTop: '200px'}}>
