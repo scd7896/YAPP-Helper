@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:client": "webpack --env=client",
-    "dev:server": "webpack --env=server",
-    "watch": "npm run dev:client --watch",
-    "start:server": "npm run dev:server && node server_bundle.js"
+    "watch": "webpack --watch",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
