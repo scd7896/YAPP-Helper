@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { xlsxRead } from '../../../../util/xlsxreader'
 import './styles.scss';
 import { useDispatch } from 'react-redux';
-import { setKeysByExcelHead } from '../../../../action/desire';
+import { setKeysByExcelHead } from '../../../../store/action/desire';
 
 const FileInput = () => {
 	const [isOver, setIsOver] = useState(false);

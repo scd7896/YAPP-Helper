@@ -2,5 +2,5 @@ interface User {
 	email: string,
 	name: string,
 	isPass: boolean,
-	isError: boolean,
+	isError: boolean | null,
 }
