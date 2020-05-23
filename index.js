@@ -7,7 +7,7 @@ const cors = require("cors");
 
 // const fileRouter = require("./controller/file");
 // const emailRouter = require("./controller/email");
-
+const recruitRouter = require('./route/recruit')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -21,7 +21,7 @@ app.use(express.static('public'));
 // app.use("/api/file", fileRouter);
 // app.use("/api/email", emailRouter);
 // app.use("/api/login", loginRouter);
-// app.use("/api/recruit", recruitRouter);
+app.use("/api/recruit", recruitRouter);
 app.set("view engine", "ejs"); // .env를 사용하기 위한 ejs
 
 app.get("*", (req, res) => {
