@@ -1,5 +1,5 @@
 import * as React from 'react'
-import SelectLayout from '../../template/SelectLayout'
+import SelectLayout from '../../component/template/SelectLayout'
 
 const Recruit = () => {
 	return (

@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import './styles.scss'
-import GoogleLogin from '../../atomic/GoogleLogin'
-import MailWriter from '../../atomic/MailWriter'
+import GoogleLogin from '../../component/atomic/GoogleLogin'
+import MailWriter from '../../component/atomic/MailWriter'
 
 const Index = () => {
   return (

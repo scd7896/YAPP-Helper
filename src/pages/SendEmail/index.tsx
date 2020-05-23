@@ -1,6 +1,6 @@
 import * as React from 'react'
-import FileInput from '../../atomic/File/Input'
-import SelectLayout from '../../template/SelectLayout'
+import FileInput from '../../component/atomic/File/Input'
+import SelectLayout from '../../component/template/SelectLayout'
 
 const SendEmail = () => {
 	return (
