@@ -1,5 +1,5 @@
 const express = require('express');
-const server = express();
+const server = express.Router();
 const db = require('../model/firebase')
 
 server.get('/', async (req, res) => {

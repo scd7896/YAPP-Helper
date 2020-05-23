@@ -4,3 +4,7 @@ interface User {
 	isPass: boolean,
 	isError: boolean | null,
 }
+
+interface TestUser {
+	data: number
+}
