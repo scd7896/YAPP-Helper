@@ -1,4 +1,4 @@
-import { SET_KEY_VALUES, SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE } from './actionTypes';
+import { SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE } from './actionTypes';
 
 export const setExcelValueRequset = (payload: File) => {
 	return {
