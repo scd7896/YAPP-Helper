@@ -13,6 +13,9 @@ const SendEmail = () => {
 
 	useEffect(() => {
 		if (socket !== null) {
+			/**
+			 * todo: store의 데이터를 읽어서 내용들을 reuqst를 던지자
+			 */
 			socket.on('list-add', (data: TestUser) => {
 				console.log(data)
 			})
