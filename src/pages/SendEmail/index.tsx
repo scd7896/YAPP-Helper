@@ -6,7 +6,7 @@ import FileInput from '../../component/atomic/File/Input'
 import SelectLayout from '../../component/template/SelectLayout'
 
 const SendEmail = () => {
-	const [socket, setSocket] = useState(null);
+	const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
 	useEffect(() => {
 		setSocket(io("http://helper.yapp.co.kr:9170/"))
 	}, [])
