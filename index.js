@@ -4,7 +4,18 @@ const path = require('path');
 dotenv.config();
 const app = express();
 const cors = require("cors");
+const redis = require('redis')
+const redisClient = redis.createClient()
+const values = {
+  data: 'hello',
+  tet: 'www'
+}
+redisClient.set('test', JSON.stringify(values), redis.print)
 
+redisClient.get('test', function(err, reply){
+  console.log('tet',reply)
+  console.log('err',err)
+})
 
 // const fileRouter = require("./controller/file");
 const emailRouter = require("./controller/email");
