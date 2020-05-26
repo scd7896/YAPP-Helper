@@ -1,16 +1,14 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-interface ParamsData {
-	grade: string;
-	type: string;
-}
+import EmailGradeTemplate from '../../component/template/EmailGradeTemplate'
 
-const EmailPage = ({ match }: RouteComponentProps<ParamsData>) => {
-	console.log(match)
+
+const EmailPage = ({ match }: RouteComponentProps<EmailParamsData>) => {
 	return (
 		<div>
 			test
 			{ match.params.grade }
+			<EmailGradeTemplate />
 		</div>
 	)
 }
