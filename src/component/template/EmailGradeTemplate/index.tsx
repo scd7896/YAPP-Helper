@@ -2,6 +2,9 @@ import * as React from 'react'
 import { useRouteMatch } from 'react-router-dom'
 
 const EmailGradeTemplate = () => {
+	/**
+	 * todo: match.params.grade 단계에 따라서 다른 컴포넌트를 그린다
+	 */
 	const match = useRouteMatch<EmailParamsData>()
 	console.log(match)
 	return(
