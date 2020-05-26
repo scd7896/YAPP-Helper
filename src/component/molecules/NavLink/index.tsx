@@ -6,7 +6,7 @@ import NavText from '../../atomic/FontStyle/NavText'
 import './styles.scss'
 
 interface NavLinkProp {
-	children: React.ReactElement | string
+	children: string
 	to: string
 }
 

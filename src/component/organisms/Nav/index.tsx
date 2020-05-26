@@ -15,6 +15,9 @@ const LeftNav = () => {
 				<div>
 					<NavLink to="/email">결과메일 발송</NavLink>
 				</div>
+				<div>
+					<NavLink to="/email">메일양식 관리</NavLink>
+				</div>
 			</article>
 		</section>
 	)
