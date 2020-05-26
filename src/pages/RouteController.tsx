@@ -4,7 +4,7 @@ import loadable from '@loadable/component';
 const Recruit = loadable(() => import( /* webpackChunkName: "recruit" */ './Recruit'))
 const SelectPage = loadable(() => import( /* webpackChunkName: "select" */ './Select'))
 const Index = loadable(() => import( /* webpackChunkName: "root" */ './Index'))
-const SendEmail = loadable(() => import( /* webpackChunkName: "email" */ './SendEmail'))
+const SelectMailType = loadable(() => import( /* webpackChunkName: "email" */ './SelectMailType'))
 
 
 const RouteController = () => {
@@ -14,7 +14,8 @@ const RouteController = () => {
 				<Route path="/" exact={true} render={() => <Index/>}/>
 				<Route path="/select" exact={true} render={() => <SelectPage/>}/>
 				<Route path="/recruit" exact={true} render={() => <Recruit/>}/>
-				<Route path="/email" exact={true} render={() => <SendEmail/>}/>
+				<Route path="/email" exact={true} render={() => <SelectMailType/>}/>
+				
 			</Switch>
 		</React.Suspense>
 	)
