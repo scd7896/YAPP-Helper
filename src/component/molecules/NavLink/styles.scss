@@ -1,0 +1,21 @@
+.nav-link-clicker {
+	display: flex;
+	align-items: center;
+	
+	border-radius: 5px;
+	height: 34px;
+	a {
+		text-decoration: none;
+		color: #919bb0;
+	}
+}
+
+.anchor-leftmargin-wrapper {
+	margin-left: 17px;
+}
+.nav-link-clicker:hover {
+	background-color: #f7f8fc;
+	a {
+		color: #3d496f
+	}
+}
