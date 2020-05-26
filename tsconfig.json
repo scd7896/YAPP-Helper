@@ -7,7 +7,6 @@
         "jsx": "react",
         "noImplicitAny": true,
         "moduleResolution": "node",
-        "types": ["node"],
         "typeRoots": [
             "./src/types",
             "./action",

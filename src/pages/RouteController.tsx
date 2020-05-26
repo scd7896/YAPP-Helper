@@ -5,7 +5,7 @@ const Recruit = loadable(() => import( /* webpackChunkName: "recruit" */ './Recr
 const SelectPage = loadable(() => import( /* webpackChunkName: "select" */ './Select'))
 const Index = loadable(() => import( /* webpackChunkName: "root" */ './Index'))
 const SelectMailType = loadable(() => import( /* webpackChunkName: "mail_type_select" */ './SelectMailType'))
-const EmailPage = loadable(() => import(/** webpackChunkName: "email_page" */ './EmailPage'));
+const EmailPage = loadable(() => import(/* webpackChunkName: "email_page" */ './EmailPage'));
 
 const RouteController = () => {
 	return (
