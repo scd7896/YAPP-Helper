@@ -1,12 +1,15 @@
 import * as React from 'react'
+
+import './styles.scss'
+
 type TitleTextProps = {
-	children: React.ReactElement
+	children: React.ReactElement | string
 }
 const TitleText = ({ children }: TitleTextProps) => {
 	return (
-		<h1>
+		<p className="title-text-style">
 			{children}
-		</h1>
+		</p>
 	)
 }
 
