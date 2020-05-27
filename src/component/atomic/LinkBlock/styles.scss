@@ -1,0 +1,16 @@
+.link-box-container {
+	a {
+		display: inline-block;
+		width: 397px;
+		height: 295px;
+		border: solid 1px #e7e7ea;
+		background-color: #ffffff;
+	}
+}
+
+.link-box-container:hover {
+	a {
+		border: solid 1px #4b5ef6;
+		box-shadow: 2px 2px 6px 0 rgba(44, 56, 119, 0.2);
+	}
+}
