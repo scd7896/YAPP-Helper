@@ -7,8 +7,8 @@ const SelectMailTemplate = () => {
 	return (
 		<main>
 			<section className="email-select-container">
-				<SelectLinkBox to="/test" title="서류전형"></SelectLinkBox>
-				<SelectLinkBox to="/test" title="면접전형"></SelectLinkBox>
+				<SelectLinkBox to="/email/document/1" title="서류전형"></SelectLinkBox>
+				<SelectLinkBox to="/email/meeting/1" title="면접전형"></SelectLinkBox>
 			</section>
 		</main>
 	)
