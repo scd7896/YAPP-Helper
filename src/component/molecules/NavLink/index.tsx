@@ -13,7 +13,7 @@ interface NavLinkProp {
 const NavLink = ({ children, to }: NavLinkProp) => {
 	return (
 		<article className="nav-link-clicker">
-			<SmallIconWrapper width={16} height={16}>O</SmallIconWrapper>
+			<SmallIconWrapper width={16} height={16}></SmallIconWrapper>
 			<div className="anchor-leftmargin-wrapper">
 				<Link to={to}>
 					<NavText>
