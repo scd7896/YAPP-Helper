@@ -5,7 +5,7 @@ import LeftNav from '../../organisms/Nav';
 import './styles.scss';
 
 interface SelectLayoutProps {
-	children: React.ReactElement
+	children: React.ReactElement[] | React.ReactElement
 }
 const SelectLayout = ({ children }: SelectLayoutProps) => {
 	return (

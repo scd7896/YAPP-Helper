@@ -4,6 +4,9 @@ import * as io from 'socket.io-client'
 import axios from 'axios'
 import SelectMailTemplate from '../../component/template/SelectMailTemplate';
 import SelectLayout from '../../component/template/SelectLayout'
+import BigSubTitle from '../../component/atomic/FontStyle/Subtitle/Big';
+import SmallSubTitle from '../../component/atomic/FontStyle/Subtitle/Small';
+import HeadTitleText from '../../component/atomic/FontStyle/HeadTitle';
 
 const SelectMailType = () => {
 	const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
@@ -28,6 +31,9 @@ const SelectMailType = () => {
 	return (
 		<div>
 			<SelectLayout>
+				<HeadTitleText>헤드타이틀 테스트</HeadTitleText>
+				<BigSubTitle>큰거 테스트</BigSubTitle>
+				<SmallSubTitle>작은거 테스트</SmallSubTitle>
 				<SelectMailTemplate />
 			</SelectLayout>
 		</div>
