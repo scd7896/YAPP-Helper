@@ -31,9 +31,6 @@ const SelectMailType = () => {
 	return (
 		<div>
 			<SelectLayout>
-				<HeadTitleText>헤드타이틀 테스트</HeadTitleText>
-				<BigSubTitle>큰거 테스트</BigSubTitle>
-				<SmallSubTitle>작은거 테스트</SmallSubTitle>
 				<SelectMailTemplate />
 			</SelectLayout>
 		</div>

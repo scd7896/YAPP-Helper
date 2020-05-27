@@ -13,9 +13,9 @@ const SelectLayout = ({ children }: SelectLayoutProps) => {
 			<nav>
 				<LeftNav />
 			</nav>
-			<section>
+			<main className="select-right-wrapper">
 				{ children }
-			</section>
+			</main>
 		</section>
 	)
 }
