@@ -1,10 +1,16 @@
 import * as React from 'react'
+import LinkBlock from '../../atomic/LinkBlock'
+import SelectLinkBox from '../../molecules/SelectLinkBox'
 
+import './styles.scss'
 const SelectMailTemplate = () => {
 	return (
-		<div>
-
-		</div>
+		<main>
+			<section className="email-select-container">
+				<SelectLinkBox to="/test" title="서류전형"></SelectLinkBox>
+				<SelectLinkBox to="/test" title="면접전형"></SelectLinkBox>
+			</section>
+		</main>
 	)
 }
 

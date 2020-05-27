@@ -1,16 +1,38 @@
 .link-box-container {
-	a {
+	> a {
 		display: inline-block;
 		width: 397px;
 		height: 295px;
+		text-decoration: none;
 		border: solid 1px #e7e7ea;
-		background-color: #ffffff;
+		.link-box-title {
+			font-family: 'Spoqa Han Sans Regular';
+			font-size: 18px;
+			color: #504e4e;
+		}
+		.link-box-subtitle {
+			font-family: 'Spoqa Han Sans Regular';
+			font-size: 16px;
+			color: #a0a0a0;
+		}
 	}
+	
 }
 
 .link-box-container:hover {
-	a {
+	> a {
 		border: solid 1px #4b5ef6;
 		box-shadow: 2px 2px 6px 0 rgba(44, 56, 119, 0.2);
+		.link-box-title {
+			font-family: 'Spoqa Han Sans';
+			font-size: 18px;
+			font-weight: bold;
+			color: #4b5ef6;
+		}
+		.link-box-subtitle {
+			font-size: 16px;
+			font-weight: bold;
+			color: #3d496f;
+		}
 	}
 }
