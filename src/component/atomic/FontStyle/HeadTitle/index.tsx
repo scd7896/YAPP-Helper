@@ -2,10 +2,10 @@ import * as React from 'react'
 
 import './styles.scss'
 
-type TitleTextProps = {
+type HeadTitleTextProps = {
 	children: React.ReactElement | string
 }
-const TitleText = ({ children }: TitleTextProps) => {
+const HeadTitleText = ({ children }: HeadTitleTextProps) => {
 	return (
 		<p className="title-text-style">
 			{children}
@@ -13,4 +13,4 @@ const TitleText = ({ children }: TitleTextProps) => {
 	)
 }
 
-export default TitleText;
+export default HeadTitleText;
