@@ -9,14 +9,16 @@
 		text-decoration: none;
 		border: solid 1px #e7e7ea;
 		.link-box-title {
-			font-family: 'Spoqa Han Sans Regular';
+			font-family: 'Spoqa Han Sans';
 			font-size: 18px;
+			font-weight: normal;
 			margin-bottom: 0px;
 			color: #504e4e;
 		}
 		.link-box-subtitle {
-			font-family: 'Spoqa Han Sans Regular';
+			font-family: 'Spoqa Han Sans';
 			font-size: 16px;
+			font-weight: normal;
 			color: #a0a0a0;
 			margin-top: 9px;
 		}
@@ -29,7 +31,6 @@
 		border: solid 1px #4b5ef6;
 		box-shadow: 2px 2px 6px 0 rgba(44, 56, 119, 0.2);
 		.link-box-title {
-			font-family: 'Spoqa Han Sans';
 			font-weight: bold;
 			color: #4b5ef6;
 		}
