@@ -19,9 +19,11 @@ const EmailGradeTemplate = ({ children }: EmailGradeTemplateProp) => {
 		<div>
 			<SelectLayout>
 				<header className="header-wrapper-container">
-					<HeadTitleText>결과메일 발송</HeadTitleText>
-					<VerticalBar></VerticalBar>
-					<HeadGrade gradeList={['발표전형 선택', '엑셀파일업로드', '분류확인', '메일내용확인', '실시간 발송확인']} />
+					<section className="header-contents-wrapper">
+						<HeadTitleText>결과메일 발송</HeadTitleText>
+						<VerticalBar></VerticalBar>
+						<HeadGrade gradeList={['발표전형 선택', '엑셀파일업로드', '분류확인', '메일내용확인', '실시간 발송확인']} />
+					</section>
 				</header>
 				<section className="body-contents-wrapper">
 					{children}

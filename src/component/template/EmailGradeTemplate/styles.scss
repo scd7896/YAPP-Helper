@@ -1,8 +1,12 @@
 .header-wrapper-container {
 	display: flex;
 	justify-content: center;
+}
+.header-contents-wrapper {
+	display: flex;
 	align-items: center;
 	height: 77px;
+	width: 800px;
 	background-color: #ffffff;
 }
 
