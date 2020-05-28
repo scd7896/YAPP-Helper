@@ -4,7 +4,7 @@ import NavLink from '../../molecules/NavLink'
 
 const LeftNav = () => {
 	return (
-		<section className="leftnav-wrapper-container">
+		<nav className="leftnav-wrapper-container">
 			<article className="leftnav-linklist-container">
 				<div>
 					<NavLink to="/select">홈으로 가기</NavLink>
@@ -19,7 +19,7 @@ const LeftNav = () => {
 					<NavLink to="/email">메일양식 관리</NavLink>
 				</div>
 			</article>
-		</section>
+		</nav>
 	)
 }
 
