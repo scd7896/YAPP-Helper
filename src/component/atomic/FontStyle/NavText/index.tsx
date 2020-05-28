@@ -1,4 +1,7 @@
 import * as React from 'react'
+
+import './styles.scss'
+
 interface NavTextProp {
 	children: string
 }
