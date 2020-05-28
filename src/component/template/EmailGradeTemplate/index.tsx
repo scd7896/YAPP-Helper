@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useRouteMatch } from 'react-router-dom'
+import FileInput from '../../atomic/File/Input'
 
 const EmailGradeTemplate = () => {
 	/**
@@ -10,6 +11,7 @@ const EmailGradeTemplate = () => {
 	return(
 		<div>
 			이것은 테스트 템플릿입니다.
+			<FileInput></FileInput>
 			{match.params.grade}
 		</div>
 	)
