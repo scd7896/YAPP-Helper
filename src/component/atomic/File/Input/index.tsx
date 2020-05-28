@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setExcelValueRequset } from '../../../../store/action/desire';
 import SmallIconWrapper from '../../IconWrapper/Small';
 
@@ -8,6 +8,7 @@ import './styles.scss';
 
 const FileInput = () => {
 	const [isOver, setIsOver] = useState(false);
+	const isError = useSelector<RootStore>(state => state.desire.isError)
 	const dispatch = useDispatch();
 	const drapHandler = async (event: React.DragEvent<HTMLDivElement>) => {
 		event.preventDefault();
@@ -40,6 +41,12 @@ const FileInput = () => {
 		})
 		inputTag.click();
 	}
+
+	useEffect(() => {
+		if (isError) {
+			alert('데이터 변환에 실패 했습니다. 다시 시도해 주세요. .xlsx파일만 지원합니다')
+		}
+	}, [isError])
 	return (
 		<div
 			onDrop={drapHandler} 
