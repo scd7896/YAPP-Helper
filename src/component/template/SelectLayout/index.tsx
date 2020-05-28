@@ -10,9 +10,7 @@ interface SelectLayoutProps {
 const SelectLayout = ({ children }: SelectLayoutProps) => {
 	return (
 		<section className="select-layout-wrapper">
-			<nav>
-				<LeftNav />
-			</nav>
+			<LeftNav />
 			<main className="select-right-wrapper">
 				{ children }
 			</main>
