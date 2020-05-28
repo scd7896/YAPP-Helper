@@ -1,12 +1,11 @@
 import * as React from 'react'
-import LinkBlock from '../../atomic/LinkBlock'
 import SelectLinkBox from '../../molecules/SelectLinkBox'
-
-import './styles.scss'
 import HeadTitleText from '../../atomic/FontStyle/HeadTitle'
 import BigSubTitle from '../../atomic/FontStyle/Subtitle/Big'
 import SmallSubTitle from '../../atomic/FontStyle/Subtitle/Small'
 import SmallIconWrapper from '../../atomic/IconWrapper/Small'
+
+import './styles.scss'
 const SelectMailTemplate = () => {
 	return (
 		<section className="email-section-wrapper">
