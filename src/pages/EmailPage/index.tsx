@@ -1,15 +1,15 @@
 import * as React from 'react'
+import loadable from '@loadable/component';
 import { Switch, Route } from 'react-router-dom'
 import EmailGradeTemplate from '../../component/template/EmailGradeTemplate'
-import FileInput from '../../component/atomic/File/Input'
-
+const EmailGradeFirst = loadable(() => import(/* webpackChunkName: "email_first" */ '../../component/organisms/EmailGrade/First')); 
 
 const EmailPage = () => {
 	return (
 		<div>
 			<EmailGradeTemplate>
 				<Switch>
-					<Route path="/email/:type/1" render={()=> <FileInput></FileInput>}/>
+					<Route path="/email/:type/1" render={()=> <EmailGradeFirst />}/>
 					<Route path="/email/:type/2" render={()=> <div>2번입니다</div>}/>
 					<Route path="/email/:type/3" render={()=> <div>3번입니다</div>}/>
 					<Route path="/email/:type/4" render={()=> <div>4번입니다</div>}/>
