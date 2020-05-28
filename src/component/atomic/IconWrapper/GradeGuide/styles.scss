@@ -1,0 +1,40 @@
+.grade-icon-wrapper {
+	display: flex;
+	align-items: center;
+	margin-right: 4px;
+	margin-left: 4px;
+}
+.grade-num-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 9px;
+	width: 15px;
+	height: 13px;
+	padding-top: 2px;
+	border-radius: 7px;
+	color: #ffffff;
+}
+.grade-icon-text {
+	font-family: 'Spoqa Han Sans';
+	font-size: 12px;
+	letter-spacing: -0.44px;
+	margin-left: 5px;
+}
+
+.color-blue-bold-style {
+	font-weight: bold;
+	color: #3751ff;
+}
+
+.color-gray-style {
+	color: #bcbbd6;
+}
+
+.blue-backgrond {
+	background-color: #3751ff;
+}
+
+.gray-backgrond {
+	background-color: #bcbbd6;
+}
