@@ -8,3 +8,7 @@ interface User {
 interface TestUser {
 	data: number
 }
+
+interface FontStyle {
+	children: string
+}

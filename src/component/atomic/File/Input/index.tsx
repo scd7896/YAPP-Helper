@@ -53,7 +53,7 @@ const FileInput = () => {
 			onDragOver={dragOverHandler}
 			onDragLeave={dragLeaveHandler}
 		 	className="file-drop-box"
-			style={isOver ? {backgroundColor: 'blue'} : {}}>
+			style={isOver ? {backgroundColor: 'rgba(228, 230, 240, 0.5)'} : {}}>
 			<div className="margin-bottom18px-wrapper">
 				<SmallIconWrapper width={70} height={70}/>
 			</div>

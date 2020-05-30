@@ -1,10 +1,8 @@
 import * as React from 'react'
 
 import './big.scss'
-interface BigSubTitleProp {
-	children?: React.ReactElement | string
-}
-const BigSubTitle = ({ children }: BigSubTitleProp) => {
+
+const BigSubTitle = ({ children }: FontStyle) => {
 	return(
 		<p className="big-subtitle-style">
 			{children}

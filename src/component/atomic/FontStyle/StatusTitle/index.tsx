@@ -1,10 +1,8 @@
 import * as React from 'react'
 
 import './styles.scss'
-interface StatusTtitleProp {
-	children: string
-}
-const StatusTtitle = ({children}: StatusTtitleProp) => {
+
+const StatusTtitle = ({children}: FontStyle) => {
 	return (
 		<p className="status-title-style">	
 			{children}
