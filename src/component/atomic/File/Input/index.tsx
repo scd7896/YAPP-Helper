@@ -44,7 +44,7 @@ const FileInput = () => {
 
 	useEffect(() => {
 		if (isError) {
-			alert('데이터 변환에 실패 했습니다. 다시 시도해 주세요. .xlsx파일만 지원합니다')
+			alert('.xlsx파일만 업로드 할 수 있습니다.')
 		}
 	}, [isError])
 	return (
@@ -59,7 +59,7 @@ const FileInput = () => {
 			</div>
 			<p className="drop-box-guide-text">파일을 이곳에 끌어다 놓거나,</p>
 			<p className="drop-box-anchorstyle"
-				onClick={clickForExcelCall}>이곳을 눌러 주세요</p>
+				onClick={clickForExcelCall}>여기를 눌러주세요.</p>
 		</div>
 	)
 }

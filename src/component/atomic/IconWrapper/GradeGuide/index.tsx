@@ -9,6 +9,10 @@ interface GradeGuideIconProp {
 }
 const GradeGuideIcon = ({ gradeNumber, text }: GradeGuideIconProp) => {
 	const { grade } = useRouteMatch<EmailParamsData>().params
+	const isNowGrade = useMemo<boolean>(() => {
+		return parseInt(grade, 10) === gradeNumber
+		return true;
+	}, [grade])
 	const isAccepted = useMemo<boolean>(() => {
 		return parseInt(grade, 10) >= gradeNumber
 	}, [grade])
@@ -18,7 +22,7 @@ const GradeGuideIcon = ({ gradeNumber, text }: GradeGuideIconProp) => {
 				{parseInt(grade, 10) > gradeNumber ? "V" : gradeNumber + 1}
 				
 			</div>
-			<p className={`grade-icon-text ${ isAccepted ? 'color-blue-bold-style' : 'color-gray-style'}`}>
+			<p className={`grade-icon-text ${ isAccepted ? isNowGrade ? 'color-blue-bold-style' : 'color-blue-regular-style' : 'color-gray-style'}`}>
 				{text}
 			</p>
 		</div>
