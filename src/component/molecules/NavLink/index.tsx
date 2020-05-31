@@ -8,9 +8,10 @@ import './styles.scss'
 interface NavLinkProp {
 	children: string
 	to: string
+	keyString: string
 }
 
-const NavLink = ({ children, to }: NavLinkProp) => {
+const NavLink = ({ children, to, keyString }: NavLinkProp) => {
 	const match = useRouteMatch();
 	console.log(match)
 	return (
@@ -18,7 +19,7 @@ const NavLink = ({ children, to }: NavLinkProp) => {
 			<SmallIconWrapper width={16} height={16}></SmallIconWrapper>
 			<div className="anchor-leftmargin-wrapper">
 				<Link to={to}>
-					<NavText>
+					<NavText keyString={keyString}>
 						{children}
 					</NavText>
 				</Link>

@@ -11,10 +11,10 @@ const HeadGrade = ({ gradeList }: HeadGradeProp) => {
 				{
 					gradeList.map((grade, index) => {
 						if(index === 0) {
-							return <GradeGuideIcon gradeNumber={index} text="발표전형 선택"></GradeGuideIcon>
+							return <GradeGuideIcon key={grade+index} gradeNumber={index} text="발표전형 선택"></GradeGuideIcon>
 						} else {
 							return (
-								<EmailGradeIconSet key={index}
+								<EmailGradeIconSet key={grade+index}
 								gradeNumber={index}
 								text={grade} />
 							)
