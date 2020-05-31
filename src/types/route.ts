@@ -3,4 +3,4 @@ interface EmailParamsData {
 	type: string;
 }
 
-type URLType = 'email'
+type URLType = 'email' | 'select' | 'recruit'
