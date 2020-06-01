@@ -3,5 +3,9 @@ interface DesireState {
 	users: Array<Array<String>> | null,
 	passList: Array<User> | null,
 	failList: Array<User> | null,
-	isError: boolean
+	isError: boolean,
+	name: number | null
+	email: number | null
+	isPass: number | null
+	meetingTime?: number | null
 }
