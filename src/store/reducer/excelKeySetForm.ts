@@ -15,6 +15,8 @@ const excelKeySetForm = (state: excelKeySetFormState = initialState, action: Exc
 				...state,
 				[key]: value
 			}
+		default :
+			return { ...state }
 	}
 }
 
