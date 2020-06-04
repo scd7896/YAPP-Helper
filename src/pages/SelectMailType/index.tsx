@@ -19,7 +19,7 @@ const SelectMailType = () => {
 			/**
 			 * todo: store의 데이터를 읽어서 내용들을 reuqst를 던지자
 			 */
-			socket.on('list-add', (data: TestUser) => {
+			socket.on('list-add', (data: User) => {
 				console.log(data)
 			})
 		}

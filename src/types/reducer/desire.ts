@@ -1,7 +1,9 @@
 interface DesireState {
 	keys: Array<String> | null,
-	users: Array<Array<String>> | null,
-	passList: Array<User> | null,
-	failList: Array<User> | null,
-	isError: boolean
+	users: Array<Array<String>> | null, 
+	allList: Array<User> | null,
+	isError: boolean,
+	viewSelect: 'all' | 'fail' | 'pass'
 }
+
+type FormKeyType = 'email' | 'name' | 'isPass' | 'meetingTime'

@@ -2,10 +2,8 @@ import * as React from 'react'
 
 import './small.scss'
 
-interface SmallSubTitleProp {
-	children?: React.ReactElement | string
-}
-const SmallSubTitle = ({ children }: SmallSubTitleProp) => {
+
+const SmallSubTitle = ({ children }: FontStyle) => {
 	return (
 		<p className="small-subtitle-style">
 			{children}

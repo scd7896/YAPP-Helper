@@ -2,9 +2,10 @@ interface User {
 	email: string,
 	name: string,
 	isPass: boolean,
-	isError: boolean | null,
+	isError?: boolean | null,
+	meetingTime?: string | null,
 }
 
-interface TestUser {
-	data: number
+interface FontStyle {
+	children: string
 }

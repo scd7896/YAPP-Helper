@@ -1,4 +1,5 @@
 interface RootStore {
 	mail: MailState,
-	desire: DesireState
+	desire: DesireState,
+	excelKeySetForm: excelKeySetFormState
 }

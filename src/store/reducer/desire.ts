@@ -1,26 +1,29 @@
 import { DesireACtionTypes } from "../action/desire";
-import { SET_EXCEL_SUCCESS, SET_EXCEL_REQUEST, SET_EXCEL_FAILURE } from "../action/actionTypes";
+import { SET_EXCEL_SUCCESS, SET_EXCEL_REQUEST, SET_EXCEL_FAILURE, SET_KEYINDEX_VALUE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT } from "../action/actionTypes";
 
 const initialState: DesireState = {
-	keys: null,
-	users: null,
-	passList: null,
-	failList: null,
-	isError: false
+	keys: [],
+	users: [],
+	allList: [],
+	viewSelect: 'all',
+	isError: false,
+	name: null,
+	email: null,
+	isPass: null,
+	meetingTime: null
 }
 
 const desire = (state: DesireState = initialState, action: DesireACtionTypes): DesireState => {
+	const copyState: DesireState = JSON.parse(JSON.stringify(state));
 	switch(action.type) {
 		case SET_EXCEL_REQUEST :
 			return initialState;
 
 		case SET_EXCEL_SUCCESS :
-			const copyState: DesireState = JSON.parse(JSON.stringify(state));
 			const [keys, ...users] = action.payload;
 			copyState.keys = keys;
 			copyState.users = users;
-			copyState.failList = null;
-			copyState.passList = null;
+			copyState.allList = [];
 			return copyState;
 		
 		case SET_EXCEL_FAILURE :
@@ -28,6 +31,17 @@ const desire = (state: DesireState = initialState, action: DesireACtionTypes): D
 				...initialState,
 				isError: true
 			}
+		
+		case USERLIST_SET_BY_FORMDATA_REQUEST :
+			copyState.allList = [];
+			return { ...copyState }
+
+		case USERLIST_SET_BY_FORMDATA_RESULT :
+			copyState.allList = action.payload;
+			return { ...copyState }
+
+		case SET_KEYINDEX_VALUE :
+			
 		default : return { ...state }
 	}
 }

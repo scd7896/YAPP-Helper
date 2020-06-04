@@ -5,7 +5,7 @@ import HeadGrade from '../../organisms/HeadGrade'
 import SelectLayout from '../SelectLayout'
 
 import './styles.scss'
-import HeadTitleText from '../../atomic/FontStyle/HeadTitle'
+import StatusTtitle from '../../atomic/FontStyle/StatusTitle'
 import VerticalBar from '../../atomic/IconWrapper/VerticalBar'
 interface EmailGradeTemplateProp {
 	children: React.ReactElement | React.ReactElement[]
@@ -20,7 +20,7 @@ const EmailGradeTemplate = ({ children }: EmailGradeTemplateProp) => {
 			<SelectLayout>
 				<header className="header-wrapper-container">
 					<section className="header-contents-wrapper">
-						<HeadTitleText>결과메일 발송</HeadTitleText>
+						<StatusTtitle>결과메일 발송</StatusTtitle>
 						<VerticalBar></VerticalBar>
 						<HeadGrade gradeList={['발표전형 선택', '엑셀파일업로드', '분류확인', '메일내용확인', '실시간 발송확인']} />
 					</section>
