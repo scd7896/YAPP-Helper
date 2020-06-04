@@ -2,7 +2,7 @@ interface User {
 	email: string,
 	name: string,
 	isPass: boolean,
-	isError: boolean | null,
+	isError?: boolean | null,
 	meetingTime?: string | null,
 }
 
