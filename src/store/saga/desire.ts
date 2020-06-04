@@ -23,8 +23,33 @@ function* watchExcelInputFile() {
 function* userListSetBoyForm(action: ReturnType<typeof setUserDataByFormRequest>) {
 	try {
 		const userData: Array<User> = [];
-		const { keys, users } = yield select(state => state.desire)
+		const { keys, users }: DesireState = yield select(state => state.desire)
+		const setForm: excelKeySetFormState = yield select(state => state.excelKeySetForm)
 		console.log(keys, users)
+		console.log(setForm)
+		users.map((user: Array<string>) => {
+			const dataForEmail: any = {
+				email: "",
+				name: "",
+				isPass: null,
+				meetingTime: "",
+				isError: null
+			}
+			Object.keys(setForm).map((formKey: FormKeyType) => {
+				const targetIndex = keys.findIndex((key) => {
+					return key === setForm[formKey]
+				})
+				if (targetIndex === -1) {
+					throw "없는 사항입니다. 다시 입력하세요"
+				}
+				dataForEmail[formKey] = user[targetIndex]
+			})
+			userData.push(dataForEmail)
+		})
+		yield put({
+			type: USERLIST_SET_BY_FORMDATA_RESULT,
+			payload: userData
+		})
 	} catch(err) {
 		yield put({
 			type: USERLIST_SET_BY_FORMDATA_RESULT,
