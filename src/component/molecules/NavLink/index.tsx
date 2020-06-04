@@ -13,7 +13,7 @@ interface NavLinkProp {
 
 const NavLink = ({ children, to, keyString }: NavLinkProp) => {
 	const match = useRouteMatch();
-	console.log(match)
+
 	return (
 		<article className="nav-link-clicker">
 			<SmallIconWrapper width={16} height={16}></SmallIconWrapper>

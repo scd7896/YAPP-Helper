@@ -11,7 +11,6 @@ const NavText = ({ children, keyString }: NavTextProp) => {
 	const isSelected = useMemo<boolean>(() => {
 		try {
 			const targetUrl = url.split('/')[1] as URLType
-			console.log(keyString, targetUrl)
 			return targetUrl === keyString
 		} catch(err) {
 			return false;

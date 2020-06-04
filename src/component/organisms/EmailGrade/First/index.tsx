@@ -23,16 +23,16 @@ const EmailGradeFirst = () => {
 						<InnerInputGuideTitle>엑셀 셀헤더 입력</InnerInputGuideTitle>
 						<InnerInputGuideDescription>해당하는 셀 헤더를 입력하세요</InnerInputGuideDescription>
 						<div>
-							<MailKeySetInput name="email" value={excelFormState.email} />
+							이메일: <MailKeySetInput name="email" value={excelFormState.email} />
 						</div>
 						<div>
-							<MailKeySetInput name="isPass" value={excelFormState.isPass} />
+							결과: <MailKeySetInput name="isPass" value={excelFormState.isPass} />
 						</div>
 						<div>
-							<MailKeySetInput name="name" value={excelFormState.name} />
+							이름: <MailKeySetInput name="name" value={excelFormState.name} />
 						</div>
 						<div>
-							<MailKeySetInput name="meetingTime" value={excelFormState.meetingTime} />
+							면접시간: <MailKeySetInput name="meetingTime" value={excelFormState.meetingTime} />
 						</div>
 					</article>
 				</section>
