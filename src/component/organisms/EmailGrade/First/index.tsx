@@ -7,6 +7,7 @@ import InnerInputGuideTitle from '../../../atomic/FontStyle/InnerInputGuide/Titl
 import InnerInputGuideDescription from '../../../atomic/FontStyle/InnerInputGuide/TitleDescription'
 import MailKeySetInput from '../../../atomic/InputStyle/MailKeySet'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const EmailGradeFirst = () => {
 	const  excelFormState = useSelector<RootStore>(state => state.excelKeySetForm) as excelKeySetFormState
@@ -35,6 +36,7 @@ const EmailGradeFirst = () => {
 						</div>
 					</article>
 				</section>
+				<Link to="/email/document/2">2번째로 가즈아</Link>
 			</section>
 		</div>
 	)

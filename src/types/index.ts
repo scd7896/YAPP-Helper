@@ -3,10 +3,7 @@ interface User {
 	name: string,
 	isPass: boolean,
 	isError: boolean | null,
-}
-
-interface TestUser {
-	data: number
+	meetingTime?: string | null,
 }
 
 interface FontStyle {
