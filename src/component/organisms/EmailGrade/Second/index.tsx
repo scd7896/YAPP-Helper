@@ -5,7 +5,7 @@ import { setUserDataByFormRequest } from '../../../../store/action/desire';
 
 const EmailGradeSecond = () => {
 	const dispatch = useDispatch();
-	const desire = useSelector<RootStore>(state => state.desire);
+	const { allList } = useSelector<RootStore>(state => state.desire) as DesireState;
 
 	useEffect(() => {
 		dispatch(setUserDataByFormRequest());
@@ -22,7 +22,26 @@ const EmailGradeSecond = () => {
 				</tr>
 			</thead>
 			<tbody>
-
+				{
+					allList.map((user) => {
+						return (
+							<tr>
+								<td>
+									{user.name}
+								</td>
+								<td>
+									{user.email}
+								</td>
+								<td>
+									{user.isPass}
+								</td>
+								<td>
+									{user.meetingTime}
+								</td>
+							</tr>
+						)
+					})
+				}
 			</tbody>
 		</table>
 	)
