@@ -1,12 +1,17 @@
 import * as React from 'react'
-import SelectLayout from '../../component/template/SelectLayout'
+import RecruitTemplate from '../../component/template/RecruitTemplate'
+import ToggleButton from '../../component/atomic/InputStyle/ToggleButton/indext'
+
 
 const Recruit = () => {
 	return (
 		<div>
-			<SelectLayout>
-				<p>모집 컨트롤하는 페이지</p>
-			</SelectLayout>
+			<RecruitTemplate>
+				<div>
+					<p>리쿠르트 바디 </p>
+					<ToggleButton name="isRecruiting"></ToggleButton>
+				</div>
+			</RecruitTemplate>
 		</div>
 	)
 }
