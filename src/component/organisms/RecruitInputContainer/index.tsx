@@ -16,7 +16,19 @@ const RecruitInputContainer = () => {
 				<RecruitGuide
 					type="string"
 					name="startDay"
-					title="모집시작"/>
+					title="모집시작" />
+				<RecruitGuide 
+					type="string"
+					name="lastDay"
+					title="모집마감" />
+				<RecruitGuide
+					type="string"
+					name="generation"
+					title="기수" />
+				<RecruitGuide 
+					type="string"
+					name="URL"
+					title="이동URL" />
 			</section>
 		</div>
 	)
