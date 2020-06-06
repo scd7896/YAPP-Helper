@@ -13,7 +13,7 @@ const RecruitInputContainer = () => {
 					title="리쿠르팅 오픈하기" />
 			</header>
 			<section>
-
+				
 			</section>
 		</div>
 	)

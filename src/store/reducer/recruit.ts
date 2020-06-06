@@ -1,6 +1,16 @@
 import { RecruitActionTypes } from "../action/recruit"
 import { SET_RECRUIT_VALUE } from '../action/actionTypes'
-const recruit = (state: RecruitState, action: RecruitActionTypes) => {
+
+const initialState: RecruitState = {
+	isLoaded: false,
+	isRecruiting: true,
+	lastDay: "",
+	startDay: "",
+	URL: "",
+	generation: 0
+}
+
+const recruit = (state: RecruitState = initialState, action: RecruitActionTypes) => {
 	switch(action.type) {
 		case SET_RECRUIT_VALUE :			
 			return {
