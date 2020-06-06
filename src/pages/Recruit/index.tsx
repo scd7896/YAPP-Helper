@@ -3,13 +3,14 @@ import { useEffect } from 'react'
 import RecruitTemplate from '../../component/template/RecruitTemplate'
 import RecruitInputContainer from '../../component/organisms/RecruitInputContainer'
 import { useDispatch, useSelector } from 'react-redux'
+import { recruitDataRequest } from '../../store/action/recruit'
 
 
 const Recruit = () => {
 	const dispatch = useDispatch();
 	const { isLoaded } = useSelector<RootStore>(state => state.recruit) as RecruitState
 	useEffect(() => {
-		
+		dispatch(recruitDataRequest())
 	}, [])
 	return (
 		<div>

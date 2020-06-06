@@ -15,3 +15,6 @@ export const SET_EXCEL_TEXT = "SET_EXCEL_TEXT" as const;
 
 /** RecruitTypes */
 export const SET_RECRUIT_VALUE = "SET_RECRUIT_VALUE" as const;
+export const RECRUIT_DATA_REQUEST = "RECRUIT_DATA_REQUEST" as const;
+export const RECRUIT_DATA_SUCCESS = "RECRUIT_DATA_SUCCESS" as const;
+export const RECRUIT_DATA_FAILURE = "RECRUIT_DATA_FAILURE" as const;
