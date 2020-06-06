@@ -1,5 +1,5 @@
 import { RecruitActionTypes } from "../action/recruit"
-import { SET_RECRUIT_VALUE, RECRUIT_DATA_REQUEST } from '../action/actionTypes'
+import { SET_RECRUIT_VALUE, RECRUIT_DATA_REQUEST, RECRUIT_DATA_FAILURE, RECRUIT_DATA_SUCCESS } from '../action/actionTypes'
 
 const initialState: RecruitState = {
 	isLoaded: false,
@@ -21,6 +21,17 @@ const recruit = (state: RecruitState = initialState, action: RecruitActionTypes)
 		case RECRUIT_DATA_REQUEST :
 			return {
 				...initialState
+			}
+		case RECRUIT_DATA_SUCCESS :
+			return {
+				isLoaded: true,
+				isError: false,
+				...action.payload
+			}
+		case RECRUIT_DATA_FAILURE :
+			return {
+				...initialState,
+				isError: true
 			}
 		default :
 			return { ...state }
