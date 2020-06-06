@@ -7,7 +7,8 @@ const initialState: RecruitState = {
 	lastDay: "",
 	startDay: "",
 	URL: "",
-	generation: 0
+	generation: 0,
+	isError: false
 }
 
 const recruit = (state: RecruitState = initialState, action: RecruitActionTypes) => {

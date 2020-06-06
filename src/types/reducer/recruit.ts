@@ -4,5 +4,6 @@ interface RecruitState {
 	startDay: string,
 	lastDay: string,
 	generation: number,
-	URL: string
+	URL: string,
+	isError: false
 }
