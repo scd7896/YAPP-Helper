@@ -7,10 +7,6 @@ const initialState: DesireState = {
 	allList: [],
 	viewSelect: 'all',
 	isError: false,
-	name: null,
-	email: null,
-	isPass: null,
-	meetingTime: null
 }
 
 const desire = (state: DesireState = initialState, action: DesireACtionTypes): DesireState => {
