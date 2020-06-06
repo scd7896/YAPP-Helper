@@ -1,9 +1,7 @@
 import axios from "axios"
 
-const BASE_URL = "http://helper.yapp.co.kr:9170"
-
 export const getRecruitData = async(): Promise<RecruitModel> => {
-	const res = await axios.get(`${BASE_URL}/api/recruit`)
+	const res = await axios.get(`/api/recruit`)
 	const data = res.data['recruit-data']
 	return {
 		generation: data.generation,
