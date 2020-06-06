@@ -1,12 +1,10 @@
 import * as React from 'react'
 import { useDispatch } from 'react-redux'
-import { setRecruitValue } from '../../../../store/action/recruit'
+import { setRecruitValue } from '../../../../../store/action/recruit'
 
 import './styles.scss'
-interface ToggleButtonProp {
-	name: string
-}
-const ToggleButton = ({ name }: ToggleButtonProp) => {
+
+const ToggleButton = ({ name }: InputNameProp) => {
 	const dispatch = useDispatch();
 	const toggleChangeListner = (event: React.ChangeEvent<HTMLInputElement>) => {
 		console.log(event.target.checked)

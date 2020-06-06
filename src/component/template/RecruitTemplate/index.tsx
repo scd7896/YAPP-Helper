@@ -14,7 +14,7 @@ const RecruitTemplate = ({ children }: RecruitTemplateProp) => {
 				<header className="recruit-template-header">
 					리쿠르팅 오픈
 				</header>
-				<section>
+				<section className="recruit-template-body">
 					{ children }
 				</section>
 			</section>

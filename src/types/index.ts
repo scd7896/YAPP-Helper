@@ -9,3 +9,7 @@ interface User {
 interface FontStyle {
 	children: string
 }
+
+interface InputNameProp {
+	name: string
+}

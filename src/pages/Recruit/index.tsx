@@ -1,6 +1,6 @@
 import * as React from 'react'
 import RecruitTemplate from '../../component/template/RecruitTemplate'
-import ToggleButton from '../../component/atomic/InputStyle/ToggleButton/indext'
+import ToggleButton from '../../component/atomic/InputStyle/Recruit/ToggleButton'
 
 
 const Recruit = () => {
