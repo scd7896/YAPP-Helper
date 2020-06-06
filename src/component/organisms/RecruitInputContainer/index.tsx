@@ -8,12 +8,15 @@ const RecruitInputContainer = () => {
 		<div className="recruit-input-container">
 			<header className="recruit-input-header">
 				<RecruitGuide 
-					name="isRecruiting" 
-					type="cheked" 
+					type="checked" 
+					name="isRecruiting"
 					title="리쿠르팅 오픈하기" />
 			</header>
 			<section>
-				
+				<RecruitGuide
+					type="string"
+					name="startDay"
+					title="모집시작"/>
 			</section>
 		</div>
 	)

@@ -5,20 +5,17 @@ import RecruitInput from '../../atomic/InputStyle/Recruit/Input'
 
 import './styles.scss';
 
-interface RecruitGuideProp {
-	title: string,
-	type: 'cheked' | 'string',
-	name: string
-}
-const RecruitGuide = ({ title, type, name }: RecruitGuideProp) => {
-	let InputComponent;
+const RecruitGuide = ({ title, type, name }: RecruitInputProp) => {
+	let InputComponent: ({ name }: any) => JSX.Element;
 	switch(type) {
-		case 'cheked' :
+		case "checked" :
 			InputComponent = ToggleButton
-			break;
-		case 'string' :
+			break
+		case "string" :
 			InputComponent = RecruitInput
+			break
 	}
+
 	return (
 		<div className="recruit-input-wrapper">
 			<RecruitingFont>
