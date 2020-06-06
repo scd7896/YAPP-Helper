@@ -1,7 +1,41 @@
 .recruit-input-container {
 	width: 400px;
+	background-color: gray;
 }
 
 .recruit-input-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	border-bottom: 1px solid #2f3f6f;
+}
+
+.recruit-input-body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding-top: 24px;
+	padding-bottom: 42px;
+}
+
+.recruit-date-wrapper {
+	display: flex;
+	height: 40px;
+	width: 326px;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.recruit-date-input-wrapper {
+	width: 243px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.recruit-input-footer {
+	display: flex;
+	justify-content: center;
 }

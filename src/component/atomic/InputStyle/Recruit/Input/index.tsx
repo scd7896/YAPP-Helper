@@ -2,7 +2,8 @@ import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setRecruitValue } from '../../../../../store/action/recruit';
 
-const RecruitInput = ({ name }: RecruitInputNameProp) => {
+import './styles.scss'
+const RecruitInput = ({ name, placeholder, style }: RecruitInputNameProp) => {
 	const dispatch = useDispatch();
 	const recruit = useSelector<RootStore>(state => state.recruit) as RecruitState
 	const changeValueHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,7 +12,12 @@ const RecruitInput = ({ name }: RecruitInputNameProp) => {
 		}))
 	}
 	return (
-		<input onChange={changeValueHandler} value={recruit[name].toString()} />
+		<input 
+			className="recruit-string-input-style"
+			style={style}
+			onChange={changeValueHandler} 
+			value={recruit[name].toString()}
+			placeholder={placeholder} />
 	)
 }
 

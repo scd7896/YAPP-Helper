@@ -1,5 +1,7 @@
 interface RecruitInputNameProp {
 	name: RecruitInputStringType
+	placeholder?: string
+	style?: object
 }
 
 interface RecruitInputCheckNameProp {
