@@ -12,3 +12,6 @@ export const SET_MAIL_TEXT = "SET_MAIL_TEXT" as const;
 
 /** ExcelKeySetTypes */
 export const SET_EXCEL_TEXT = "SET_EXCEL_TEXT" as const;
+
+/** RecruitTypes */
+export const SET_RECRUIT_VALUE = "SET_RECRUIT_VALUE" as const;

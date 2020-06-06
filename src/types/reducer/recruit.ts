@@ -1,0 +1,4 @@
+interface RecruitState {
+	isRecruiting: boolean,
+	
+}
