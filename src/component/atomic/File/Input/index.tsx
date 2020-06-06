@@ -58,8 +58,8 @@ const FileInput = () => {
 				<SmallIconWrapper width={70} height={70}/>
 			</div>
 			<p className="drop-box-guide-text">파일을 이곳에 끌어다 놓거나,</p>
-			<p className="drop-box-anchorstyle"
-				onClick={clickForExcelCall}>여기를 눌러주세요.</p>
+			<p className="drop-box-file-button"
+				onClick={clickForExcelCall}>파일 불러오기</p>
 		</div>
 	)
 }

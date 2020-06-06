@@ -3,8 +3,8 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 349px;
-  height: 260px;
+	width: 100%;
+  height: 346px;
   border-radius: 6px;
   border: 1px dashed #d8d8d8;
   background-color: #fbfbfd;
@@ -16,13 +16,14 @@
 	margin: 0px;
   color: #a0a0a0;
 }
-.drop-box-anchorstyle {
-	text-decoration: underline;
-	color: #3751ff;
-	line-height: 1.67;
-  letter-spacing: -0.44px;
-	font-size: 12px;
-	margin: 0px;
+.drop-box-file-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 120px;
+  height: 40px;
+	border-radius: 4px;
+  background-color: silver;
 	cursor: pointer;
 }
 

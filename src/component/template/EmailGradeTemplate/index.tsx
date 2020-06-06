@@ -22,7 +22,7 @@ const EmailGradeTemplate = ({ children }: EmailGradeTemplateProp) => {
 					<section className="header-contents-wrapper">
 						<StatusTtitle>결과메일 발송</StatusTtitle>
 						<VerticalBar></VerticalBar>
-						<HeadGrade gradeList={['발표전형 선택', '엑셀파일업로드', '분류확인', '메일내용확인', '실시간 발송확인']} />
+						<HeadGrade gradeList={['엑셀파일업로드', '분류확인', '메일내용확인', '실시간 발송확인']} />
 					</section>
 				</header>
 				<section className="body-contents-wrapper">
