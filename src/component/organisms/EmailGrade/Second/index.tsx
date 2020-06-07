@@ -5,7 +5,7 @@ import { setUserDataByFormRequest } from '../../../../store/action/desire';
 
 const EmailGradeSecond = () => {
 	const dispatch = useDispatch();
-	const { allList } = useSelector<RootStore>(state => state.desire) as DesireState;
+	const { keys, users } = useSelector<RootStore>(state => state.desire) as DesireState;
 
 	useEffect(() => {
 		dispatch(setUserDataByFormRequest());
@@ -15,29 +15,27 @@ const EmailGradeSecond = () => {
 		<table>
 			<thead>
 				<tr>
-					<td>지원자 이름</td>
-					<td>이메일</td>
-					<td>평가결과</td>
-					<td>면접시간</td>
+					{
+						keys.map((key, index) => {
+							return (
+								<th key={`${key}${index}`}>{key}</th>
+							)
+						})
+					}
 				</tr>
 			</thead>
 			<tbody>
 				{
-					allList.map((user) => {
+					users.map((user, index) => {
 						return (
-							<tr>
-								<td>
-									{user.name}
-								</td>
-								<td>
-									{user.email}
-								</td>
-								<td>
-									{user.isPass}
-								</td>
-								<td>
-									{user.meetingTime}
-								</td>
+							<tr key={`user${user}${index}`}>
+								{
+									user.map((userData, j) => {
+										return (
+											<td key={`datas${userData}${j}`}>{userData}</td>
+										)
+									})
+								}
 							</tr>
 						)
 					})

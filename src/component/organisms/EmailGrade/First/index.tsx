@@ -18,8 +18,11 @@ const EmailGradeFirst = () => {
 			</header>
 			<section className="inner-grade-bodysize-wrapper">
 				<FileInput />
-				<Link to="/email/document/2">2번째로 가즈아</Link>
 			</section>
+			<footer className="inner-grade-footer">
+				<Link to="/email">이전</Link>
+				<Link to="/email/document/2">다음</Link>
+			</footer>
 		</div>
 	)
 }
