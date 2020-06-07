@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserDataByFormRequest } from '../../../../store/action/desire';
+import ClickHeadTh from '../../../atomic/Table/ClickHeadTh';
 
 const EmailGradeSecond = () => {
 	const dispatch = useDispatch();
@@ -18,7 +19,11 @@ const EmailGradeSecond = () => {
 					{
 						keys.map((key, index) => {
 							return (
-								<th key={`${key}${index}`}>{key}</th>
+								<ClickHeadTh 
+									key={`${key}${index}`}
+								 	index={index}>
+										{key as string}
+								</ClickHeadTh>
 							)
 						})
 					}

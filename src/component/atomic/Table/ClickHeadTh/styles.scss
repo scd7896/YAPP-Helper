@@ -1,0 +1,20 @@
+.head-print-string {
+	display: inline-block;
+}
+
+.head-menu-wrapper {
+	display: inline-block;
+	position: relative;
+}
+
+.select-menu-list {
+	display: none;
+	position: absolute;
+	background: white;
+	list-style: none;
+	padding: 0;
+}
+
+.open {
+	display: block;
+}

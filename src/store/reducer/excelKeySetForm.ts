@@ -1,10 +1,10 @@
 import { ExcelKeySetAction } from '../action/excelKeySetForm'
 import { SET_EXCEL_TEXT } from '../action/actionTypes'
 const initialState = {
-	name: "",
-	email: "",
-	isPass: "",
-	meetingTime: ""
+	name: -1,
+	email: -1,
+	isPass: -1,
+	meetingTime: -1
 }
 
 const excelKeySetForm = (state: excelKeySetFormState = initialState, action: ExcelKeySetAction) => {
