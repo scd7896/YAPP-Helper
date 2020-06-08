@@ -1,6 +1,4 @@
 import * as React from 'react'
-import { useRouteMatch } from 'react-router-dom'
-import FileInput from '../../atomic/File/Input'
 import HeadGrade from '../../organisms/HeadGrade'
 import SelectLayout from '../SelectLayout'
 
