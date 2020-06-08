@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { emailHeadNameList } from '../../../../util/email'
 import SmallIconWrapper from '../../IconWrapper/Small'
 import './styles.scss'
+import MenuItem from '../MenuItem'
 
 interface ClickHeadThProp extends FontStyle {
 	index: number
@@ -34,19 +35,13 @@ const ClickHeadTh = ({ children, index }: ClickHeadThProp) => {
 		} else {
 			return children
 		}
-	}, [isSelected])
-	const listOpen = useCallback(() => {
-		setIsMenuOpen(true)
-	}, [])
-	const listClose = useCallback(() => {
-		setIsMenuOpen(false)
-	}, [])
+	}, [isSelected, keySet])
 	const toggleOpen = useCallback(() => {
 		setIsMenuOpen(!isMenuOpen)
 	}, [isMenuOpen]) 
 	return (
 		<th>
-			<p className="head-print-string">
+			<p className={`head-print-string ${isSelected ? "selected" : ""}`}>
 				{printString}
 			</p>
 			<menu className="head-menu-wrapper">
@@ -63,11 +58,12 @@ const ClickHeadTh = ({ children, index }: ClickHeadThProp) => {
 							셀 역할 선택
 						</li>
 						{
-							Object.keys(keySet).map((el, index) => {
+							Object.keys(keySet).map((el, keyIndex) => {
 								return (
-									<li>
-										{el}
-									</li>
+									<MenuItem key={`item${el}${keyIndex}${index}`} 
+									keyItem={el as SetFormKey}
+									index={index}
+									closeFunction={toggleOpen}/>
 								)
 							})
 						}
