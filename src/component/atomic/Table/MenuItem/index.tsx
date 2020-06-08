@@ -3,6 +3,7 @@ import { emailHeadNameList } from '../../../../util/email'
 import { useDispatch } from 'react-redux'
 import { setExcelKeyValue } from '../../../../store/action/excelKeySetForm';
 
+import './styles.scss'
 interface MenuItemProp {
 	keyItem: SetFormKey,
 	index: number,
