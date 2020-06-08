@@ -3,6 +3,9 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserDataByFormRequest } from '../../../../store/action/desire';
 import ClickHeadTh from '../../../atomic/Table/ClickHeadTh';
+import { Link } from 'react-router-dom';
+
+import './styles.scss';
 
 const EmailGradeSecond = () => {
 	const dispatch = useDispatch();
@@ -13,40 +16,46 @@ const EmailGradeSecond = () => {
 	}, [])
 
 	return (
-		<table>
-			<thead>
-				<tr>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						{
+							keys.map((key, index) => {
+								return (
+									<ClickHeadTh 
+										key={`${key}${index}`}
+										index={index}>
+											{key as string}
+									</ClickHeadTh>
+								)
+							})
+						}
+					</tr>
+				</thead>
+				<tbody>
 					{
-						keys.map((key, index) => {
+						users.map((user, index) => {
 							return (
-								<ClickHeadTh 
-									key={`${key}${index}`}
-								 	index={index}>
-										{key as string}
-								</ClickHeadTh>
+								<tr key={`user${user}${index}`}>
+									{
+										user.map((userData, j) => {
+											return (
+												<td key={`datas${userData}${j}`}>{userData}</td>
+											)
+										})
+									}
+								</tr>
 							)
 						})
 					}
-				</tr>
-			</thead>
-			<tbody>
-				{
-					users.map((user, index) => {
-						return (
-							<tr key={`user${user}${index}`}>
-								{
-									user.map((userData, j) => {
-										return (
-											<td key={`datas${userData}${j}`}>{userData}</td>
-										)
-									})
-								}
-							</tr>
-						)
-					})
-				}
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+			<footer className="inner-grade-footer">
+				<Link to="/email/document/1">이전</Link>
+				<Link to="/email/document/3">다음</Link>
+			</footer>
+		</div>
 	)
 }
 export default EmailGradeSecond

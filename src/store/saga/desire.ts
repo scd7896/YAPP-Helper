@@ -28,30 +28,13 @@ function* userListSetBoyForm(action: ReturnType<typeof setUserDataByFormRequest>
 		 * 엑셀로 받아온 유저 데이터들을 가지고 메일 api를 쏘기 위한 
 		 */
 		const userData = users.map((user: Array<string>) => {
-			const dataForEmail: any = {
-				email: "",
-				name: "",
-				isPass: null,
-				meetingTime: "",
-				isError: null
+			return {
+				email: user[setForm.email],
+				name: user[setForm.name],
+				isPass: user[setForm.isPass] === "합격",
+				meetingTime: user[setForm.meetingTime],
+				isError: false
 			}
-			/**
-			 * 입력 폼에 입력한 값들을 가지고 체크를 한다.
-			 * 만약에 제일 헤더 부분이랑 일치 하는 부분이 없으면 바로 에러를 날린다.
-			 */
-			Object.keys(setForm).map((formKey: FormKeyType) => {
-				if (setForm[formKey] === undefined) {
-					return null;
-				}
-				const targetIndex = keys.findIndex((key) => {
-					return key.trim() === setForm[formKey].trim()
-				})
-				if (targetIndex === -1) {
-					throw "없는 사항입니다. 다시 입력하세요"
-				}
-				dataForEmail[formKey] = user[targetIndex]
-			})
-			return dataForEmail
 		})
 		yield put({
 			type: USERLIST_SET_BY_FORMDATA_RESULT,

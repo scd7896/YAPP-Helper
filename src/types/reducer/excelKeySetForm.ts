@@ -2,7 +2,7 @@ interface excelKeySetFormState {
 	name: number | null
 	email: number | null
 	isPass: number | null
-	meetingTime?: number | null
+	meetingTime: number | null
 }
 type SetFormKey = 'name' | 'email' | 'isPass' | 'meetingTime'
 
