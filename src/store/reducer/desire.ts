@@ -5,7 +5,6 @@ const initialState: DesireState = {
 	keys: [],
 	users: [],
 	allList: [],
-	viewSelect: 'all',
 	isError: false,
 }
 
