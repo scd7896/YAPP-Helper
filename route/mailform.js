@@ -1,16 +1,37 @@
 const express = require('express');
 const router = express.Router();
+const multer  = require('multer');
+const path = require('path');
+const crypto = require('crypto');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public');
+  },
+  filename: function (req, file, cb) {
+		crypto.randomBytes(16, function (err, raw) {
+			cb(err, err ? undefined : raw.toString('hex') + path.extname(file.originalname));
+		});
+  }
+});
+const upload = multer({ storage: storage });
 
 const controller = require('../controller/mailform');
 const { MailForm } = require('../models');
 
 router.route('/')
 	.get(controller.index)
-	.post(controller.store);
+	.post([
+		upload.fields([{ name: 'header_image' }, { name: 'map_image' }]),
+		controller.store
+	]);
 
 router.route('/:mailform_id')
 	.get(controller.show)
-	.put(controller.update)
+	.put([
+		upload.fields([{ name: 'header_image' }, { name: 'map_image' }]),
+		controller.update
+	])
 	.delete(controller.destroy);
 
 router.param('mailform_id', function (req, res, next, id) {
