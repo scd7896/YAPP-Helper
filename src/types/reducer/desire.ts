@@ -1,7 +1,7 @@
 interface DesireState {
-	keys: Array<String> | null,
-	users: Array<Array<String>> | null, 
-	allList: Array<User> | null,
+	keys: Array<String> | [],
+	users: Array<Array<String>> | [], 
+	allList: Array<User> | [],
 	isError: boolean,
 }
 

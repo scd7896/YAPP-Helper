@@ -4,3 +4,8 @@ export const emailHeadNameList = {
 	isPass: '평가결과',
 	meetingTime: '면접시간'
 }
+
+export const mailTypeListByPathName = {
+	document: '서류전형',
+	meeting: '면접전형'
+}
