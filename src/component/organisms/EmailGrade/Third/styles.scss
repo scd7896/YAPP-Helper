@@ -1,3 +1,23 @@
 .wrapper {
-	background-color: red;
+}
+
+.filter-wrapper {
+	display: flex;
+}
+
+
+.inner-grade-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	& a {
+		display: flex;
+		width: 200px;
+		height: 70px;
+		justify-content: center;
+		align-items: center;
+		text-decoration: none;
+		background-color: gray;
+		margin-left: 20px;
+	}
 }
