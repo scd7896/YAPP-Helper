@@ -54,7 +54,7 @@ const EmailGradeThird = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{allList
+					{allList[0] && allList
 					.filter(user => {
 						if (filterStr === 'all') {
 							return true

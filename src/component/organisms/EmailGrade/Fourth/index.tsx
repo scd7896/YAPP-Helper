@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './styles.scss'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { mailTypeListByPathName } from '../../../../util/constact'
 
 const cx = classNames.bind(styles)
@@ -56,6 +56,10 @@ const Fourth = () => {
 					</article>
 				</section>
 			</section>
+			<footer className="inner-grade-footer">
+				<Link to="/email/document/3">이전</Link>
+				<Link to="/email/document/5">다음</Link>
+			</footer>
 		</section>
 	)
 }
