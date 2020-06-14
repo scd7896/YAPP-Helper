@@ -17,6 +17,12 @@ module.exports = {
       contents: {
         type: Sequelize.TEXT
       },
+      header_image: {
+        type: Sequelize.TEXT
+      },
+      map_image: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
