@@ -2,7 +2,10 @@ import { MailActionType } from "../action/mail"
 import { SET_MAIL_TEXT } from "../action/actionTypes"
 
 const initialState = {
-	text: ""
+	text: "",
+	title: "",
+	headImageURL: "",
+	subImageURL: ""
 }
 const mail = (state: MailState = initialState, action: MailActionType): MailState => {
 	switch(action.type) {

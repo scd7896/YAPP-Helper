@@ -1,3 +1,6 @@
 interface MailState {
-	text: string
+	text: string;
+	title: string;
+	headImageURL: string;
+	subImageURL?: string;
 }
