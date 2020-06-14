@@ -35,7 +35,7 @@ router.route('/:mailform_id')
 	.delete(controller.destroy);
 
 router.param('mailform_id', function (req, res, next, id) {
-	const mailform_id = parseInt(req.params.mailform_id);
+	const mailform_id = parseInt(id);
 	if (isNaN(mailform_id)){
 		res.sendStatus(400);
 	}
