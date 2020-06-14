@@ -16,6 +16,7 @@ const EmailPage = () => {
 					<Route path="/email/:type/2" render={()=> <EmailGradeSecond />}/>
 					<Route path="/email/:type/3" render={()=> <EmailGradeThird />}/>
 					<Route path="/email/:type/4" render={()=> <EmailGradeFourth />}/>
+					<Route path="/email/:type/5" render={()=> <div>5번째 페이지</div>}/>
 				</Switch>
 			</EmailGradeTemplate>
 		</div>
