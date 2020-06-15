@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import classNames from 'classnames/bind'
 import { useParams, Link } from 'react-router-dom'
 import { mailTypeListByPathName } from '../../../../util/constact'
 import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './styles.scss'
+import { getMailTemplatesListFetch } from '../../../../store/action/desire'
 const cx = classNames.bind(styles)
 
 const Fourth = () => {
@@ -19,9 +20,18 @@ const Fourth = () => {
 		setViewPage(target)
 	}
 
+	const targetIndex = useMemo<number>(() => {
+		if (viewPage) {
+			return 0
+		} else {
+			return 1
+		}
+	}, [viewPage])
+
 	useEffect(() => {
-		if (mailTemplates === undefined) {
-			
+		console.log(params)
+		if (mailTemplates === null) {
+			dispatch(getMailTemplatesListFetch("document"))
 		}
 	}, [])
 	return (
@@ -39,34 +49,34 @@ const Fourth = () => {
 						{mailTypeListByPathName['document']} 불합격
 					</p>
 				</header>
-				{ mailTemplates &&
+				{ mailTemplates !== null && (
 				<section className={cx('body')}>
 					<article>
 						<p>
-							메일제목 | 안녕하세요 YAPP 입니다
+							메일제목 | {mailTemplates[targetIndex].title}
 						</p>
 					</article>
 					<article>
 						<p>헤더이미지</p>
 						<picture>
-							이미지가 들어가는 자리
+							<img width="100%" height="150px" src={mailTemplates[targetIndex].headImageURL} />
 						</picture>
 					</article>
 					<article>
 						<p>메일내용</p>
-						<div dangerouslySetInnerHTML={{ __html: "<p>테스트</p>"}} />
+						<div dangerouslySetInnerHTML={{ __html: mailTemplates[targetIndex].text}} />
 					</article>
 					<article>
 						<p>첨부파일</p>
 						<div>
-							약도.jpg <span>파일미리보기</span>
+							{mailTemplates[targetIndex].subImageURL} <span>파일미리보기</span>
 						</div>
 					</article>
 					<article>
 						<button>수정 하기</button>
 					</article>
 				</section>
-				}
+				)}
 			</section>
 
 			<footer className="inner-grade-footer">
