@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useMemo, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 
-import { emailHeadNameList } from '../../../../util/email'
+import { emailHeadNameList } from '../../../../util/constact'
 import SmallIconWrapper from '../../IconWrapper/Small'
 import './styles.scss'
 import MenuItem from '../MenuItem'

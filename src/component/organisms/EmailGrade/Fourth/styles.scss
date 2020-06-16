@@ -1,0 +1,19 @@
+.content-wrapper {
+	width: 846px;
+	background-color: #f5f6fa;
+	header {
+		display: flex;
+		margin-bottom: 28px;
+	}
+	article {
+		border-bottom: 1px solid #aaaaaa;
+		padding: 22px 61px 22px 32px;
+	}
+	p {
+		margin: 0px;
+	}
+}
+
+.selected {
+	color: red;
+}

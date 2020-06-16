@@ -1,12 +1,12 @@
 import { DesireACtionTypes } from "../action/desire";
-import { SET_EXCEL_SUCCESS, SET_EXCEL_REQUEST, SET_EXCEL_FAILURE, SET_KEYINDEX_VALUE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT } from "../action/actionTypes";
+import { SET_EXCEL_SUCCESS, SET_EXCEL_REQUEST, SET_EXCEL_FAILURE, SET_KEYINDEX_VALUE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT, MAILTEMPLATES_FETCH_REQUEST, MAILTEMPLATES_FETCH_SUCCESS } from "../action/actionTypes";
 
 const initialState: DesireState = {
 	keys: [],
 	users: [],
 	allList: [],
-	viewSelect: 'all',
 	isError: false,
+	mailTemplates: null
 }
 
 const desire = (state: DesireState = initialState, action: DesireACtionTypes): DesireState => {
@@ -20,7 +20,10 @@ const desire = (state: DesireState = initialState, action: DesireACtionTypes): D
 			copyState.keys = keys;
 			copyState.users = users;
 			copyState.allList = [];
-			return copyState;
+			return {
+				...state,
+				...copyState
+			};
 		
 		case SET_EXCEL_FAILURE :
 			return {
@@ -30,13 +33,29 @@ const desire = (state: DesireState = initialState, action: DesireACtionTypes): D
 		
 		case USERLIST_SET_BY_FORMDATA_REQUEST :
 			copyState.allList = [];
-			return { ...copyState }
+			return {
+				...state,
+				...copyState
+			};
 
 		case USERLIST_SET_BY_FORMDATA_RESULT :
 			copyState.allList = action.payload;
-			return { ...copyState }
-
-		case SET_KEYINDEX_VALUE :
+			return {
+				...state,
+				...copyState
+			};
+		case MAILTEMPLATES_FETCH_REQUEST :
+			copyState.mailTemplates = null;
+			return {
+				...state,
+				...copyState
+			};
+		case MAILTEMPLATES_FETCH_SUCCESS :
+			copyState.mailTemplates = action.payload;
+			return {
+				...state,
+				...copyState
+			};	
 			
 		default : return { ...state }
 	}

@@ -1,7 +1,8 @@
-import { all, fork, takeLatest, put, call, select } from 'redux-saga/effects'
-import { SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT } from '../action/actionTypes'
+import { all, fork, takeLatest, put, call, select, delay } from 'redux-saga/effects'
+import { SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT, MAILTEMPLATES_FETCH_REQUEST, MAILTEMPLATES_FETCH_SUCCESS, MAILTEMPLATES_FETCH_FAILURE } from '../action/actionTypes'
 import { xlsxRead } from '../../util/xlsxreader'
-import { setExcelValueRequset, setUserDataByFormRequest } from '../action/desire'
+import { setExcelValueRequset, setUserDataByFormRequest, getMailTemplatesListFetch } from '../action/desire'
+import { mailTemplates } from '../../util/dummydata'
 function* excelReadSetValues(action: ReturnType<typeof setExcelValueRequset>) {
 	try {
 		const row = yield call(xlsxRead, action.payload)
@@ -50,10 +51,27 @@ function* userListSetBoyForm(action: ReturnType<typeof setUserDataByFormRequest>
 function* watchUserListSetByForm() {
 	yield takeLatest(USERLIST_SET_BY_FORMDATA_REQUEST, userListSetBoyForm)
 }
-
+function* mailtemplatesFetch(action: ReturnType<typeof getMailTemplatesListFetch>) {
+	try {
+		yield delay(200);
+		const data = mailTemplates
+		yield put({
+			type: MAILTEMPLATES_FETCH_SUCCESS,
+			payload: data
+		})
+	} catch(err) {
+		yield put({
+			type: MAILTEMPLATES_FETCH_FAILURE
+		})
+	}
+}
+function* watchMailTemplatesFetch() {
+	yield takeLatest(MAILTEMPLATES_FETCH_REQUEST, mailtemplatesFetch)
+}
 export default function* desireWatcher() {
 	yield all([
 		fork(watchExcelInputFile),
-		fork(watchUserListSetByForm)
+		fork(watchUserListSetByForm),
+		fork(watchMailTemplatesFetch)
 	])
 }

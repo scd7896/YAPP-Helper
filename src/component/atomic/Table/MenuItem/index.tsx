@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { emailHeadNameList } from '../../../../util/email'
+import { emailHeadNameList } from '../../../../util/constact'
 import { useDispatch } from 'react-redux'
 import { setExcelKeyValue } from '../../../../store/action/excelKeySetForm';
 

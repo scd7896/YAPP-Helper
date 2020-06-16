@@ -1,0 +1,9 @@
+.string-style {
+  font-family: 'Spoqa Han Sans';
+  font-size: 16px;
+  letter-spacing: -0.29px;
+	color: #aaaaaa;
+	&.selected {
+		color: #000000;
+	}
+}
