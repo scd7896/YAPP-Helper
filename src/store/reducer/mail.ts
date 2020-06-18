@@ -1,9 +1,11 @@
 import { MailActionType } from "../action/mail"
 import { SET_MAIL_TEXT } from "../action/actionTypes"
 
-const initialState = {
+const initialState: MailState = {
+	id: -1,
 	text: "",
 	title: "",
+	type: "",
 	headImageURL: "",
 	subImageURL: ""
 }
