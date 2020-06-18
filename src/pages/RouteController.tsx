@@ -6,7 +6,7 @@ const SelectPage = loadable(() => import( /* webpackChunkName: "select" */ './Se
 const Index = loadable(() => import( /* webpackChunkName: "root" */ './Index'))
 const SelectMailType = loadable(() => import( /* webpackChunkName: "mail_type_select" */ './SelectMailType'))
 const EmailPage = loadable(() => import(/* webpackChunkName: "email_page" */ './EmailPage'));
-
+const MailFormPage = loadable(() => import(/* webpackChunkName: "mail_form" */ './MailForm'));
 const RouteController = () => {
 	return (
 		<React.Suspense fallback={() => <div>로딩중</div>}>
@@ -16,6 +16,7 @@ const RouteController = () => {
 				<Route path="/recruit" exact={true} component={Recruit}/>
 				<Route path="/email/:type/:grade" component={EmailPage}/>
 				<Route path="/email" component={SelectMailType}/>
+				<Route path="/mailform" component={MailFormPage} />
 			</Switch>
 		</React.Suspense>
 	)
