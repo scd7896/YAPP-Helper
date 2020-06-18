@@ -1,9 +1,9 @@
 import { all, fork, takeLatest, put, call, select, delay } from 'redux-saga/effects'
-import { SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT, MAILTEMPLATES_FETCH_REQUEST, MAILTEMPLATES_FETCH_SUCCESS, MAILTEMPLATES_FETCH_FAILURE } from '../action/actionTypes'
+import { SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT, MAILTEMPLATES_FETCH_REQUEST, MAILTEMPLATES_FETCH_SUCCESS, MAILTEMPLATES_FETCH_FAILURE, MAILTEMPLATES_ALLFETCH_REQUEST, MAILTEMPLATES_ALLFETCH_FAILURE, MAILTEMPLATES_ALLFETCH_SUCCESS } from '../action/actionTypes'
 import { xlsxRead } from '../../util/xlsxreader'
 import { setExcelValueRequset, setUserDataByFormRequest, getMailTemplatesListFetch } from '../action/desire'
 import { mailTemplates } from '../../util/dummydata'
-import { getMailFormByType } from '../../util/api'
+import { getMailFormByType, getMailFormAll } from '../../util/api/index'
 function* excelReadSetValues(action: ReturnType<typeof setExcelValueRequset>) {
 	try {
 		const row = yield call(xlsxRead, action.payload)
@@ -49,9 +49,11 @@ function* userListSetBoyForm(action: ReturnType<typeof setUserDataByFormRequest>
 		})
 	}
 }
+
 function* watchUserListSetByForm() {
 	yield takeLatest(USERLIST_SET_BY_FORMDATA_REQUEST, userListSetBoyForm)
 }
+
 function* mailtemplatesFetch(action: ReturnType<typeof getMailTemplatesListFetch>) {
 	try {
 		// const data = yield call(getMailFormByType, action.payload)
@@ -67,13 +69,33 @@ function* mailtemplatesFetch(action: ReturnType<typeof getMailTemplatesListFetch
 		})
 	}
 }
+
 function* watchMailTemplatesFetch() {
 	yield takeLatest(MAILTEMPLATES_FETCH_REQUEST, mailtemplatesFetch)
+}
+
+function* mailtemplatesAllFetch() {
+	try {
+		const data = yield call(getMailFormAll)
+		yield put({
+			type: MAILTEMPLATES_FETCH_SUCCESS,
+			payload: data as MailState[]
+		})
+	} catch {
+		yield put({
+			type: MAILTEMPLATES_FETCH_FAILURE
+		})
+	}
+}
+
+function* watchMailTemplatesAllFetch() {
+	yield takeLatest(MAILTEMPLATES_ALLFETCH_REQUEST, mailtemplatesAllFetch);
 }
 export default function* desireWatcher() {
 	yield all([
 		fork(watchExcelInputFile),
 		fork(watchUserListSetByForm),
-		fork(watchMailTemplatesFetch)
+		fork(watchMailTemplatesFetch),
+		fork(watchMailTemplatesAllFetch)
 	])
 }

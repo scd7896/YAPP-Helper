@@ -1,4 +1,4 @@
-import { SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE, SET_KEYINDEX_VALUE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT, MAILTEMPLATES_FETCH_REQUEST, MAILTEMPLATES_FETCH_SUCCESS, MAILTEMPLATES_FETCH_FAILURE } from './actionTypes';
+import { SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE, SET_KEYINDEX_VALUE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT, MAILTEMPLATES_FETCH_REQUEST, MAILTEMPLATES_FETCH_SUCCESS, MAILTEMPLATES_FETCH_FAILURE, MAILTEMPLATES_ALLFETCH_REQUEST, MAILTEMPLATES_ALLFETCH_SUCCESS, MAILTEMPLATES_ALLFETCH_FAILURE } from './actionTypes';
 
 export const setExcelValueRequset = (payload: File) => {
 	return {
@@ -60,6 +60,24 @@ const getMailTemplatesListFetchFailure = () => {
 	}
 }
 
+export const getMailTemplatesAllList = () => {
+	return {
+		type: MAILTEMPLATES_ALLFETCH_REQUEST
+	}
+}
+
+const getMailTemplatesAllListSuccess = (payload: MailState[]) => {
+	return {
+		type: MAILTEMPLATES_ALLFETCH_SUCCESS,
+		payload
+	}
+}
+
+const getMailTemplatesAllListFail = () => {
+	return {
+		type: MAILTEMPLATES_ALLFETCH_FAILURE
+	}
+}
 export type DesireACtionTypes = 
 | ReturnType<typeof setExcelValueSuccess>
 | ReturnType<typeof setExcelValueRequset>
@@ -70,3 +88,6 @@ export type DesireACtionTypes =
 | ReturnType<typeof getMailTemplatesListFetch>
 | ReturnType<typeof getMailTemplatesListFetchSuccess>
 | ReturnType<typeof getMailTemplatesListFetchFailure>
+| ReturnType<typeof getMailTemplatesAllList>
+| ReturnType<typeof getMailTemplatesAllListSuccess>
+| ReturnType<typeof getMailTemplatesAllListFail>

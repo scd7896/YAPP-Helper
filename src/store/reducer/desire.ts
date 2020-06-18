@@ -1,5 +1,5 @@
 import { DesireACtionTypes } from "../action/desire";
-import { SET_EXCEL_SUCCESS, SET_EXCEL_REQUEST, SET_EXCEL_FAILURE, SET_KEYINDEX_VALUE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT, MAILTEMPLATES_FETCH_REQUEST, MAILTEMPLATES_FETCH_SUCCESS } from "../action/actionTypes";
+import { SET_EXCEL_SUCCESS, SET_EXCEL_REQUEST, SET_EXCEL_FAILURE, SET_KEYINDEX_VALUE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT, MAILTEMPLATES_FETCH_REQUEST, MAILTEMPLATES_FETCH_SUCCESS, MAILTEMPLATES_ALLFETCH_REQUEST, MAILTEMPLATES_FETCH_FAILURE } from "../action/actionTypes";
 
 const initialState: DesireState = {
 	keys: [],
@@ -44,6 +44,7 @@ const desire = (state: DesireState = initialState, action: DesireACtionTypes): D
 				...state,
 				...copyState
 			};
+		case MAILTEMPLATES_ALLFETCH_REQUEST :
 		case MAILTEMPLATES_FETCH_REQUEST :
 			copyState.mailTemplates = null;
 			return {
@@ -56,7 +57,13 @@ const desire = (state: DesireState = initialState, action: DesireACtionTypes): D
 				...state,
 				...copyState
 			};	
-			
+		
+		case MAILTEMPLATES_FETCH_FAILURE :
+			alert('메일 폼 가져오기 실패')
+			return {
+				...state,
+				mailTemplates: null
+			}
 		default : return { ...state }
 	}
 }
