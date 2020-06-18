@@ -1,15 +1,17 @@
 import { MailActionType } from "../action/mail"
 import { SET_MAIL_TEXT } from "../action/actionTypes"
 
-const initialState: MailState = {
+const initialState: MailInputState = {
 	id: -1,
 	text: "",
 	title: "",
 	type: "",
 	headImageURL: "",
-	subImageURL: ""
+	subImageURL: "",
+	headImage: null,
+	subImage: null,
 }
-const mail = (state: MailState = initialState, action: MailActionType): MailState => {
+const mail = (state: MailInputState = initialState, action: MailActionType): MailInputState => {
 	switch(action.type) {
 		case SET_MAIL_TEXT :
 			return {

@@ -3,13 +3,16 @@ import axios from 'axios'
 export const getMailFormByType = async (type: string) => {
 	const res = await axios.get(`/api/mailforms/type/${type}`)
 	const data = res.data;
-	const mailFormObject = {
-		id: data.id,
-		title: data.title,
-		text: data.contents,
-		headImageURL: data.header_image,
-		subImageURL: data.map_image,
-		type: data.type
-	}
-	return mailFormObject;
+	const dataList = data.map((mailForm: any) => {
+		return {
+			id: mailForm.id,
+			title: mailForm.title,
+			text: mailForm.contents,
+			headImageURL: mailForm.header_image,
+			subImageURL: mailForm.map_image,
+			type: mailForm.type
+		}
+	})
+	
+	return dataList;
 }

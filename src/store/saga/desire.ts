@@ -3,6 +3,7 @@ import { SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE, USERLIST_SET_B
 import { xlsxRead } from '../../util/xlsxreader'
 import { setExcelValueRequset, setUserDataByFormRequest, getMailTemplatesListFetch } from '../action/desire'
 import { mailTemplates } from '../../util/dummydata'
+import { getMailFormByType } from '../../util/api'
 function* excelReadSetValues(action: ReturnType<typeof setExcelValueRequset>) {
 	try {
 		const row = yield call(xlsxRead, action.payload)
@@ -53,6 +54,7 @@ function* watchUserListSetByForm() {
 }
 function* mailtemplatesFetch(action: ReturnType<typeof getMailTemplatesListFetch>) {
 	try {
+		// const data = yield call(getMailFormByType, action.payload)
 		yield delay(200);
 		const data = mailTemplates
 		yield put({
