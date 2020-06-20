@@ -13,7 +13,12 @@ export const MAILTEMPLATES_ALLFETCH_SUCCESS = "MAILTEMPLATES_ALLFETCH_SUCCESS" a
 export const MAILTEMPLATES_ALLFETCH_FAILURE = "MAILTEMPLATES_ALLFETCH_FAILURE" as const;
 
 /** MailActionTypes */
+export const SET_MAIL_FORM = "SET_MAIL_FORM" as const;
 export const SET_MAIL_TEXT = "SET_MAIL_TEXT" as const;
+export const SET_MAIL_TITLE = "SET_MAIL_TITLE" as const;
+export const PUT_MAIL_FORM_REQUEST = "PUT_MAIL_FORM_REQUEST" as const;
+export const PUT_MAIL_FORM_SUCCESS = "PUT_MAIL_FORM_SUCCESS" as const;
+export const PUT_MAIL_FORM_FAILURE = "PUT_MAIL_FORM_FAILURE" as const;
 
 /** ExcelKeySetTypes */
 export const SET_EXCEL_TEXT = "SET_EXCEL_TEXT" as const;

@@ -1,5 +1,5 @@
 import { MailActionType } from "../action/mail"
-import { SET_MAIL_TEXT } from "../action/actionTypes"
+import { SET_MAIL_TEXT, SET_MAIL_FORM } from "../action/actionTypes"
 
 const initialState: MailInputState = {
 	id: -1,
@@ -18,6 +18,10 @@ const mail = (state: MailInputState = initialState, action: MailActionType): Mai
 				...state,
 				text: action.payload
 			}
+
+		case SET_MAIL_FORM :
+			return action.payload
+
 		default :
 			return { ...state }
 	}

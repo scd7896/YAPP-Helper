@@ -7,17 +7,17 @@ interface Payload {
 	headImage: File;
 	mapImage: File;
 }
-export const putMailForm = async (payload: Payload) => {
+export const putMailForm = async (payload: MailInputState) => {
 	const formData = new FormData();
 	if (payload.headImage) {
 		formData.append('header_image', payload.headImage)
 	}
-	if (payload.mapImage) {
-		formData.append('map_image', payload.mapImage)
+	if (payload.subImage) {
+		formData.append('map_image', payload.subImage)
 	}
 	formData.append('type', payload.type);
 	formData.append('title', payload.title);
-	formData.append('contents', payload.contents);
+	formData.append('contents', payload.text);
 
 	const res = await axios.put(`/api/mailforms/${payload.id}`, formData);
 	
