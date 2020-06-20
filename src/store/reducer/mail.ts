@@ -1,5 +1,5 @@
 import { MailActionType } from "../action/mail"
-import { SET_MAIL_TEXT, SET_MAIL_FORM } from "../action/actionTypes"
+import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_SELECTINDEX } from "../action/actionTypes"
 
 const initialState: MailInputState = {
 	id: -1,
@@ -10,6 +10,7 @@ const initialState: MailInputState = {
 	subImageURL: "",
 	headImage: null,
 	subImage: null,
+	selectIndex: 0
 }
 const mail = (state: MailInputState = initialState, action: MailActionType): MailInputState => {
 	switch(action.type) {
@@ -20,7 +21,16 @@ const mail = (state: MailInputState = initialState, action: MailActionType): Mai
 			}
 
 		case SET_MAIL_FORM :
-			return action.payload
+			return {
+				...state,
+				...action.payload
+			}
+		
+		case SET_MAIL_SELECTINDEX :
+			return {
+				...state,
+				selectIndex: action.payload
+			}
 
 		default :
 			return { ...state }

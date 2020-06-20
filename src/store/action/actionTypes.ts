@@ -19,6 +19,7 @@ export const SET_MAIL_TITLE = "SET_MAIL_TITLE" as const;
 export const PUT_MAIL_FORM_REQUEST = "PUT_MAIL_FORM_REQUEST" as const;
 export const PUT_MAIL_FORM_SUCCESS = "PUT_MAIL_FORM_SUCCESS" as const;
 export const PUT_MAIL_FORM_FAILURE = "PUT_MAIL_FORM_FAILURE" as const;
+export const SET_MAIL_SELECTINDEX = "SET_MAIL_SELECTINDEX" as const;
 
 /** ExcelKeySetTypes */
 export const SET_EXCEL_TEXT = "SET_EXCEL_TEXT" as const;

@@ -10,4 +10,5 @@ interface MailState {
 interface MailInputState extends MailState {
 	headImage?: File;
 	subImage?: File;
+	selectIndex?: number;
 }

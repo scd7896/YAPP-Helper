@@ -1,4 +1,4 @@
-import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_TITLE, PUT_MAIL_FORM_REQUEST, PUT_MAIL_FORM_SUCCESS } from "./actionTypes"
+import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_TITLE, PUT_MAIL_FORM_REQUEST, PUT_MAIL_FORM_SUCCESS, SET_MAIL_SELECTINDEX } from "./actionTypes"
 
 export const setMailTextValue = (payload: string) => {
 	return {
@@ -38,6 +38,14 @@ const putMailFormFaiure = () => {
 		type: PUT_MAIL_FORM_SUCCESS
 	}
 }
+
+export const setMailSelectIndex = (payload: number) => {
+	return {
+		type: SET_MAIL_SELECTINDEX,
+		payload
+	}
+}
+
 export type MailActionType =
 | ReturnType<typeof setMailTextValue>
 | ReturnType<typeof setMailForm>
@@ -45,3 +53,4 @@ export type MailActionType =
 | ReturnType<typeof putMailFormRequest>
 | ReturnType<typeof putMailFormSuccess>
 | ReturnType<typeof putMailFormFaiure>
+| ReturnType<typeof setMailSelectIndex>

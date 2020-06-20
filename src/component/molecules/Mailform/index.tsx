@@ -27,7 +27,7 @@ const MailForm = () => {
 			<section>
 				<span>헤더이미지</span>
 				{
-					headImageURL ? <img src={headImageURL} /> : <FileInput />
+					headImageURL ? <img src={headImageURL} width="750px" height="150px"/> : <FileInput />
 				}
 				
 			</section>

@@ -2,19 +2,32 @@ import * as React from 'react'
 import { useEffect } from 'react'
 import classNames from 'classnames/bind';
 import styles from './styles.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getMailTemplatesAllList } from '../../store/action/desire';
 import MailFormTemplate from '../../component/template/MailFormTemplate';
 import MailForm from '../../component/molecules/Mailform';
 import TabBar from '../../component/atomic/Nav/TabBar';
+import { setMailForm, setMailSelectIndex } from '../../store/action/mail';
 
 const cx = classNames.bind(styles);
 
 const MailFormPage = () => {
 	const dispatch = useDispatch();
+	const { mailTemplates } = useSelector<RootStore>(state => state.desire) as DesireState
+	const { selectIndex } = useSelector<RootStore>(state => state.mail) as MailInputState
 	useEffect(() => {
 		dispatch(getMailTemplatesAllList())
 	}, [])
+
+	useEffect(() => {
+		if (mailTemplates && selectIndex != null) {
+			dispatch(setMailForm(mailTemplates[selectIndex]))
+		}
+	}, [mailTemplates, selectIndex])
+
+	const tabChangeHandler = (index: number) => () => {
+		dispatch(setMailSelectIndex(index))
+	}
 	return (
 		<MailFormTemplate>
 			<header className={cx('header')}>
@@ -23,9 +36,10 @@ const MailFormPage = () => {
 			<section className={cx('body')}>
 				<div className={cx("form-wrapper")}>
 					<div className={cx('tab-bar-wrapper')}>
-						{[1,2,3,4].map((el) => {
-							return <TabBar isSelected={el===1} text={`title${el}`}/>
-						})}						
+						{mailTemplates && mailTemplates.map(({title}, index) => {
+							return <TabBar text={title} isSelected={index === selectIndex} 
+							handler={tabChangeHandler(index)}/>
+						})}				
 					</div>
 					<MailForm />
 				</div>
