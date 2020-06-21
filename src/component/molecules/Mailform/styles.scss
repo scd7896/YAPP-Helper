@@ -12,3 +12,15 @@
   border-radius: 4px;
   border: solid 1px silver;
 }
+
+.img-wrapper {
+	display: flex;
+	flex-direction: column;
+	padding: 35px 0px 23px 32px;
+}
+
+.content-wrapper {
+	display: flex;
+	flex-direction: column;
+	padding: 35px 0px 23px 32px;
+}

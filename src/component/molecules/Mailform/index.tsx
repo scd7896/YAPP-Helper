@@ -11,7 +11,7 @@ const cx = classNames.bind(styles)
 
 const MailForm = () => {
 	const dispatch = useDispatch();
-	const { title, id, text, type, headImageURL, subImageURL, headImage, subImage } = useSelector<RootStore>(state => state.mail) as MailInputState
+	const { title, headImageURL, subImageURL, } = useSelector<RootStore>(state => state.mail) as MailInputState
 	const changeValue = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(setMailTitle(event.target.value))
 	}, [])
@@ -24,14 +24,14 @@ const MailForm = () => {
 					value={title}
 					onChange={changeValue} />
 			</section>
-			<section>
+			<section className={cx("img-wrapper")}>
 				<span>헤더이미지</span>
 				{
 					headImageURL ? <img src={headImageURL} width="750px" height="150px"/> : <FileInput />
 				}
 				
 			</section>
-			<section>
+			<section className={cx("content-wrapper")}>
 				<span>메일내용</span>
 				<MailWriter />
 			</section>
