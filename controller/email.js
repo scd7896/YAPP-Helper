@@ -12,6 +12,16 @@ const router = express.Router();
 //   io.emit("list-add", toClient);
 // };
 
+const testSocket = (req, res) => {
+  const io = req.app.get('socketio');
+  for (let i = 0 ; i < 10 ; i++) {
+    setTimeout(() => {
+      const data = `김서버test${i}`
+      io.emit("list-add", data);
+    }, i*1000)
+  }
+  return res.status(200).send('소켓 시작!')
+}
 /**
  * 지원자들 리스트를 받아서 그냥 메일을 쭈욱 보낸다.
  * 보낸 결과를 io.emit으로 전송한다.
@@ -35,24 +45,26 @@ const router = express.Router();
 //   }
 //   return res.status(200).send(process.env.ALL_MEMBER_COUNT);
 // });
-router.get('/test/socket', (req, res) => {
-  const io = req.app.get('socketio')
-  for (let i = 0 ; i < 10; i++) {
-    setTimeout(() => {
-      io.emit('list-add', { data: i })
-    }, i * 1000)
-  }
-  res.status(200).send('소켓시작!')
-})
+// router.get('/test/socket', (req, res) => {
+  // const io = req.app.get('socketio')
+  // for (let i = 0 ; i < 10; i++) {
+  //   setTimeout(() => {
+  //     io.emit('list-add', { data: i })
+  //   }, i * 1000)
+  // }
+  // res.status(200).send('소켓시작!')
+// })
 
 
 /**
  * 
- */
-router.delete("/connection", (req, res) => {
-  // const io = req.app.get('socketio')
-	// io.close();
-	res.status(200).end();
-});
+//  */
+// router.delete("/connection", (req, res) => {
+//   // const io = req.app.get('socketio')
+// 	// io.close();
+// 	res.status(200).end();
+// });
 
-module.exports = router;
+module.exports = {
+  socket: testSocket
+};

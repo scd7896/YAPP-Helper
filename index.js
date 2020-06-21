@@ -18,7 +18,7 @@ redisClient.get('test', function(err, reply){
 })
 
 // const fileRouter = require("./controller/file");
-const emailRouter = require("./controller/email");
+const emailRouter = require("./route/email");
 const mailFormRouter = require("./route/mailform");
 const recruitRouter = require('./route/recruit')
 app.use(express.json());
