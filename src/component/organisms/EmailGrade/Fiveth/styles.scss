@@ -1,0 +1,32 @@
+@import '../../../../util/styles/_color';
+
+.fiveth-grade-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	min-height: 100vh;
+	background-color: $gray_pale;
+}
+
+.userResultTable {
+	width: 800px;
+	height: 390px;
+	background-color: #ffffff;
+}
+.tableHeader {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	span {
+		flex: 1;
+	}
+}
+.tableBody {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	span {
+		flex: 1;
+	}
+}
