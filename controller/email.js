@@ -2,7 +2,6 @@
 // const domain = process.env.DOMAIN; // mailgun domain
 // const mailgun = require("mailgun-js")({ apiKey: apiKey, domain: domain, host: "api.eu.mailgun.net" }); //mailgun 모듈
 const express = require('express');
-const router = express.Router();
 // const sendUserResult = (user, isError) => {
 //   // 메일 보내는 것 성공여부에 관계없이 결과를 프론트에 던져준다.
 //   const toClient = {
