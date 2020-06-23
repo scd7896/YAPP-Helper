@@ -7,6 +7,6 @@ interface RecruitModel {
 }
 interface RecruitState extends RecruitModel {
 	isLoaded: boolean,
-	isError: false
+	isError: false,
 }
 

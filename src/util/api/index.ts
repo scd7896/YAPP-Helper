@@ -1,4 +1,5 @@
 export * from './recruit/get';
+export * from './recruit/put'
 
 export * from './mailforms/get';
 export * from './mailforms/id/get';
