@@ -1,5 +1,5 @@
 import { MailActionType } from "../action/mail"
-import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_SELECTINDEX } from "../action/actionTypes"
+import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_SELECTINDEX, SET_MAIL_TITLE, SET_MAIL_HEADIMAGE } from "../action/actionTypes"
 
 const initialState: MailInputState = {
 	id: -1,
@@ -19,19 +19,29 @@ const mail = (state: MailInputState = initialState, action: MailActionType): Mai
 				...state,
 				text: action.payload
 			}
-
+		case SET_MAIL_TITLE :
+			return {
+				...state,
+				title: action.payload
+			}
+		case SET_MAIL_HEADIMAGE :
+			const headURL = URL.createObjectURL(action.payload)
+			console.log('파일은', action.payload)
+			return {
+				...state,
+				headImage: action.payload,
+				headImageURL: headURL
+			}
 		case SET_MAIL_FORM :
 			return {
 				...state,
 				...action.payload
 			}
-		
 		case SET_MAIL_SELECTINDEX :
 			return {
 				...state,
 				selectIndex: action.payload
 			}
-
 		default :
 			return { ...state }
 	}

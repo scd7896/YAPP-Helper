@@ -1,4 +1,4 @@
-import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_TITLE, PUT_MAIL_FORM_REQUEST, PUT_MAIL_FORM_SUCCESS, SET_MAIL_SELECTINDEX } from "./actionTypes"
+import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_TITLE, PUT_MAIL_FORM_REQUEST, PUT_MAIL_FORM_SUCCESS, SET_MAIL_SELECTINDEX, SET_MAIL_HEADIMAGE, SET_MAIL_SUBIMAGE } from "./actionTypes"
 
 export const setMailTextValue = (payload: string) => {
 	return {
@@ -46,6 +46,19 @@ export const setMailSelectIndex = (payload: number) => {
 	}
 }
 
+export const setMailHeadImage = (payload: File) => {
+	return {
+		type: SET_MAIL_HEADIMAGE,
+		payload
+	}
+}
+
+export const setMailSubImage = (payload: File) => {
+	return {
+		type: SET_MAIL_SUBIMAGE,
+		payload
+	}
+}
 export type MailActionType =
 | ReturnType<typeof setMailTextValue>
 | ReturnType<typeof setMailForm>
@@ -54,3 +67,5 @@ export type MailActionType =
 | ReturnType<typeof putMailFormSuccess>
 | ReturnType<typeof putMailFormFaiure>
 | ReturnType<typeof setMailSelectIndex>
+| ReturnType<typeof setMailHeadImage>
+| ReturnType<typeof setMailSubImage>
