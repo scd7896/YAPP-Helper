@@ -26,7 +26,6 @@ const mail = (state: MailInputState = initialState, action: MailActionType): Mai
 			}
 		case SET_MAIL_HEADIMAGE :
 			const headURL = URL.createObjectURL(action.payload)
-			console.log('파일은', action.payload)
 			return {
 				...state,
 				headImage: action.payload,
