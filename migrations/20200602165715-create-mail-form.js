@@ -14,6 +14,9 @@ module.exports = {
       type: {
         type: Sequelize.STRING(60)
       },
+      pass: {
+        type: Sequelize.BOOLEAN
+      },
       contents: {
         type: Sequelize.TEXT
       },
