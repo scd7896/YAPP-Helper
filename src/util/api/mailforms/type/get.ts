@@ -10,7 +10,8 @@ export const getMailFormByType = async (type: string) => {
 			text: mailForm.contents,
 			headImageURL: mailForm.header_image,
 			subImageURL: mailForm.map_image,
-			type: mailForm.type
+			type: mailForm.type,
+			pass: mailForm.pass
 		}
 	})
 	
