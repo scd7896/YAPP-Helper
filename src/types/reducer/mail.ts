@@ -5,6 +5,7 @@ interface MailState {
 	type: string;
 	headImageURL?: string;
 	subImageURL?: string;
+	pass: boolean | null;
 }
 
 interface MailInputState extends MailState {

@@ -5,7 +5,7 @@ import classNames from 'classnames/bind'
 import FileInput from '../../atomic/File/Input'
 import MailWriter from '../../atomic/MailWriter'
 import { useSelector, useDispatch } from 'react-redux'
-import { setMailTitle, setMailHeadImage } from '../../../store/action/mail'
+import { setMailTitle, setMailHeadImage, putMailFormRequest } from '../../../store/action/mail'
 
 const cx = classNames.bind(styles)
 
@@ -18,6 +18,9 @@ const MailForm = () => {
 	const imageChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(setMailHeadImage(event.target.files[0]))
 	}, []) 
+	const submitMailFormPut = useCallback(() => {
+		dispatch(putMailFormRequest())
+	}, [])
 	return (
 		<div className={cx("form-wrapper")}>
 			<section className={cx("title-wrapper")}>
@@ -44,7 +47,7 @@ const MailForm = () => {
 			</section>
 			<footer>
 				<button>취소</button>
-				<button>저장</button>
+				<button onClick={submitMailFormPut}>저장</button>
 			</footer>
 		</div>
 	)

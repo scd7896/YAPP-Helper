@@ -1,5 +1,5 @@
 import { MailActionType } from "../action/mail"
-import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_SELECTINDEX, SET_MAIL_TITLE, SET_MAIL_HEADIMAGE } from "../action/actionTypes"
+import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_SELECTINDEX, SET_MAIL_TITLE, SET_MAIL_HEADIMAGE, PUT_MAIL_FORM_SUCCESS, PUT_MAIL_FORM_FAILURE } from "../action/actionTypes"
 
 const initialState: MailInputState = {
 	id: -1,
@@ -10,7 +10,8 @@ const initialState: MailInputState = {
 	subImageURL: "",
 	headImage: null,
 	subImage: null,
-	selectIndex: 0
+	selectIndex: 0,
+	pass: null
 }
 const mail = (state: MailInputState = initialState, action: MailActionType): MailInputState => {
 	switch(action.type) {
@@ -40,6 +41,16 @@ const mail = (state: MailInputState = initialState, action: MailActionType): Mai
 			return {
 				...state,
 				selectIndex: action.payload
+			}
+		case PUT_MAIL_FORM_SUCCESS :
+			alert("메일 변경에 성공했습니다")
+			return {
+				...state
+			}
+		case PUT_MAIL_FORM_FAILURE :
+			alert("메일 변경에 실패했습니다");
+			return {
+				...state
 			}
 		default :
 			return { ...state }

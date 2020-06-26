@@ -1,4 +1,4 @@
-import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_TITLE, PUT_MAIL_FORM_REQUEST, PUT_MAIL_FORM_SUCCESS, SET_MAIL_SELECTINDEX, SET_MAIL_HEADIMAGE, SET_MAIL_SUBIMAGE } from "./actionTypes"
+import { SET_MAIL_TEXT, SET_MAIL_FORM, SET_MAIL_TITLE, PUT_MAIL_FORM_REQUEST, PUT_MAIL_FORM_SUCCESS, SET_MAIL_SELECTINDEX, SET_MAIL_HEADIMAGE, SET_MAIL_SUBIMAGE, PUT_MAIL_FORM_FAILURE } from "./actionTypes"
 
 export const setMailTextValue = (payload: string) => {
 	return {
@@ -27,15 +27,15 @@ export const putMailFormRequest = () => {
 	}
 }
 
-const putMailFormSuccess = () => {
+export const putMailFormSuccess = () => {
 	return {
 		type: PUT_MAIL_FORM_SUCCESS
 	}
 }
 
-const putMailFormFaiure = () => {
+export const putMailFormFaiure = () => {
 	return {
-		type: PUT_MAIL_FORM_SUCCESS
+		type: PUT_MAIL_FORM_FAILURE
 	}
 }
 
