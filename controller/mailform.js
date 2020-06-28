@@ -1,12 +1,9 @@
 const { MailForm } = require('../models');
 
 let index = (req, res) => {
-	MailForm.findAll({
-		order: [
-			['type', 'ASC'],
-			['pass', 'DESC']
-		]
-	})
+	MailForm
+		.scope('orderByType', 'passedFirst')
+		.findAll()
 		.then(mailforms => {
 			res.json(mailforms);
 		});
