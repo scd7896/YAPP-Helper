@@ -9,6 +9,15 @@ let index = (req, res) => {
 		});
 }
 
+let searchByType = (req, res) => {
+	MailForm
+		.scope({ method: ['whereType', req.params.type] }, 'passedFirst')
+		.findAll()
+		.then(mailforms => {
+			res.json(mailforms);
+		});
+}
+
 let show = (req, res) => {
 	res.json(req.mailform);
 }
@@ -59,6 +68,7 @@ let destroy = (req, res) => {
 
 module.exports = {
 	index: index,
+	searchByType: searchByType,
 	show: show,
 	store: store,
 	update: update,

@@ -9,6 +9,13 @@ module.exports = (sequelize, DataTypes) => {
     map_image: DataTypes.TEXT
   }, {
     scopes: {
+      whereType(type) {
+        return {
+          where: {
+            type: type
+          }
+        }
+      },
       orderByType: {
         order: [
           ['type', 'ASC']
