@@ -1,3 +1,4 @@
+@import '../../../../util/styles/_color';
 .content-wrapper {
 	width: 846px;
 	background-color: #f5f6fa;
@@ -11,6 +12,7 @@
 	}
 	p {
 		margin: 0px;
+		color: $gray_6;
 	}
 }
 .body {
