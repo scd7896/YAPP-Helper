@@ -2,7 +2,6 @@ import { all, fork, takeLatest, put, call, select, delay } from 'redux-saga/effe
 import { SET_EXCEL_REQUEST, SET_EXCEL_SUCCESS, SET_EXCEL_FAILURE, USERLIST_SET_BY_FORMDATA_REQUEST, USERLIST_SET_BY_FORMDATA_RESULT, MAILTEMPLATES_FETCH_REQUEST, MAILTEMPLATES_FETCH_SUCCESS, MAILTEMPLATES_FETCH_FAILURE, MAILTEMPLATES_ALLFETCH_REQUEST, MAILTEMPLATES_ALLFETCH_FAILURE, MAILTEMPLATES_ALLFETCH_SUCCESS, SET_MAIL_FORM } from '../action/actionTypes'
 import { xlsxRead } from '../../util/xlsxreader'
 import { setExcelValueRequset, setUserDataByFormRequest, getMailTemplatesListFetch } from '../action/desire'
-import { mailTemplates, allTemplates } from '../../util/dummydata'
 import { getMailFormByType, getMailFormAll } from '../../util/api/index'
 function* excelReadSetValues(action: ReturnType<typeof setExcelValueRequset>) {
 	try {
@@ -56,9 +55,7 @@ function* watchUserListSetByForm() {
 
 function* mailtemplatesFetch(action: ReturnType<typeof getMailTemplatesListFetch>) {
 	try {
-		// const data = yield call(getMailFormByType, action.payload)
-		yield delay(200);
-		const data = mailTemplates
+		const data = yield call(getMailFormByType, action.payload)
 		yield put({
 			type: MAILTEMPLATES_FETCH_SUCCESS,
 			payload: data

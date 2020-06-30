@@ -1,2 +1,23 @@
+@import '../../util/styles/_color';
 .index-test-wrapper {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: $gray_1;
+}
+.helperFontLogo {
+	// font-family: azosans;
+	font-size: 22px;
+	letter-spacing: -0.39px;
+	font-weight: bold;
+	margin-bottom: 14px;
+	color: #1c1761;
+}
+.googleLoginTitle {
+	font-size: 26px;
+	color: $gray_6;
+	font-family: sans-serif; //notosans kr
+	margin-bottom: 14px;
 }
