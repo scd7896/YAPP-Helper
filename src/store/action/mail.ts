@@ -6,8 +6,12 @@ import {
   PUT_MAIL_FORM_SUCCESS,
   SET_MAIL_SELECTINDEX,
   SET_MAIL_HEADIMAGE,
+  SET_MAIL_HEADIMAGE_URL,
   TOGGLE_MAIL_HEADIMAGE_EDIT_MODE,
+  TOGGLE_MAIL_SUBIMAGE_EDIT_MODE,
   SET_MAIL_SUBIMAGE,
+  SET_MAIL_SUBIMAGE_URL,
+  SET_ZIP_FILE,
   PUT_MAIL_FORM_FAILURE,
 } from './actionTypes';
 
@@ -64,6 +68,13 @@ export const setMailHeadImage = (payload: File) => {
   };
 };
 
+export const setMailHeadImageURL = (payload: string) => {
+  return {
+    type: SET_MAIL_HEADIMAGE_URL,
+    payload,
+  };
+};
+
 export const setMailSubImage = (payload: File) => {
   return {
     type: SET_MAIL_SUBIMAGE,
@@ -71,9 +82,29 @@ export const setMailSubImage = (payload: File) => {
   };
 };
 
+export const setMailSubImageURL = (payload: string) => {
+  return {
+    type: SET_MAIL_SUBIMAGE_URL,
+    payload,
+  };
+};
+
+export const setZipFile = (payload: File) => {
+  return {
+    type: SET_ZIP_FILE,
+    payload,
+  };
+};
+
 export const toggleMailHeadImageEditMode = () => {
   return {
     type: TOGGLE_MAIL_HEADIMAGE_EDIT_MODE,
+  };
+};
+
+export const toggleMailSubImageEditMode = () => {
+  return {
+    type: TOGGLE_MAIL_SUBIMAGE_EDIT_MODE,
   };
 };
 
@@ -86,5 +117,10 @@ export type MailActionType =
   | ReturnType<typeof putMailFormFaiure>
   | ReturnType<typeof setMailSelectIndex>
   | ReturnType<typeof setMailHeadImage>
+  | ReturnType<typeof setMailHeadImageURL>
+  | ReturnType<typeof setMailSubImage>
+  | ReturnType<typeof setMailSubImageURL>
+  | ReturnType<typeof setZipFile>
   | ReturnType<typeof toggleMailHeadImageEditMode>
+  | ReturnType<typeof toggleMailSubImageEditMode>
   | ReturnType<typeof setMailSubImage>;
