@@ -4,9 +4,10 @@ import FileInput from '../../../atomic/File/Input'
 import './styles.scss'
 import InnerHeadStyle from '../../../atomic/FontStyle/InnerHeadStyle'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const EmailGradeFirst = () => {
+	const { type } = useParams() as { type: string };
 	const  excelFormState = useSelector<RootStore>(state => state.excelKeySetForm) as excelKeySetFormState
 	return (
 		<div>
@@ -18,7 +19,7 @@ const EmailGradeFirst = () => {
 			</section>
 			<footer className="inner-grade-footer">
 				<Link to="/email">이전</Link>
-				<Link to="/email/document/2">다음</Link>
+				<Link to={`/email/${type}/2`}>다음</Link>
 			</footer>
 		</div>
 	)

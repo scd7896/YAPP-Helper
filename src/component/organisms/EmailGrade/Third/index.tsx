@@ -5,15 +5,17 @@ import { setUserDataByFormRequest } from '../../../../store/action/desire'
 import classNames from 'classnames/bind';
 import styles from './styles.scss'
 import Filter from '../../../atomic/InputStyle/Filter';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const cx = classNames.bind(styles)
 type FilterString = "all" | "pass" | "fail"
+
 const EmailGradeThird = () => {
 	const dispatch = useDispatch()
 	const [filterStr, setFilterStr] = useState<FilterString>("all")
 	const { allList } = useSelector<RootStore>(state => state.desire) as DesireState
-	
+	const { type } = useParams() as { type: string };
+
 	const filterClick = useCallback((target) => {
 		setFilterStr(target as FilterString)
 	}, [])
@@ -79,8 +81,8 @@ const EmailGradeThird = () => {
 				</tbody>
 			</table>
 			<footer className="inner-grade-footer">
-				<Link to="/email/document/2">이전</Link>
-				<Link to="/email/document/4">다음</Link>
+				<Link to={`/email/${type}/2`}>이전</Link>
+				<Link to={`/email/${type}/4`}>다음</Link>
 			</footer>
 		</div>
 	)

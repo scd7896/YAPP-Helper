@@ -11,7 +11,7 @@ const cx = classNames.bind(styles)
 
 const Fourth = () => {
 	const dispatch = useDispatch();
-	const params = useParams();
+	const { type } = useParams() as { type: string };
 
 	const [viewPage, setViewPage] = useState<boolean>(true)
 
@@ -29,9 +29,9 @@ const Fourth = () => {
 	}, [viewPage])
 
 	useEffect(() => {
-		console.log(params)
+		
 		if (mailTemplates === null) {
-			dispatch(getMailTemplatesListFetch("document"))
+			dispatch(getMailTemplatesListFetch(type))
 		}
 	}, [])
 	return (
@@ -42,11 +42,11 @@ const Fourth = () => {
 				<header>
 					<p className={cx({ selected: viewPage })}
 					onClick={clickHeaderTab(true)}>
-						{mailTypeListByPathName['document']} 합격
+						{mailTypeListByPathName[type]} 합격
 					</p>
 					<p className={cx({ selected: !viewPage })}
 					onClick={clickHeaderTab(false)}>
-						{mailTypeListByPathName['document']} 불합격
+						{mailTypeListByPathName[type]} 불합격
 					</p>
 				</header>
 				{ mailTemplates !== null && (
@@ -80,8 +80,8 @@ const Fourth = () => {
 			</section>
 
 			<footer className="inner-grade-footer">
-				<Link to="/email/document/3">이전</Link>
-				<Link to="/email/document/5">다음</Link>
+				<Link to={`/email/${type}/3`}>이전</Link>
+				<Link to={`/email/${type}/5`}>다음</Link>
 			</footer>
 		</section>
 	)
