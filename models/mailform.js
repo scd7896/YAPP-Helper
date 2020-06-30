@@ -7,7 +7,27 @@ module.exports = (sequelize, DataTypes) => {
     contents: DataTypes.TEXT,
     header_image: DataTypes.TEXT,
     map_image: DataTypes.TEXT
-  }, {});
+  }, {
+    scopes: {
+      whereType(type) {
+        return {
+          where: {
+            type: type
+          }
+        }
+      },
+      orderByType: {
+        order: [
+          ['type', 'ASC']
+        ]
+      },
+      passedFirst: {
+        order: [
+          ['pass', 'DESC']
+        ]
+      }
+    }
+  });
   MailForm.associate = function(models) {
     // associations can be defined here
   };

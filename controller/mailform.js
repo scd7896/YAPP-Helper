@@ -1,12 +1,18 @@
 const { MailForm } = require('../models');
 
 let index = (req, res) => {
-	MailForm.findAll({
-		order: [
-			['type', 'ASC'],
-			['pass', 'DESC']
-		]
-	})
+	MailForm
+		.scope('orderByType', 'passedFirst')
+		.findAll()
+		.then(mailforms => {
+			res.json(mailforms);
+		});
+}
+
+let searchByType = (req, res) => {
+	MailForm
+		.scope({ method: ['whereType', req.params.type] }, 'passedFirst')
+		.findAll()
 		.then(mailforms => {
 			res.json(mailforms);
 		});
@@ -62,6 +68,7 @@ let destroy = (req, res) => {
 
 module.exports = {
 	index: index,
+	searchByType: searchByType,
 	show: show,
 	store: store,
 	update: update,
