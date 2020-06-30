@@ -4,9 +4,9 @@ import './big.scss'
 
 const BigSubTitle = ({ children }: FontStyle) => {
 	return(
-		<p className="big-subtitle-style">
+		<span className="big-subtitle-style">
 			{children}
-		</p>
+		</span>
 	)
 }
 

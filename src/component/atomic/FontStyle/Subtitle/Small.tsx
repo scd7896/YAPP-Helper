@@ -5,9 +5,9 @@ import './small.scss'
 
 const SmallSubTitle = ({ children }: FontStyle) => {
 	return (
-		<p className="small-subtitle-style">
+		<span className="small-subtitle-style">
 			{children}
-		</p>
+		</span>
 	)
 }
 

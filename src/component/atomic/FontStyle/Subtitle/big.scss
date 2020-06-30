@@ -1,7 +1,8 @@
+@import '../../../../util/styles/__color';
 .big-subtitle-style {
 	font-family: 'Spoqa Han Sans';
-	font-size: 21px;
-	color: #1e2b53;
-	letter-spacing: -0.78px;
-	margin-top: 8px;
+	font-size: 26px;
+	color: $gray_6;
+	letter-spacing: -0.54px;
+	line-height: 1.69;
 }

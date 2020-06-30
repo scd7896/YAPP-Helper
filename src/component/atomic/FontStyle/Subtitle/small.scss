@@ -1,10 +1,7 @@
+@import '../../../../util/styles/__color';
 .small-subtitle-style {
 	font-family: 'Spoqa Han Sans';
 	font-size: 14px;
-	font-weight: 300;
-	font-stretch: normal;
-	font-style: normal;
-	letter-spacing: -0.52px;
-	color: #1e2b53;
-	margin-bottom: 0px;
+	font-weight: bold;
+	color: $blue_3;
 }

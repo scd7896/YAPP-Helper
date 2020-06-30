@@ -18,11 +18,11 @@ const SelectMailTemplate = () => {
 						</div>
 					</div>
 					<SmallSubTitle>발표전형선택</SmallSubTitle>
-					<BigSubTitle>발표할 전형을 선택해주세요</BigSubTitle>
+					<BigSubTitle>발표할 결과를 선택하세요 🤔</BigSubTitle>
 				</section>
 				<section className="email-select-container">
-					<SelectLinkBox to="/email/document/1" title="서류전형"></SelectLinkBox>
-					<SelectLinkBox to="/email/meeting/1" title="면접전형"></SelectLinkBox>
+					<SelectLinkBox to="/email/document/1" title="서류전형 결과안내"></SelectLinkBox>
+					<SelectLinkBox to="/email/meeting/1" title="면접전형 결과안내"></SelectLinkBox>
 				</section>
 			</div>
 		</section>
