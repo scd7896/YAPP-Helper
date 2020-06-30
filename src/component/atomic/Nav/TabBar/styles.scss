@@ -1,13 +1,12 @@
-
 .tab-wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 153px;
-	height: 54px;
-	background-color: #d8d8d8;
-	border-right: 1px solid #f5f6fa;
-	&.select {
-		background-color: #f5f6fa;
-	}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 153px;
+  height: 54px;
+  background-color: #d8d8d8;
+  border-right: 1px solid #f5f6fa;
+  &.select {
+    background-color: #f5f6fa;
+  }
 }

@@ -73,5 +73,11 @@
     "ts-loader": "^6.2.1",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
+  },
+  "prettier": {
+    "semi": true,
+    "useTabs": false,
+    "tabWidth": 2,
+    "printWidth": 120
   }
 }

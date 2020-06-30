@@ -1,13 +1,9 @@
-import * as React from 'react'
+import * as React from "react";
 
-import './styles.scss'
+import "./styles.scss";
 
-const StatusTtitle = ({children}: FontStyle) => {
-	return (
-		<p className="status-title-style">	
-			{children}
-		</p>
-	)
-}
+const StatusTtitle = ({ children }: FontStyle) => {
+  return <p className="status-title-style">{children}</p>;
+};
 
-export default StatusTtitle
+export default StatusTtitle;

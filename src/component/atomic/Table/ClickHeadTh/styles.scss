@@ -1,25 +1,25 @@
 .head-print-string {
-	display: inline-block;
+  display: inline-block;
 }
 
 .head-menu-wrapper {
-	display: inline-block;
-	position: relative;
+  display: inline-block;
+  position: relative;
 }
 
 .select-menu-list {
-	display: none;
-	position: absolute;
-	background: white;
-	list-style: none;
-	padding: 0;
-	width: 162px;
+  display: none;
+  position: absolute;
+  background: white;
+  list-style: none;
+  padding: 0;
+  width: 162px;
 }
 
 .selected {
-	color: #3562ff;
+  color: #3562ff;
 }
 
 .open {
-	display: block;
+  display: block;
 }

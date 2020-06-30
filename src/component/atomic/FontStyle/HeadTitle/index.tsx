@@ -1,16 +1,12 @@
-import * as React from 'react'
+import * as React from "react";
 
-import './styles.scss'
+import "./styles.scss";
 
 type FontStyle = {
-	children: React.ReactElement | string
-}
+  children: React.ReactElement | string;
+};
 const HeadTitleText = ({ children }: FontStyle) => {
-	return (
-		<p className="title-text-style">
-			{children}
-		</p>
-	)
-}
+  return <p className="title-text-style">{children}</p>;
+};
 
 export default HeadTitleText;

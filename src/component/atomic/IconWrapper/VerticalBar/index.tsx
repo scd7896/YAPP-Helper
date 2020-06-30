@@ -1,10 +1,8 @@
-import * as React from 'react'
+import * as React from "react";
 
-import './styles.scss'
+import "./styles.scss";
 const VerticalBar = () => {
-	return (
-		<div className="vertical-bar-style">&nbsp;</div>
-	)
-}
+  return <div className="vertical-bar-style">&nbsp;</div>;
+};
 
 export default VerticalBar;

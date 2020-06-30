@@ -1,12 +1,12 @@
 interface excelKeySetFormState {
-	name: number | null
-	email: number | null
-	isPass: number | null
-	meetingTime: number | null
+  name: number | null;
+  email: number | null;
+  isPass: number | null;
+  meetingTime: number | null;
 }
-type SetFormKey = 'name' | 'email' | 'isPass' | 'meetingTime'
+type SetFormKey = "name" | "email" | "isPass" | "meetingTime";
 
 interface excelValueChangePayload {
-	key: SetFormKey
-	value: number
+  key: SetFormKey;
+  value: number;
 }

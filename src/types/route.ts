@@ -1,6 +1,6 @@
 interface EmailParamsData {
-	grade: string;
-	type: string;
+  grade: string;
+  type: string;
 }
 
-type URLType = 'email' | 'select' | 'recruit'
+type URLType = "email" | "select" | "recruit";

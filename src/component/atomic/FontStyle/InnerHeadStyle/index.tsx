@@ -1,13 +1,9 @@
-import * as React from 'react'
+import * as React from "react";
 
-import './styles.scss'
+import "./styles.scss";
 
-const InnerHeadStyle = ({ children }: FontStyle ) => {
-	return (
-		<p className="inner-head-text-style">
-			{ children }
-		</p>
-	)
-}
+const InnerHeadStyle = ({ children }: FontStyle) => {
+  return <p className="inner-head-text-style">{children}</p>;
+};
 
-export default InnerHeadStyle
+export default InnerHeadStyle;

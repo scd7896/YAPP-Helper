@@ -1,12 +1,8 @@
-import * as React from 'react'
+import * as React from "react";
 
-import './styles.scss'
+import "./styles.scss";
 const InnerInputGuideTitle = ({ children }: FontStyle) => {
-	return (
-		<p className="inner-inputtitle-style">
-			{children}
-		</p>
-	)
-}
+  return <p className="inner-inputtitle-style">{children}</p>;
+};
 
-export default InnerInputGuideTitle
+export default InnerInputGuideTitle;
