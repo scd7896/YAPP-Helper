@@ -20,8 +20,6 @@ type FileInputProps = {
   targetImage: 'head' | 'sub';
 };
 
-// 드래그 앤 드랍과 파일 인풋은 별개이다
-
 const FileInput = ({ fileTypes, targetImage }: FileInputProps) => {
   const [isOver, setIsOver] = useState(false);
   const isError = useSelector<RootStore>((state) => state.desire.isError);
@@ -62,6 +60,8 @@ const FileInput = ({ fileTypes, targetImage }: FileInputProps) => {
       putDummyImage();
       // zip 파일을 넣는다
       dispatch(setZipFile(file));
+    } else {
+      alert('허용되지 않는 파일 형식입니다');
     }
   }
 
