@@ -5,6 +5,12 @@ import {
   SET_MAIL_SELECTINDEX,
   SET_MAIL_TITLE,
   SET_MAIL_HEADIMAGE,
+  SET_MAIL_HEADIMAGE_URL,
+  SET_MAIL_SUBIMAGE,
+  SET_MAIL_SUBIMAGE_URL,
+  SET_ZIP_FILE,
+  TOGGLE_MAIL_HEADIMAGE_EDIT_MODE,
+  TOGGLE_MAIL_SUBIMAGE_EDIT_MODE,
   PUT_MAIL_FORM_SUCCESS,
   PUT_MAIL_FORM_FAILURE,
 } from "../action/actionTypes";
@@ -17,7 +23,10 @@ const initialState: MailInputState = {
   headImageURL: "",
   subImageURL: "",
   headImage: null,
+  headImageEditMode: false,
+  subImageEditMode: true,
   subImage: null,
+  zipFile: null,
   selectIndex: 0,
   pass: null,
 };
@@ -33,12 +42,57 @@ const mail = (state: MailInputState = initialState, action: MailActionType): Mai
         ...state,
         title: action.payload,
       };
+    // 이미지를 넣으면 바로 보임
     case SET_MAIL_HEADIMAGE:
       const headURL = URL.createObjectURL(action.payload);
       return {
         ...state,
         headImage: action.payload,
         headImageURL: headURL,
+      };
+    case SET_MAIL_HEADIMAGE_URL:
+      return {
+        ...state,
+        headImageURL: action.payload,
+      };
+    case SET_MAIL_SUBIMAGE:
+      const subURL = URL.createObjectURL(action.payload);
+      return {
+        ...state,
+        subImage: action.payload,
+        subImageURL: subURL,
+      };
+    case SET_MAIL_SUBIMAGE_URL:
+      return {
+        ...state,
+        subImageURL: action.payload,
+      };
+    case SET_ZIP_FILE:
+      return {
+        ...state,
+        zipFile: action.payload,
+      };
+    case TOGGLE_MAIL_HEADIMAGE_EDIT_MODE:
+      let headImageEditMode;
+      if (state.headImageEditMode) {
+        headImageEditMode = false;
+      } else {
+        headImageEditMode = true;
+      }
+      return {
+        ...state,
+        headImageEditMode: headImageEditMode,
+      };
+    case TOGGLE_MAIL_SUBIMAGE_EDIT_MODE:
+      let subImageEditMode;
+      if (state.subImageEditMode) {
+        subImageEditMode = false;
+      } else {
+        subImageEditMode = true;
+      }
+      return {
+        ...state,
+        subImageEditMode: subImageEditMode,
       };
     case SET_MAIL_FORM:
       return {
