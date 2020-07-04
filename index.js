@@ -17,10 +17,6 @@ redisClient.get('test', function(err, reply){
   console.log('err',err)
 })
 
-// const fileRouter = require("./controller/file");
-const emailRouter = require("./route/email");
-const mailFormRouter = require("./route/mailform");
-const recruitRouter = require('./route/recruit')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -28,20 +24,9 @@ app.use(
     origin: true,
   })
 );
-
-app.use('/dist',express.static("dist")); // react 쓰기위한 것
-app.use(express.static('public'));
-// app.use("/api/file", fileRouter);
-app.use("/api/email", emailRouter);
-app.use("/api/mailforms", mailFormRouter);
-// app.use("/api/login", loginRouter);
-app.use("/api/recruit", recruitRouter);
 app.set("view engine", "ejs"); // .env를 사용하기 위한 ejs
-app.get("*", (req, res) => {
- 
-  return res.status(200).render('index')
-});
 
+app.use(require('./routes'));
 
 const server = app.listen(9170, () => console.log("서버 진행중 9170"));
 const io = require('socket.io')(server);
