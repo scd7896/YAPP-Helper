@@ -45,7 +45,7 @@ const RecruitInputContainer = () => {
       </header>
       {isRecruiting ? <OpenTrueBody /> : <OpenFalseBody />}
       <footer className={cx("recruit-input-footer")}>
-        <NomalButton color="grayOutLine" size="small">
+        <NomalButton color="ghost" size="small">
           취소
         </NomalButton>
         <NomalButton color="default" size="small" onClick={recruitDataUpdate}>

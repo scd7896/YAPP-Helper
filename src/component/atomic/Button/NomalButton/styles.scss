@@ -34,6 +34,13 @@
       background-color: #eef1ff;
     }
   }
+  &.ghost {
+    background-color: inherit;
+    color: $gray_5;
+    &:hover {
+      color: #000000;
+    }
+  }
 
   &.default-size {
     width: 140px;

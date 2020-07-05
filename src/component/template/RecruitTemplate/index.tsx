@@ -1,7 +1,9 @@
 import * as React from "react";
 import SelectLayout from "../SelectLayout";
+import classNames from "classnames/bind";
 
-import "./styles.scss";
+import styles from "./styles.scss";
+const cx = classNames.bind(styles);
 
 interface RecruitTemplateProp {
   children: React.ReactElement;
@@ -10,7 +12,7 @@ interface RecruitTemplateProp {
 const RecruitTemplate = ({ children }: RecruitTemplateProp) => {
   return (
     <SelectLayout>
-      <section>
+      <section className={cx("recruit-tamplate-wrapper")}>
         <header className="recruit-template-header">리쿠르팅 오픈</header>
         <section className="recruit-template-body">{children}</section>
       </section>

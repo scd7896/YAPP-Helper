@@ -1,3 +1,4 @@
+@import "../../util/styles/_color";
 .header {
   background-color: #f5f6fa;
 }
@@ -5,9 +6,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  background-color: $gray_1;
   .form-wrapper {
-    background-color: #f5f6fa;
+    background-color: #ffffff;
     width: 846px;
   }
 }

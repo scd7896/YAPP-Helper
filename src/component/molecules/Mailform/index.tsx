@@ -12,6 +12,7 @@ import {
   toggleMailSubImageEditMode,
   putMailFormRequest,
 } from "../../../store/action/mail";
+import NomalButton from "../../atomic/Button/NomalButton";
 
 const cx = classNames.bind(styles);
 
@@ -66,8 +67,12 @@ const MailForm = () => {
         <img src={subImageURL} width="750px" height="150px" onClick={subImageClick} />
       )}
       <footer>
-        <button>취소</button>
-        <button onClick={submitMailFormPut}>저장</button>
+        <NomalButton color="default" size="default" onClick={submitMailFormPut}>
+          저장
+        </NomalButton>
+        <NomalButton color="ghost" size="default">
+          취소
+        </NomalButton>
       </footer>
     </div>
   );

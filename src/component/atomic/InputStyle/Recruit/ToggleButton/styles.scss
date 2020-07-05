@@ -1,3 +1,4 @@
+@import "../../../../../util/styles/_color";
 .switch {
   position: relative;
   display: inline-block;
@@ -36,11 +37,11 @@
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
+  background-color: $helper_blue;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+  box-shadow: 0 0 1px $helper_blue;
 }
 
 input:checked + .slider:before {
