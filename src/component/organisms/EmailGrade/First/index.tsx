@@ -4,11 +4,16 @@ import FileInput from "../../../atomic/File/Input";
 import "./styles.scss";
 import InnerHeadStyle from "../../../atomic/FontStyle/InnerHeadStyle";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import NomalButton from "../../../atomic/Button/NomalButton";
+import useHisotryRoute from "../../../../hooks/useHistoryRoute";
 
 const EmailGradeFirst = () => {
   const { type } = useParams() as { type: string };
-  const excelFormState = useSelector<RootStore>((state) => state.excelKeySetForm) as excelKeySetFormState;
+  const { pushHistory } = useHisotryRoute();
+
+  const { users } = useSelector<RootStore, RootStore["desire"]>((state) => state.desire);
+
   return (
     <div>
       <header className="inner-grade-title-wrapper">
@@ -18,8 +23,25 @@ const EmailGradeFirst = () => {
         <FileInput />
       </section>
       <footer className="inner-grade-footer">
-        <Link to="/email">이전</Link>
-        <Link to={`/email/${type}/2`}>다음</Link>
+        <NomalButton
+          size="default"
+          color="lightBlue"
+          onClick={() => {
+            pushHistory("/email");
+          }}
+        >
+          이전
+        </NomalButton>
+        <NomalButton
+          size="default"
+          color="default"
+          disabled={users.length === 0}
+          onClick={() => {
+            pushHistory(`/email/${type}/2`);
+          }}
+        >
+          다음
+        </NomalButton>
       </footer>
     </div>
   );

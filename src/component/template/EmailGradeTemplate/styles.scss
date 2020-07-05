@@ -1,3 +1,4 @@
+@import "../../../util/styles/_color";
 .header-wrapper-container {
   display: flex;
   justify-content: center;
@@ -16,5 +17,5 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: $gray_1;
 }

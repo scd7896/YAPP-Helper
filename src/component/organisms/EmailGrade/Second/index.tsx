@@ -6,9 +6,12 @@ import ClickHeadTh from "../../../atomic/Table/ClickHeadTh";
 import { Link, useParams } from "react-router-dom";
 
 import "./styles.scss";
+import useHisotryRoute from "../../../../hooks/useHistoryRoute";
+import NomalButton from "../../../atomic/Button/NomalButton";
 
 const EmailGradeSecond = () => {
   const dispatch = useDispatch();
+  const { pushHistory } = useHisotryRoute();
   const { type } = useParams() as { type: string };
   const { keys, users } = useSelector<RootStore>((state) => state.desire) as DesireState;
 
@@ -43,8 +46,24 @@ const EmailGradeSecond = () => {
         </tbody>
       </table>
       <footer className="inner-grade-footer">
-        <Link to={`/email/${type}/1`}>이전</Link>
-        <Link to={`/email/${type}/3`}>다음</Link>
+        <NomalButton
+          color="lightBlue"
+          size="default"
+          onClick={() => {
+            pushHistory(`/email/${type}/1`);
+          }}
+        >
+          이전
+        </NomalButton>
+        <NomalButton
+          color="default"
+          size="default"
+          onClick={() => {
+            pushHistory(`/email/${type}/3`);
+          }}
+        >
+          다음
+        </NomalButton>
       </footer>
     </div>
   );

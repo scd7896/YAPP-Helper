@@ -5,13 +5,16 @@ import { setUserDataByFormRequest } from "../../../../store/action/desire";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import Filter from "../../../atomic/InputStyle/Filter";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import NomalButton from "../../../atomic/Button/NomalButton";
+import useHisotryRoute from "../../../../hooks/useHistoryRoute";
 
 const cx = classNames.bind(styles);
 type FilterString = "all" | "pass" | "fail";
 
 const EmailGradeThird = () => {
   const dispatch = useDispatch();
+  const { pushHistory } = useHisotryRoute();
   const [filterStr, setFilterStr] = useState<FilterString>("all");
   const { allList } = useSelector<RootStore>((state) => state.desire) as DesireState;
   const { type } = useParams() as { type: string };
@@ -75,8 +78,24 @@ const EmailGradeThird = () => {
         </tbody>
       </table>
       <footer className="inner-grade-footer">
-        <Link to={`/email/${type}/2`}>이전</Link>
-        <Link to={`/email/${type}/4`}>다음</Link>
+        <NomalButton
+          color="lightBlue"
+          size="default"
+          onClick={() => {
+            pushHistory(`/email/${type}/2`);
+          }}
+        >
+          이전
+        </NomalButton>
+        <NomalButton
+          color="default"
+          size="default"
+          onClick={() => {
+            pushHistory(`/email/${type}/4`);
+          }}
+        >
+          다음
+        </NomalButton>
       </footer>
     </div>
   );

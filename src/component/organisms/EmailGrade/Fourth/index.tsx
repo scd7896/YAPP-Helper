@@ -1,16 +1,19 @@
 import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
 import classNames from "classnames/bind";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { mailTypeListByPathName } from "../../../../util/constact";
 import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./styles.scss";
 import { getMailTemplatesListFetch } from "../../../../store/action/desire";
+import NomalButton from "../../../atomic/Button/NomalButton";
+import useHisotryRoute from "../../../../hooks/useHistoryRoute";
 const cx = classNames.bind(styles);
 
 const Fourth = () => {
   const dispatch = useDispatch();
+  const { pushHistory } = useHisotryRoute();
   const { type } = useParams() as { type: string };
 
   const [viewPage, setViewPage] = useState<boolean>(true);
@@ -34,17 +37,17 @@ const Fourth = () => {
     }
   }, []);
   return (
-    <section>
+    <section className={cx("page-wrapper")}>
       <p>4.메일내용 확인</p>
       <p>잠깐! 보내기 전에 메일내용 확인하세요</p>
       <section className={cx("content-wrapper")}>
         <header>
-          <p className={cx({ selected: viewPage })} onClick={clickHeaderTab(true)}>
+          <span className={cx("head-nav-button", { selected: viewPage })} onClick={clickHeaderTab(true)}>
             {mailTypeListByPathName[type]} 합격
-          </p>
-          <p className={cx({ selected: !viewPage })} onClick={clickHeaderTab(false)}>
+          </span>
+          <span className={cx("head-nav-button", { selected: !viewPage })} onClick={clickHeaderTab(false)}>
             {mailTypeListByPathName[type]} 불합격
-          </p>
+          </span>
         </header>
         {mailTemplates !== null && (
           <section className={cx("body")}>
@@ -75,8 +78,24 @@ const Fourth = () => {
       </section>
 
       <footer className="inner-grade-footer">
-        <Link to={`/email/${type}/3`}>이전</Link>
-        <Link to={`/email/${type}/5`}>다음</Link>
+        <NomalButton
+          color="lightBlue"
+          size="default"
+          onClick={() => {
+            pushHistory(`/email/${type}/3`);
+          }}
+        >
+          이전
+        </NomalButton>
+        <NomalButton
+          color="default"
+          size="default"
+          onClick={() => {
+            pushHistory(`/email/${type}/5`);
+          }}
+        >
+          다음
+        </NomalButton>
       </footer>
     </section>
   );
