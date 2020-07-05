@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const crypto = require('crypto');
 const { checkSchema, body, matchedData, validationResult } = require('express-validator');
+const { unlink } = require('fs');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -67,6 +68,12 @@ router.route('/')
       else {
         console.log('validation error');
         res.sendStatus(400);
+        Object.values(req.files).flat().forEach(file => {
+          unlink(file.path, err => {
+            if (err) throw err;
+            console.log('successfully deleted ' + file.path);
+          });
+        });
       }
     },
     controller.store
