@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 interface IProp {
   onClick?: (event: any) => void;
   children: React.ReactElement | string;
-  color: "default" | "lightBlue" | "gray" | "blueOutLine";
+  color: "default" | "lightBlue" | "grayOutLine" | "blueOutLine";
   size: "default" | "small";
   disabled?: boolean;
 }

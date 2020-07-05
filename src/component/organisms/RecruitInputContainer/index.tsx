@@ -4,10 +4,12 @@ import RecruitGuide from "../../molecules/RecruitGuide";
 import { useSelector } from "react-redux";
 import OpenTrueBody from "./OpenTrueBody";
 import OpenFalseBody from "./OpenFalseBody";
-
-import "./styles.scss";
 import { putRecruitData } from "../../../util/api";
 import { useHistory } from "react-router-dom";
+import NomalButton from "../../atomic/Button/NomalButton";
+import classNames from "classnames/bind";
+import styles from "./styles.scss";
+const cx = classNames.bind(styles);
 
 const RecruitInputContainer = () => {
   const { isRecruiting, generation, URL, startDay, lastDay } = useSelector<RootStore>(
@@ -37,14 +39,18 @@ const RecruitInputContainer = () => {
     }
   }, [isUpdateSuccess]);
   return (
-    <div className="recruit-input-container">
-      <header className="recruit-input-header">
+    <div className={cx("recruit-input-container")}>
+      <header className={cx("recruit-input-header")}>
         <RecruitGuide type="checked" name="isRecruiting" title="리쿠르팅 오픈하기" />
       </header>
       {isRecruiting ? <OpenTrueBody /> : <OpenFalseBody />}
-      <footer className="recruit-input-footer">
-        <button>취소</button>
-        <button onClick={recruitDataUpdate}>완료</button>
+      <footer className={cx("recruit-input-footer")}>
+        <NomalButton color="grayOutLine" size="small">
+          취소
+        </NomalButton>
+        <NomalButton color="default" size="small" onClick={recruitDataUpdate}>
+          완료
+        </NomalButton>
       </footer>
     </div>
   );
