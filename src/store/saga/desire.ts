@@ -76,8 +76,8 @@ function* watchMailTemplatesFetch() {
 
 function* mailtemplatesAllFetch() {
 	try {
-		const data = allTemplates
-		// const data = yield call(getMailFormAll)
+		// const data = allTemplates
+		const data = yield call(getMailFormAll)
 		yield put({
 			type: MAILTEMPLATES_FETCH_SUCCESS,
 			payload: data as MailState[]

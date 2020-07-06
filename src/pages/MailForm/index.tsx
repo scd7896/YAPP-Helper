@@ -8,6 +8,7 @@ import MailFormTemplate from '../../component/template/MailFormTemplate';
 import MailForm from '../../component/molecules/Mailform';
 import TabBar from '../../component/atomic/Nav/TabBar';
 import { setMailForm, setMailSelectIndex } from '../../store/action/mail';
+import { mailTypeListByPathName } from '../../util/constact';
 
 const cx = classNames.bind(styles);
 
@@ -36,9 +37,14 @@ const MailFormPage = () => {
 			<section className={cx('body')}>
 				<div className={cx("form-wrapper")}>
 					<div className={cx('tab-bar-wrapper')}>
-						{mailTemplates && mailTemplates.map(({title}, index) => {
-							return <TabBar text={title} isSelected={index === selectIndex} 
-							handler={tabChangeHandler(index)}/>
+						{mailTemplates && mailTemplates.map(({ type, pass }, index) => {
+							const tabTitle = pass ? mailTypeListByPathName[type] + " 합격" : mailTypeListByPathName[type] + " 불합격"
+							return (
+								<TabBar 
+									text={tabTitle} 
+									isSelected={index === selectIndex} 
+									handler={tabChangeHandler(index)} />
+							)
 						})}				
 					</div>
 					<MailForm />

@@ -8,4 +8,4 @@ export const emailHeadNameList = {
 export const mailTypeListByPathName = {
 	document: '서류전형',
 	meeting: '면접전형'
-}
+} as any

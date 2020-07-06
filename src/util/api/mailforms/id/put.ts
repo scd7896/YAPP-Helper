@@ -1,12 +1,5 @@
 import axios from 'axios'
-interface Payload {
-	id: number;
-	type: string;
-	title: string;
-	contents: string;
-	headImage: File;
-	mapImage: File;
-}
+
 export const putMailForm = async (payload: MailInputState) => {
 	const formData = new FormData();
 	if (payload.headImage) {
