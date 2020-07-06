@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setExcelValueRequset } from '../../../../store/action/desire';
+import * as React from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setExcelValueRequset } from "../../../../store/action/desire";
 import {
   setMailHeadImage,
   setMailSubImage,
@@ -10,15 +10,17 @@ import {
   setZipFile,
   toggleMailHeadImageEditMode,
   toggleMailSubImageEditMode,
-} from '../../../../store/action/mail';
-import SmallIconWrapper from '../../IconWrapper/Small';
+} from "../../../../store/action/mail";
+import SmallIconWrapper from "../../IconWrapper/Small";
 
-import './styles.scss';
+import "./styles.scss";
 
-type FileInputProps = {
-  fileTypes: Array<'image' | 'xlsx' | 'zip'>;
-  targetImage: 'head' | 'sub';
-};
+type fileType = "image" | "xlsx" | "zip";
+
+interface FileInputProps {
+  fileTypes: Array<fileType>;
+  targetImage: "head" | "sub";
+}
 
 const FileInput = ({ fileTypes, targetImage }: FileInputProps) => {
   const [isOver, setIsOver] = useState(false);
@@ -26,44 +28,44 @@ const FileInput = ({ fileTypes, targetImage }: FileInputProps) => {
   const dispatch = useDispatch();
 
   function putDummyImage() {
-    if (targetImage === 'head') {
+    if (targetImage === "head") {
       dispatch(
         setMailHeadImageURL(
-          'https://img.icons8.com/ios/50/000000/inspection.png'
+          "https://img.icons8.com/ios/50/000000/inspection.png"
         )
       );
       dispatch(toggleMailHeadImageEditMode());
-    } else if (targetImage === 'sub') {
+    } else if (targetImage === "sub") {
       dispatch(
         setMailSubImageURL(
-          'https://img.icons8.com/ios/50/000000/inspection.png'
+          "https://img.icons8.com/ios/50/000000/inspection.png"
         )
       );
       dispatch(toggleMailSubImageEditMode());
     }
   }
 
-  function putFile(file: File) {
-    if (file.type.match('^image/')) {
-      if (targetImage === 'head') {
+  const putFile = useCallback((file: File) => {
+    if (file.type.match("^image/")) {
+      if (targetImage === "head") {
         dispatch(setMailHeadImage(file));
         dispatch(toggleMailHeadImageEditMode());
-      } else if (targetImage === 'sub') {
+      } else if (targetImage === "sub") {
         dispatch(setMailSubImage(file));
         dispatch(toggleMailSubImageEditMode());
       }
-    } else if (file.type.match('application/x-zip-compressed')) {
-      if (targetImage === 'head') {
-        alert('헤더에는 이미지만 넣을 수 있습니다!');
+    } else if (file.type.match("application/x-zip-compressed")) {
+      if (targetImage === "head") {
+        alert("헤더에는 이미지만 넣을 수 있습니다!");
         return;
       }
       putDummyImage();
       // zip 파일을 넣는다
       dispatch(setZipFile(file));
     } else {
-      alert('허용되지 않는 파일 형식입니다');
+      alert("허용되지 않는 파일 형식입니다");
     }
-  }
+  }, []);
 
   const dropHandler = async (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -87,32 +89,30 @@ const FileInput = ({ fileTypes, targetImage }: FileInputProps) => {
     setIsOver(false);
   };
 
-  // 제기랄
   const clickForFileCall = () => {
-    const FileInputTag = document.createElement('input');
+    const FileInputTag = document.createElement("input");
     const permittedFileTypes: string[] = [];
-    FileInputTag.setAttribute('type', 'file');
+    FileInputTag.setAttribute("type", "file");
 
     // 이미지 허용
-    if (fileTypes.includes('image')) {
-      permittedFileTypes.push('image/*');
+    if (fileTypes.includes("image")) {
+      permittedFileTypes.push("image/*");
     }
     // zip 파일 허용
-    if (fileTypes.includes('zip')) {
-      permittedFileTypes.push('.zip');
+    if (fileTypes.includes("zip")) {
+      permittedFileTypes.push(".zip");
     }
 
-    FileInputTag.setAttribute('accept', permittedFileTypes.join(','));
-    FileInputTag.addEventListener('change', () => {
-      const file = FileInputTag.files[0];
-      putFile(file);
-    });
+    FileInputTag.setAttribute("accept", permittedFileTypes.join(","));
+    FileInputTag.addEventListener("change", () =>
+      putFile(FileInputTag.files[0])
+    );
     FileInputTag.click();
   };
 
   useEffect(() => {
     if (isError) {
-      alert('이미지와 zip 파일만 업로드 할 수 있습니다.');
+      alert("이미지와 zip 파일만 업로드 할 수 있습니다.");
     }
   }, [isError]);
   return (
@@ -120,8 +120,7 @@ const FileInput = ({ fileTypes, targetImage }: FileInputProps) => {
       onDrop={dropHandler}
       onDragOver={dragOverHandler}
       onDragLeave={dragLeaveHandler}
-      className="file-drop-box"
-      style={isOver ? { backgroundColor: 'rgba(228, 230, 240, 0.5)' } : {}}
+      className={isOver ? "file-drop-box isOver" : "file-drop-box"}
     >
       <div className="margin-bottom18px-wrapper">
         <SmallIconWrapper width={70} height={70} />
