@@ -12,3 +12,9 @@ export const LogOutIcon = () => (
     </g>
   </svg>
 );
+
+export const ArrowBottom = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="4" viewBox="0 0 10 4">
+    <path fill="none" fillRule="evenodd" stroke="#565A61" d="M100 26L104 30 108 26" transform="translate(-99 -26)" />
+  </svg>
+);

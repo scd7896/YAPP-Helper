@@ -1,15 +1,18 @@
 import * as React from "react";
 import { useMemo, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
+import classNames from "classnames/bind";
+import styles from "./styles.scss";
 
 import { emailHeadNameList } from "../../../../util/constact";
 import SmallIconWrapper from "../../IconWrapper/Small";
-import "./styles.scss";
 import MenuItem from "../MenuItem";
+import { ArrowBottom } from "../../Icon";
 
 interface ClickHeadThProp extends FontStyle {
   index: number;
 }
+const cx = classNames.bind(styles);
 const ClickHeadTh = ({ children, index }: ClickHeadThProp) => {
   const keySet = useSelector<RootStore>((state) => state.excelKeySetForm) as excelKeySetFormState;
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -40,16 +43,14 @@ const ClickHeadTh = ({ children, index }: ClickHeadThProp) => {
     setIsMenuOpen(!isMenuOpen);
   }, [isMenuOpen]);
   return (
-    <th>
-      <p className={`head-print-string ${isSelected ? "selected" : ""}`}>{printString}</p>
-      <menu className="head-menu-wrapper">
-        <button onClick={toggleOpen}>
-          <SmallIconWrapper width={16} height={16}>
-            &nbsp;
-          </SmallIconWrapper>
-        </button>
+    <th className={cx("thwrapper")}>
+      <span onClick={toggleOpen} className={cx("head-print-string", { selected: isSelected })}>
+        <span>{printString}</span>
+        <ArrowBottom />
+      </span>
+      <menu className={cx("head-menu-wrapper")}>
         {isMenuOpen && (
-          <ul className={`select-menu-list ${isMenuOpen ? "open" : ""}`}>
+          <ul className={cx("select-menu-list", { open: isMenuOpen })}>
             <li>셀 역할 선택</li>
             {Object.keys(keySet).map((el, keyIndex) => {
               return (

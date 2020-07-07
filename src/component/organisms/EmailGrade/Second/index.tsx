@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUserDataByFormRequest } from "../../../../store/action/desire";
 import ClickHeadTh from "../../../atomic/Table/ClickHeadTh";
 import { Link, useParams } from "react-router-dom";
-
-import "./styles.scss";
+import classNames from "classnames/bind";
+import styles from "./styles.scss";
 import useHisotryRoute from "../../../../hooks/useHistoryRoute";
 import NomalButton from "../../../atomic/Button/NomalButton";
 
+const cx = classNames.bind(styles);
 const EmailGradeSecond = () => {
   const dispatch = useDispatch();
   const { pushHistory } = useHisotryRoute();
@@ -20,10 +21,10 @@ const EmailGradeSecond = () => {
   }, []);
 
   return (
-    <div>
-      <table>
+    <div className={cx("table-wrapper")}>
+      <table className={cx("table-style")}>
         <thead>
-          <tr>
+          <tr className={cx("table-row-style")}>
             {keys.map((key, index) => {
               return (
                 <ClickHeadTh key={`${key}${index}`} index={index}>
@@ -33,19 +34,24 @@ const EmailGradeSecond = () => {
             })}
           </tr>
         </thead>
-        <tbody>
+
+        <tbody className={cx("tbody-wrapper")}>
           {users.map((user, index) => {
             return (
-              <tr key={`user${user}${index}`}>
+              <tr className={cx("table-row-style")} key={`user${user}${index}`}>
                 {user.map((userData, j) => {
-                  return <td key={`datas${userData}${j}`}>{userData}</td>;
+                  return (
+                    <td className={cx("table-data-style")} key={`datas${userData}${j}`}>
+                      <span>{userData}</span>
+                    </td>
+                  );
                 })}
               </tr>
             );
           })}
         </tbody>
       </table>
-      <footer className="inner-grade-footer">
+      <footer className={cx("inner-grade-footer")}>
         <NomalButton
           color="lightBlue"
           size="default"

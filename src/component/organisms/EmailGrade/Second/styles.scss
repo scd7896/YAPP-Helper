@@ -1,3 +1,4 @@
+@import "../../../../util/styles/_color";
 .email-grade-first-container {
   width: 800px;
   height: 422px;
@@ -27,4 +28,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.table-wrapper {
+  width: 846px;
+}
+.table-style {
+  background-color: #ffffff;
+}
+
+.tbody-wrapper {
+  display: block;
+  height: 410px;
+  overflow-y: scroll;
+}
+
+.table-row-style {
+  height: 50px;
+  > td {
+    border-bottom: 1px solid $gray_3;
+    padding-left: 24px;
+    font-size: 14px;
+    color: $gray_5;
+    letter-spacing: -0.25px;
+  }
+}
+
+.table-data-style {
+  padding-right: 48px;
+}
+
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }

@@ -1,15 +1,23 @@
-.head-print-string {
-  display: inline-block;
-}
-
-.head-menu-wrapper {
-  display: inline-block;
+@import "../../../../util/styles/_color";
+.thwrapper {
   position: relative;
+  padding-left: 24px;
+}
+.head-print-string {
+  display: flex;
+  align-items: center;
+  color: $gray_6;
+  font-size: 14px;
+  > * {
+    margin-right: 8px;
+  }
 }
 
 .select-menu-list {
   display: none;
   position: absolute;
+  left: 0;
+  top: 10px;
   background: white;
   list-style: none;
   padding: 0;
@@ -22,4 +30,9 @@
 
 .open {
   display: block;
+}
+
+.button-style {
+  background-color: inherit;
+  border: none;
 }

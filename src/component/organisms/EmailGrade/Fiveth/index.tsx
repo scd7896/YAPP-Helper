@@ -5,11 +5,16 @@ import { url } from "../../../../_data";
 import axios from "axios";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
+import { useSelector } from "react-redux";
+import { postMailSend } from "../../../../util/api/email/send/post";
+import { useParams } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
 const EmailGradeFiveth = () => {
+  const { type } = useParams();
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
+  const { allList } = useSelector<RootStore, RootStore["desire"]>(({ desire }) => desire);
   const [userDatas, setUserDatas] = useState([]);
   const [userData, setUserData] = useState("");
 
@@ -18,13 +23,8 @@ const EmailGradeFiveth = () => {
   }, []);
 
   useEffect(() => {
-    if (socket !== null) {
-      axios.get(`${url}/api/email/test`);
-      socket.on("list-add", (data: string) => {
-        setUserData(data);
-      });
-    }
-  }, [socket]);
+    postMailSend({ users: allList, type });
+  }, []);
 
   useEffect(() => {
     if (userData !== "") {
