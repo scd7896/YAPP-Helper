@@ -1,6 +1,6 @@
 interface DesireState {
-  keys: Array<String>;
-  users: Array<Array<String>>;
+  keys: Array<string>;
+  users: Array<Array<string>>;
   allList: Array<User>;
   isError: boolean;
   mailTemplates?: MailState[] | null;

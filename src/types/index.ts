@@ -9,3 +9,7 @@ interface User {
 interface FontStyle {
   children: string;
 }
+interface CheckInterFace {
+  [key: string]: boolean;
+}
+type FCCheckFunction<T> = (T: CheckInterFace) => (arg: any) => JSX.Element;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDataByFormRequest } from "../../../../store/action/desire";
 import classNames from "classnames/bind";
@@ -8,6 +8,7 @@ import Filter from "../../../../component/atomic/InputStyle/Filter";
 import { useParams } from "react-router-dom";
 import NomalButton from "../../../../component/atomic/Button/NomalButton";
 import useHisotryRoute from "../../../../hooks/useHistoryRoute";
+import Table from "../../../../component/organisms/Table";
 
 const cx = classNames.bind(styles);
 type FilterString = "all" | "pass" | "fail";
@@ -19,6 +20,23 @@ const EmailGradeThird = () => {
   const { allList } = useSelector<RootStore>((state) => state.desire) as DesireState;
   const { type } = useParams() as { type: string };
 
+  const userList = useMemo(() => {
+    return allList
+      .filter((user) => {
+        if (filterStr === "all") {
+          return true;
+        }
+        if (filterStr === "pass") {
+          return user.isPass;
+        }
+        if (filterStr === "fail") {
+          return !user.isPass;
+        }
+      })
+      .map((user) => {
+        return [user.name, user.email, user.isPass.toString(), user.meetingTime ? user.meetingTime : ""];
+      });
+  }, [allList, filterStr]);
   const filterClick = useCallback((target) => {
     setFilterStr(target as FilterString);
   }, []);
@@ -26,7 +44,7 @@ const EmailGradeThird = () => {
   useEffect(() => {
     dispatch(setUserDataByFormRequest());
   }, []);
-
+  const headItems = ["name", "email", "isPass", "meetingTime"];
   return (
     <div className={cx("wrapper")}>
       <p>3. 셀 분류확인</p>
@@ -42,41 +60,9 @@ const EmailGradeThird = () => {
           불합격
         </Filter>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <td>name</td>
-            <td>email</td>
-            <td>isPass</td>
-            <td>meetingTime</td>
-          </tr>
-        </thead>
-        <tbody>
-          {allList[0] &&
-            allList
-              .filter((user) => {
-                if (filterStr === "all") {
-                  return true;
-                }
-                if (filterStr === "pass") {
-                  return user.isPass;
-                }
-                if (filterStr === "fail") {
-                  return !user.isPass;
-                }
-              })
-              .map((user) => {
-                return (
-                  <tr>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>{user.isPass.toString()}</td>
-                    <td>{user.meetingTime ? user.meetingTime : ""}</td>
-                  </tr>
-                );
-              })}
-        </tbody>
-      </table>
+
+      {allList[0] && <Table bodyItems={[headItems, ...userList]} />}
+
       <footer className="inner-grade-footer">
         <NomalButton
           color="lightBlue"

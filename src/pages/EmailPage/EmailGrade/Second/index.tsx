@@ -2,12 +2,13 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDataByFormRequest } from "../../../../store/action/desire";
-import ClickHeadTh from "../../../../component/atomic/Table/ClickHeadTh";
-import { Link, useParams } from "react-router-dom";
+
+import { useParams } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import useHisotryRoute from "../../../../hooks/useHistoryRoute";
 import NomalButton from "../../../../component/atomic/Button/NomalButton";
+import Table from "../../../../component/organisms/Table";
 
 const cx = classNames.bind(styles);
 const EmailGradeSecond = () => {
@@ -22,35 +23,7 @@ const EmailGradeSecond = () => {
 
   return (
     <div className={cx("table-wrapper")}>
-      <table className={cx("table-style")}>
-        <thead>
-          <tr className={cx("table-row-style")}>
-            {keys.map((key, index) => {
-              return (
-                <ClickHeadTh key={`${key}${index}`} index={index}>
-                  {key as string}
-                </ClickHeadTh>
-              );
-            })}
-          </tr>
-        </thead>
-
-        <tbody className={cx("tbody-wrapper")}>
-          {users.map((user, index) => {
-            return (
-              <tr className={cx("table-row-style")} key={`user${user}${index}`}>
-                {user.map((userData, j) => {
-                  return (
-                    <td className={cx("table-data-style")} key={`datas${userData}${j}`}>
-                      <span>{userData}</span>
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <Table headItems={keys} bodyItems={users} />
       <footer className={cx("inner-grade-footer")}>
         <NomalButton
           color="lightBlue"
