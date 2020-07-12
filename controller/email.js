@@ -1,20 +1,15 @@
 const apiKey = process.env.MAILGUN_API_KEY; // mailgun apiKey
 const domain = process.env.MAILGUL_DOMAIN; // mailgun domain
-const mailgun = require('mailgun-js')({ //mailgun 모듈
+const mailgun = require("mailgun-js")({
+  //mailgun 모듈
   apiKey: apiKey,
   domain: domain,
-  host: 'api.eu.mailgun.net'
+  host: "api.eu.mailgun.net",
 });
-// const path = require('path');
 
-// const sendUserResult = (user, isError) => {
-//   // 메일 보내는 것 성공여부에 관계없이 결과를 프론트에 던져준다.
-//   const toClient = {
-//     ...user,
-//     isError,
-//   };
-//   io.emit("list-add", toClient);
-// };
+const { MailForm } = require("../models");
+const path = require("path");
+const mailform = require("./mailform");
 
 // const testSocket = (req, res) => {
 //   const io = req.app.get('socketio');
@@ -30,7 +25,7 @@ const mailgun = require('mailgun-js')({ //mailgun 모듈
 /**
  * 지원자들 리스트를 받아서 그냥 메일을 쭈욱 보낸다.
  * TODO: 보낸 결과를 io.emit으로 전송한다.
- * 
+ *
  * POST /api/email/send
  * body:
  * {
@@ -41,42 +36,56 @@ const mailgun = require('mailgun-js')({ //mailgun 모듈
  *   ]
  * }
  */
-const send = (req, res) => {
-  res.sendStatus(200);
-  console.log('메일 전송 시작');
+const send = async (req, res) => {
+  console.log("메일 전송 시작");
+  const io = req.app.get("socketio");
 
-  recipientInfo = req.body.user.reduce((recipient, user) => {
-    recipient[user.email] = user;
-    return recipient;
-  }, {});
-
-  // const filepath = path.join(__dirname, '../public/test.png');
-
-  // mailgun의 batch sending 기능을 이용해 동시에 메일을 보낸다
-  const data = {
-    from: 'YAPP <no-reply@yapp.co.kr>',
-    to: Object.values(recipientInfo).map(recipient => `${recipient.name} <${recipient.email}>`).join(', '),
-    subject: '테스트',
-    text: '안녕하세요 %recipient.name%\n' + `이 메일은 ${(new Date()).toLocaleString('ko-KR')}에 작성되었습니다`,
-    // html: '<html>Inline image here:<img src="cid:test.png"></html>',
-    // inline: filepath,
-    'recipient-variables': JSON.stringify(recipientInfo)
+  const sendUserResult = (user, isError) => {
+    // 메일 보내는 것 성공여부에 관계없이 결과를 프론트에 던져준다.
+    const toClient = {
+      ...user,
+      isError,
+    };
+    io.emit("list-add", toClient);
   };
 
-  mailgun.messages().send(data, function (error, body) {
-    console.log(error);
-    console.log(body);
+  const mailforms = await MailForm.scope({ method: ["whereType", req.body.type] }, "passedFirst").findAll();
+  const passMapImage = path.join(__dirname, "../public/", mailforms[0].map_image);
+  req.body.user.map((user) => {
+    console.log(user.pass);
+    const contentsBase = user.isPass ? mailforms[0].contents : mailforms[1].contents;
+    const headImage = user.isPass ? mailforms[0].header_image : mailforms[1].header_image;
+
+    const data = {
+      from: "YAPP <no-reply@yapp.co.kr>",
+      to: user.email,
+      subject: "테스트",
+      html: `<html>
+        <img src="cid:${headImage}" width="750px" height="150px">
+        ${contentsBase.replace(/\[name\]/g, user.name).replace(/\[meetingTime\]/g, user.meetingTime)}
+      </html>`,
+      inline: path.join(__dirname, "../public/", headImage),
+      attachment: user.isPass && passMapImage,
+      // "recipient-variables": JSON.stringify(recipientInfo),
+    };
+    mailgun.messages().send(data, function (error, body) {
+      console.log(error);
+      console.log(body);
+      // sendUserResult({}, error ? true : false);
+    });
   });
+  return res.status(200).send("메일전송요청완료");
+  // mailgun의 batch sending 기능을 이용해 동시에 메일을 보낸다
 };
 
 // router.get('/test/socket', (req, res) => {
-  // const io = req.app.get('socketio')
-  // for (let i = 0 ; i < 10; i++) {
-  //   setTimeout(() => {
-  //     io.emit('list-add', { data: i })
-  //   }, i * 1000)
-  // }
-  // res.status(200).send('소켓시작!')
+// const io = req.app.get('socketio')
+// for (let i = 0 ; i < 10; i++) {
+//   setTimeout(() => {
+//     io.emit('list-add', { data: i })
+//   }, i * 1000)
+// }
+// res.status(200).send('소켓시작!')
 // })
 
 /**
@@ -90,5 +99,5 @@ const send = (req, res) => {
 
 module.exports = {
   // socket: testSocket,
-  send: send
+  send: send,
 };
