@@ -52,7 +52,6 @@ const send = async (req, res) => {
   const mailforms = await MailForm.scope({ method: ["whereType", req.body.type] }, "passedFirst").findAll();
   const passMapImage = path.join(__dirname, "../public/", mailforms[0].map_image);
   req.body.user.map((user) => {
-    console.log(user.pass);
     const contentsBase = user.isPass ? mailforms[0].contents : mailforms[1].contents;
     const headImage = user.isPass ? mailforms[0].header_image : mailforms[1].header_image;
 

@@ -14,11 +14,18 @@ const searchByType = (req, res) => {
     .then((mailforms) => {
       res.json(
         mailforms.map((mailform) => ({
-          ...mailform,
-          head_image: `/${mailform.head_image}`,
+          title: mailform.title,
+          type: mailform.type,
+          pass: mailform.pass,
+          contents: mailform.contents,
+          header_image: `/${mailform.header_image}`,
           map_image: `/${mailform.map_image}`,
         }))
       );
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
     });
 };
 
