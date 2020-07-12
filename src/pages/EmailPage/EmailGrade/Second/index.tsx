@@ -2,12 +2,12 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDataByFormRequest } from "../../../../store/action/desire";
-import ClickHeadTh from "../../../atomic/Table/ClickHeadTh";
+import ClickHeadTh from "../../../../component/atomic/Table/ClickHeadTh";
 import { Link, useParams } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import useHisotryRoute from "../../../../hooks/useHistoryRoute";
-import NomalButton from "../../../atomic/Button/NomalButton";
+import NomalButton from "../../../../component/atomic/Button/NomalButton";
 
 const cx = classNames.bind(styles);
 const EmailGradeSecond = () => {

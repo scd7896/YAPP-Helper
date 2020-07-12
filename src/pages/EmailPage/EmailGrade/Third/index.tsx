@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUserDataByFormRequest } from "../../../../store/action/desire";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import Filter from "../../../atomic/InputStyle/Filter";
+import Filter from "../../../../component/atomic/InputStyle/Filter";
 import { useParams } from "react-router-dom";
-import NomalButton from "../../../atomic/Button/NomalButton";
+import NomalButton from "../../../../component/atomic/Button/NomalButton";
 import useHisotryRoute from "../../../../hooks/useHistoryRoute";
 
 const cx = classNames.bind(styles);

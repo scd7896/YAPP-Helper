@@ -1,11 +1,11 @@
 import * as React from "react";
-import FileInput from "../../../atomic/File/Input";
+import FileInput from "../../../../component/atomic/File/Input";
 
 import "./styles.scss";
-import InnerHeadStyle from "../../../atomic/FontStyle/InnerHeadStyle";
+import InnerHeadStyle from "../../../../component/atomic/FontStyle/InnerHeadStyle";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import NomalButton from "../../../atomic/Button/NomalButton";
+import NomalButton from "../../../../component/atomic/Button/NomalButton";
 import useHisotryRoute from "../../../../hooks/useHistoryRoute";
 
 const EmailGradeFirst = () => {

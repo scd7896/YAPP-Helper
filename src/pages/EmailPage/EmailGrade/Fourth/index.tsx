@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./styles.scss";
 import { getMailTemplatesListFetch } from "../../../../store/action/desire";
-import NomalButton from "../../../atomic/Button/NomalButton";
+import NomalButton from "../../../../component/atomic/Button/NomalButton";
 import useHisotryRoute from "../../../../hooks/useHistoryRoute";
 const cx = classNames.bind(styles);
 
