@@ -3,8 +3,9 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const crypto = require('crypto');
-const { checkSchema, body, matchedData, validationResult } = require('express-validator');
-const { unlink } = require('fs');
+const { body, param, matchedData, validationResult } = require('express-validator');
+const controller = require('../controller/mailform');
+const { MailForm } = require('../models');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -17,64 +18,48 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({ storage: storage });
+const saveUploadedFiles = fields => {
+  return [
+    upload.fields(fields.map(field => { return { name: field }; })),
+    (req, res, next) => {
+      req.body = fields.reduce((body, field) => {
+        body[field] = ((req.files[field] || [])[0] || {}).path;
+        return body;
+      }, req.body);
+      next();
+    }
+  ];
+};
 
-const controller = require('../controller/mailform');
-const { MailForm } = require('../models');
+const validate = validations => {
+  return async (req, res, next) => {
+    await Promise.all(validations.map(validation => validation.run(req)));
 
-const uploadAndGetPath = [
-  upload.fields([{ name: 'header_image' }, { name: 'map_image' }]),
-  (req, res, next) => {
-    req.body = {
-      ...req.body,
-      header_image: ((req.files.header_image || [])[0] || {}).path,
-      map_image: ((req.files.map_image || [])[0] || {}).path
-    };
-    console.log(req.body);
-    next();
-  }
-];
+    const errors = validationResult(req);
+    if (errors.isEmpty()) {
+      return next();
+    }
+
+    res.sendStatus(400);
+    next(errors.array());
+  };
+};
 
 router.route('/')
   .get(controller.index)
   .post([
-    uploadAndGetPath,
-    // checkSchema({
-    //   title: {
-    //     in: ['body'],
-    //     exists: true,
-    //     isEmpty: false
-    //   },
-    //   type: {
-    //     in: ['body'],
-    //     exists: true,
-    //     isEmpty: false
-    //   },
-    //   contents: {
-    //     in: ['body'],
-    //     exists: true,
-    //     isEmpty: false
-    //   }
-    // }),
-    body('title').exists().notEmpty(),
-    body('type').exists().notEmpty(),
-    body('contents').exists().notEmpty(),
-    body('header_image').exists().notEmpty(),
-    body('map_image').exists().notEmpty(),
+    saveUploadedFiles(['header_image', 'map_image']),
+    validate([
+      body('title').exists().notEmpty().trim(),
+      body('type').exists().notEmpty().trim(),
+      body('pass').exists().isBoolean().toBoolean(),
+      body('contents').exists().notEmpty().trim(),
+      body('header_image').exists().notEmpty(),
+      body('map_image').exists().notEmpty()
+    ]),
     (req, res, next) => {
-      if (validationResult(req).isEmpty()) {
-        req.body = matchedData(req);
-        next();
-      }
-      else {
-        console.log('validation error');
-        res.sendStatus(400);
-        Object.values(req.files).flat().forEach(file => {
-          unlink(file.path, err => {
-            if (err) throw err;
-            console.log('successfully deleted ' + file.path);
-          });
-        });
-      }
+      req.body = matchedData(req);
+      next();
     },
     controller.store
   ]);
@@ -83,30 +68,42 @@ router.route('/type/:type')
   .get(controller.searchByType);
 
 router.route('/:mailform_id')
+  .all([
+    validate([
+      param('mailform_id').isInt().toInt()
+    ]),
+    (req, res, next) => {
+      MailForm.findByPk(req.params.mailform_id)
+        .then(mailform => {
+          if (mailform === null) {
+            res.sendStatus(404);
+            throw new Error('Not Found');
+          }
+          req.mailform = mailform;
+          next();
+        })
+        .catch(err => {
+          next(err);
+        });
+    }
+  ])
   .get(controller.show)
   .put([
-    upload.fields([{ name: 'header_image' }, { name: 'map_image' }]),
+    saveUploadedFiles(['header_image', 'map_image']),
+    validate([
+      body('title').optional().notEmpty().trim(),
+      body('type').optional().notEmpty().trim(),
+      body('pass').optional().isBoolean().toBoolean(),
+      body('contents').optional().notEmpty().trim(),
+      body('header_image').optional().notEmpty(),
+      body('map_image').optional().notEmpty()
+    ]),
+    (req, res, next) => {
+      req.body = matchedData(req);
+      next();
+    },
     controller.update
   ])
   .delete(controller.destroy);
-
-router.param('mailform_id', function (req, res, next, id) {
-  const mailformId = parseInt(id);
-  if (isNaN(mailformId)) {
-    res.sendStatus(400);
-  }
-  else {
-    MailForm.findByPk(mailformId)
-      .then(mailform => {
-        if (mailform === null) {
-          res.sendStatus(404);
-        }
-        else {
-          req.mailform = mailform;
-          next();
-        }
-      });
-  }
-});
 
 module.exports = router;
