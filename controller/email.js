@@ -34,9 +34,10 @@ const mailgun = require('mailgun-js')({ //mailgun 모듈
  * POST /api/email/send
  * body:
  * {
- *   "user": [
- *     { "name": "Alice", "email": "alice@nomail.com", ... },
- *     { "name": "Bob", "email": "bob@nomail.com", ... },
+ *   "type": "meeting",
+ *   "users": [
+ *     { "name": "Alice", "email": "alice@nomail.com", "isPass": true, ... },
+ *     { "name": "Bob", "email": "bob@nomail.com", "isPass": false, ... },
  *     ...
  *   ]
  * }
