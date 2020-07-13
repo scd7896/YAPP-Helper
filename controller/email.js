@@ -1,9 +1,7 @@
-const apiKey = process.env.MAILGUN_API_KEY; // mailgun apiKey
-const domain = process.env.MAILGUL_DOMAIN; // mailgun domain
 const mailgun = require('mailgun-js')({ //mailgun 모듈
-  apiKey: apiKey,
-  domain: domain,
-  host: 'api.eu.mailgun.net'
+  apiKey: process.env.MAILGUN_API_KEY,
+  domain: process.env.MAILGUN_DOMAIN,
+  host: process.env.MAILGUN_HOST
 });
 const { MailForm } = require('../models');
 const { basename } = require('path');
@@ -67,7 +65,7 @@ const send = async (req, res) => {
       else {
         recipient[1][user.email] = user;
       }
-    return recipient;
+      return recipient;
     }, [{}, {}])
     .map((recipientInfo, index) => {
       if (Object.keys(recipientInfo).length === 0) {
@@ -75,8 +73,8 @@ const send = async (req, res) => {
       }
       const mailform = mailforms[index];
       return {
-    from: 'YAPP <no-reply@yapp.co.kr>',
-    to: Object.values(recipientInfo).map(recipient => `${recipient.name} <${recipient.email}>`).join(', '),
+        from: 'YAPP <no-reply@yapp.co.kr>',
+        to: Object.values(recipientInfo).map(recipient => `${recipient.name} <${recipient.email}>`).join(', '),
         subject: mailform.title,
         // text: '안녕하세요 %recipient.name%\n' + `이 메일은 ${(new Date()).toLocaleString('ko-KR')}에 작성되었습니다`,
         html: `<html><table>
@@ -85,12 +83,12 @@ const send = async (req, res) => {
           <tr><td><img src="cid:${basename(mailform.map_image)}"></td></tr>
           </table></html>`,
         inline: [mailform.header_image, mailform.map_image],
-    'recipient-variables': JSON.stringify(recipientInfo)
-  };
+        'recipient-variables': JSON.stringify(recipientInfo)
+      };
     })
     .filter(Boolean)
     .forEach(data => {
-      mailgun.messages().send(data, function (error, body) {
+      mailgun.messages().send(data, (error, body) => {
         console.log(error);
         console.log(body);
       });
@@ -98,22 +96,19 @@ const send = async (req, res) => {
 };
 
 // router.get('/test/socket', (req, res) => {
-  // const io = req.app.get('socketio')
-  // for (let i = 0 ; i < 10; i++) {
-  //   setTimeout(() => {
-  //     io.emit('list-add', { data: i })
-  //   }, i * 1000)
-  // }
-  // res.status(200).send('소켓시작!')
-// })
+//   const io = req.app.get('socketio')
+//   for (let i = 0 ; i < 10; i++) {
+//     setTimeout(() => {
+//       io.emit('list-add', { data: i })
+//     }, i * 1000)
+//   }
+//   res.status(200).send('소켓시작!')
+// });
 
-/**
- * 
-//  */
-// router.delete("/connection", (req, res) => {
-//   // const io = req.app.get('socketio')
-// 	// io.close();
-// 	res.status(200).end();
+// router.delete('/connection', (req, res) => {
+//   const io = req.app.get('socketio')
+//   io.close();
+//   res.status(200).end();
 // });
 
 module.exports = {
