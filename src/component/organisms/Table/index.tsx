@@ -12,7 +12,7 @@ interface IProp {
 }
 const Table: FC<IProp> = ({ headItems, bodyItems }) => {
   return (
-    <table>
+    <table className={cx("table-style")}>
       {headItems && <TableHead items={headItems} />}
       <TableBody rows={bodyItems} />
     </table>

@@ -43,8 +43,8 @@ function* userListSetBoyForm(action: ReturnType<typeof setUserDataByFormRequest>
      */
     const userData = users.map((user: Array<string>) => {
       return {
-        email: user[setForm.email],
         name: user[setForm.name],
+        email: user[setForm.email],
         isPass: user[setForm.isPass] === "합격",
         meetingTime: user[setForm.meetingTime],
         isError: false,

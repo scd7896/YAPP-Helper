@@ -2,7 +2,7 @@ interface DesireState {
   keys: Array<string>;
   users: Array<Array<string>>;
   allList: Array<User>;
-  isError: boolean;
+  isError: boolean | null;
   mailTemplates?: MailState[] | null;
 }
 

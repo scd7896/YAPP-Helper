@@ -20,7 +20,7 @@ export const setExcelValueRequset = (payload: File) => {
   };
 };
 
-const setExcelValueSuccess = (payload: Array<Array<String>>) => {
+const setExcelValueSuccess = (payload: Array<Array<string>>) => {
   return {
     type: SET_EXCEL_SUCCESS,
     payload: payload,

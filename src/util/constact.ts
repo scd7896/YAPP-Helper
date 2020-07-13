@@ -3,6 +3,7 @@ export const emailHeadNameList = {
   email: "이메일주소",
   isPass: "평가결과",
   meetingTime: "면접시간",
+  sendStatus: "발송상태",
 };
 
 export const mailTypeListByPathName = {
