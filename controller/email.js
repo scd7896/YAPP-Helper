@@ -5,7 +5,8 @@ const mailgun = require('mailgun-js')({ //mailgun 모듈
   domain: domain,
   host: 'api.eu.mailgun.net'
 });
-// const path = require('path');
+const { MailForm } = require('../models');
+const { basename } = require('path');
 
 // const sendUserResult = (user, isError) => {
 //   // 메일 보내는 것 성공여부에 관계없이 결과를 프론트에 던져준다.
@@ -42,32 +43,58 @@ const mailgun = require('mailgun-js')({ //mailgun 모듈
  *   ]
  * }
  */
-const send = (req, res) => {
+const send = async (req, res) => {
+  const mailforms = await MailForm
+    .scope({ method: ['whereType', req.body.type] }, 'passedFirst')
+    .findAll();
+
+  if (mailforms.length !== 2
+    || mailforms[0].pass !== true
+    || mailforms[1].pass !== false
+  ) {
+    res.sendStatus(500);
+    return;
+  }
+
   res.sendStatus(200);
   console.log('메일 전송 시작');
 
-  recipientInfo = req.body.user.reduce((recipient, user) => {
-    recipient[user.email] = user;
+  req.body.users
+    .reduce((recipient, user) => {
+      if (user.isPass) {
+        recipient[0][user.email] = user;
+      }
+      else {
+        recipient[1][user.email] = user;
+      }
     return recipient;
-  }, {});
-
-  // const filepath = path.join(__dirname, '../public/test.png');
-
-  // mailgun의 batch sending 기능을 이용해 동시에 메일을 보낸다
-  const data = {
+    }, [{}, {}])
+    .map((recipientInfo, index) => {
+      if (Object.keys(recipientInfo).length === 0) {
+        return;
+      }
+      const mailform = mailforms[index];
+      return {
     from: 'YAPP <no-reply@yapp.co.kr>',
     to: Object.values(recipientInfo).map(recipient => `${recipient.name} <${recipient.email}>`).join(', '),
-    subject: '테스트',
-    text: '안녕하세요 %recipient.name%\n' + `이 메일은 ${(new Date()).toLocaleString('ko-KR')}에 작성되었습니다`,
-    // html: '<html>Inline image here:<img src="cid:test.png"></html>',
-    // inline: filepath,
+        subject: mailform.title,
+        // text: '안녕하세요 %recipient.name%\n' + `이 메일은 ${(new Date()).toLocaleString('ko-KR')}에 작성되었습니다`,
+        html: `<html><table>
+          <tr><td><img src="cid:${basename(mailform.header_image)}"></td></tr>
+          <tr><td>${mailform.contents}</td></tr>
+          <tr><td><img src="cid:${basename(mailform.map_image)}"></td></tr>
+          </table></html>`,
+        inline: [mailform.header_image, mailform.map_image],
     'recipient-variables': JSON.stringify(recipientInfo)
   };
-
-  mailgun.messages().send(data, function (error, body) {
-    console.log(error);
-    console.log(body);
-  });
+    })
+    .filter(Boolean)
+    .forEach(data => {
+      mailgun.messages().send(data, function (error, body) {
+        console.log(error);
+        console.log(body);
+      });
+    });
 };
 
 // router.get('/test/socket', (req, res) => {
