@@ -20,11 +20,11 @@ const validate = validations => {
 router.post('/send', [
   validate([
     body('type').exists().notEmpty().trim(),
-    body('users').exists(),
+    body('users').exists().isArray(),
     body('users.*.name').exists().notEmpty().trim(),
     body('users.*.email').exists().notEmpty().trim(),
     body('users.*.isPass').exists().isBoolean().toBoolean(),
-    body('users.*.*').trim()
+    body('users.*.*').custom(value => ['string', 'boolean'].includes(typeof value)).trim()
   ]),
   (req, res, next) => {
     req.body = matchedData(req);
