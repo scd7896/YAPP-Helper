@@ -50,7 +50,7 @@ const send = async (req, res) => {
     || mailforms[0].pass !== true
     || mailforms[1].pass !== false
   ) {
-    res.sendStatus(500);
+    res.sendStatus(422);
     return;
   }
 
