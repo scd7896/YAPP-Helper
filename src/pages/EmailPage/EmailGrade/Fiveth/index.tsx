@@ -5,41 +5,40 @@ import { url } from "../../../../_data";
 import axios from "axios";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { postMailSend } from "../../../../util/api/email/send/post";
 import { useParams } from "react-router-dom";
 import ObjectArrayTable from "../../../../component/organisms/Table/ObjectArray";
+import { mailSendResultSet } from "../../../../store/action/desire";
 
 const cx = classNames.bind(styles);
 
 const EmailGradeFiveth = () => {
+  const dispatch = useDispatch();
   const { type } = useParams();
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
   const { allList } = useSelector<RootStore, RootStore["desire"]>(({ desire }) => desire);
   const [userData, setUserData] = useState("");
-  const getSendStatus = useCallback((isError?: boolean) => {
-    if (isError === false) return "발송성공";
-    if (isError === true) return "발송실패";
-    return "발송중";
-  }, []);
-  const getPassText = useCallback((isPass: boolean) => {
-    if (isPass) return "합격";
-    return "불합격";
-  }, []);
+  const [keyString, setKeyString] = useState("");
+
   useEffect(() => {
     if (socket === null) {
       setSocket(io(url));
     } else {
-      socket.on("list-add", (data: any) => {
-        setUserData(data);
+      socket.on("list-add", (data: SendUserResult) => {
+        dispatch(mailSendResultSet(data));
+      });
+      socket.on("send-key", (key: string) => {
+        setKeyString(key);
       });
     }
   }, [socket]);
-
   useEffect(() => {
-    if (userData !== "") {
-    }
-  }, [userData]);
+    postMailSend({ users: allList, type: type });
+  }, []);
+  useEffect(() => {
+    console.log(keyString);
+  }, [keyString]);
 
   return (
     <div className={cx("fiveth-grade-wrapper")}>

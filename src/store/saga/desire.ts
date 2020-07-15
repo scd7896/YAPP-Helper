@@ -47,7 +47,7 @@ function* userListSetBoyForm(action: ReturnType<typeof setUserDataByFormRequest>
         email: user[setForm.email],
         isPass: user[setForm.isPass] === "합격",
         meetingTime: user[setForm.meetingTime],
-        isError: false,
+        isError: null,
       };
     });
     yield put({

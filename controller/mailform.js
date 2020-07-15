@@ -57,7 +57,7 @@ const update = (req, res, next) => {
       res.json(mailform);
       ["header_image", "map_image"].forEach((key) => {
         if (req.body[key] !== undefined) {
-          unlink(previous[key], () => console.log("successfully deleted " + previous[key]));
+          unlink("public/" + previous[key], () => console.log("successfully deleted " + previous[key]));
         }
       });
     })

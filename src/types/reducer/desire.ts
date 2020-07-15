@@ -7,3 +7,8 @@ interface DesireState {
 }
 
 type FormKeyType = "email" | "name" | "isPass" | "meetingTime";
+
+interface SendUserResult {
+  user: string;
+  isError: boolean;
+}
