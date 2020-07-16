@@ -5092,9 +5092,9 @@ lodash.toplainobject@^3.0.0:
     lodash.keysin "^3.0.0"
 
 lodash@^4.0.0, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@~4.17.10:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 long@^4.0.0:
   version "4.0.0"
@@ -8247,11 +8247,6 @@ yallist@^3.0.2:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.1.1.tgz#dbb7daf9bfd8bac9ab45ebf602b8cbad0d5d08fd"
   integrity sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==
-
-yapp-components@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/yapp-components/-/yapp-components-0.0.1.tgz#4a3dbfeccf884400c620e239122c47e0285653c9"
-  integrity sha512-RVt2SZjxZtUOykocAjVwhWxU4pz6fZPUaUHN7jHZDQpnZyPfoSjbCtnY2t+/amUcDoTKnZ1iweN0AK/rwc+taw==
 
 yargs-parser@^13.1.2:
   version "13.1.2"
