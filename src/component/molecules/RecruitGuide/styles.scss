@@ -1,7 +1,10 @@
 .recruit-input-wrapper {
   display: flex;
+  width: 100%;
   justify-content: space-between;
-  width: 326px;
   align-items: center;
-  margin-bottom: 20px;
+
+  > p {
+    margin-right: 28px;
+  }
 }

@@ -1,7 +1,9 @@
 import * as React from "react";
 
+import "./style.scss";
+
 const RecruitingFont = ({ children }: FontStyle) => {
-  return <p>{children}</p>;
+  return <p className="yapp-recruiting-font">{children}</p>;
 };
 
 export default RecruitingFont;

@@ -6,7 +6,7 @@ import {
   RECRUIT_DATA_SUCCESS,
 } from "../action/actionTypes";
 
-const initialState: RecruitState = {
+export const initialState: RecruitState = {
   isLoaded: false,
   isRecruiting: true,
   lastDay: "",

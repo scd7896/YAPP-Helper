@@ -4,6 +4,9 @@ import styles from "./styles.scss";
 import classNames from "classnames/bind";
 import FileInput from "../../atomic/File/FileInput";
 import MailWriter from "../../atomic/MailWriter";
+
+import TextInput from "../../atomic/TextInput";
+
 import { useSelector, useDispatch } from "react-redux";
 import {
   setMailTitle,
@@ -21,8 +24,8 @@ const MailForm = () => {
   const { title, headImageURL, subImageURL, headImageEditMode, subImageEditMode } = useSelector<RootStore>(
     (state) => state.mail
   ) as MailInputState;
-  const changeValue = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setMailTitle(event.target.value));
+  const changeValue = useCallback((value: string) => {
+    dispatch(setMailTitle(value));
   }, []);
   const headImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
     dispatch(toggleMailHeadImageEditMode());
@@ -43,7 +46,7 @@ const MailForm = () => {
     <div className={cx("form-wrapper")}>
       <section className={cx("title-wrapper")}>
         <span>메일 제목</span>
-        <input className={cx("title-input")} value={title} onChange={changeValue} />
+        <TextInput className={cx("title-input")} placeholder={title} onInputFunc={changeValue} />
       </section>
       <section className={cx("img-wrapper")}>
         <span>헤더이미지</span>
