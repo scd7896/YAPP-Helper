@@ -11,12 +11,6 @@ const SelectMailTemplate = () => {
     <section className="email-section-wrapper">
       <div className="content-width-resize-wrapper">
         <section className="email-head-container">
-          <div className="email-headtitle-wrapper">
-            <SmallIconWrapper width={26} height={26}></SmallIconWrapper>
-            <div className="for-marginleft-10px">
-              <HeadTitleText>결과메일 발송</HeadTitleText>
-            </div>
-          </div>
           <SmallSubTitle>발표전형선택</SmallSubTitle>
           <BigSubTitle>발표할 결과를 선택하세요 🤔</BigSubTitle>
         </section>

@@ -57,7 +57,11 @@ const update = (req, res, next) => {
       res.json(mailform);
       ["header_image", "map_image"].forEach((key) => {
         if (req.body[key] !== undefined) {
-          unlink("public/" + previous[key], () => console.log("successfully deleted " + previous[key]));
+          try {
+            unlink("public/" + previous[key], () => console.log("successfully deleted " + previous[key]));
+          } catch (err) {
+            console.log("기존에 파일이 없습니다");
+          }
         }
       });
     })
