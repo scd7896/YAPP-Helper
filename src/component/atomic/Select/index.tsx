@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import "./style.scss";
 
-interface SelectProps extends HTMLElement {
+interface SelectProps {
   width?: string;
   options: string[];
   placeholder: string;

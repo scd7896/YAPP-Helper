@@ -15,7 +15,7 @@ import {
   toggleMailSubImageEditMode,
   putMailFormRequest,
 } from "../../../store/action/mail";
-import NomalButton from "../../atomic/Button/NomalButton";
+import NormalButton from "../../atomic/Button/NomalButton";
 
 const cx = classNames.bind(styles);
 
@@ -45,37 +45,47 @@ const MailForm = () => {
   return (
     <div className={cx("form-wrapper")}>
       <section className={cx("title-wrapper")}>
-        <span>메일 제목</span>
-        <TextInput className={cx("title-input")} placeholder={title} onInputFunc={changeValue} />
+        <span className="title-label">메일제목</span>
+        <TextInput width="100%" placeholder={title} onChangeFunc={changeValue} />
       </section>
-      <section className={cx("img-wrapper")}>
-        <span>헤더이미지</span>
+      <section className={cx("header-image-wrapper")}>
+        <span className="header-image-label">헤더이미지</span>
         {
           // image Change 라는 함수를 드래그 앤 드랍이나 onChange 가 발생했을 때(눌러서 실행됬을 때) 실행되도록 하면 된다.
           // 드래그 앤 드랍으로 넣을 때 preventDefault 하도록
           headImageEditMode ? (
             <FileInput targetImage="head" fileTypes={["image"]} />
           ) : (
-            <img src={headImageURL} width="750px" height="150px" onClick={headImageClick} />
+            <img className="header-image" src={headImageURL} onClick={headImageClick} />
           )
         }
       </section>
-      <section className={cx("content-wrapper")}>
-        <span>메일내용</span>
-        <MailWriter />
+      <section className={cx("mail-content-wrapper")}>
+        <span className="mail-content-label">메일내용</span>
+        <MailWriter className="mail-content" />
       </section>
+      {!subImageEditMode && (
+        <div className="attach-file-wrapper">
+          <label className="attach-file-label">첨부파일</label>
+          <NormalButton color="grayOutLine" size="default" onClick={subImageClick}>
+            파일 불러오기
+          </NormalButton>
+        </div>
+      )}
+
       {subImageEditMode ? (
         <FileInput targetImage="sub" fileTypes={["image", "xlsx", "zip"]} />
       ) : (
-        <img src={subImageURL} width="750px" height="150px" onClick={subImageClick} />
+        <img className="sub-image" src={subImageURL} onClick={subImageClick} />
       )}
-      <footer>
-        <NomalButton color="default" size="default" onClick={submitMailFormPut}>
+
+      <footer className="footer">
+        <NormalButton color="default" size="default" onClick={submitMailFormPut}>
           저장
-        </NomalButton>
-        <NomalButton color="ghost" size="default">
+        </NormalButton>
+        <NormalButton color="ghost" size="default">
           취소
-        </NomalButton>
+        </NormalButton>
       </footer>
     </div>
   );

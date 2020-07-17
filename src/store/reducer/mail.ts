@@ -24,7 +24,7 @@ const initialState: MailInputState = {
   subImageURL: "",
   headImage: null,
   headImageEditMode: false,
-  subImageEditMode: true,
+  subImageEditMode: false,
   subImage: null,
   zipFile: null,
   selectIndex: 0,

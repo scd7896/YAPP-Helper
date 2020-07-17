@@ -1,15 +1,14 @@
 @import "../../util/styles/_color";
-.header {
-  background-color: #f5f6fa;
-}
+
 .body {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: $gray_1;
+  padding: 50px 107px;
   .form-wrapper {
+    flex: 1;
     background-color: #ffffff;
-    width: 846px;
   }
 }
 

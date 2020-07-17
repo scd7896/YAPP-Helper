@@ -9,13 +9,14 @@ interface NavLinkProp {
   children: string;
   to: string;
   keyString: string;
+  className?: string;
 }
 
-const NavLink = ({ children, to, keyString }: NavLinkProp) => {
+const NavLink = ({ children, to, keyString, className }: NavLinkProp) => {
   const match = useRouteMatch();
 
   return (
-    <article className="nav-link-clicker">
+    <article className={`nav-link-clicker ${className ? className : ""}`}>
       <SmallIconWrapper width={16} height={16}></SmallIconWrapper>
       <div className="anchor-leftmargin-wrapper">
         <Link to={to}>

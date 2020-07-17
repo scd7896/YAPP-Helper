@@ -6,14 +6,14 @@ interface TextInputProps {
   width?: string;
   placeholder?: string;
   defaultValue?: string;
-  onInputFunc?: (value: string) => void;
+  onChangeFunc?: (value: string) => void;
   className?: string;
 }
 
-const TextInput = ({ width, placeholder, onInputFunc, className, defaultValue }: TextInputProps) => {
-  const onInputHandler = (event: FormEvent<HTMLInputElement>) => {
-    if (onInputFunc) {
-      onInputFunc((event.target as HTMLInputElement).value);
+const TextInput = ({ width, placeholder, onChangeFunc, className, defaultValue }: TextInputProps) => {
+  const onChangeHandler = (event: FormEvent<HTMLInputElement>) => {
+    if (onChangeFunc) {
+      onChangeFunc((event.target as HTMLInputElement).value);
     }
   };
 
@@ -21,9 +21,9 @@ const TextInput = ({ width, placeholder, onInputFunc, className, defaultValue }:
     <input
       className={`yapp-text-input ${className ? className : ""}`}
       type="text"
-      onInput={onInputHandler}
+      onChange={onChangeHandler}
       placeholder={placeholder}
-      value={defaultValue ? defaultValue : ""}
+      defaultValue={defaultValue ? defaultValue : ""}
       style={{ width }}
     />
   );

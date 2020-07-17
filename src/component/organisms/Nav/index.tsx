@@ -19,12 +19,12 @@ const LeftNav = () => {
         </div>
         <div>
           <NavLink to="/email" keyString="email">
-            결과메일 발송
+            결과메일 발송
           </NavLink>
         </div>
         <div>
           <NavLink to="/mailform" keyString="emailedit">
-            메일양식 관리
+            메일양식 관리
           </NavLink>
         </div>
       </article>

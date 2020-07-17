@@ -19,7 +19,7 @@ const RecruitInput = ({ name, placeholder, style }: RecruitInputNameProp) => {
   return (
     <TextInput
       className="recruit-string-input-style"
-      onInputFunc={changeValueHandler}
+      onChangeFunc={changeValueHandler}
       defaultValue={recruit[name].toString()}
       placeholder={placeholder}
     />

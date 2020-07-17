@@ -1,14 +1,14 @@
 @import "../../../util/styles/_color";
 .header-wrapper-container {
   display: flex;
-  justify-content: center;
+  padding: 18px 39px;
+  background-color: var(--gray1);
 }
 .header-contents-wrapper {
   display: flex;
   align-items: center;
-  height: 77px;
-  width: 800px;
-  background-color: #f9fafc;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .body-contents-wrapper {
@@ -16,6 +16,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100%;
   background-color: $gray_1;
 }
