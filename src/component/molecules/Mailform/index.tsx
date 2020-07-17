@@ -46,7 +46,7 @@ const MailForm = () => {
     <div className={cx("form-wrapper")}>
       <section className={cx("title-wrapper")}>
         <span>메일 제목</span>
-        <TextInput className={cx("title-input")} placeholder={title} onInputFunc={changeValue} />
+        <TextInput className={cx("title-input")} placeholder={title} onInputFunc={changeValue} defaultValue={title} />
       </section>
       <section className={cx("img-wrapper")}>
         <span>헤더이미지</span>
