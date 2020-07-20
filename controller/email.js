@@ -12,6 +12,7 @@ const { MailForm } = require("../models");
 const path = require("path");
 const mailform = require("./mailform");
 const { isError } = require("util");
+const crypto = require("crypto");
 
 // const testSocket = (req, res) => {
 //   const io = req.app.get('socketio');
@@ -51,7 +52,7 @@ const reSend = async (req, res) => {
         return sendUserResult(data.to, error);
       });
     });
-    redisClient.set("test", JSON.stringify(failList), redis.print);
+    redisClient.set(key, JSON.stringify(failList), redis.print);
   });
 };
 
@@ -98,8 +99,9 @@ const send = async (req, res) => {
         return sendUserResult(data.to, error);
       });
     });
-  redisClient.set("test", JSON.stringify(failList), redis.print);
-  io.emit("send-key", "test");
+  const key = crypto.randomBytes(16).toString("hex");
+  redisClient.set(key, JSON.stringify(failList), redis.print);
+  io.emit("send-key", key);
 };
 
 module.exports = {
