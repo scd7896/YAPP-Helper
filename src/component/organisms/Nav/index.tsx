@@ -28,7 +28,7 @@ const LeftNav = () => {
           </NavLink>
         </div>
       </article>
-      <article>
+      <article className="logout-container">
         <LogOutButton />
       </article>
     </nav>
