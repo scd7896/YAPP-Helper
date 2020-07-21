@@ -26,5 +26,13 @@ router.post("/send", [
   controller.send,
 ]);
 
-router.post("/resend", controller.reSend);
+router.post("/resend", [
+  validate([body("key").exists().notEmpty().trim()]),
+  (req, res, next) => {
+    req.body = matchedData(req);
+    next();
+  },
+  controller.reSend,
+]);
+
 module.exports = router;
