@@ -6,24 +6,44 @@ const mailgun = require("mailgun-js")({
 });
 const redis = require("redis");
 const redisClient = redis.createClient();
-const { basename } = require("path");
 
 const { MailForm } = require("../models");
 const path = require("path");
-const mailform = require("./mailform");
-const { isError } = require("util");
 const crypto = require("crypto");
 
-// const testSocket = (req, res) => {
-//   const io = req.app.get('socketio');
-//   for (let i = 0 ; i < 10 ; i++) {
-//     setTimeout(() => {
-//       const data = `김서버test${i}`
-//       io.emit("list-add", data);
-//     }, i*1000)
-//   }
-//   return res.status(200).send('소켓 시작!')
-// }
+const sendUserResult = (io, user, error) => {
+  // 메일 보내는 것 성공여부에 관계없이 결과를 프론트에 던져준다.
+  const toClient = {
+    user,
+    isError: error,
+  };
+  io.emit("list-add", toClient);
+};
+
+const reSend = async (req, res) => {
+  const { key } = req.body;
+  const io = req.app.get("socketio");
+  redisClient.get(key, (error, data) => {
+    if (error) {
+      return res.status(500).send("레디스 데이터 가져오지 못함");
+    }
+    res.sendStatus(200);
+    const mailgunPromises = JSON.parse(data).map((data) => {
+      return mailgun
+        .messages()
+        .send(data)
+        .then(() => sendUserResult(io, data.to, false))
+        .catch(() => {
+          sendUserResult(io, data.to, true);
+          return data;
+        });
+    });
+
+    Promise.all(mailgunPromises).then((failList) => {
+      redisClient.set(key, JSON.stringify(failList.filter(Boolean)));
+    });
+  });
+};
 
 /**
  * 지원자들 리스트를 받아서 그냥 메일을 쭈욱 보낸다.
@@ -40,22 +60,6 @@ const crypto = require("crypto");
  *   ]
  * }
  */
-const reSend = async (req, res) => {
-  const { key } = req.body;
-  redisClient.get(key, (data, error) => {
-    if (error) {
-      return res.status(400).send("레디스 데이터 가져오지 못함");
-    }
-    const datas = JSON.parse(data);
-    const failList = datas.filter((data) => {
-      mailgun.messages().send(data, function (error, body) {
-        return sendUserResult(data.to, error);
-      });
-    });
-    redisClient.set(key, JSON.stringify(failList), redis.print);
-  });
-};
-
 const send = async (req, res) => {
   const mailforms = await MailForm.scope({ method: ["whereType", req.body.type] }, "passedFirst").findAll();
   const io = req.app.get("socketio");
@@ -64,20 +68,9 @@ const send = async (req, res) => {
     return;
   }
 
-  const sendUserResult = (user, isError) => {
-    // 메일 보내는 것 성공여부에 관계없이 결과를 프론트에 던져준다.
-    const error = isError ? true : false;
-    const toClient = {
-      user,
-      isError: error,
-    };
-    io.emit("list-add", toClient);
-    return error;
-  };
-
   res.sendStatus(200);
   console.log("메일 전송 시작");
-  const failList = req.body.users
+  const mailgunPromises = req.body.users
     .map((user) => {
       const mailform = user.pass ? mailforms[0] : mailforms[1];
       console.log(mailform.title);
@@ -85,7 +78,6 @@ const send = async (req, res) => {
         from: "YAPP <no-reply@yapp.co.kr>",
         to: user.email,
         subject: mailform.title,
-        // text: '안녕하세요 %recipient.name%\n' + `이 메일은 ${(new Date()).toLocaleString('ko-KR')}에 작성되었습니다`,
         html: `<html>
           <img src="cid:${mailform.header_image}" width="750px" height="150px">
           <p>${mailform.contents.replace(/\[name\]/g, user.name).replace(/\[meetingTime\]/g, user.meetingTime)}</p>
@@ -94,18 +86,25 @@ const send = async (req, res) => {
         attachment: user.pass && path.join(__dirname, "../public/", mailform.map_image),
       };
     })
-    .filter((data) => {
-      mailgun.messages().send(data, function (error, body) {
-        return sendUserResult(data.to, error);
-      });
+    .map((data) => {
+      return mailgun
+        .messages()
+        .send(data)
+        .then(() => sendUserResult(io, data.to, false))
+        .catch(() => {
+          sendUserResult(io, data.to, true);
+          return data;
+        });
     });
-  const key = crypto.randomBytes(16).toString("hex");
-  redisClient.set(key, JSON.stringify(failList), redis.print);
-  io.emit("send-key", key);
+
+  Promise.all(mailgunPromises).then((failList) => {
+    const key = crypto.randomBytes(16).toString("hex");
+    redisClient.set(key, JSON.stringify(failList.filter(Boolean)));
+    io.emit("send-key", key);
+  });
 };
 
 module.exports = {
-  // socket: testSocket,
   send: send,
   reSend: reSend,
 };
