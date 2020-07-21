@@ -13,7 +13,7 @@ interface RecruitGuide {
   name: "lastDay" | "startDay" | "URL" | "generation" | "isRecruiting";
 }
 
-const RecruitGuide = ({ title, type, name }: RecruitGuide) => {
+const RecruitGuide = ({ title, name }: RecruitGuide) => {
   const dispatch = useDispatch();
   const recruit = useSelector<RootStore>((state) => state.recruit) as RecruitState;
   const changeValueHandler = (value: string) => {
@@ -35,14 +35,14 @@ const RecruitGuide = ({ title, type, name }: RecruitGuide) => {
   return (
     <div className="recruit-input-wrapper">
       <RecruitingFont>{title}</RecruitingFont>
-      {type === "checked" ? (
-        <ToggleButton name={recruit[name] as "isRecruiting"} />
+      {name === "isRecruiting" ? (
+        <ToggleButton name={name} />
       ) : (
         <TextInput
           width="257px"
           className="recruit-string-input-style"
           onChangeFunc={changeValueHandler}
-          defaultValue={exampleText[name]}
+          defaultValue={recruit[name] as string}
         />
       )}
     </div>
