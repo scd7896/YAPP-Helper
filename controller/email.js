@@ -24,7 +24,7 @@ const reSend = async (req, res) => {
   const { key } = req.body;
   const io = req.app.get("socketio");
   redisClient.get(key, (error, data) => {
-    if (error) {
+    if (error || data === null) {
       return res.status(500).send("레디스 데이터 가져오지 못함");
     }
     res.sendStatus(200);
