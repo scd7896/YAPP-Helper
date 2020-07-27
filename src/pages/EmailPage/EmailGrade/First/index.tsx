@@ -1,28 +1,29 @@
 import * as React from "react";
+import classNames from "classnames/bind";
 import FileInput from "../../../../component/atomic/File/Input";
-
-import "./styles.scss";
-import InnerHeadStyle from "../../../../component/atomic/FontStyle/InnerHeadStyle";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import NomalButton from "../../../../component/atomic/Button/NomalButton";
 import useHisotryRoute from "../../../../hooks/useHistoryRoute";
+import EmailGradeTitle from "../../../../component/atomic/FontStyle/EmailGradeTitle";
+
+import styles from "./styles.scss";
+const cx = classNames.bind(styles);
 
 const EmailGradeFirst = () => {
   const { type } = useParams() as { type: string };
   const { pushHistory } = useHisotryRoute();
 
-  const { users } = useSelector<RootStore, RootStore["desire"]>((state) => state.desire);
+  const { users, filename } = useSelector<RootStore, RootStore["desire"]>((state) => state.desire);
 
   return (
-    <div>
-      <header className="inner-grade-title-wrapper">
-        <InnerHeadStyle>엑셀파일 업로드</InnerHeadStyle>
-      </header>
-      <section className="inner-grade-bodysize-wrapper">
-        <FileInput />
+    <div className={""}>
+      <EmailGradeTitle>1.엑셀파일 업로드</EmailGradeTitle>
+      <span>📂엑셀파일을 업로드 해주세요</span>
+      <section className={cx("inner-grade-bodysize-wrapper")}>
+        <FileInput fileName={filename} />
       </section>
-      <footer className="inner-grade-footer">
+      <footer className={cx("inner-grade-footer")}>
         <NomalButton
           size="default"
           color="lightBlue"

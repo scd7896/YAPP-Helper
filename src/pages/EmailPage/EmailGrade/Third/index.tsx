@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import NomalButton from "../../../../component/atomic/Button/NomalButton";
 import useHisotryRoute from "../../../../hooks/useHistoryRoute";
 import Table from "../../../../component/organisms/Table";
+import EmailGradeTitle from "../../../../component/atomic/FontStyle/EmailGradeTitle";
 
 const cx = classNames.bind(styles);
 type FilterString = "all" | "pass" | "fail";
@@ -47,8 +48,8 @@ const EmailGradeThird = () => {
   const headItems = ["name", "email", "isPass", "meetingTime"];
   return (
     <div className={cx("wrapper")}>
-      <p>3. 셀 분류확인</p>
-      <p>분류완료! 잘 분류되었는지 명단을 확인하세요</p>
+      <EmailGradeTitle>3. 셀 분류확인</EmailGradeTitle>
+      <span>분류 완료! 명단을 확인하세요 👀</span>
       <div className={cx("filter-wrapper")}>
         <Filter onClick={filterClick} value="all" filterValue={filterStr}>
           전체

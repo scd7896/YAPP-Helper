@@ -20,12 +20,10 @@ export const setExcelValueRequset = (payload: File) => {
     payload,
   };
 };
-
-const setExcelValueSuccess = (payload: Array<Array<string>>) => {
-  return {
-    type: SET_EXCEL_SUCCESS,
-    payload: payload,
-  };
+type SetExcelValueSuccess = {
+  type: "SET_EXCEL_SUCCESS";
+  payload: Array<Array<string>>;
+  name: string;
 };
 
 const setExcelValueFailure = () => {
@@ -100,7 +98,7 @@ export const mailSendResultSet = (payload: SendUserResult) => {
   };
 };
 export type DesireACtionTypes =
-  | ReturnType<typeof setExcelValueSuccess>
+  | SetExcelValueSuccess
   | ReturnType<typeof setExcelValueRequset>
   | ReturnType<typeof setExcelValueFailure>
   | ReturnType<typeof setKeyIndexValue>

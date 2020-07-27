@@ -1,8 +1,16 @@
+@import "../../../../util/styles/_color";
+
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 846px;
 }
 
 .filter-wrapper {
   display: flex;
+  > * {
+    margin-right: 16px;
+  }
 }
 
 .inner-grade-footer {

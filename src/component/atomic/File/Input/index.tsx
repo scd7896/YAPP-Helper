@@ -3,10 +3,14 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setExcelValueRequset } from "../../../../store/action/desire";
 import SmallIconWrapper from "../../IconWrapper/Small";
+import classNames from "classnames/bind";
+import styles from "./styles.scss";
 
-import "./styles.scss";
-
-const FileInput = () => {
+interface IProp {
+  fileName?: string;
+}
+const cx = classNames.bind(styles);
+const FileInput: React.FC<IProp> = ({ fileName }) => {
   const [isOver, setIsOver] = useState(false);
   const isError = useSelector<RootStore>((state) => state.desire.isError);
   const dispatch = useDispatch();
@@ -52,16 +56,25 @@ const FileInput = () => {
       onDrop={drapHandler}
       onDragOver={dragOverHandler}
       onDragLeave={dragLeaveHandler}
-      className="file-drop-box"
+      className={cx("file-drop-box", { isUploaded: fileName })}
       style={isOver ? { backgroundColor: "rgba(228, 230, 240, 0.5)" } : {}}
     >
-      <div className="margin-bottom18px-wrapper">
+      <div className={cx("margin-bottom18px-wrapper")}>
         <SmallIconWrapper width={70} height={70} />
       </div>
-      <p className="drop-box-guide-text">파일을 이곳에 끌어다 놓거나,</p>
-      <p className="drop-box-file-button" onClick={clickForExcelCall}>
-        파일 불러오기
-      </p>
+      <span className={cx("drop-box-guide-text", { isUploaded: fileName })}>
+        {fileName ? (
+          <>
+            <span className={cx("filename-text")}>{fileName}</span> 업로드 완료!
+          </>
+        ) : (
+          "파일을 이곳에 끌어다 놓으세요"
+        )}
+      </span>
+      {!fileName && <span className={cx("or")}>또는</span>}
+      <span className={cx("drop-box-file-button")} onClick={clickForExcelCall}>
+        {fileName ? "파일 수정하기" : "파일 불러오기"}
+      </span>
     </div>
   );
 };
