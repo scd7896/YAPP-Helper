@@ -2,19 +2,19 @@ import * as React from "react";
 import { useEffect } from "react";
 import RecruitTemplate from "../../component/template/RecruitTemplate";
 import RecruitInputContainer from "../../component/organisms/RecruitInputContainer";
-import { useDispatch, useSelector } from "react-redux";
-import { recruitDataRequest } from "../../store/action/recruit";
+
+// Hooks
+import useRecruit from "../../hooks/recruit";
 
 const Recruit = () => {
-  const dispatch = useDispatch();
-  const { isLoaded } = useSelector<RootStore>((state) => state.recruit) as RecruitState;
+  const recruit = useRecruit();
   useEffect(() => {
-    dispatch(recruitDataRequest());
+    recruit.dataRequest();
   }, []);
   return (
     <div>
       <RecruitTemplate>
-        <div>{isLoaded ? <RecruitInputContainer /> : "로딩 중 입니다."}</div>
+        <div>{recruit.isLoaded ? <RecruitInputContainer /> : "로딩 중 입니다."}</div>
       </RecruitTemplate>
     </div>
   );
