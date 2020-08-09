@@ -5,12 +5,13 @@ import "./style.scss";
 interface TextInputProps {
   width?: string;
   placeholder?: string;
+  name?: string;
   defaultValue?: string;
   onChangeFunc?: (value: string) => void;
   className?: string;
 }
 
-const TextInput = ({ width, placeholder, onChangeFunc, className, defaultValue }: TextInputProps) => {
+const TextInput = ({ name, width, placeholder, onChangeFunc, className, defaultValue }: TextInputProps) => {
   const onChangeHandler = (event: FormEvent<HTMLInputElement>) => {
     if (onChangeFunc) {
       onChangeFunc((event.target as HTMLInputElement).value);
@@ -25,6 +26,7 @@ const TextInput = ({ width, placeholder, onChangeFunc, className, defaultValue }
       placeholder={placeholder}
       defaultValue={defaultValue ? defaultValue : ""}
       style={{ width }}
+      name={name}
     />
   );
 };

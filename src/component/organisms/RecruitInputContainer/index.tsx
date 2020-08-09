@@ -40,7 +40,7 @@ const RecruitInputContainer = () => {
     }
   }, [isUpdateSuccess]);
   return (
-    <div className={cx("recruit-input-container")}>
+    <form className={cx("recruit-input-container")} action={`/api/recruit`} method="put">
       <header className={cx("recruit-input-header")}>
         <RecruitGuide type="checked" name="isRecruiting" title="리쿠르팅 오픈하기" />
       </header>
@@ -53,7 +53,7 @@ const RecruitInputContainer = () => {
           완료
         </NomalButton>
       </footer>
-    </div>
+    </form>
   );
 };
 

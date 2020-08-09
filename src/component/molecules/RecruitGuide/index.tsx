@@ -40,6 +40,7 @@ const RecruitGuide = ({ title, name }: RecruitGuide) => {
           className="recruit-string-input-style"
           onChangeFunc={changeValueHandler}
           defaultValue={recruit[name] as string}
+          name={name}
         />
       )}
     </div>
