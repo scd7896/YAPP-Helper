@@ -4,8 +4,7 @@ const mailgun = require("mailgun-js")({
   domain: process.env.MAILGUN_DOMAIN,
   host: process.env.MAILGUN_HOST,
 });
-const redis = require("redis");
-const redisClient = redis.createClient();
+const redisClient = require("../config/redis");
 
 const { MailForm } = require("../models");
 const path = require("path");
