@@ -1,16 +1,16 @@
 const jwt = require("jsonwebtoken");
+const redisClient = require("../config/redis");
 const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (authHeader) {
     const token = authHeader.split(" ")[1];
-
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    redisClient.get(token, (err, reply) => {
       if (err) {
         return res.sendStatus(403);
       }
-
-      req.user = user;
+      console.log(reply);
+      req.user = JSON.parse(reply);
       next();
     });
   } else {
