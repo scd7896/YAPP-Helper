@@ -4,10 +4,10 @@ const router = express.Router();
 
 const apiRouter = express.Router();
 
-apiRouter.use("/mailforms", authMiddleWare, require("./mailform"));
-apiRouter.use("/email", authMiddleWare, require("./email"));
-apiRouter.use("/recruit", authMiddleWare, require("./recruit"));
-apiRouter.use("/login", authMiddleWare, require("./login"));
+apiRouter.use("/mailforms", require("./mailform"));
+apiRouter.use("/email", require("./email"));
+apiRouter.use("/recruit", require("./recruit"));
+apiRouter.use("/login", require("./login"));
 // apiRouter.use('/file', require('../controller/file'));
 apiRouter.use("*", (req, res) => res.sendStatus(404));
 

@@ -6,6 +6,7 @@ const crypto = require("crypto");
 const { body, param, matchedData, validationResult } = require("express-validator");
 const controller = require("../controller/mailform");
 const { MailForm } = require("../models");
+const authMiddleWare = require("../middleware/auth");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -49,6 +50,7 @@ const validate = (validations) => {
   };
 };
 
+router.route("*").all([authMiddleWare]);
 router
   .route("/")
   .get(controller.index)
