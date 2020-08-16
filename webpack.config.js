@@ -11,7 +11,8 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
     alias: {
-      pages: path.resolve("src/component/pages"),
+      pages: path.resolve(__dirname, "src/component/pages"),
+      utils: path.resolve(__dirname, "src/utils"),
     },
   },
 

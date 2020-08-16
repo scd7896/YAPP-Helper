@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "sourceMap": true,
-    "module": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "utils/*": ["./src/utils/*"]
+    },
+    "sourceMap": false,
+    "module": "commonjs",
     "target": "es6",
-    "jsx": "react",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "types": ["node"],
-    "rootDir": "./src",
+    "jsx": "react",
     "typeRoots": ["./src/types", "./src/action"]
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "build"]
 }
