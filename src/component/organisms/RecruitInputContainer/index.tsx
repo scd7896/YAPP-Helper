@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import RecruitGuide from "../../molecules/RecruitGuide";
 import OpenTrueBody from "./OpenTrueBody";
 import OpenFalseBody from "./OpenFalseBody";
-import { putRecruitData } from "../../../utill/api";
+import { putRecruitData } from "../../../util/api";
 import { useHistory } from "react-router-dom";
 import NomalButton from "../../atomic/Button/NomalButton";
 import classNames from "classnames/bind";

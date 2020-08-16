@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
 import classNames from "classnames/bind";
 import { useParams } from "react-router-dom";
-import { mailTypeListByPathName } from "../../../../utill/constact";
+import { mailTypeListByPathName } from "../../../../util/constact";
 import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./styles.scss";
