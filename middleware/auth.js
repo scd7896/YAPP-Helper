@@ -9,7 +9,7 @@ const authenticateJWT = (req, res, next) => {
       if (err) {
         return res.sendStatus(403);
       }
-      console.log(reply);
+
       req.user = JSON.parse(reply);
       next();
     });

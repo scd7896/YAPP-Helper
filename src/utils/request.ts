@@ -1,9 +1,9 @@
 import * as qs from "qs";
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-import { getCookie } from "./cookie";
+import { getCookie } from "utils/cookie";
 
 const preRequestSet = (config: AxiosRequestConfig) => {
-  config.headers.common["Authorization"] = getCookie();
+  config.headers.common["Authorization"] = `Barer ${getCookie("token")}`;
   return config;
 };
 
