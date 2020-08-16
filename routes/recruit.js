@@ -3,7 +3,7 @@ const server = express.Router();
 const db = require("../model/firebase");
 const authMiddleWare = require("../middleware/auth");
 
-server.route("*").all([authMiddleWare]);
+// server.route("*").all([authMiddleWare]);
 
 server.get("/", async (req, res) => {
   try {

@@ -2,7 +2,6 @@ import * as React from "react";
 import { useState, useEffect, useCallback } from "react";
 import * as io from "socket.io-client";
 import { url } from "../../../../_data";
-import axios from "axios";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import { useSelector, useDispatch } from "react-redux";

@@ -2,15 +2,15 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import GoogleLoginComponent, { GoogleLoginResponse } from "react-google-login";
 import * as crypto from "crypto";
-import axios from "axios";
+import request from "utils/request";
 const GoogleLogin = () => {
   const history = useHistory();
   const errorCallback = (response: any) => {};
   const successCallback = (response: GoogleLoginResponse) => {
     const accessToken = crypto.createHash("sha512").update(response.googleId).digest("base64");
-    axios
+    request
       .post("/api/login", {
-        token: accessToken,
+        body: { token: accessToken },
       })
       .then((res) => {
         console.log(res.data);

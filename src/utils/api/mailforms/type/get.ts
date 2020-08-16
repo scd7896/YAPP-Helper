@@ -1,7 +1,7 @@
-import axios from "axios";
+import request from "utils/request";
 
 export const getMailFormByType = async (type: string) => {
-  const res = await axios.get(`/api/mailforms/type/${type}`);
+  const res = await request.get(`/api/mailforms/type/${type}`);
   const data = res.data;
   const dataList = data.map((mailForm: any) => {
     return {

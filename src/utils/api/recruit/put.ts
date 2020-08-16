@@ -1,6 +1,6 @@
-import axios from "axios";
+import request from "utils/request";
 
 export const putRecruitData = async (payload: IRecruit) => {
-  const res = await axios.put("/api/recruit", payload);
+  const res = await request.put("/api/recruit", { body: { ...payload } });
   return res.data;
 };
