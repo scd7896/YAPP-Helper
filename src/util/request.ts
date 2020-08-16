@@ -12,8 +12,8 @@ const preErrorSet = (err: any) => {
 };
 
 interface IUseBodyReuqestOption {
-  body?: object;
-  query?: object;
+  body?: any;
+  query?: any;
 }
 class RequestObject {
   private static _instance: RequestObject;
