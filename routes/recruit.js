@@ -3,7 +3,7 @@ const server = express.Router();
 const db = require("../model/firebase");
 const authMiddleWare = require("../middleware/auth");
 
-// server.route("*").all([authMiddleWare]);
+server.route("*").all([authMiddleWare]);
 
 server.get("/", async (req, res) => {
   try {
@@ -23,7 +23,7 @@ server.put("/", async (req, res) => {
       startDay: req.body.startDay,
       url: req.body.url,
     });
-    return res.status(200).send("업데이트완료");
+    return res.status(204).send("업데이트완료");
   } catch (err) {
     console.log(err);
     res.status(500).send("파이어베이스 에러가 발생했습니다");
