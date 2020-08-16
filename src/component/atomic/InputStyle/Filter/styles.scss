@@ -1,9 +1,13 @@
+@import "../../../../util/styles/_color";
 .string-style {
   font-family: "Spoqa Han Sans";
   font-size: 16px;
   letter-spacing: -0.29px;
-  color: #aaaaaa;
+  padding-bottom: 6px;
+  color: $gray_4;
   &.selected {
-    color: #000000;
+    color: $helper_blue;
+    border-bottom: 2px solid $helper_blue;
+    font-weight: 500;
   }
 }

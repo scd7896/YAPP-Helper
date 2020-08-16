@@ -22,6 +22,7 @@ function* excelReadSetValues(action: ReturnType<typeof setExcelValueRequset>) {
     yield put({
       type: SET_EXCEL_SUCCESS,
       payload: row,
+      name: action.payload.name,
     });
   } catch (err) {
     yield put({

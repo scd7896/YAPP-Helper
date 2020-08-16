@@ -1,3 +1,4 @@
+@import "../../../../util/styles/_color";
 .file-drop-box {
   display: flex;
   flex-direction: column;
@@ -8,13 +9,29 @@
   border-radius: 6px;
   border: 1px dashed #d8d8d8;
   background-color: #fbfbfd;
+  &.isUploaded {
+    background-color: #f8faff;
+  }
 }
 .drop-box-guide-text {
-  font-size: 12px;
-  line-height: 1.67;
+  font-size: 16px;
   letter-spacing: -0.44px;
   margin: 0px;
-  color: #a0a0a0;
+  margin-bottom: 5px;
+  color: $gray_6;
+  &.isUploaded {
+    margin-bottom: 10px;
+  }
+  .filename-text {
+    color: $helper_blue;
+    text-decoration: underline;
+  }
+}
+.or {
+  font-size: 14px;
+  color: $gray_4;
+  letter-spacing: -0.25px;
+  margin-bottom: 10px;
 }
 .drop-box-file-button {
   display: flex;

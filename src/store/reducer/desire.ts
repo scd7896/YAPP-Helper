@@ -18,6 +18,7 @@ const initialState: DesireState = {
   allList: [],
   isError: false,
   mailTemplates: null,
+  filename: null,
 };
 
 const desire = (state: DesireState = initialState, action: DesireACtionTypes): DesireState => {
@@ -31,6 +32,7 @@ const desire = (state: DesireState = initialState, action: DesireACtionTypes): D
       copyState.keys = keys;
       copyState.users = users;
       copyState.allList = [];
+      copyState.filename = action.name;
       return {
         ...state,
         ...copyState,

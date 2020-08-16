@@ -21,14 +21,6 @@ const RecruitGuide = ({ title, name }: RecruitGuide) => {
     recruit.setValue({ [name]: value });
   };
 
-  const exampleText = {
-    startDay: "2020.07.10",
-    lastDay: "2020.07.20",
-    URL: "지원페이지 URL",
-    generation: "17기",
-    isRecruiting: "",
-  };
-
   return (
     <div className="recruit-input-wrapper">
       <RecruitingFont>{title}</RecruitingFont>

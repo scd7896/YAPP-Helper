@@ -4,6 +4,7 @@ interface DesireState {
   allList: Array<User>;
   isError: boolean | null;
   mailTemplates?: MailState[] | null;
+  filename: null | string;
 }
 
 type FormKeyType = "email" | "name" | "isPass" | "meetingTime";
