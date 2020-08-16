@@ -1,12 +1,25 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import GoogleLoginComponent, { GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
+import GoogleLoginComponent, { GoogleLoginResponse } from "react-google-login";
+import * as crypto from "crypto";
+import axios from "axios";
 const GoogleLogin = () => {
   const history = useHistory();
   const errorCallback = (response: any) => {};
-  const successCallback = (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-    console.log(response);
-    history.push("/select");
+  const successCallback = (response: GoogleLoginResponse) => {
+    const accessToken = crypto.createHash("sha512").update(response.googleId).digest("base64");
+    axios
+      .post("/api/login", {
+        token: accessToken,
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push("/select");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        alert("로그인 실패");
+      });
   };
   const autoLoadFinishCallback = (sucessLogin: boolean) => {};
   return (

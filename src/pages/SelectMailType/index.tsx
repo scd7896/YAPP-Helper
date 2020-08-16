@@ -24,10 +24,6 @@ const SelectMailType = () => {
       });
     }
   }, [socket]);
-
-  const socketTest = () => {
-    axios.get("http://helper.yapp.co.kr:9170/api/email/test/socket");
-  };
   return (
     <div>
       <SelectLayout>

@@ -1,19 +1,15 @@
 {
-    "compilerOptions": {
-        "outDir": "./dist",
-        "sourceMap": true,
-        "module": "esnext",
-        "target": "es6",
-        "jsx": "react",
-        "noImplicitAny": true,
-        "moduleResolution": "node",
-        "types": ["node"],
-        "typeRoots": [
-            "./src/types",
-            "./action",
-        ],
-    },
-    "exclude": [
-        "node_modules",
-    ],
+  "compilerOptions": {
+    "outDir": "./dist",
+    "sourceMap": true,
+    "module": "esnext",
+    "target": "es6",
+    "jsx": "react",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "types": ["node"],
+    "rootDir": "./",
+    "typeRoots": ["./src/types", "./action"]
+  },
+  "exclude": ["node_modules"]
 }

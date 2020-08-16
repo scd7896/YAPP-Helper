@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 
-import { emailHeadNameList } from "../../../../util/constact";
+import { emailHeadNameList } from "../../../../utill/constact";
 import SmallIconWrapper from "../../IconWrapper/Small";
 import MenuItem from "../MenuItem";
 import { ArrowBottom } from "../../Icon";
