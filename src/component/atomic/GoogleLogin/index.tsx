@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import GoogleLoginComponent, { GoogleLoginResponse } from "react-google-login";
 import * as crypto from "crypto";
 import request from "utils/request";
+import { setCookie } from "utils/cookie";
 const GoogleLogin = () => {
   const history = useHistory();
   const errorCallback = (response: any) => {};
@@ -13,7 +14,8 @@ const GoogleLogin = () => {
         body: { token: accessToken },
       })
       .then((res) => {
-        console.log(res.data);
+        setCookie("token", res.data.token, 1);
+
         history.push("/select");
       })
       .catch((err) => {
