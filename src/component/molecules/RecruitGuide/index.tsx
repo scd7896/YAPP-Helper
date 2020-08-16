@@ -4,8 +4,10 @@ import ToggleButton from "../../atomic/InputStyle/Recruit/ToggleButton";
 import TextInput from "../../atomic/TextInput";
 import { useDispatch, useSelector } from "react-redux";
 import { setRecruitValue } from "../../../store/action/recruit";
-
 import "./styles.scss";
+
+// Hooks
+import useRecruit from "../../../hooks/recruit";
 
 interface RecruitGuide {
   title: string;
@@ -14,14 +16,9 @@ interface RecruitGuide {
 }
 
 const RecruitGuide = ({ title, name }: RecruitGuide) => {
-  const dispatch = useDispatch();
-  const recruit = useSelector<RootStore>((state) => state.recruit) as RecruitState;
+  const recruit = useRecruit();
   const changeValueHandler = (value: string) => {
-    dispatch(
-      setRecruitValue({
-        [name]: value,
-      })
-    );
+    recruit.setValue({ [name]: value });
   };
 
   return (
@@ -35,6 +32,7 @@ const RecruitGuide = ({ title, name }: RecruitGuide) => {
           className="recruit-string-input-style"
           onChangeFunc={changeValueHandler}
           defaultValue={recruit[name] as string}
+          name={name}
         />
       )}
     </div>
