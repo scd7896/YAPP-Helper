@@ -39,8 +39,12 @@ const RecruitInputContainer = () => {
       history.push("/select");
     }
   }, [isUpdateSuccess]);
+  const submitHandler = useCallback((event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  }, []);
   return (
-    <form className={cx("recruit-input-container")} action={`/api/recruit`} method="put">
+    <form className={cx("recruit-input-container")} action={`/api/recruit`} method="post" onSubmit={submitHandler}>
+      <input type="hidden" name="_method" value="put" />
       <header className={cx("recruit-input-header")}>
         <RecruitGuide type="checked" name="isRecruiting" title="리쿠르팅 오픈하기" />
       </header>
