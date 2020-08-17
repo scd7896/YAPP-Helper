@@ -1,4 +1,4 @@
-import axios from "axios";
+import request from "utils/request";
 
 export const putMailForm = async (payload: MailInputState) => {
   const formData = new FormData();
@@ -12,7 +12,7 @@ export const putMailForm = async (payload: MailInputState) => {
   formData.append("title", payload.title);
   formData.append("contents", payload.text);
 
-  const res = await axios.put(`/api/mailforms/${payload.id}`, formData);
+  const res = await request.put(`/api/mailforms/${payload.id}`, { body: formData });
 
   return res.data;
 };

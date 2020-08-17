@@ -1,7 +1,7 @@
-import axios from "axios";
+import request from "utils/request";
 
 export const getRecruitData = async (): Promise<RecruitModel> => {
-  const res = await axios.get(`/api/recruit`);
+  const res = await request.get(`/api/recruit`);
   const data = res.data["recruit-data"];
   return {
     generation: data.generation,

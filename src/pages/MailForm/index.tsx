@@ -10,7 +10,7 @@ import TabBar from "../../component/atomic/Nav/TabBar";
 import PageHeader from "../../component/atomic/PageHeader";
 
 import { setMailForm, setMailSelectIndex } from "../../store/action/mail";
-import { mailTypeListByPathName } from "../../util/constact";
+import { mailTypeListByPathName } from "../../utils/constact";
 
 const cx = classNames.bind(styles);
 

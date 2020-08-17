@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import * as io from "socket.io-client";
-import axios from "axios";
+
 import SelectMailTemplate from "../../component/template/SelectMailTemplate";
 import SelectLayout from "../../component/template/SelectLayout";
 import BigSubTitle from "../../component/atomic/FontStyle/Subtitle/Big";
@@ -24,10 +24,6 @@ const SelectMailType = () => {
       });
     }
   }, [socket]);
-
-  const socketTest = () => {
-    axios.get("http://helper.yapp.co.kr:9170/api/email/test/socket");
-  };
   return (
     <div>
       <SelectLayout>

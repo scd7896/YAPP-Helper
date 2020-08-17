@@ -1,6 +1,6 @@
-import axios from "axios";
+import request from "utils/request";
 export const getMailFormById = async (id: number) => {
-  const res = await axios.get(`/api/mailforms/${id}`);
+  const res = await request.get(`/api/mailforms/${id}`);
   const data = res.data;
   const mailFormObject = {
     id: data.id,
