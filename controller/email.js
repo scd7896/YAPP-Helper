@@ -60,7 +60,7 @@ const reSend = async (req, res) => {
  * }
  */
 const send = async (req, res) => {
-  const mailforms = await MailForm.scope({ method: ["whereType", req.body.type] }, "passedFirst").findAll();
+  const mailforms = await MailForm.findAll();
   const io = req.app.get("socketio");
   if (mailforms.length !== 2 || mailforms[0].pass !== true || mailforms[1].pass !== false) {
     res.sendStatus(422);

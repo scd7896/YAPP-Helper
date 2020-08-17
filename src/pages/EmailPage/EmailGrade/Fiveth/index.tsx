@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 
 const EmailGradeFiveth = () => {
   const dispatch = useDispatch();
-  const { type } = useParams();
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
   const { allList } = useSelector<RootStore, RootStore["desire"]>(({ desire }) => desire);
   const [userData, setUserData] = useState("");
@@ -33,7 +32,7 @@ const EmailGradeFiveth = () => {
     }
   }, [socket]);
   useEffect(() => {
-    postMailSend({ users: allList, type: type });
+    postMailSend({ users: allList });
   }, []);
   useEffect(() => {
     console.log(keyString);

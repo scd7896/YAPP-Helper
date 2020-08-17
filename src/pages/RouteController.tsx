@@ -14,7 +14,7 @@ const RouteController = () => {
         <Route path="/" exact={true} component={Index} />
         <Route path="/select" exact={true} component={SelectPage} />
         <Route path="/recruit" exact={true} component={Recruit} />
-        <Route path="/email/:type/:grade" component={EmailPage} />
+        <Route path="/email/:grade" component={EmailPage} />
         <Route path="/email" component={SelectMailType} />
         <Route path="/mailform" component={MailFormPage} />
       </Switch>

@@ -97,7 +97,6 @@ router
     saveUploadedFiles(["header_image", "map_image"]),
     validate([
       body("title").optional().notEmpty().trim(),
-      body("type").optional().notEmpty().trim(),
       body("pass").optional().isBoolean().toBoolean(),
       body("contents").optional().notEmpty().trim(),
       body("header_image").optional().notEmpty(),

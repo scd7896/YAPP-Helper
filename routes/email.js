@@ -20,7 +20,7 @@ const validate = (validations) => {
 
 router.post("/send", [
   authMiddleWare,
-  validate([body("type").exists().notEmpty().trim(), body("users").exists().isArray()]),
+  validate([body("users").exists().isArray()]),
   (req, res, next) => {
     req.body = matchedData(req);
     next();

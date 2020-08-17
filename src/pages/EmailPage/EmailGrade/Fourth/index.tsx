@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 const Fourth = () => {
   const dispatch = useDispatch();
   const { pushHistory } = useHisotryRoute();
-  const { type } = useParams() as { type: string };
 
   const [viewPage, setViewPage] = useState<boolean>(true);
 
@@ -33,7 +32,7 @@ const Fourth = () => {
 
   useEffect(() => {
     if (mailTemplates === null) {
-      dispatch(getMailTemplatesListFetch(type));
+      dispatch(getMailTemplatesListFetch());
     }
   }, []);
   return (
@@ -43,10 +42,10 @@ const Fourth = () => {
       <section className={cx("content-wrapper")}>
         <header>
           <span className={cx("head-nav-button", { selected: viewPage })} onClick={clickHeaderTab(true)}>
-            {mailTypeListByPathName[type]} 합격
+            합격
           </span>
           <span className={cx("head-nav-button", { selected: !viewPage })} onClick={clickHeaderTab(false)}>
-            {mailTypeListByPathName[type]} 불합격
+            불합격
           </span>
         </header>
         {mailTemplates !== null && (
@@ -82,7 +81,7 @@ const Fourth = () => {
           color="lightBlue"
           size="default"
           onClick={() => {
-            pushHistory(`/email/${type}/3`);
+            pushHistory(`/email/3`);
           }}
         >
           이전
@@ -91,7 +90,7 @@ const Fourth = () => {
           color="default"
           size="default"
           onClick={() => {
-            pushHistory(`/email/${type}/5`);
+            pushHistory(`/email/5`);
           }}
         >
           다음

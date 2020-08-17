@@ -38,7 +38,7 @@ const EmailGradeFirst = () => {
           color="default"
           disabled={users.length === 0}
           onClick={() => {
-            pushHistory(`/email/${type}/2`);
+            pushHistory(`/email/2`);
           }}
         >
           다음
