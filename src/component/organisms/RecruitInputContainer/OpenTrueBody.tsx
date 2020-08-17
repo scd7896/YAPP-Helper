@@ -1,10 +1,10 @@
 import * as React from "react";
-import RecruitGuide from "../../molecules/RecruitGuide";
-import RecruitingFont from "../../atomic/FontStyle/RecruitingFont";
-import { setRecruitValue } from "../../../store/action/recruit";
+import RecruitGuide from "molecules/RecruitGuide";
+import RecruitingFont from "atomic/FontStyle/RecruitingFont";
+import { setRecruitValue } from "actions/recruit";
 import { useDispatch, useSelector } from "react-redux";
 
-import TextInput from "../../atomic/TextInput";
+import TextInput from "atomic/TextInput";
 
 import "./styles.scss";
 const OpenTrueBody = () => {

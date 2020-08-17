@@ -1,14 +1,14 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserDataByFormRequest } from "../../../../store/action/desire";
+import { setUserDataByFormRequest } from "actions/desire";
 
 import { useParams } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import useHisotryRoute from "../../../../hooks/useHistoryRoute";
-import NomalButton from "../../../../component/atomic/Button/NomalButton";
-import Table from "../../../../component/organisms/Table";
+import useHisotryRoute from "hooks/useHistoryRoute";
+import NomalButton from "atomic/Button/NomalButton";
+import Table from "organisms/Table";
 
 const cx = classNames.bind(styles);
 const EmailGradeSecond = () => {

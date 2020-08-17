@@ -1,16 +1,16 @@
 import * as React from "react";
 import { useCallback, useEffect, useState } from "react";
-import RecruitGuide from "../../molecules/RecruitGuide";
+import RecruitGuide from "molecules/RecruitGuide";
 import OpenTrueBody from "./OpenTrueBody";
 import OpenFalseBody from "./OpenFalseBody";
-import { putRecruitData } from "../../../utils/api";
+import { putRecruitData } from "utils/api";
 import { useHistory } from "react-router-dom";
-import NomalButton from "../../atomic/Button/NomalButton";
+import NomalButton from "atomic/Button/NomalButton";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 
 // Hooks
-import useRecruit from "../../../hooks/recruit";
+import useRecruit from "hooks/recruit";
 
 const cx = classNames.bind(styles);
 

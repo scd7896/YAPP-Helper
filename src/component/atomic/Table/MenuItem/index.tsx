@@ -1,7 +1,7 @@
 import * as React from "react";
-import { emailHeadNameList } from "../../../../utils/constact";
+import { emailHeadNameList } from "utils/constact";
 import { useDispatch } from "react-redux";
-import { setExcelKeyValue } from "../../../../store/action/excelKeySetForm";
+import { setExcelKeyValue } from "actions/excelKeySetForm";
 
 import "./styles.scss";
 interface MenuItemProp {

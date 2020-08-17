@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setRecruitValue } from "../../../../../store/action/recruit";
+import { setRecruitValue } from "actions/recruit";
 
 import TextInput from "../../../TextInput";
 

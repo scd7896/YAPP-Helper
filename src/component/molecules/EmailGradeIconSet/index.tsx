@@ -1,6 +1,6 @@
 import * as React from "react";
-import GradeGuideIcon from "../../atomic/IconWrapper/GradeGuide";
-import DotIcon from "../../atomic/IconWrapper/DotIcon";
+import GradeGuideIcon from "atomic/IconWrapper/GradeGuide";
+import DotIcon from "atomic/IconWrapper/DotIcon";
 
 import "./styles.scss";
 interface EmailGradeIconSetProp {

@@ -1,6 +1,6 @@
 import * as React from "react";
-import LinkBlock from "../../atomic/LinkBlock";
-import SmallIconWrapper from "../../atomic/IconWrapper/Small";
+import LinkBlock from "atomic/LinkBlock";
+import SmallIconWrapper from "atomic/IconWrapper/Small";
 
 interface SelectLinkBoxProp {
   to: string;

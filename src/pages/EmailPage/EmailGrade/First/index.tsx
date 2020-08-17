@@ -1,11 +1,11 @@
 import * as React from "react";
 import classNames from "classnames/bind";
-import FileInput from "../../../../component/atomic/File/Input";
+import FileInput from "atomic/File/Input";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import NomalButton from "../../../../component/atomic/Button/NomalButton";
-import useHisotryRoute from "../../../../hooks/useHistoryRoute";
-import EmailGradeTitle from "../../../../component/atomic/FontStyle/EmailGradeTitle";
+import NomalButton from "atomic/Button/NomalButton";
+import useHisotryRoute from "hooks/useHistoryRoute";
+import EmailGradeTitle from "atomic/FontStyle/EmailGradeTitle";
 
 import styles from "./styles.scss";
 const cx = classNames.bind(styles);

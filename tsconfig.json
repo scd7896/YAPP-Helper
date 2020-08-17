@@ -3,7 +3,14 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "utils/*": ["./src/utils/*"]
+      "utils/*": ["./src/utils/*"],
+      "pages": ["./src/pages/*"],
+      "atomic/*": ["./src/component/atomic/*"],
+      "molecules/*": ["./src/component/molecules/*"],
+      "organisms/*": ["./src/component/organisms/*"],
+      "template/*": ["./src/component/template/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "actions/*": ["./src/store/action/*"]
     },
     "sourceMap": true,
     "module": "esnext",

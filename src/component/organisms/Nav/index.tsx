@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./styles.scss";
-import NavLink from "../../molecules/NavLink";
-import LogOutButton from "../../atomic/Button/LogOutButton";
+import NavLink from "molecules/NavLink";
+import LogOutButton from "atomic/Button/LogOutButton";
 
 const LeftNav = () => {
   return (

@@ -1,8 +1,8 @@
 import * as React from "react";
-import HeadGrade from "../../organisms/HeadGrade";
+import HeadGrade from "organisms/HeadGrade";
 import SelectLayout from "../SelectLayout";
-import StatusTtitle from "../../atomic/FontStyle/StatusTitle";
-import VerticalBar from "../../atomic/IconWrapper/VerticalBar";
+import StatusTtitle from "atomic/FontStyle/StatusTitle";
+import VerticalBar from "atomic/IconWrapper/VerticalBar";
 
 import "./styles.scss";
 interface EmailGradeTemplateProp {

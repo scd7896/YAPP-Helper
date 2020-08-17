@@ -1,13 +1,13 @@
 import * as React from "react";
-import RecruitingFont from "../../atomic/FontStyle/RecruitingFont";
-import ToggleButton from "../../atomic/InputStyle/Recruit/ToggleButton";
-import TextInput from "../../atomic/TextInput";
+import RecruitingFont from "atomic/FontStyle/RecruitingFont";
+import ToggleButton from "atomic/InputStyle/Recruit/ToggleButton";
+import TextInput from "atomic/TextInput";
 import { useDispatch, useSelector } from "react-redux";
-import { setRecruitValue } from "../../../store/action/recruit";
+import { setRecruitValue } from "actions/recruit";
 import "./styles.scss";
 
 // Hooks
-import useRecruit from "../../../hooks/recruit";
+import useRecruit from "hooks/recruit";
 
 interface RecruitGuide {
   title: string;

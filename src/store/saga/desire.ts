@@ -13,9 +13,9 @@ import {
   MAILTEMPLATES_ALLFETCH_SUCCESS,
   SET_MAIL_FORM,
 } from "../action/actionTypes";
-import { xlsxRead } from "../../utils/xlsxreader";
-import { setExcelValueRequset, setUserDataByFormRequest, getMailTemplatesListFetch } from "../action/desire";
-import { getMailFormByType, getMailFormAll } from "../../utils/api/index";
+import { xlsxRead } from "utils/xlsxreader";
+import { setExcelValueRequset, setUserDataByFormRequest, getMailTemplatesListFetch } from "actions/desire";
+import { getMailFormByType, getMailFormAll } from "utils/api/index";
 function* excelReadSetValues(action: ReturnType<typeof setExcelValueRequset>) {
   try {
     const row = yield call(xlsxRead, action.payload);

@@ -1,7 +1,7 @@
 import * as React from "react";
 import loadable from "@loadable/component";
 import { Switch, Route } from "react-router-dom";
-import EmailGradeTemplate from "../../component/template/EmailGradeTemplate";
+import EmailGradeTemplate from "template/EmailGradeTemplate";
 const EmailGradeFirst = loadable(() => import(/* webpackChunkName: "email_first" */ "./EmailGrade/First"));
 const EmailGradeSecond = loadable(() => import(/* webpackChunkName: "email_second" */ "./EmailGrade/Second"));
 const EmailGradeThird = loadable(() => import(/* webpackChunkName: "email_third" */ "./EmailGrade/Third"));

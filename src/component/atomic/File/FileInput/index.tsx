@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setExcelValueRequset } from "../../../../store/action/desire";
+
 import {
   setMailHeadImage,
   setMailSubImage,
@@ -10,7 +10,7 @@ import {
   setZipFile,
   toggleMailHeadImageEditMode,
   toggleMailSubImageEditMode,
-} from "../../../../store/action/mail";
+} from "actions/mail";
 import SmallIconWrapper from "../../IconWrapper/Small";
 
 import "./styles.scss";
@@ -29,18 +29,10 @@ const FileInput = ({ fileTypes, targetImage }: FileInputProps) => {
 
   function putDummyImage() {
     if (targetImage === "head") {
-      dispatch(
-        setMailHeadImageURL(
-          "https://img.icons8.com/ios/50/000000/inspection.png"
-        )
-      );
+      dispatch(setMailHeadImageURL("https://img.icons8.com/ios/50/000000/inspection.png"));
       dispatch(toggleMailHeadImageEditMode());
     } else if (targetImage === "sub") {
-      dispatch(
-        setMailSubImageURL(
-          "https://img.icons8.com/ios/50/000000/inspection.png"
-        )
-      );
+      dispatch(setMailSubImageURL("https://img.icons8.com/ios/50/000000/inspection.png"));
       dispatch(toggleMailSubImageEditMode());
     }
   }
@@ -104,9 +96,7 @@ const FileInput = ({ fileTypes, targetImage }: FileInputProps) => {
     }
 
     FileInputTag.setAttribute("accept", permittedFileTypes.join(","));
-    FileInputTag.addEventListener("change", () =>
-      putFile(FileInputTag.files[0])
-    );
+    FileInputTag.addEventListener("change", () => putFile(FileInputTag.files[0]));
     FileInputTag.click();
   };
 

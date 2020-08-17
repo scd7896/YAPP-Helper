@@ -2,7 +2,7 @@ import * as React from "react";
 import { useEffect, useState, useCallback } from "react";
 import Quill from "react-quill";
 import { useSelector, useDispatch } from "react-redux";
-import { setMailTextValue } from "../../../store/action/mail";
+import { setMailTextValue } from "actions/mail";
 
 import "react-quill/dist/quill.snow.css";
 

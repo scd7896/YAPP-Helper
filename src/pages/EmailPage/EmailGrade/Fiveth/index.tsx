@@ -5,10 +5,10 @@ import { url } from "../../../../_data";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { postMailSend } from "../../../../utils/api/email/send/post";
+import { postMailSend } from "utils/api/email/send/post";
 import { useParams } from "react-router-dom";
-import ObjectArrayTable from "../../../../component/organisms/Table/ObjectArray";
-import { mailSendResultSet } from "../../../../store/action/desire";
+import ObjectArrayTable from "organisms/Table/ObjectArray";
+import { mailSendResultSet } from "actions/desire";
 
 const cx = classNames.bind(styles);
 

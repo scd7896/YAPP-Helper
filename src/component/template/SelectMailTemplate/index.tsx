@@ -1,9 +1,9 @@
 import * as React from "react";
-import SelectLinkBox from "../../molecules/SelectLinkBox";
-import HeadTitleText from "../../atomic/FontStyle/HeadTitle";
-import BigSubTitle from "../../atomic/FontStyle/Subtitle/Big";
-import SmallSubTitle from "../../atomic/FontStyle/Subtitle/Small";
-import SmallIconWrapper from "../../atomic/IconWrapper/Small";
+import SelectLinkBox from "molecules/SelectLinkBox";
+import HeadTitleText from "atomic/FontStyle/HeadTitle";
+import BigSubTitle from "atomic/FontStyle/Subtitle/Big";
+import SmallSubTitle from "atomic/FontStyle/Subtitle/Small";
+import SmallIconWrapper from "atomic/IconWrapper/Small";
 
 import "./styles.scss";
 const SelectMailTemplate = () => {

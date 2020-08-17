@@ -2,10 +2,9 @@ import * as React from "react";
 import { useCallback } from "react";
 import styles from "./styles.scss";
 import classNames from "classnames/bind";
-import FileInput from "../../atomic/File/FileInput";
-import MailWriter from "../../atomic/MailWriter";
-
-import TextInput from "../../atomic/TextInput";
+import FileInput from "atomic/File/FileInput";
+import MailWriter from "atomic/MailWriter";
+import TextInput from "atomic/TextInput";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -14,8 +13,8 @@ import {
   toggleMailHeadImageEditMode,
   toggleMailSubImageEditMode,
   putMailFormRequest,
-} from "../../../store/action/mail";
-import NormalButton from "../../atomic/Button/NomalButton";
+} from "actions/mail";
+import NormalButton from "atomic/Button/NomalButton";
 
 const cx = classNames.bind(styles);
 

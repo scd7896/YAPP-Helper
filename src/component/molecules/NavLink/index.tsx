@@ -1,7 +1,7 @@
 import * as React from "react";
-import SmallIconWrapper from "../../atomic/IconWrapper/Small";
+import SmallIconWrapper from "atomic/IconWrapper/Small";
 import { Link, useRouteMatch } from "react-router-dom";
-import NavText from "../../atomic/FontStyle/NavText";
+import NavText from "atomic/FontStyle/NavText";
 
 import "./styles.scss";
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import LeftNav from "../../organisms/Nav";
+import LeftNav from "organisms/Nav";
 
 import "./styles.scss";
 

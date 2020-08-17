@@ -1,6 +1,6 @@
 import * as React from "react";
 import classNames from "classnames/bind";
-import GoogleLogin from "../../component/atomic/GoogleLogin";
+import GoogleLogin from "atomic/GoogleLogin";
 import styles from "./styles.scss";
 
 const cx = classNames.bind(styles);

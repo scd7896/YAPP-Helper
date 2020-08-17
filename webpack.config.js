@@ -11,7 +11,13 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
     alias: {
-      pages: path.resolve(__dirname, "src/component/pages"),
+      atomic: path.resolve(__dirname, "src/component/atomic"),
+      molecules: path.resolve(__dirname, "src/component/molecules"),
+      organisms: path.resolve(__dirname, "src/component/organisms"),
+      template: path.resolve(__dirname, "src/component/template"),
+      hooks: path.resolve(__dirname, "src/hooks"),
+      actions: path.resolve(__dirname, "src/store/action"),
+      pages: path.resolve(__dirname, "src/pages"),
       utils: path.resolve(__dirname, "src/utils"),
     },
   },

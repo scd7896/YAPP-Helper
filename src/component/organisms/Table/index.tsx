@@ -2,8 +2,8 @@ import * as React from "react";
 import { FC } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import TableHead from "../../molecules/Table/TableHead";
-import TableBody from "../../molecules/Table/TableBody";
+import TableHead from "molecules/Table/TableHead";
+import TableBody from "molecules/Table/TableBody";
 
 const cx = classNames.bind(styles);
 interface IProp {

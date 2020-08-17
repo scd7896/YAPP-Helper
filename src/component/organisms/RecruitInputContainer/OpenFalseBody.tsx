@@ -1,6 +1,6 @@
 import * as React from "react";
-import RecruitGuide from "../../molecules/RecruitGuide";
-import RecruitInput from "../../atomic/InputStyle/Recruit/Input";
+import RecruitGuide from "molecules/RecruitGuide";
+import RecruitInput from "atomic/InputStyle/Recruit/Input";
 
 import "./styles.scss";
 const OpenFalseBody = () => {

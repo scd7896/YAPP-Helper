@@ -1,15 +1,15 @@
 import * as React from "react";
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserDataByFormRequest } from "../../../../store/action/desire";
+import { setUserDataByFormRequest } from "actions/desire";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import Filter from "../../../../component/atomic/InputStyle/Filter";
+import Filter from "atomic/InputStyle/Filter";
 import { useParams } from "react-router-dom";
-import NomalButton from "../../../../component/atomic/Button/NomalButton";
-import useHisotryRoute from "../../../../hooks/useHistoryRoute";
-import Table from "../../../../component/organisms/Table";
-import EmailGradeTitle from "../../../../component/atomic/FontStyle/EmailGradeTitle";
+import NomalButton from "atomic/Button/NomalButton";
+import useHisotryRoute from "hooks/useHistoryRoute";
+import Table from "organisms/Table";
+import EmailGradeTitle from "atomic/FontStyle/EmailGradeTitle";
 
 const cx = classNames.bind(styles);
 type FilterString = "all" | "pass" | "fail";

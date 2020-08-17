@@ -3,14 +3,14 @@ import { useEffect } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { getMailTemplatesAllList } from "../../store/action/desire";
-import MailFormTemplate from "../../component/template/MailFormTemplate";
-import MailForm from "../../component/molecules/Mailform";
-import TabBar from "../../component/atomic/Nav/TabBar";
-import PageHeader from "../../component/atomic/PageHeader";
+import { getMailTemplatesAllList } from "actions/desire";
+import MailFormTemplate from "template/MailFormTemplate";
+import MailForm from "molecules/Mailform";
+import TabBar from "atomic/Nav/TabBar";
+import PageHeader from "atomic/PageHeader";
 
-import { setMailForm, setMailSelectIndex } from "../../store/action/mail";
-import { mailTypeListByPathName } from "../../utils/constact";
+import { setMailForm, setMailSelectIndex } from "actions/mail";
+import { mailTypeListByPathName } from "utils/constact";
 
 const cx = classNames.bind(styles);
 

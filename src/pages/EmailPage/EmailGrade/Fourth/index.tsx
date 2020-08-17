@@ -2,13 +2,13 @@ import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
 import classNames from "classnames/bind";
 import { useParams } from "react-router-dom";
-import { mailTypeListByPathName } from "../../../../utils/constact";
+import { mailTypeListByPathName } from "utils/constact";
 import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./styles.scss";
-import { getMailTemplatesListFetch } from "../../../../store/action/desire";
-import NomalButton from "../../../../component/atomic/Button/NomalButton";
-import useHisotryRoute from "../../../../hooks/useHistoryRoute";
+import { getMailTemplatesListFetch } from "actions/desire";
+import NomalButton from "atomic/Button/NomalButton";
+import useHisotryRoute from "hooks/useHistoryRoute";
 const cx = classNames.bind(styles);
 
 const Fourth = () => {

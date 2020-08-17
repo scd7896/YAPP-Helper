@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useEffect } from "react";
-import RecruitTemplate from "../../component/template/RecruitTemplate";
-import RecruitInputContainer from "../../component/organisms/RecruitInputContainer";
+import RecruitTemplate from "template/RecruitTemplate";
+import RecruitInputContainer from "organisms/RecruitInputContainer";
 
 // Hooks
-import useRecruit from "../../hooks/recruit";
+import useRecruit from "hooks/recruit";
 
 const Recruit = () => {
   const recruit = useRecruit();

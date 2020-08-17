@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 
-import SelectLinkBox from "../../component/molecules/SelectLinkBox";
-import BigSubTitle from "../../component/atomic/FontStyle/Subtitle/Big";
-import SmallSubTitle from "../../component/atomic/FontStyle/Subtitle/Small";
+import SelectLinkBox from "molecules/SelectLinkBox";
+import BigSubTitle from "atomic/FontStyle/Subtitle/Big";
+import SmallSubTitle from "atomic/FontStyle/Subtitle/Small";
 const cx = classNames.bind(styles);
 
 const SelectPage = () => {
