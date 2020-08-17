@@ -5,7 +5,16 @@ const index = (req, res, next) => {
   MailForm.scope("orderByType", "passedFirst")
     .findAll()
     .then((mailforms) => {
-      res.json(mailforms);
+      res.json(
+        mailforms.map((mailform) => ({
+          title: mailform.title,
+          type: mailform.type,
+          pass: mailform.pass,
+          contents: mailform.contents,
+          header_image: `/${mailform.header_image}`,
+          map_image: `/${mailform.map_image}`,
+        }))
+      );
     })
     .catch((err) => {
       next(err);
@@ -66,7 +75,7 @@ const update = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err);
       next(err);
     });
 };
