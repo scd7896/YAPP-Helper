@@ -19,7 +19,7 @@ const SelectPage = () => {
         </section>
         <section className={cx("link-box-wrapper")}>
           <SelectLinkBox to="/recruit" title="리쿠르팅 오픈"></SelectLinkBox>
-          <SelectLinkBox to="/email" title="전형 결과 메일 발송"></SelectLinkBox>
+          <SelectLinkBox to="/email/1" title="전형 결과 메일 발송"></SelectLinkBox>
           <SelectLinkBox to="/mailform" title="메일 양식 관리"></SelectLinkBox>
         </section>
       </section>

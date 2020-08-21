@@ -2,8 +2,6 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDataByFormRequest } from "actions/desire";
-
-import { useParams } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import useHisotryRoute from "hooks/useHistoryRoute";
@@ -14,7 +12,6 @@ const cx = classNames.bind(styles);
 const EmailGradeSecond = () => {
   const dispatch = useDispatch();
   const { pushHistory } = useHisotryRoute();
-  const { type } = useParams() as { type: string };
   const { keys, users } = useSelector<RootStore>((state) => state.desire) as DesireState;
 
   useEffect(() => {
@@ -29,7 +26,7 @@ const EmailGradeSecond = () => {
           color="lightBlue"
           size="default"
           onClick={() => {
-            pushHistory(`/email/${type}/1`);
+            pushHistory(`/email/1`);
           }}
         >
           이전
@@ -38,7 +35,7 @@ const EmailGradeSecond = () => {
           color="default"
           size="default"
           onClick={() => {
-            pushHistory(`/email/${type}/3`);
+            pushHistory(`/email/3`);
           }}
         >
           다음

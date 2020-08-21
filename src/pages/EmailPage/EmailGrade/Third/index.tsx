@@ -5,7 +5,6 @@ import { setUserDataByFormRequest } from "actions/desire";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import Filter from "atomic/InputStyle/Filter";
-import { useParams } from "react-router-dom";
 import NomalButton from "atomic/Button/NomalButton";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import Table from "organisms/Table";
@@ -19,7 +18,6 @@ const EmailGradeThird = () => {
   const { pushHistory } = useHisotryRoute();
   const [filterStr, setFilterStr] = useState<FilterString>("all");
   const { allList } = useSelector<RootStore>((state) => state.desire) as DesireState;
-  const { type } = useParams() as { type: string };
 
   const userList = useMemo(() => {
     return allList
@@ -69,7 +67,7 @@ const EmailGradeThird = () => {
           color="lightBlue"
           size="default"
           onClick={() => {
-            pushHistory(`/email/${type}/2`);
+            pushHistory(`/email/2`);
           }}
         >
           이전
@@ -78,7 +76,7 @@ const EmailGradeThird = () => {
           color="default"
           size="default"
           onClick={() => {
-            pushHistory(`/email/${type}/4`);
+            pushHistory(`/email/4`);
           }}
         >
           다음

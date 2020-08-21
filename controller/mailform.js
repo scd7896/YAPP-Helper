@@ -7,6 +7,7 @@ const index = (req, res, next) => {
     .then((mailforms) => {
       res.json(
         mailforms.map((mailform) => ({
+          id: mailform.id,
           title: mailform.title,
           type: mailform.type,
           pass: mailform.pass,
@@ -27,6 +28,7 @@ const searchByType = (req, res) => {
     .then((mailforms) => {
       res.json(
         mailforms.map((mailform) => ({
+          id: mailform.id,
           title: mailform.title,
           type: mailform.type,
           pass: mailform.pass,
