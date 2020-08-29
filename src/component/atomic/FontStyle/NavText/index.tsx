@@ -1,24 +1,14 @@
 import * as React from "react";
-import { useMemo } from "react";
-import { useRouteMatch } from "react-router-dom";
+import useNavKeyString from "hooks/useNavKeyString";
 import "./styles.scss";
 
 interface NavTextProp extends FontStyle {
   keyString: string;
 }
 const NavText = ({ children, keyString }: NavTextProp) => {
-  const { url } = useRouteMatch();
-  const isSelected = useMemo<boolean>(() => {
-    try {
-      const targetUrl = url.split("/")[1] as URLType;
-      return targetUrl === keyString;
-    } catch (err) {
-      return false;
-    }
-  }, [url]);
-
+  const { getIsSelected } = useNavKeyString();
   return (
-    <span className="nav-text-style" style={isSelected ? { color: "#3d496f" } : {}}>
+    <span className="nav-text-style" style={getIsSelected(keyString) ? { color: "#3d496f" } : {}}>
       {children}
     </span>
   );
