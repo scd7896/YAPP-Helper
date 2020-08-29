@@ -1,20 +1,19 @@
 import * as React from "react";
 import classNames from "classnames/bind";
 import FileInput from "atomic/File/Input";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import NomalButton from "atomic/Button/NomalButton";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import EmailGradeTitle from "atomic/FontStyle/EmailGradeTitle";
 
 import styles from "./styles.scss";
+import useDesire from "hooks/useDesire";
 const cx = classNames.bind(styles);
 
 const EmailGradeFirst = () => {
-  const { type } = useParams() as { type: string };
   const { pushHistory } = useHisotryRoute();
-
-  const { users, filename } = useSelector<RootStore, RootStore["desire"]>((state) => state.desire);
+  const {
+    desireState: { users, filename },
+  } = useDesire();
 
   return (
     <div className={""}>

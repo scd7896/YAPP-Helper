@@ -7,12 +7,15 @@ import styles from "./styles.scss";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import NomalButton from "atomic/Button/NomalButton";
 import Table from "organisms/Table";
+import useDesire from "hooks/useDesire";
 
 const cx = classNames.bind(styles);
 const EmailGradeSecond = () => {
   const dispatch = useDispatch();
   const { pushHistory } = useHisotryRoute();
-  const { keys, users } = useSelector<RootStore>((state) => state.desire) as DesireState;
+  const {
+    desireState: { keys, users },
+  } = useDesire();
 
   useEffect(() => {
     dispatch(setUserDataByFormRequest());

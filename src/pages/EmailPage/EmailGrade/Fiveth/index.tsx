@@ -1,22 +1,22 @@
 import * as React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import * as io from "socket.io-client";
 import { url } from "../../../../_data";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import { useSelector, useDispatch } from "react-redux";
 import { postMailSend } from "utils/api/email/send/post";
-import { useParams } from "react-router-dom";
 import ObjectArrayTable from "organisms/Table/ObjectArray";
-import { mailSendResultSet } from "actions/desire";
+
+import useDesire from "hooks/useDesire";
 
 const cx = classNames.bind(styles);
 
 const EmailGradeFiveth = () => {
-  const dispatch = useDispatch();
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
-  const { allList } = useSelector<RootStore, RootStore["desire"]>(({ desire }) => desire);
-  const [userData, setUserData] = useState("");
+  const {
+    desireState: { allList },
+    mailResultSetData,
+  } = useDesire();
   const [keyString, setKeyString] = useState("");
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const EmailGradeFiveth = () => {
       setSocket(io(url));
     } else {
       socket.on("list-add", (data: SendUserResult) => {
-        dispatch(mailSendResultSet(data));
+        mailResultSetData(data);
       });
       socket.on("send-key", (key: string) => {
         setKeyString(key);

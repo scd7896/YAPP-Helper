@@ -35,7 +35,7 @@ function* watchExcelInputFile() {
   yield takeLatest(SET_EXCEL_REQUEST, excelReadSetValues);
 }
 
-function* userListSetBoyForm(action: ReturnType<typeof setUserDataByFormRequest>) {
+function* userListSetByForm(action: ReturnType<typeof setUserDataByFormRequest>) {
   try {
     const { keys, users }: DesireState = yield select((state) => state.desire);
     const setForm: excelKeySetFormState = yield select((state) => state.excelKeySetForm);
@@ -64,7 +64,7 @@ function* userListSetBoyForm(action: ReturnType<typeof setUserDataByFormRequest>
 }
 
 function* watchUserListSetByForm() {
-  yield takeLatest(USERLIST_SET_BY_FORMDATA_REQUEST, userListSetBoyForm);
+  yield takeLatest(USERLIST_SET_BY_FORMDATA_REQUEST, userListSetByForm);
 }
 
 function* mailtemplatesFetch(action: ReturnType<typeof getMailTemplatesListFetch>) {
