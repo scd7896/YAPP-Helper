@@ -9,15 +9,18 @@ import NomalButton from "atomic/Button/NomalButton";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import Table from "organisms/Table";
 import EmailGradeTitle from "atomic/FontStyle/EmailGradeTitle";
+import useDesire from "hooks/useDesire";
 
 const cx = classNames.bind(styles);
 type FilterString = "all" | "pass" | "fail";
 
 const EmailGradeThird = () => {
-  const dispatch = useDispatch();
   const { pushHistory } = useHisotryRoute();
   const [filterStr, setFilterStr] = useState<FilterString>("all");
-  const { allList } = useSelector<RootStore>((state) => state.desire) as DesireState;
+  const {
+    desireState: { allList },
+    setUserData,
+  } = useDesire();
 
   const userList = useMemo(() => {
     return allList
@@ -36,13 +39,15 @@ const EmailGradeThird = () => {
         return [user.name, user.email, user.isPass.toString(), user.meetingTime ? user.meetingTime : ""];
       });
   }, [allList, filterStr]);
+
   const filterClick = useCallback((target) => {
     setFilterStr(target as FilterString);
   }, []);
 
   useEffect(() => {
-    dispatch(setUserDataByFormRequest());
-  }, []);
+    setUserData();
+  }, [setUserData]);
+
   const headItems = ["name", "email", "isPass", "meetingTime"];
   return (
     <div className={cx("wrapper")}>

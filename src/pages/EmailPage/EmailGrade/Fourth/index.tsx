@@ -1,23 +1,22 @@
 import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
 import classNames from "classnames/bind";
-import { useParams } from "react-router-dom";
-import { mailTypeListByPathName } from "utils/constact";
-import { useDispatch, useSelector } from "react-redux";
-
 import styles from "./styles.scss";
-import { getMailTemplatesListFetch } from "actions/desire";
 import NomalButton from "atomic/Button/NomalButton";
 import useHisotryRoute from "hooks/useHistoryRoute";
+import useDesire from "hooks/useDesire";
 const cx = classNames.bind(styles);
 
 const Fourth = () => {
-  const dispatch = useDispatch();
   const { pushHistory } = useHisotryRoute();
 
   const [viewPage, setViewPage] = useState<boolean>(true);
 
-  const { mailTemplates } = useSelector<RootStore>((state) => state.desire) as DesireState;
+  const {
+    desireState: { mailTemplates },
+    mailTemplatesListFetch,
+  } = useDesire();
+
   const clickHeaderTab = (target: boolean) => () => {
     setViewPage(target);
   };
@@ -32,9 +31,10 @@ const Fourth = () => {
 
   useEffect(() => {
     if (mailTemplates === null) {
-      dispatch(getMailTemplatesListFetch());
+      mailTemplatesListFetch();
     }
-  }, []);
+  }, [mailTemplates, mailTemplatesListFetch]);
+
   return (
     <section className={cx("page-wrapper")}>
       <p>4.메일내용 확인</p>

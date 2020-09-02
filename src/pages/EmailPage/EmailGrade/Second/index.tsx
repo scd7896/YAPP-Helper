@@ -1,7 +1,5 @@
 import * as React from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setUserDataByFormRequest } from "actions/desire";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import useHisotryRoute from "hooks/useHistoryRoute";
@@ -11,15 +9,15 @@ import useDesire from "hooks/useDesire";
 
 const cx = classNames.bind(styles);
 const EmailGradeSecond = () => {
-  const dispatch = useDispatch();
   const { pushHistory } = useHisotryRoute();
   const {
     desireState: { keys, users },
+    setUserData,
   } = useDesire();
 
   useEffect(() => {
-    dispatch(setUserDataByFormRequest());
-  }, []);
+    setUserData();
+  }, [setUserData]);
 
   return (
     <div className={cx("table-wrapper")}>
