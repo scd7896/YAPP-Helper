@@ -8,25 +8,33 @@ import MailFormTemplate from "template/MailFormTemplate";
 import MailForm from "molecules/Mailform";
 import TabBar from "atomic/Nav/TabBar";
 import PageHeader from "atomic/PageHeader";
-
 import { setMailForm, setMailSelectIndex } from "actions/mail";
-import { mailTypeListByPathName } from "utils/constact";
+import useDesire from "hooks/useDesire";
+import useMailform from "hooks/useMailform";
 
 const cx = classNames.bind(styles);
 
 const MailFormPage = () => {
   const dispatch = useDispatch();
-  const { mailTemplates } = useSelector<RootStore>((state) => state.desire) as DesireState;
-  const { selectIndex } = useSelector<RootStore>((state) => state.mail) as MailInputState;
+  const {
+    desireState: { mailTemplates },
+    mailTemplatesListFetch,
+  } = useDesire();
+
+  const {
+    mailformState: { selectIndex },
+    setSelectMailForm,
+  } = useMailform();
+
   useEffect(() => {
-    dispatch(getMailTemplatesAllList());
-  }, []);
+    mailTemplatesListFetch();
+  }, [mailTemplatesListFetch]);
 
   useEffect(() => {
     if (mailTemplates && selectIndex != null) {
-      dispatch(setMailForm(mailTemplates[selectIndex]));
+      setSelectMailForm(mailTemplates[selectIndex]);
     }
-  }, [mailTemplates, selectIndex]);
+  }, [mailTemplates, selectIndex, setSelectMailForm]);
 
   const tabChangeHandler = (index: number) => () => {
     dispatch(setMailSelectIndex(index));
@@ -38,12 +46,13 @@ const MailFormPage = () => {
         <div className={cx("form-wrapper")}>
           <div className={cx("tab-bar-wrapper")}>
             {mailTemplates &&
-              mailTemplates.map(({ type, pass }, index) => {
-                const tabTitle = pass
-                  ? mailTypeListByPathName[type] + " 합격"
-                  : mailTypeListByPathName[type] + " 불합격";
-                return <TabBar text={tabTitle} isSelected={index === selectIndex} handler={tabChangeHandler(index)} />;
-              })}
+              mailTemplates.map(({ pass }, index) => (
+                <TabBar
+                  text={pass ? " 합격" : " 불합격"}
+                  isSelected={index === selectIndex}
+                  handler={tabChangeHandler(index)}
+                />
+              ))}
           </div>
           <MailForm />
         </div>

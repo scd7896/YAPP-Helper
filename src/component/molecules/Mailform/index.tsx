@@ -15,14 +15,16 @@ import {
   putMailFormRequest,
 } from "actions/mail";
 import NormalButton from "atomic/Button/NomalButton";
+import useMailform from "hooks/useMailform";
 
 const cx = classNames.bind(styles);
 
 const MailForm = () => {
   const dispatch = useDispatch();
-  const { title, headImageURL, subImageURL, headImageEditMode, subImageEditMode } = useSelector<RootStore>(
-    (state) => state.mail
-  ) as MailInputState;
+  const {
+    mailformState: { title, headImageURL, subImageURL, headImageEditMode, subImageEditMode },
+  } = useMailform();
+
   const changeValue = useCallback((value: string) => {
     dispatch(setMailTitle(value));
   }, []);
@@ -34,9 +36,6 @@ const MailForm = () => {
     dispatch(toggleMailSubImageEditMode());
   };
 
-  const imageChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setMailHeadImage(event.target.files[0]));
-  }, []);
   const submitMailFormPut = useCallback(() => {
     dispatch(putMailFormRequest());
   }, []);
