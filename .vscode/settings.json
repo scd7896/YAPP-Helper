@@ -1,7 +1,17 @@
 {
-  "eslint.validate": ["html", "javascript", "typescript", "javascriptreact", "typescriptreact"],
+  "eslint.validate": [
+    "html",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
   "eslint.options": {
-    "extensinons": [".js", ".ts", ".tsx"]
+    "extensinons": [
+      ".js",
+      ".ts",
+      ".tsx"
+    ]
   },
   "eslint.alwaysShowStatus": true,
   "eslint.packageManager": "npm",
@@ -11,5 +21,8 @@
   "prettier.useTabs": false,
   "prettier.tabWidth": 2,
   "prettier.printWidth": 80,
-  "prettier.javascriptEnable": ["javascript", "javascriptreact"]
+  "prettier.javascriptEnable": [
+    "javascript",
+    "javascriptreact"
+  ]
 }
