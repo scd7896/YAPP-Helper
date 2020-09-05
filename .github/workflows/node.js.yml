@@ -35,13 +35,13 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-      script: |
-        cd ~/YAPP-Helper
-        sudo systemctl stop apache2
-        sudo pm2 kill
-        git pull origin master
-        npm install
-        npm run migrate
-        npm run prod
-        sudo pm2 start ecosystem.config.js
-        sudo syatemctl start apache2
+        script: |
+          cd ~/YAPP-Helper
+          sudo systemctl stop apache2
+          sudo pm2 kill
+          git pull origin master
+          npm install
+          npm run migrate
+          npm run prod
+          sudo pm2 start ecosystem.config.js
+          sudo syatemctl start apache2
