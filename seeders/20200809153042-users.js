@@ -11,6 +11,12 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          token: crypto.createHash("sha512").update(process.env.CDO_ACCESSTOKEN.toString()).digest("base64"),
+          name: "supportYapp",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
