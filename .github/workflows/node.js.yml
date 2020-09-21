@@ -18,3 +18,4 @@ jobs:
           script: |
             whoami
             ls -al
+            touch test
