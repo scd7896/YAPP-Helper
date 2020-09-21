@@ -25,7 +25,30 @@ jobs:
       run: npm install
       run: npm run build --if-present
       run: npm test
-
+    
+    - name: create/.env_file
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_apiKey: ${{ secrets.FIREBASE_API_KEY }}
+        envkey_authDomain: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+        envkey_databaseURL: ${{ secrets.SECRET_KEY }}
+        envkey_projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
+        envkey_storageBucket: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
+        envkey_messagingSenderId: ${{ secrets.FIREBASE_MESSAGE_SEND_ID }}
+        envkey_appId: ${{ secrets.FIREBASE_APP_ID }}
+        envkey_HOST_URL: ${{ secrets.HOST_URL }}
+        envkey_DB_HOST: ${{ secrets.DB_HOST }}
+        envkey_DB_PORT: ${{ secrets.DB_PORT }}
+        envkey_DB_MYSQL_USER: ${{ secrets.DB_MYSQL_USER }}
+        envkey_DB_MYSQL_PASSWORD: ${{ secrets.DB_MYSQL_PASSWORD }}
+        envkey_DB_MYSQL_DATABASE: ${{ secrets.DB_MYSQL_DATABASE }}
+        envkey_MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+        envkey_MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+        envkey_MAILGUN_HOST: ${{ secrets.MAILGUN_HOST }}
+        envkey_GOOGLE_ACCESS: ${{ secrets.GOOGLE_SUPPORT_YAPP_KEY }}
+        envkey_CDO_ACCESSTOKEN: ${{ secrets.GOOGLE_CDO_ACOUNT_KEY }}
+        envkey_JWT_SECRET: ${{ secrets.JWT_ACCESS_SECRET_KEY }}
+        file_name: .env
     - name: Make zip file
       run: zip -qq -r ./$GITHUB_SHA.zip .
       shell: bash
@@ -40,5 +63,5 @@ jobs:
     - name: Upload to S3
       run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://isntyet-deploy/$PROJECT_NAME/$GITHUB_SHA.zip
 
-    - name: Code Deploy
-      run: aws deploy create-deployment --application-name testapp --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name dev --s3-location bucket=isntyet-deploy,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
+    # - name: Code Deploy
+    #   run: aws deploy create-deployment --application-name testapp --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name dev --s3-location bucket=isntyet-deploy,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
