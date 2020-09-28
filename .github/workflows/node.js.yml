@@ -6,7 +6,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: testshell
       - shell: bash
         run: |
           touch test.txt
