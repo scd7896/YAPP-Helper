@@ -13,12 +13,11 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo systemctl stop apache2
-            sudo pm2 kill
-            touch test.txt
             cd ~/YAPP-Helper
+            touch test.txt
+            pm2 kill
             git pull origin master  
             npm install
             npm run build
-            sudo systemctl start apache2
-            sudo pm2 start ecosystem.config.js
+            npm run migrate
+            pm2 start ecosystem.config.js
