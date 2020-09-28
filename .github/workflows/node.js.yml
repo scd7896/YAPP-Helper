@@ -1,21 +1,24 @@
-name: Deploy application
- 
 on:
   push:
-    branches: [ master, feature/cicd-test ]
- 
+    branches: [ master ]
+
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
-      - name: multiple command
-        uses: appleboy/ssh-action@master
+      - name: Deploy NodeJS app
+        uses: appleboy/ssh-action@v0.1.2
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
+          host: ${{secrets.SSH_HOST}}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
           script: |
-            whoami
-            ls -al
-            touch test
+            sudo systemctl stop apache2
+            sudo pm2 kill
+            touch test.txt
+            cd ~/YAPP-Helper
+            git pull origin master  
+            npm install
+            npm run build
+            sudo systemctl start apache2
+            sudo pm2 start ecosystem.config.js
