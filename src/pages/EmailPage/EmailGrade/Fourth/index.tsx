@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import NomalButton from "atomic/Button/NomalButton";
+import PictureModal from "atomic/Modal/PictureModal";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
 const cx = classNames.bind(styles);
@@ -11,6 +12,7 @@ const Fourth = () => {
   const { pushHistory } = useHisotryRoute();
 
   const [viewPage, setViewPage] = useState<boolean>(true);
+  const [isModal, setIsModal] = useState<boolean>(false);
 
   const {
     desireState: { mailTemplates },
@@ -37,6 +39,15 @@ const Fourth = () => {
 
   return (
     <section className={cx("page-wrapper")}>
+      {mailTemplates !== null && (
+        <PictureModal
+          onClick={() => {
+            setIsModal(false);
+          }}
+          isOpen={isModal}
+          src={mailTemplates[targetIndex].subImageURL}
+        />
+      )}
       <p>4.메일내용 확인</p>
       <p>잠깐! 보내기 전에 메일내용 확인하세요</p>
       <section className={cx("content-wrapper")}>
@@ -65,8 +76,13 @@ const Fourth = () => {
             </article>
             <article>
               <p>첨부파일</p>
-              <div>
-                {mailTemplates[targetIndex].subImageURL} <span>파일미리보기</span>
+              <div
+                className={cx("subFileName")}
+                onClick={() => {
+                  setIsModal(true);
+                }}
+              >
+                {mailTemplates[targetIndex].subImageURL}{" "}
               </div>
             </article>
             <article>

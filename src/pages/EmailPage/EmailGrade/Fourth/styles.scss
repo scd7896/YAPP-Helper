@@ -27,3 +27,9 @@
   flex-direction: column;
   background-color: #ffffff;
 }
+
+.subFileName {
+  color: $helper_blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
