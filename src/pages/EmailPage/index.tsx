@@ -1,12 +1,11 @@
 import * as React from "react";
-import loadable from "@loadable/component";
 import { Switch, Route } from "react-router-dom";
 import EmailGradeTemplate from "template/EmailGradeTemplate";
-const EmailGradeFirst = loadable(() => import(/* webpackChunkName: "email_first" */ "./EmailGrade/First"));
-const EmailGradeSecond = loadable(() => import(/* webpackChunkName: "email_second" */ "./EmailGrade/Second"));
-const EmailGradeThird = loadable(() => import(/* webpackChunkName: "email_third" */ "./EmailGrade/Third"));
-const EmailGradeFourth = loadable(() => import(/* webpackChunkName: "email_fourth" */ "./EmailGrade/Fourth"));
-const EmailGradeFiveth = loadable(() => import(/* webpackChunkName: "email_fourth" */ "./EmailGrade/Fiveth"));
+import EmailGradeFirst from "./EmailGrade/First";
+import EmailGradeSecond from "./EmailGrade/Second";
+import EmailGradeThird from "./EmailGrade/Third";
+import EmailGradeFourth from "./EmailGrade/Fourth";
+import EmailGradeFiveth from "./EmailGrade/Fiveth";
 
 const EmailPage = () => {
   return (
