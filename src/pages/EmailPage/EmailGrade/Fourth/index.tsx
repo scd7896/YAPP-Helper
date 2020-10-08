@@ -6,6 +6,8 @@ import NomalButton from "atomic/Button/NomalButton";
 import PictureModal from "atomic/Modal/PictureModal";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
+import { MailViewForm, MailModifyForm } from "organisms";
+
 const cx = classNames.bind(styles);
 
 const Fourth = () => {
@@ -13,7 +15,13 @@ const Fourth = () => {
 
   const [viewPage, setViewPage] = useState<boolean>(true);
   const [isModal, setIsModal] = useState<boolean>(false);
+  const [isModify, setIsModify] = useState<boolean>(false);
 
+  const ViewMailForm = useMemo(() => (isModify ? MailModifyForm : MailViewForm), [
+    isModify,
+    MailModifyForm,
+    MailViewForm,
+  ]);
   const {
     desireState: { mailTemplates },
     mailTemplatesListFetch,
@@ -61,30 +69,8 @@ const Fourth = () => {
         </header>
         {mailTemplates !== null && (
           <section className={cx("body")}>
-            <article>
-              <p>메일제목 | {mailTemplates[targetIndex].title}</p>
-            </article>
-            <article>
-              <p>헤더이미지</p>
-              <picture>
-                <img width="100%" height="150px" src={mailTemplates[targetIndex].headImageURL} />
-              </picture>
-            </article>
-            <article>
-              <p>메일내용</p>
-              <div dangerouslySetInnerHTML={{ __html: mailTemplates[targetIndex].text }} />
-            </article>
-            <article>
-              <p>첨부파일</p>
-              <div
-                className={cx("subFileName")}
-                onClick={() => {
-                  setIsModal(true);
-                }}
-              >
-                {mailTemplates[targetIndex].subImageURL}{" "}
-              </div>
-            </article>
+            <ViewMailForm mailTemplate={mailTemplates[targetIndex]} />
+
             <article>
               <button>수정 하기</button>
             </article>
