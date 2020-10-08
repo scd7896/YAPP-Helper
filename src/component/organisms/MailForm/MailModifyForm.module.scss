@@ -5,6 +5,19 @@
     height: 150px;
   }
 }
+.titleWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .modifyTitle {
+    margin-right: 24px;
+  }
+}
+
+.rowInput {
+  width: 84%;
+}
+
 .onImageCover {
   position: absolute;
   top: 0;

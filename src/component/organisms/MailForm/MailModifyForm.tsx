@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./MailModifyForm.module.scss";
 import { useState, useCallback } from "react";
 import { putMailForm } from "utils/api";
-import { NomalButton } from "atomic";
+import { MailWriter, NomalButton, TextInput } from "atomic";
 
 interface IProp {
   mailTemplate: MailState;
@@ -26,8 +26,9 @@ const MailModifyForm: React.FC<IProp> = ({ mailTemplate }) => {
   }, [title, description, type, mailTemplate]);
   return (
     <>
-      <article>
-        메일제목: <input value={title} onChange={(event) => setTitle(event.target.value)} />
+      <article className={cx("titleWrapper")}>
+        <span className={cx("modifyTitle")}>메일제목:</span>{" "}
+        <TextInput className={cx("rowInput")} defaultValue={title} onChangeFunc={setTitle} />
       </article>
       <article>
         <p>헤더이미지</p>
@@ -42,6 +43,9 @@ const MailModifyForm: React.FC<IProp> = ({ mailTemplate }) => {
             </NomalButton>
           </div>
         </div>
+      </article>
+      <article>
+        <MailWriter value={description} setValue={setDescription} />
       </article>
     </>
   );
