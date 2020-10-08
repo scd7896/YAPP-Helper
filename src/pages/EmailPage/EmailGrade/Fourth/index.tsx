@@ -2,11 +2,10 @@ import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import NomalButton from "atomic/Button/NomalButton";
-import PictureModal from "atomic/Modal/PictureModal";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
 import { MailViewForm, MailModifyForm } from "organisms";
+import { ModifyButton, PictureModal, NomalButton } from "atomic";
 
 const cx = classNames.bind(styles);
 
@@ -72,7 +71,7 @@ const Fourth = () => {
             <ViewMailForm mailTemplate={mailTemplates[targetIndex]} />
 
             <article>
-              <button>수정 하기</button>
+              <ModifyButton onClick={() => setIsModify(!isModify)}>수정하기</ModifyButton>
             </article>
           </section>
         )}

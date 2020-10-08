@@ -5,7 +5,7 @@
     "paths": {
       "utils/*": ["./src/utils/*"],
       "pages": ["./src/pages/*"],
-      "atomic/*": ["./src/component/atomic/*"],
+      "atomic": ["./src/component/atomic"],
       "molecules/*": ["./src/component/molecules/*"],
       "organisms": ["./src/component/organisms"],
       "template/*": ["./src/component/template/*"],

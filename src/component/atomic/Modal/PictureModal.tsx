@@ -12,9 +12,13 @@ interface IProp {
 const cx = classNames.bind(styles);
 const PictureModal: FC<IProp> = ({ src, isOpen, onClick }) => {
   return (
-    <div className={cx("wrapper", { close: !isOpen })} onClick={onClick}>
-      <img src={src} className={cx("pictureWrapper")} />
-    </div>
+    <>
+      {isOpen && (
+        <div className={cx("wrapper")} onClick={onClick}>
+          <img src={src} className={cx("pictureWrapper")} />
+        </div>
+      )}
+    </>
   );
 };
 

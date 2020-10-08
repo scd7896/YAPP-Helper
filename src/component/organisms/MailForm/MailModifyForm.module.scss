@@ -1,0 +1,27 @@
+.modifyPictureWrapper {
+  position: relative;
+  > img {
+    width: 750px;
+    height: 150px;
+  }
+}
+.onImageCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 750px;
+  height: 150px;
+  background-color: rgba(37, 39, 44, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .coverText {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.25px;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 14px;
+  }
+}

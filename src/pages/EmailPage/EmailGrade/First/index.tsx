@@ -1,12 +1,9 @@
 import * as React from "react";
 import classNames from "classnames/bind";
-import FileInput from "atomic/File/Input";
-import NomalButton from "atomic/Button/NomalButton";
+import { FileInput, NomalButton, EmailGradeTitle } from "atomic";
 import useHisotryRoute from "hooks/useHistoryRoute";
-import EmailGradeTitle from "atomic/FontStyle/EmailGradeTitle";
-
-import styles from "./styles.scss";
 import useDesire from "hooks/useDesire";
+import styles from "./styles.scss";
 const cx = classNames.bind(styles);
 
 const EmailGradeFirst = () => {
