@@ -1,8 +1,6 @@
 import * as React from "react";
-import { useMemo, useCallback } from "react";
+import { useCallback } from "react";
 import Quill from "react-quill";
-import { useSelector, useDispatch } from "react-redux";
-import { setMailTextValue } from "actions/mail";
 
 import "react-quill/dist/quill.snow.css";
 

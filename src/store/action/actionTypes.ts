@@ -37,3 +37,7 @@ export const SET_RECRUIT_VALUE = "SET_RECRUIT_VALUE" as const;
 export const RECRUIT_DATA_REQUEST = "RECRUIT_DATA_REQUEST" as const;
 export const RECRUIT_DATA_SUCCESS = "RECRUIT_DATA_SUCCESS" as const;
 export const RECRUIT_DATA_FAILURE = "RECRUIT_DATA_FAILURE" as const;
+
+/** ModalTypes */
+export const MODAL_OPEN = "@modal/open";
+export const MODAL_CLOSE = "@modal/close";

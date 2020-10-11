@@ -47,6 +47,13 @@ const MailModifyForm: React.FC<IProp> = ({ mailTemplate }) => {
       <article>
         <MailWriter value={description} setValue={setDescription} />
       </article>
+      <article>
+        <span>첨부파일</span> <span>{mailTemplate.subImageURL}</span>{" "}
+        <NomalButton color="grayOutLine" size="default" onClick={() => {}}>
+          파일 수정하기
+        </NomalButton>
+      </article>
+      <article></article>
     </>
   );
 };

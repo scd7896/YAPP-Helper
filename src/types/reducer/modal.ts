@@ -1,0 +1,3 @@
+interface ModalStore {
+  isOpen: boolean;
+}
