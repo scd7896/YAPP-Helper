@@ -1,10 +1,7 @@
 import * as React from "react";
-import RecruitingFont from "atomic/FontStyle/RecruitingFont";
-import ToggleButton from "atomic/InputStyle/Recruit/ToggleButton";
-import TextInput from "atomic/TextInput";
-import { useDispatch, useSelector } from "react-redux";
-import { setRecruitValue } from "actions/recruit";
-import "./styles.scss";
+import { TextInput, ToggleButton, RecruitingFont } from "atomic";
+import classNames from "classnames/bind";
+import styles from "./styles.scss";
 
 // Hooks
 import useRecruit from "hooks/recruit";
@@ -14,7 +11,7 @@ interface RecruitGuide {
   type: string;
   name: "lastDay" | "startDay" | "URL" | "generation" | "isRecruiting";
 }
-
+const cx = classNames.bind(styles);
 const RecruitGuide = ({ title, name }: RecruitGuide) => {
   const recruit = useRecruit();
   const changeValueHandler = (value: string) => {
@@ -22,14 +19,14 @@ const RecruitGuide = ({ title, name }: RecruitGuide) => {
   };
 
   return (
-    <div className="recruit-input-wrapper">
+    <div className={cx("recruit-input-wrapper")}>
       <RecruitingFont>{title}</RecruitingFont>
       {name === "isRecruiting" ? (
         <ToggleButton name={name} />
       ) : (
         <TextInput
           width="257px"
-          className="recruit-string-input-style"
+          className={cx("recruit-string-input-style")}
           onChangeFunc={changeValueHandler}
           defaultValue={recruit[name] as string}
           name={name}

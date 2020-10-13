@@ -12,8 +12,8 @@ import {
   toggleMailSubImageEditMode,
 } from "actions/mail";
 import SmallIconWrapper from "../../IconWrapper/Small";
-
-import "./styles.scss";
+import classNames from "classnames/bind";
+import styles from "./styles.scss";
 
 type fileType = "image" | "xlsx" | "zip";
 
@@ -21,7 +21,7 @@ interface FileInputProps {
   fileTypes: Array<fileType>;
   targetImage: "head" | "sub";
 }
-
+const cx = classNames.bind(styles);
 const FileInput = ({ fileTypes, targetImage }: FileInputProps) => {
   const [isOver, setIsOver] = useState(false);
   const isError = useSelector<RootStore>((state) => state.desire.isError);
@@ -110,13 +110,13 @@ const FileInput = ({ fileTypes, targetImage }: FileInputProps) => {
       onDrop={dropHandler}
       onDragOver={dragOverHandler}
       onDragLeave={dragLeaveHandler}
-      className={isOver ? "file-drop-box isOver" : "file-drop-box"}
+      className={isOver ? cx("file-drop-box isOver") : cx("file-drop-box")}
     >
-      <div className="margin-bottom18px-wrapper">
+      <div className={cx("margin-bottom18px-wrapper")}>
         <SmallIconWrapper width={70} height={70} />
       </div>
-      <p className="drop-box-guide-text">파일을 이곳에 끌어다 놓거나,</p>
-      <p className="drop-box-file-button" onClick={clickForFileCall}>
+      <p className={cx("drop-box-guide-text")}>파일을 이곳에 끌어다 놓거나,</p>
+      <p className={cx("drop-box-file-button")} onClick={clickForFileCall}>
         파일 불러오기
       </p>
     </div>

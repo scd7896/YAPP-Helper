@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setRecruitValue } from "actions/recruit";
 
 import TextInput from "../../../TextInput";
-
-import "./styles.scss";
-
+import classNames from "classnames/bind";
+import styles from "./styles.scss";
+const cx = classNames.bind(styles);
 const RecruitInput = ({ name, placeholder, style }: RecruitInputNameProp) => {
   const dispatch = useDispatch();
   const recruit = useSelector<RootStore>((state) => state.recruit) as RecruitState;
@@ -18,7 +18,7 @@ const RecruitInput = ({ name, placeholder, style }: RecruitInputNameProp) => {
   };
   return (
     <TextInput
-      className="recruit-string-input-style"
+      className={cx("recruit-string-input-style")}
       onChangeFunc={changeValueHandler}
       defaultValue={recruit[name].toString()}
       placeholder={placeholder}

@@ -5,7 +5,7 @@ import styles from "./styles.scss";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
 import { MailViewForm, MailModifyForm } from "organisms";
-import { ModifyButton, PictureModal, NomalButton } from "atomic";
+import { ModifyButton, NomalButton } from "atomic";
 
 const cx = classNames.bind(styles);
 
@@ -46,15 +46,6 @@ const Fourth = () => {
 
   return (
     <section className={cx("page-wrapper")}>
-      {mailTemplates !== null && (
-        <PictureModal
-          onClick={() => {
-            setIsModal(false);
-          }}
-          isOpen={isModal}
-          src={mailTemplates[targetIndex].subImageURL}
-        />
-      )}
       <p>4.메일내용 확인</p>
       <p>잠깐! 보내기 전에 메일내용 확인하세요</p>
       <section className={cx("content-wrapper")}>

@@ -3,4 +3,5 @@ interface RootStore {
   desire: DesireState;
   excelKeySetForm: excelKeySetFormState;
   recruit: RecruitState;
+  modal: ModalStore;
 }

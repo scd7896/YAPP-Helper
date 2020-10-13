@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, FormEvent } from "react";
-import "./style.scss";
+import classNames from "classnames/bind";
+import styles from "./style.scss";
 
 interface TextInputProps {
   width?: string;
@@ -11,6 +12,7 @@ interface TextInputProps {
   className?: string;
 }
 
+const cx = classNames.bind(styles);
 const TextInput = ({ name, width, placeholder, onChangeFunc, className, defaultValue }: TextInputProps) => {
   const onChangeHandler = (event: FormEvent<HTMLInputElement>) => {
     if (onChangeFunc) {
@@ -20,7 +22,7 @@ const TextInput = ({ name, width, placeholder, onChangeFunc, className, defaultV
 
   return (
     <input
-      className={`yapp-text-input ${className ? className : ""}`}
+      className={cx("yapp-text-input") + ` ${className ? className : ""}`}
       type="text"
       onChange={onChangeHandler}
       placeholder={placeholder}

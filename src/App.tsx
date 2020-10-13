@@ -8,8 +8,6 @@ import reducer from "./store/reducer";
 import rootSaga from "./store/saga";
 import RouterController from "./pages/RouteController";
 
-import "./index.css";
-
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   reducer,

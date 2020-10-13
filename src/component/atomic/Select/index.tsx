@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
-import "./style.scss";
+import classNames from "classnames/bind";
+import styles from "./style.scss";
 
 interface SelectProps {
   width?: string;
@@ -8,7 +9,7 @@ interface SelectProps {
   placeholder: string;
   onSelectFunc: (value: string) => void;
 }
-
+const cx = classNames.bind(styles);
 const Select = ({ width, options, placeholder, onSelectFunc }: SelectProps) => {
   const [toggled, setToggled] = useState(false);
   const [selected, setSelected] = useState(false);
@@ -27,19 +28,19 @@ const Select = ({ width, options, placeholder, onSelectFunc }: SelectProps) => {
 
   const optionElements = options.map((option) => {
     return (
-      <li onClick={onSelectHandler.bind} className="select__item">
+      <li onClick={onSelectHandler.bind} className={cx("select__item")}>
         {option}
       </li>
     );
   });
 
   return (
-    <div className={`select ${selected ? "selected" : ""}`} style={{ width: width }}>
-      <div className="select__item--selected" onClick={onClickHandler}>
+    <div className={cx("select", `${selected ? "selected" : ""}`)} style={{ width: width }}>
+      <div className={cx("select__item--selected")} onClick={onClickHandler}>
         {selected ? selectedValue : placeholder}
-        <div className={`select__dropdown-icon ${toggled ? "toggled" : ""}`}></div>
+        <div className={cx("select__dropdown-icon", `${toggled ? "toggled" : ""}`)}></div>
       </div>
-      <ul className={`select__item-list ${toggled ? "show" : "hide"}`}>{optionElements}</ul>
+      <ul className={cx("select__item-list", `${toggled ? "show" : "hide"}`)}>{optionElements}</ul>
     </div>
   );
 };

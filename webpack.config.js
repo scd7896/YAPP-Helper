@@ -55,6 +55,6 @@ module.exports = {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
     publicPath: "/dist/", // publicPath를 기본 도메인으로 설정을 한다. cdn주소를 쓴다면 여기다쓰자
-    chunkFilename: "[name].js",
+    // chunkFilename: "[name].js",
   },
 };

@@ -1,11 +1,11 @@
 import * as React from "react";
 import RecruitGuide from "molecules/RecruitGuide";
-import RecruitInput from "atomic/InputStyle/Recruit/Input";
-
-import "./styles.scss";
+import classNames from "classnames/bind";
+import styles from "./styles.scss";
+const cx = classNames.bind(styles);
 const OpenFalseBody = () => {
   return (
-    <section className="recruit-input-body">
+    <section className={cx("recruit-input-body")}>
       <RecruitGuide type="string" name="generation" title="활동기수" />
       <RecruitGuide type="string" name="startDay" title="모집예상월" />
     </section>

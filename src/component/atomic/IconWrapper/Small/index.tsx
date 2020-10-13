@@ -1,14 +1,17 @@
 import * as React from "react";
-import "./styles.scss";
+import classNames from "classnames/bind";
+import styles from "./styles.scss";
 
 interface SmallIconWrapperProp {
   children?: React.ReactElement | string;
   width: number;
   height: number;
 }
+
+const cx = classNames.bind(styles);
 const SmallIconWrapper = ({ children, width, height }: SmallIconWrapperProp) => {
   return (
-    <picture className="small_icon_wrapper" style={{ width: `${width}px`, height: `${height}px` }}>
+    <picture className={cx("small_icon_wrapper")} style={{ width: `${width}px`, height: `${height}px` }}>
       {children}
     </picture>
   );
