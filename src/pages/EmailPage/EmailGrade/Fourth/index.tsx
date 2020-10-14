@@ -13,7 +13,6 @@ const Fourth = () => {
   const { pushHistory } = useHisotryRoute();
 
   const [viewPage, setViewPage] = useState<boolean>(true);
-  const [isModal, setIsModal] = useState<boolean>(false);
   const [isModify, setIsModify] = useState<boolean>(false);
 
   const ViewMailForm = useMemo(() => (isModify ? MailModifyForm : MailViewForm), [

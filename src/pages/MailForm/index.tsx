@@ -2,13 +2,11 @@ import * as React from "react";
 import { useEffect } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { getMailTemplatesAllList } from "actions/desire";
+import { useDispatch } from "react-redux";
 import MailFormTemplate from "template/MailFormTemplate";
 import MailForm from "molecules/Mailform";
-import TabBar from "atomic/Nav/TabBar";
-import PageHeader from "atomic/PageHeader";
-import { setMailForm, setMailSelectIndex } from "actions/mail";
+import { TabBar, PageHeader } from "atomic";
+import { setMailSelectIndex } from "actions/mail";
 import useDesire from "hooks/useDesire";
 import useMailform from "hooks/useMailform";
 

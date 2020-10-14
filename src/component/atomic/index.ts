@@ -25,3 +25,6 @@ export { default as BigSubTitle } from "./FontStyle/Subtitle/Big";
 
 export { default as LinkBlock } from "./LinkBlock";
 export { default as SmallIconWrapper } from "./IconWrapper/Small";
+
+export { default as PageHeader } from "./PageHeader";
+export { default as TabBar } from "./Nav/TabBar";

@@ -29,7 +29,11 @@ const MailViewForm: React.FC<IProp> = ({ mailTemplate }) => {
         <div
           className={cx("subFileName")}
           onClick={() => {
-            openModal(() => <div>testModalCOmponent</div>);
+            openModal(() => (
+              <div>
+                <img src={mailTemplate.subImageURL} />
+              </div>
+            ));
           }}
         >
           {mailTemplate.subImageURL}{" "}
