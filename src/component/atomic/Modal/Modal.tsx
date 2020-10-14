@@ -5,11 +5,12 @@ import useModal from "hooks/useModal";
 const cx = classNames.bind(styles);
 const Modal = () => {
   const { isOpen, Component, closeModal } = useModal();
-  console.log(cx("test"));
+  console.log(styles);
+
   return (
     <>
       {isOpen && (
-        <div className={cx("test")} onClick={closeModal}>
+        <div className={cx("wrapper")} onClick={closeModal}>
           <Component />
         </div>
       )}

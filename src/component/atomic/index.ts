@@ -22,3 +22,6 @@ export { default as StatusTitle } from "./FontStyle/StatusTitle";
 
 export { default as SmallSubTitle } from "./FontStyle/Subtitle/Small";
 export { default as BigSubTitle } from "./FontStyle/Subtitle/Big";
+
+export { default as LinkBlock } from "./LinkBlock";
+export { default as SmallIconWrapper } from "./IconWrapper/Small";

@@ -15,7 +15,7 @@ const RecruitTemplate = ({ children }: RecruitTemplateProp) => {
     <SelectLayout>
       <section className={cx("recruit-tamplate-wrapper")}>
         <PageHeader>리쿠르팅 오픈</PageHeader>
-        <section className="recruit-template-body">{children}</section>
+        <section className={cx("recruit-template-body")}>{children}</section>
       </section>
     </SelectLayout>
   );

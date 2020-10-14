@@ -68,7 +68,7 @@ const Fourth = () => {
         )}
       </section>
 
-      <footer className="inner-grade-footer">
+      <footer className={cx("inner-grade-footer")}>
         <NomalButton
           color="lightBlue"
           size="default"

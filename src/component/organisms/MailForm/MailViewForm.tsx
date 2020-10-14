@@ -8,7 +8,7 @@ interface IProp {
 const cx = classNames.bind(styles);
 const MailViewForm: React.FC<IProp> = ({ mailTemplate }) => {
   const { openModal } = useModal();
-  console.log("tete", styles);
+
   return (
     <>
       <article>
