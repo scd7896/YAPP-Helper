@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model MailForms {
+  id           Int      @id @default(autoincrement())
+  title        String?
+  type         String?
+  pass         Boolean?
+  contents     String?
+  header_image String?
+  map_image    String?
+  createdAt    DateTime
+  updatedAt    DateTime
+}
+
+model SequelizeMeta {
+  name String @id
+}
+
+model Users {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  token     String?
+  createdAt DateTime
+  updatedAt DateTime
+}

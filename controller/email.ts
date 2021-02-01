@@ -1,3 +1,5 @@
+import * as crypto from "crypto";
+import { MailForm } from "../models";
 const mailgun = require("mailgun-js")({
   //mailgun 모듈
   apiKey: process.env.MAILGUN_API_KEY,
@@ -6,9 +8,7 @@ const mailgun = require("mailgun-js")({
 });
 const redisClient = require("../config/redis");
 
-const { MailForm } = require("../models");
 const path = require("path");
-const crypto = require("crypto");
 
 const sendUserResult = (io, user, error) => {
   // 메일 보내는 것 성공여부에 관계없이 결과를 프론트에 던져준다.
@@ -60,7 +60,7 @@ const reSend = async (req, res) => {
  * }
  */
 const send = async (req, res) => {
-  const mailforms = await MailForm.findAll();
+  const mailforms = await MailForm.findMany();
   const io = req.app.get("socketio");
   if (mailforms.length !== 2 || mailforms[0].pass !== true || mailforms[1].pass !== false) {
     res.sendStatus(422);
@@ -68,11 +68,9 @@ const send = async (req, res) => {
   }
 
   res.sendStatus(200);
-  console.log("메일 전송 시작");
   const mailgunPromises = req.body.users
     .map((user) => {
       const mailform = user.pass ? mailforms[0] : mailforms[1];
-      console.log(mailform.title);
       return {
         from: "YAPP <no-reply@yapp.co.kr>",
         to: user.email,

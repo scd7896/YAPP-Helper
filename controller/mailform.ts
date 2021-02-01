@@ -1,46 +1,28 @@
-const { MailForm } = require("../models");
+import { MailForm } from "../models";
 const { unlink } = require("fs");
 
-const index = (req, res, next) => {
-  MailForm.scope("orderByType", "passedFirst")
-    .findAll()
-    .then((mailforms) => {
-      res.json(
-        mailforms.map((mailform) => ({
-          id: mailform.id,
-          title: mailform.title,
-          type: mailform.type,
-          pass: mailform.pass,
-          contents: mailform.contents,
-          header_image: `/${mailform.header_image}`,
-          map_image: `/${mailform.map_image}`,
-        }))
-      );
-    })
-    .catch((err) => {
-      next(err);
+const index = async (req, res, next) => {
+  try {
+    const mailforms = await MailForm.findMany({
+      orderBy: {
+        type: "asc",
+        pass: "asc",
+      },
     });
-};
-
-const searchByType = (req, res) => {
-  MailForm.scope({ method: ["whereType", req.params.type] }, "passedFirst")
-    .findAll()
-    .then((mailforms) => {
-      res.json(
-        mailforms.map((mailform) => ({
-          id: mailform.id,
-          title: mailform.title,
-          type: mailform.type,
-          pass: mailform.pass,
-          contents: mailform.contents,
-          header_image: `/${mailform.header_image}`,
-          map_image: `/${mailform.map_image}`,
-        }))
-      );
-    })
-    .catch((err) => {
-      next(err);
-    });
+    res.json(
+      mailforms.map((mailform) => ({
+        id: mailform.id,
+        title: mailform.title,
+        type: mailform.type,
+        pass: mailform.pass,
+        contents: mailform.contents,
+        header_image: `/${mailform.header_image}`,
+        map_image: `/${mailform.map_image}`,
+      }))
+    );
+  } catch (err) {
+    res.status(500).send("에러");
+  }
 };
 
 const show = (req, res) => {
@@ -98,7 +80,6 @@ const destroy = (req, res, next) => {
 
 module.exports = {
   index: index,
-  searchByType: searchByType,
   show: show,
   store: store,
   update: update,

@@ -5,7 +5,7 @@ const jwt_expiration = 60 * 10;
 const jwt_refresh_expiration = 60 * 60 * 24 * 30;
 const login = async (req, res) => {
   try {
-    const user = await User.findOne({
+    const user = await User.findFirst({
       where: {
         token: req.body.token,
       },

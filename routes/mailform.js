@@ -71,8 +71,6 @@ router
     controller.store,
   ]);
 
-router.route("/type/:type").get(controller.searchByType);
-
 router
   .route("/:mailform_id")
   .all([

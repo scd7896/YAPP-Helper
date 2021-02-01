@@ -1,8 +1,14 @@
-const express = require("express");
+import * as express from "express";
+class App {
+  public application: express.Application;
+  constructor() {
+    this.application = express();
+  }
+}
 const dotenv = require("dotenv");
 const path = require("path");
 dotenv.config();
-const app = express();
+const app = new App().application;
 const { unlink } = require("fs");
 const cors = require("cors");
 
@@ -20,12 +26,11 @@ app.use((err, req, res, next) => {
   if (typeof req.files === "object") {
     Object.values(req.files)
       .flat()
-      .forEach((file) => {
+      .forEach((file: any) => {
         unlink(file.path, (err) => {
           if (err) {
             return next(err);
           }
-          console.log("successfully deleted " + file.path);
         });
       });
   }
