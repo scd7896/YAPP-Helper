@@ -1,17 +1,18 @@
 import * as React from "react";
 import classNames from "classnames/bind";
 import GoogleLogin from "atomic/GoogleLogin";
-import styles from "./styles.scss";
+import {IndexDiv} "./Index.styles"
+import styles from "./styles.module.scss";
 
 const cx = classNames.bind(styles);
 
 const Index = () => {
   return (
-    <div className={cx("index-test-wrapper")}>
+    <IndexDiv>
       <span className={cx("helperFontLogo")}>YAPP Helper</span>
       <span className={cx("googleLoginTitle")}>로그인하세요</span>
       <GoogleLogin />
-    </div>
+    </IndexDiv>
   );
 };
 
