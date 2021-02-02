@@ -1,21 +1,21 @@
-@import "../../../../utils/styles/_color";
+import styled from "styled-components";
 
-.wrapper {
+export const WrapperDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 846px;
-}
+`;
 
-.filter-wrapper {
+export const FilterWrapperDiv = styled.div`
   display: flex;
   > * {
     margin-right: 16px;
   }
-}
+`;
 
-.inner-grade-footer {
+export const InnerGradeFooter = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 29px 0px 54px 0px;
-}
+`;

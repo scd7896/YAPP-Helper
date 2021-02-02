@@ -1,15 +1,12 @@
 import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
 import { MailViewForm, MailModifyForm } from "organisms";
 import { ModifyButton, NomalButton } from "atomic";
+import { ContentWrapperSection, HeadNavSpan, BodySection, InnerGradeFooter } from "./EmailFourthGrade.styles";
 
-const cx = classNames.bind(styles);
-
-const Fourth = () => {
+const EmailFourthGrade = () => {
   const { pushHistory } = useHisotryRoute();
 
   const [viewPage, setViewPage] = useState<boolean>(true);
@@ -44,30 +41,30 @@ const Fourth = () => {
   }, [mailTemplates, mailTemplatesListFetch]);
 
   return (
-    <section className={cx("page-wrapper")}>
+    <section>
       <p>4.메일내용 확인</p>
       <p>잠깐! 보내기 전에 메일내용 확인하세요</p>
-      <section className={cx("content-wrapper")}>
+      <ContentWrapperSection>
         <header>
-          <span className={cx("head-nav-button", { selected: viewPage })} onClick={clickHeaderTab(true)}>
+          <HeadNavSpan selected={viewPage} onClick={clickHeaderTab(true)}>
             합격
-          </span>
-          <span className={cx("head-nav-button", { selected: !viewPage })} onClick={clickHeaderTab(false)}>
+          </HeadNavSpan>
+          <HeadNavSpan selected={!viewPage} onClick={clickHeaderTab(false)}>
             불합격
-          </span>
+          </HeadNavSpan>
         </header>
         {mailTemplates !== null && (
-          <section className={cx("body")}>
+          <BodySection>
             <ViewMailForm mailTemplate={mailTemplates[targetIndex]} />
 
             <article>
               <ModifyButton onClick={() => setIsModify(!isModify)}>수정하기</ModifyButton>
             </article>
-          </section>
+          </BodySection>
         )}
-      </section>
+      </ContentWrapperSection>
 
-      <footer className={cx("inner-grade-footer")}>
+      <InnerGradeFooter>
         <NomalButton
           color="lightBlue"
           size="default"
@@ -86,9 +83,9 @@ const Fourth = () => {
         >
           다음
         </NomalButton>
-      </footer>
+      </InnerGradeFooter>
     </section>
   );
 };
 
-export default Fourth;
+export default EmailFourthGrade;

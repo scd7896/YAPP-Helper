@@ -1,17 +1,14 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import * as io from "socket.io-client";
-import { url } from "../../../../_data";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
 import { postMailSend } from "utils/api/email/send/post";
 import ObjectArrayTable from "organisms/Table/ObjectArray";
-
 import useDesire from "hooks/useDesire";
 
-const cx = classNames.bind(styles);
+import { url } from "../../../../_data";
+import { WrapperDiv } from "./EmailFivethGrade.styles";
 
-const EmailGradeFiveth = () => {
+const EmailFivethGrade = () => {
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
   const {
     desireState: { allList },
@@ -39,15 +36,15 @@ const EmailGradeFiveth = () => {
   }, [keyString]);
 
   return (
-    <div className={cx("fiveth-grade-wrapper")}>
-      <div className={cx("")}>
+    <WrapperDiv>
+      <div>
         <header>
           <span>실시간 전송 확인</span>
         </header>
         <ObjectArrayTable datas={allList} />
       </div>
-    </div>
+    </WrapperDiv>
   );
 };
 
-export default EmailGradeFiveth;
+export default EmailFivethGrade;

@@ -1,12 +1,10 @@
 import * as React from "react";
-import classNames from "classnames/bind";
 import { FileInput, NomalButton, EmailGradeTitle } from "atomic";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
-import styles from "./styles.scss";
-const cx = classNames.bind(styles);
+import { InnerGradeBodySizeSection, InnerGradeFooter } from "./EmailFirstGrade.styles";
 
-const EmailGradeFirst = () => {
+const EmailFirstGrade = () => {
   const { pushHistory } = useHisotryRoute();
   const {
     desireState: { users, filename },
@@ -16,10 +14,10 @@ const EmailGradeFirst = () => {
     <div className={""}>
       <EmailGradeTitle>1.엑셀파일 업로드</EmailGradeTitle>
       <span>📂엑셀파일을 업로드 해주세요</span>
-      <section className={cx("inner-grade-bodysize-wrapper")}>
+      <InnerGradeBodySizeSection>
         <FileInput fileName={filename} />
-      </section>
-      <footer className={cx("inner-grade-footer")}>
+      </InnerGradeBodySizeSection>
+      <InnerGradeFooter>
         <NomalButton
           size="default"
           color="lightBlue"
@@ -39,9 +37,9 @@ const EmailGradeFirst = () => {
         >
           다음
         </NomalButton>
-      </footer>
+      </InnerGradeFooter>
     </div>
   );
 };
 
-export default EmailGradeFirst;
+export default EmailFirstGrade;

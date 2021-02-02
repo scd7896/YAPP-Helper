@@ -1,14 +1,11 @@
 import * as React from "react";
 import { useEffect } from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import NomalButton from "atomic/Button/NomalButton";
 import Table from "organisms/Table";
 import useDesire from "hooks/useDesire";
-
-const cx = classNames.bind(styles);
-const EmailGradeSecond = () => {
+import { TableWrapperDiv, InnerGradeFooter } from "./EmailSecondGrade.styles";
+const EmailSecondGrade = () => {
   const { pushHistory } = useHisotryRoute();
   const {
     desireState: { keys, users },
@@ -20,9 +17,9 @@ const EmailGradeSecond = () => {
   }, [setUserData]);
 
   return (
-    <div className={cx("table-wrapper")}>
+    <TableWrapperDiv>
       <Table headItems={keys} bodyItems={users} />
-      <footer className={cx("inner-grade-footer")}>
+      <InnerGradeFooter>
         <NomalButton
           color="lightBlue"
           size="default"
@@ -41,8 +38,8 @@ const EmailGradeSecond = () => {
         >
           다음
         </NomalButton>
-      </footer>
-    </div>
+      </InnerGradeFooter>
+    </TableWrapperDiv>
   );
 };
-export default EmailGradeSecond;
+export default EmailSecondGrade;

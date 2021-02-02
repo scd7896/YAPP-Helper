@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Switch, Route } from "react-router-dom";
 import EmailGradeTemplate from "template/EmailGradeTemplate";
-import EmailGradeFirst from "./EmailGrade/First";
-import EmailGradeSecond from "./EmailGrade/Second";
-import EmailGradeThird from "./EmailGrade/Third";
-import EmailGradeFourth from "./EmailGrade/Fourth";
-import EmailGradeFiveth from "./EmailGrade/Fiveth";
+import EmailGradeFirst from "./EmailGrade/First/EmailFirstGrade";
+import EmailGradeSecond from "./EmailGrade/Second/EmailSecondGrade";
+import EmailGradeThird from "./EmailGrade/Third/EmailThirdGrade";
+import EmailGradeFourth from "./EmailGrade/Fourth/EmailFourthGrade";
+import EmailGradeFiveth from "./EmailGrade/Fiveth/EmailFivethGrade";
 
 const EmailPage = () => {
   return (

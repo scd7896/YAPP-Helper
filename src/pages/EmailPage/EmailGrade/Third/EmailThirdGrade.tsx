@@ -1,20 +1,16 @@
 import * as React from "react";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setUserDataByFormRequest } from "actions/desire";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
 import Filter from "atomic/InputStyle/Filter";
 import NomalButton from "atomic/Button/NomalButton";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import Table from "organisms/Table";
 import EmailGradeTitle from "atomic/FontStyle/EmailGradeTitle";
 import useDesire from "hooks/useDesire";
+import { WrapperDiv, FilterWrapperDiv, InnerGradeFooter } from "./EmailThirdGrade.styles";
 
-const cx = classNames.bind(styles);
 type FilterString = "all" | "pass" | "fail";
 
-const EmailGradeThird = () => {
+const EmailThirdGrade = () => {
   const { pushHistory } = useHisotryRoute();
   const [filterStr, setFilterStr] = useState<FilterString>("all");
   const {
@@ -50,10 +46,10 @@ const EmailGradeThird = () => {
 
   const headItems = ["name", "email", "isPass", "meetingTime"];
   return (
-    <div className={cx("wrapper")}>
+    <WrapperDiv>
       <EmailGradeTitle>3. 셀 분류확인</EmailGradeTitle>
       <span>분류 완료! 명단을 확인하세요 👀</span>
-      <div className={cx("filter-wrapper")}>
+      <FilterWrapperDiv>
         <Filter onClick={filterClick} value="all" filterValue={filterStr}>
           전체
         </Filter>
@@ -63,11 +59,11 @@ const EmailGradeThird = () => {
         <Filter onClick={filterClick} value="fail" filterValue={filterStr}>
           불합격
         </Filter>
-      </div>
+      </FilterWrapperDiv>
 
       {allList[0] && <Table bodyItems={[headItems, ...userList]} />}
 
-      <footer className={cx("inner-grade-footer")}>
+      <InnerGradeFooter>
         <NomalButton
           color="lightBlue"
           size="default"
@@ -86,9 +82,9 @@ const EmailGradeThird = () => {
         >
           다음
         </NomalButton>
-      </footer>
-    </div>
+      </InnerGradeFooter>
+    </WrapperDiv>
   );
 };
 
-export default EmailGradeThird;
+export default EmailThirdGrade;
