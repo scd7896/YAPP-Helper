@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 import styles from "./styles.scss";
 
 import { emailHeadNameList } from "utils/constact";
-import SmallIconWrapper from "../../IconWrapper/Small";
+import SmallIconWrapper from "../../IconWrapper/Small/SmallIconWrapper";
 import MenuItem from "../MenuItem";
 import { ArrowBottom } from "../../Icon";
 

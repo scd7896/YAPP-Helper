@@ -1,9 +1,15 @@
 import * as React from "react";
-import classNames from "classnames/bind";
-import styles from "./small.scss";
-const cx = classNames.bind(styles);
+import * as color from "utils/styles/color";
+import styled from "styled-components";
+const Text = styled.span`
+  font-family: "Spoqa Han Sans";
+  font-size: 14px;
+  font-weight: bold;
+  color: ${color.blue_3};
+`;
+
 const SmallSubTitle = ({ children }: FontStyle) => {
-  return <span className={cx("small-subtitle-style")}>{children}</span>;
+  return <Text>{children}</Text>;
 };
 
 export default SmallSubTitle;

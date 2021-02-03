@@ -4,9 +4,6 @@ import * as io from "socket.io-client";
 
 import SelectMailTemplate from "template/SelectMailTemplate";
 import SelectLayout from "template/SelectLayout";
-import BigSubTitle from "atomic/FontStyle/Subtitle/Big";
-import SmallSubTitle from "atomic/FontStyle/Subtitle/Small";
-import HeadTitleText from "atomic/FontStyle/HeadTitle";
 
 const SelectMailType = () => {
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);

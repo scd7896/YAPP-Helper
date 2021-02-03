@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import Filter from "atomic/InputStyle/Filter";
+import Filter from "atomic/InputStyle/Filter/Filter";
 import NomalButton from "atomic/Button/NomalButton";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import Table from "organisms/Table";
-import EmailGradeTitle from "atomic/FontStyle/EmailGradeTitle";
+import EmailGradeTitle from "atomic/FontStyle/EmailGradeTitle/EmailGradeTitle";
 import useDesire from "hooks/useDesire";
 import { WrapperDiv, FilterWrapperDiv, InnerGradeFooter } from "./EmailThirdGrade.styles";
 

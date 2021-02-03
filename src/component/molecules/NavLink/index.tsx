@@ -2,7 +2,7 @@ import * as React from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import { Link, useRouteMatch } from "react-router-dom";
-import NavText from "atomic/FontStyle/NavText";
+import NavText from "atomic/FontStyle/NavText/NavText";
 
 interface NavLinkProp {
   children: string;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import GradeGuideIcon from "atomic/IconWrapper/GradeGuide";
+import GradeGuideIcon from "atomic/IconWrapper/GradeGuide/GradeGuide";
 import EmailGradeIconSet from "molecules/EmailGradeIconSet";
 
 interface HeadGradeProp {
