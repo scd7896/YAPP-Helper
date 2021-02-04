@@ -1,16 +1,17 @@
 import * as React from "react";
-import styles from "./styles.scss";
-import classNames from "classnames/bind";
+import styled from "styled-components";
 
-const cx = classNames.bind(styles);
+const Td = styled.td`
+  padding-right: 48px;
+`;
 interface IProp {
   children: string;
 }
 const ViewTd: React.FC<IProp> = ({ children }) => {
   return (
-    <td className={cx("table-data-style")}>
+    <Td>
       <span>{children}</span>
-    </td>
+    </Td>
   );
 };
 

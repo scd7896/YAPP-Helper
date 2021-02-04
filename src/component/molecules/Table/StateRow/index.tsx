@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import { FC } from "react";
-import ViewTd from "atomic/Table/ViewTd";
+import ViewTd from "atomic/Table/ViewTd/ViewTd";
 
 interface IProp {
   sendStatus: boolean | null;

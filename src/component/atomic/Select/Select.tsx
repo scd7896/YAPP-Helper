@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
+import { SelectDiv, SelectItemLi, SelectItemListUl, SelectDropDownIcon, SelectItemSelectedDiv } from "./Select.styles";
 import classNames from "classnames/bind";
 import styles from "./style.scss";
 
@@ -27,21 +28,17 @@ const Select = ({ width, options, placeholder, onSelectFunc }: SelectProps) => {
   };
 
   const optionElements = options.map((option) => {
-    return (
-      <li onClick={onSelectHandler.bind} className={cx("select__item")}>
-        {option}
-      </li>
-    );
+    return <SelectItemLi onClick={onSelectHandler.bind}>{option}</SelectItemLi>;
   });
 
   return (
-    <div className={cx("select", `${selected ? "selected" : ""}`)} style={{ width: width }}>
-      <div className={cx("select__item--selected")} onClick={onClickHandler}>
+    <SelectDiv selected={selected} style={{ width: width }}>
+      <SelectItemSelectedDiv onClick={onClickHandler}>
         {selected ? selectedValue : placeholder}
-        <div className={cx("select__dropdown-icon", `${toggled ? "toggled" : ""}`)}></div>
-      </div>
-      <ul className={cx("select__item-list", `${toggled ? "show" : "hide"}`)}>{optionElements}</ul>
-    </div>
+        <SelectDropDownIcon toggled={toggled} />
+      </SelectItemSelectedDiv>
+      <SelectItemListUl isShow={toggled}>{optionElements}</SelectItemListUl>
+    </SelectDiv>
   );
 };
 

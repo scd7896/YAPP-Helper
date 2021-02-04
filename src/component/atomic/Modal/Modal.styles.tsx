@@ -1,4 +1,6 @@
-.wrapper {
+import styled from "styled-components";
+
+export const WrapperDiv = styled.div`
   position: fixed;
   left: 0;
   top: 0;
@@ -9,8 +11,4 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 1000;
-}
-
-.content {
-  background-color: #ffffff;
-}
+`;

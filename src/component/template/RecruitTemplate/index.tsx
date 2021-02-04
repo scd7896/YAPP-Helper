@@ -1,7 +1,7 @@
 import * as React from "react";
 import SelectLayout from "../SelectLayout";
 import classNames from "classnames/bind";
-import PageHeader from "atomic/PageHeader";
+import PageHeader from "atomic/PageHeader/PageHeader";
 
 import styles from "./styles.scss";
 const cx = classNames.bind(styles);

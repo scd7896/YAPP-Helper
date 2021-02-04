@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useMemo, FC } from "react";
-import ClickHeadTh from "atomic/Table/ClickHeadTh";
+import ClickHeadTh from "atomic/Table/ClickHeadTh/ClickHeadTh";
+import ViewTd from "atomic/Table/ViewTd/ViewTd";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import ViewTd from "atomic/Table/ViewTd";
 const cx = classNames.bind(styles);
 
 interface IProp extends IIsHaed {
