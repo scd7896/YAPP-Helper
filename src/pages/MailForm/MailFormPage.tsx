@@ -1,7 +1,5 @@
 import * as React from "react";
 import { useEffect } from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
 import { useDispatch } from "react-redux";
 import MailFormTemplate from "template/MailFormTemplate/MailFormTemplate";
 import MailForm from "molecules/Mailform/MailForm";
@@ -9,8 +7,7 @@ import { TabBar, PageHeader } from "atomic";
 import { setMailSelectIndex } from "actions/mail";
 import useDesire from "hooks/useDesire";
 import useMailform from "hooks/useMailform";
-
-const cx = classNames.bind(styles);
+import { BodySection, FormWrapperDiv, TabBarWrapperDiv } from "./MailFormPage.styles";
 
 const MailFormPage = () => {
   const dispatch = useDispatch();
@@ -40,9 +37,9 @@ const MailFormPage = () => {
   return (
     <MailFormTemplate>
       <PageHeader>메일양식 관리</PageHeader>
-      <section className={cx("body")}>
-        <div className={cx("form-wrapper")}>
-          <div className={cx("tab-bar-wrapper")}>
+      <BodySection>
+        <FormWrapperDiv>
+          <TabBarWrapperDiv>
             {mailTemplates &&
               mailTemplates.map(({ pass }, index) => (
                 <TabBar
@@ -51,10 +48,10 @@ const MailFormPage = () => {
                   handler={tabChangeHandler(index)}
                 />
               ))}
-          </div>
+          </TabBarWrapperDiv>
           <MailForm />
-        </div>
-      </section>
+        </FormWrapperDiv>
+      </BodySection>
     </MailFormTemplate>
   );
 };

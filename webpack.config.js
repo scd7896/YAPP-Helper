@@ -1,7 +1,4 @@
 const path = require("path");
-const LoadablePlugin = require("@loadable/webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
   mode: "development",
@@ -33,29 +30,11 @@ module.exports = {
         use: ["babel-loader", "ts-loader"],
       },
       {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              modules: {
-                localIdentName: "[path][name]__[local]--[hash:base64:5]",
-              },
-            },
-          },
-          {
-            loader: "sass-loader",
-          },
-        ],
-      },
-      {
         test: /\.css/,
         use: ["style-loader", "css-loader"],
       },
     ],
   },
-  plugins: [new MiniCssExtractPlugin()],
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),

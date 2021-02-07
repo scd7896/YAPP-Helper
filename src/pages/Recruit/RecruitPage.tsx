@@ -6,7 +6,7 @@ import RecruitInputContainer from "organisms/RecruitInputContainer/RecruitInputC
 // Hooks
 import useRecruit from "hooks/recruit";
 
-const Recruit = () => {
+const RecruitPage = () => {
   const recruit = useRecruit();
   useEffect(() => {
     recruit.dataRequest();
@@ -20,4 +20,4 @@ const Recruit = () => {
   );
 };
 
-export default Recruit;
+export default RecruitPage;
