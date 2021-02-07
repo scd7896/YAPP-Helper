@@ -1,8 +1,16 @@
 import * as React from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
-import { Link, useRouteMatch } from "react-router-dom";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 import NavText from "atomic/FontStyle/NavText/NavText";
+
+export const StyleLink = styled(Link)`
+  text-decoration: none;
+  color: #919bb0;
+  margin-left: 11px;
+  &:hover {
+    color: #3d496f;
+  }
+`;
 
 interface NavLinkProp {
   children: string;
@@ -11,14 +19,11 @@ interface NavLinkProp {
   className?: string;
 }
 
-const cx = classNames.bind(styles);
 const NavLink = ({ children, to, keyString, className }: NavLinkProp) => {
-  const match = useRouteMatch();
-
   return (
-    <Link to={to} className={cx("anchor-style")}>
+    <StyleLink to={to}>
       <NavText keyString={keyString}>{children}</NavText>
-    </Link>
+    </StyleLink>
   );
 };
 

@@ -1,17 +1,24 @@
 import * as React from "react";
 import { TextInput, ToggleButton, RecruitingFont } from "atomic";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
-
-// Hooks
 import useRecruit from "hooks/recruit";
+import styled from "styled-components";
+const WrapperDiv = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  > p {
+    margin-right: 28px;
+  }
+`;
 
 interface RecruitGuide {
   title: string;
   type: string;
   name: "lastDay" | "startDay" | "URL" | "generation" | "isRecruiting";
 }
-const cx = classNames.bind(styles);
+
 const RecruitGuide = ({ title, name }: RecruitGuide) => {
   const recruit = useRecruit();
   const changeValueHandler = (value: string) => {
@@ -19,20 +26,14 @@ const RecruitGuide = ({ title, name }: RecruitGuide) => {
   };
 
   return (
-    <div className={cx("recruit-input-wrapper")}>
+    <WrapperDiv>
       <RecruitingFont>{title}</RecruitingFont>
       {name === "isRecruiting" ? (
         <ToggleButton name={name} />
       ) : (
-        <TextInput
-          width="257px"
-          className={cx("recruit-string-input-style")}
-          onChangeFunc={changeValueHandler}
-          defaultValue={recruit[name] as string}
-          name={name}
-        />
+        <TextInput width="257px" onChangeFunc={changeValueHandler} defaultValue={recruit[name] as string} name={name} />
       )}
-    </div>
+    </WrapperDiv>
   );
 };
 

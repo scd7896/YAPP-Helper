@@ -1,8 +1,8 @@
 import * as React from "react";
-import RecruitGuide from "molecules/RecruitGuide";
+import RecruitGuide from "molecules/RecruitGuide/RecruitGuide";
 
 import { setRecruitValue } from "actions/recruit";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { TextInput, RecruitingFont } from "atomic";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";

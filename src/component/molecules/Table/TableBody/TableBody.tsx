@@ -1,20 +1,24 @@
 import * as React from "react";
 import { FC } from "react";
-import classNames from "classnames";
-import styles from "./styles.scss";
-import TableRow from "../TableRow";
+import TableRow from "../TableRow/TableRow";
+import styled from "styled-components";
 
-const cx = classNames.bind(styles);
+const Tbody = styled.tbody`
+  display: block;
+  height: 410px;
+  overflow-y: scroll;
+`;
+
 interface IProp {
   rows: string[][];
 }
 const TableBody: FC<IProp> = ({ rows }) => {
   return (
-    <tbody className={cx("tbody-wrapper")}>
+    <Tbody>
       {rows.map((row, index) => {
         return <TableRow key={`table-body-rows-${index}`} isHead={false} items={row} />;
       })}
-    </tbody>
+    </Tbody>
   );
 };
 

@@ -1,13 +1,17 @@
 import * as React from "react";
 import { FC, useCallback } from "react";
-import classNames from "classnames";
-import styles from "./styles.scss";
-import StateRow from "../StateRow";
+import styled from "styled-components";
+import StateRow from "../StateRow/StateRow";
+
+const Tbody = styled.tbody`
+  display: block;
+  height: 410px;
+  overflow-y: scroll;
+`;
+
 interface IProp {
   datas: Array<object>;
 }
-
-const cx = classNames.bind(styles);
 
 const ObjectTableBody: FC<IProp> = ({ datas }) => {
   const deleteIsError = useCallback((data) => {
@@ -25,11 +29,11 @@ const ObjectTableBody: FC<IProp> = ({ datas }) => {
     });
   }, []);
   return (
-    <tbody className={cx("tbody-wrapper")}>
+    <Tbody>
       {datas.map((data: any) => {
         return <StateRow sendStatus={data.isError} datas={deleteIsError(data)} />;
       })}
-    </tbody>
+    </Tbody>
   );
 };
 

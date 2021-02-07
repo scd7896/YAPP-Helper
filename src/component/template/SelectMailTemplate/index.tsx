@@ -1,5 +1,5 @@
 import * as React from "react";
-import SelectLinkBox from "molecules/SelectLinkBox";
+import SelectLinkBox from "molecules/SelectLinkBox/SelectLinkBox";
 import { SmallSubTitle, BigSubTitle } from "atomic";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";

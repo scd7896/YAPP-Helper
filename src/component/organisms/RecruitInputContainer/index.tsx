@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useCallback, useEffect, useState } from "react";
-import RecruitGuide from "molecules/RecruitGuide";
+import RecruitGuide from "molecules/RecruitGuide/RecruitGuide";
 import OpenTrueBody from "./OpenTrueBody";
 import OpenFalseBody from "./OpenFalseBody";
 import { putRecruitData } from "utils/api";

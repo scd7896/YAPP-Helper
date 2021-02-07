@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import TableRow from "../TableRow";
+import TableRow from "../TableRow/TableRow";
 interface IProp {
   items: Array<string>;
 }

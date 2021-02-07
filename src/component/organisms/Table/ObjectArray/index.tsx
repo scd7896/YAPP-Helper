@@ -2,8 +2,8 @@ import * as React from "react";
 import { FC, useMemo } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import TableHead from "molecules/Table/TableHead";
-import ObjectTableBody from "molecules/Table/ObjectTableBody";
+import TableHead from "molecules/Table/TableHead/TableHead";
+import ObjectTableBody from "molecules/Table/ObjectTableBody/ObjectTableBody";
 
 interface IProp {
   datas: Array<object>;

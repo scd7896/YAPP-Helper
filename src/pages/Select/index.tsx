@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 
-import SelectLinkBox from "molecules/SelectLinkBox";
+import SelectLinkBox from "molecules/SelectLinkBox/SelectLinkBox";
 import BigSubTitle from "atomic/FontStyle/Subtitle/Big";
 import SmallSubTitle from "atomic/FontStyle/Subtitle/Small";
 const cx = classNames.bind(styles);

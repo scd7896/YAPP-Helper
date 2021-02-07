@@ -1,9 +1,9 @@
 import * as React from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
-import NavLink from "molecules/NavLink";
+import NavLink from "molecules/NavLink/NavLink";
 import LogOutButton from "atomic/Button/LogOutButton";
-import IconSelector from "molecules/IconSelector";
+import IconSelector from "molecules/IconSelector/IconSelector";
 import useNavKeyString from "hooks/useNavKeyString";
 const cx = classNames.bind(styles);
 const LeftNav = () => {

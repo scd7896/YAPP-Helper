@@ -1,6 +1,12 @@
 import * as React from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
+import styled from "styled-components";
+import * as color from "utils/styles/color";
+const LinkBoxTitle = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  color: ${color.gray_5};
+`;
+
 import { LinkBlock, SmallIconWrapper } from "atomic";
 
 interface SelectLinkBoxProp {
@@ -9,14 +15,13 @@ interface SelectLinkBoxProp {
   icon?: React.ReactElement;
 }
 
-const cx = classNames.bind(styles);
 const SelectLinkBox = ({ to, title, icon }: SelectLinkBoxProp) => {
   return (
     <LinkBlock to={to}>
       <SmallIconWrapper width={48} height={48}>
         {icon ? icon : ""}
       </SmallIconWrapper>
-      <p className={cx("link-box-title")}>{title}</p>
+      <LinkBoxTitle>{title}</LinkBoxTitle>
     </LinkBlock>
   );
 };

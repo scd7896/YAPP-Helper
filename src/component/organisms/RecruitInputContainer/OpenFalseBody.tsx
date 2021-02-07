@@ -1,5 +1,5 @@
 import * as React from "react";
-import RecruitGuide from "molecules/RecruitGuide";
+import RecruitGuide from "molecules/RecruitGuide/RecruitGuide";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 const cx = classNames.bind(styles);

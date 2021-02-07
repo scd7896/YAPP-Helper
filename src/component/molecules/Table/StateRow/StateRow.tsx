@@ -1,15 +1,35 @@
 import * as React from "react";
-import { useMemo } from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
-import { FC } from "react";
+import { useMemo, FC } from "react";
 import ViewTd from "atomic/Table/ViewTd/ViewTd";
+import styled from "styled-components";
+import * as color from "utils/styles/color";
+
+const Tr = styled.tr`
+  height: 50px;
+  background-color: ${({ status }) => status === "failure" && "rgba(255, 102, 103, 0.04)"};
+  > td {
+    border-bottom: 1px solid ${color.gray_3};
+    padding-left: 24px;
+    font-size: 14px;
+    letter-spacing: -0.25px;
+    color: ${color.gray_5};
+  }
+
+  > th {
+    border-bottom: 1px solid ${color.gray_3};
+  }
+  & td:last-child {
+    color: ${({ status }) => {
+      if (status === "success") return color.success_green;
+      if (status === "failure") return color.failure_red;
+    }};
+  }
+`;
 
 interface IProp {
   sendStatus: boolean | null;
   datas: Array<string>;
 }
-const cx = classNames.bind(styles);
 
 const StateRow: FC<IProp> = ({ sendStatus, datas }) => {
   const getSendStatus = useMemo(() => {
@@ -23,11 +43,11 @@ const StateRow: FC<IProp> = ({ sendStatus, datas }) => {
     return "발송중";
   }, [sendStatus]);
   return (
-    <tr className={cx("table-row-style", getSendStatus)}>
+    <Tr status={getSendStatus}>
       {[...datas, getSendText].map((text, index) => (
         <ViewTd key={text + index}>{text}</ViewTd>
       ))}
-    </tr>
+    </Tr>
   );
 };
 

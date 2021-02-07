@@ -2,9 +2,22 @@ import * as React from "react";
 import { useMemo, FC } from "react";
 import ClickHeadTh from "atomic/Table/ClickHeadTh/ClickHeadTh";
 import ViewTd from "atomic/Table/ViewTd/ViewTd";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
-const cx = classNames.bind(styles);
+import styled from "styled-components";
+import * as color from "utils/styles/color";
+const Tr = styled.tr`
+  height: 50px;
+  > td {
+    border-bottom: 1px solid ${color.gray_3};
+    padding-left: 24px;
+    font-size: 14px;
+    color: ${color.gray_5};
+    letter-spacing: -0.25px;
+  }
+
+  > th {
+    border-bottom: 1px solid ${color.gray_3};
+  }
+`;
 
 interface IProp extends IIsHaed {
   items: Array<string>;
@@ -19,11 +32,11 @@ const TableRow: FC<IProp> = ({ items, isHead }) => {
     return DrawTableData({ isHead });
   }, [isHead]);
   return (
-    <tr className={cx("table-row-style")}>
+    <Tr>
       {items.map((item, index) => (
         <DrawTableMemo index={isHead ? index : undefined}>{item}</DrawTableMemo>
       ))}
-    </tr>
+    </Tr>
   );
 };
 
