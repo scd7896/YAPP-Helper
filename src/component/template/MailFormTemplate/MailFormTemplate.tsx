@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import SelectLayout from "../SelectLayout";
+import SelectLayout from "../SelectLayout/SelectLayout";
 
 interface IProp {
   children: React.ReactElement[] | React.ReactElement;

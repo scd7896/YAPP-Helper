@@ -1,10 +1,7 @@
 import * as React from "react";
-import SelectLayout from "../SelectLayout";
-import classNames from "classnames/bind";
 import PageHeader from "atomic/PageHeader/PageHeader";
-
-import styles from "./styles.scss";
-const cx = classNames.bind(styles);
+import { WrapperSection, TemplateBodySection } from "./RecruitTemplate.styles";
+import SelectLayout from "../SelectLayout/SelectLayout";
 
 interface RecruitTemplateProp {
   children: React.ReactElement;
@@ -13,10 +10,10 @@ interface RecruitTemplateProp {
 const RecruitTemplate = ({ children }: RecruitTemplateProp) => {
   return (
     <SelectLayout>
-      <section className={cx("recruit-tamplate-wrapper")}>
+      <WrapperSection>
         <PageHeader>리쿠르팅 오픈</PageHeader>
-        <section className={cx("recruit-template-body")}>{children}</section>
-      </section>
+        <TemplateBodySection>{children}</TemplateBodySection>
+      </WrapperSection>
     </SelectLayout>
   );
 };

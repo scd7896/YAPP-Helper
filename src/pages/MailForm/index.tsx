@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles.scss";
 import { useDispatch } from "react-redux";
-import MailFormTemplate from "template/MailFormTemplate";
+import MailFormTemplate from "template/MailFormTemplate/MailFormTemplate";
 import MailForm from "molecules/Mailform/MailForm";
 import { TabBar, PageHeader } from "atomic";
 import { setMailSelectIndex } from "actions/mail";

@@ -1,19 +1,17 @@
 import * as React from "react";
-
 import { LeftNav } from "organisms";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
+import { WrapperSection, Main } from "./SelectLayout.styles";
 
 interface SelectLayoutProps {
   children: React.ReactElement[] | React.ReactElement;
 }
-const cx = classNames.bind(styles);
+
 const SelectLayout = ({ children }: SelectLayoutProps) => {
   return (
-    <section className={cx("select-layout-wrapper")}>
+    <WrapperSection>
       <LeftNav />
-      <main className={cx("select-right-wrapper")}>{children}</main>
-    </section>
+      <Main>{children}</Main>
+    </WrapperSection>
   );
 };
 

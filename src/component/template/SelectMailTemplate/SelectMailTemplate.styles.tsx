@@ -1,32 +1,28 @@
-.email-section-wrapper {
+import styled from "styled-components";
+
+export const WrapperSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f7f8fc;
-}
-.content-width-resize-wrapper {
+`;
+
+export const ContentsWrapperDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 668px;
   min-height: 100vh;
-}
-.email-select-container {
-  display: flex;
-  width: 100%;
-}
-.email-head-container {
+`;
+
+export const EmailHeaderSection = styled.section`
   display: flex;
   flex-direction: column;
   align-self: flex-start;
-}
-.email-headtitle-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 46px;
-}
+`;
 
-.for-marginleft-10px {
-  margin-left: 10px;
-}
+export const EmailSelectSection = styled.section`
+  display: flex;
+  width: 100%;
+`;

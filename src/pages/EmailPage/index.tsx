@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Switch, Route } from "react-router-dom";
-import EmailGradeTemplate from "template/EmailGradeTemplate";
+import EmailGradeTemplate from "template/EmailGradeTemplate/EmailGradeTemplate";
 import EmailGradeFirst from "./EmailGrade/First/EmailFirstGrade";
 import EmailGradeSecond from "./EmailGrade/Second/EmailSecondGrade";
 import EmailGradeThird from "./EmailGrade/Third/EmailThirdGrade";
