@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import * as io from "socket.io-client";
 import { postMailSend } from "utils/api/email/send/post";
-import ObjectArrayTable from "organisms/Table/ObjectArray";
+import ObjectArrayTable from "organisms/Table/ObjectArray/ObjectArrayTable";
 import useDesire from "hooks/useDesire";
 
 import { url } from "../../../../_data";

@@ -1,21 +1,20 @@
 import * as React from "react";
 import { FC } from "react";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
+
 import TableHead from "molecules/Table/TableHead/TableHead";
 import TableBody from "molecules/Table/TableBody/TableBody";
 
-const cx = classNames.bind(styles);
+import { StyleTable } from "./Table.styles";
 interface IProp {
   headItems?: string[];
   bodyItems: string[][];
 }
 const Table: FC<IProp> = ({ headItems, bodyItems }) => {
   return (
-    <table className={cx("table-style")}>
+    <StyleTable>
       {headItems && <TableHead items={headItems} />}
       <TableBody rows={bodyItems} />
-    </table>
+    </StyleTable>
   );
 };
 

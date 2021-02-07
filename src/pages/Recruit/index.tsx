@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect } from "react";
 import RecruitTemplate from "template/RecruitTemplate";
-import RecruitInputContainer from "organisms/RecruitInputContainer";
+import RecruitInputContainer from "organisms/RecruitInputContainer/RecruitInputContainer";
 
 // Hooks
 import useRecruit from "hooks/recruit";

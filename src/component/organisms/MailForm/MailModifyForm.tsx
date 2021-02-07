@@ -1,14 +1,18 @@
 import * as React from "react";
-import classNames from "classnames/bind";
-import styles from "./MailModifyForm.module.scss";
 import { useState, useCallback } from "react";
 import { putMailForm } from "utils/api";
 import { MailWriter, NomalButton, TextInput } from "atomic";
-
+import {
+  TitleWrapperArticle,
+  ModifyTitleSpan,
+  ModifyPictureWrapperDiv,
+  OnImageCoverDiv,
+  CoverTextSpan,
+} from "./MailModifyForm.styles";
 interface IProp {
   mailTemplate: MailState;
 }
-const cx = classNames.bind(styles);
+
 const MailModifyForm: React.FC<IProp> = ({ mailTemplate }) => {
   const [title, setTitle] = useState<string>(mailTemplate.title);
   const [description, setDescription] = useState<string>(mailTemplate.text);
@@ -26,23 +30,20 @@ const MailModifyForm: React.FC<IProp> = ({ mailTemplate }) => {
   }, [title, description, type, mailTemplate]);
   return (
     <>
-      <article className={cx("titleWrapper")}>
-        <span className={cx("modifyTitle")}>메일제목:</span>{" "}
-        <TextInput className={cx("rowInput")} defaultValue={title} onChangeFunc={setTitle} />
-      </article>
+      <TitleWrapperArticle>
+        <ModifyTitleSpan>메일제목:</ModifyTitleSpan> <TextInput defaultValue={title} onChangeFunc={setTitle} />
+      </TitleWrapperArticle>
       <article>
         <p>헤더이미지</p>
-        <div className={cx("modifyPictureWrapper")}>
+        <ModifyPictureWrapperDiv>
           <img src={mailTemplate.headImageURL} />
-          <div className={cx("onImageCover")}>
-            <span className={cx("coverText")}>
-              파일을 수정하려면 아래 버튼을 클릭하세요 (이미지 사이즈 750px X 150px 권장)
-            </span>
-            <NomalButton color="grayOutLine" size="default" onClick={() => console.log("test")}>
+          <OnImageCoverDiv>
+            <CoverTextSpan>파일을 수정하려면 아래 버튼을 클릭하세요 (이미지 사이즈 750px X 150px 권장)</CoverTextSpan>
+            <NomalButton color="grayOutLine" size="default">
               파일 수정하기
             </NomalButton>
-          </div>
-        </div>
+          </OnImageCoverDiv>
+        </ModifyPictureWrapperDiv>
       </article>
       <article>
         <MailWriter value={description} setValue={setDescription} />

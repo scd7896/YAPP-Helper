@@ -1,18 +1,15 @@
 import * as React from "react";
 import { useCallback, useEffect, useState } from "react";
 import RecruitGuide from "molecules/RecruitGuide/RecruitGuide";
-import OpenTrueBody from "./OpenTrueBody";
-import OpenFalseBody from "./OpenFalseBody";
 import { putRecruitData } from "utils/api";
 import { useHistory } from "react-router-dom";
 import NomalButton from "atomic/Button/NomalButton";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
+import OpenTrueBody from "./OpenTrueBody";
+import OpenFalseBody from "./OpenFalseBody";
+import { RecruitForm, RecruitHeader, RecruitFooter } from "./RecruitInputContainer.styles";
 
 // Hooks
 import useRecruit from "hooks/recruit";
-
-const cx = classNames.bind(styles);
 
 const RecruitInputContainer = () => {
   const recruit = useRecruit();
@@ -43,21 +40,21 @@ const RecruitInputContainer = () => {
     event.preventDefault();
   }, []);
   return (
-    <form className={cx("recruit-input-container")} action={`/api/recruit`} method="post" onSubmit={submitHandler}>
+    <RecruitForm action={`/api/recruit`} method="post" onSubmit={submitHandler}>
       <input type="hidden" name="_method" value="put" />
-      <header className={cx("recruit-input-header")}>
+      <RecruitHeader>
         <RecruitGuide type="checked" name="isRecruiting" title="리쿠르팅 오픈하기" />
-      </header>
+      </RecruitHeader>
       {recruit.isRecruiting ? <OpenTrueBody /> : <OpenFalseBody />}
-      <footer className={cx("recruit-input-footer")}>
+      <RecruitFooter>
         <NomalButton color="ghost" size="small">
           취소
         </NomalButton>
         <NomalButton color="default" size="small" onClick={recruitDataUpdate}>
           완료
         </NomalButton>
-      </footer>
-    </form>
+      </RecruitFooter>
+    </RecruitForm>
   );
 };
 
