@@ -1,12 +1,12 @@
 -- CreateTable
 CREATE TABLE `MailForms` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `title` VARCHAR(191),
-    `type` VARCHAR(191),
-    `pass` BOOLEAN,
-    `contents` VARCHAR(191),
-    `header_image` VARCHAR(191),
-    `map_image` VARCHAR(191),
+    `title` VARCHAR(191) NOT NULL,
+    `type` VARCHAR(191) NOT NULL,
+    `pass` BOOLEAN NOT NULL,
+    `contents` VARCHAR(191) NOT NULL,
+    `header_image` VARCHAR(191) NOT NULL,
+    `map_image` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL,
     `updatedAt` DATETIME(3) NOT NULL,
 
@@ -27,6 +27,7 @@ CREATE TABLE `Users` (
     `token` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL,
     `updatedAt` DATETIME(3) NOT NULL,
+UNIQUE INDEX `Users.token_unique`(`token`),
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

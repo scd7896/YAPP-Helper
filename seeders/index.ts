@@ -66,5 +66,10 @@ const mailFormCreate = async () => {
   }
 };
 
-mailFormCreate();
-userCreate();
+const init = () => {
+  Promise.all([mailFormCreate(), userCreate()]).then(() => {
+    process.exit();
+  });
+};
+
+init();

@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["nativeTypes"]
 }
 
 datasource db {
@@ -9,12 +10,12 @@ datasource db {
 
 model MailForms {
   id           Int      @id @default(autoincrement())
-  title        String?
-  type         String?
-  pass         Boolean?
-  contents     String?
-  header_image String?
-  map_image    String?
+  title        String
+  type         String
+  pass         Boolean
+  contents     String   @db.Text
+  header_image String
+  map_image    String
   createdAt    DateTime
   updatedAt    DateTime
 }

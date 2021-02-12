@@ -1,12 +1,37 @@
 import { MailForm } from "../models";
 const { unlink } = require("fs");
 
-const index = async (req, res, next) => {
+export const findUnique = async (req, res, next) => {
+  try {
+    const target = await MailForm.findUnique({
+      select: {
+        id: true,
+        title: true,
+        contents: true,
+        header_image: true,
+        map_image: true,
+        updatedAt: true,
+        createdAt: true,
+      },
+      where: { id: parseInt(req.params.mailform_id, 10) },
+    });
+    if (!target) {
+      res.status(404).send("없습니다.");
+      throw new Error("Not Found");
+    }
+    req.mailform = target;
+    next();
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("dberror");
+  }
+};
+
+export const index = async (req, res, next) => {
   try {
     const mailforms = await MailForm.findMany({
       orderBy: {
-        type: "asc",
-        pass: "asc",
+        id: "asc",
       },
     });
     res.json(
@@ -21,15 +46,16 @@ const index = async (req, res, next) => {
       }))
     );
   } catch (err) {
+    console.log(err);
     res.status(500).send("에러");
   }
 };
 
-const show = (req, res) => {
+export const show = (req, res) => {
   res.json(req.mailform);
 };
 
-const store = (req, res, next) => {
+export const store = (req, res, next) => {
   MailForm.create(req.body)
     .then((mailform) => {
       res.status(201).json(mailform);
@@ -39,32 +65,38 @@ const store = (req, res, next) => {
     });
 };
 
-const update = (req, res, next) => {
+export const update = async (req, res, next) => {
   const previous = {
     header_image: req.mailform.header_image,
     map_image: req.mailform.map_image,
   };
-  req.mailform
-    .update(req.body)
-    .then((mailform) => {
-      res.json(mailform);
-      ["header_image", "map_image"].forEach((key) => {
-        if (req.body[key] !== undefined) {
-          try {
-            unlink("public/" + previous[key], () => console.log("successfully deleted " + previous[key]));
-          } catch (err) {
-            console.log("기존에 파일이 없습니다");
-          }
-        }
-      });
-    })
-    .catch((err) => {
-      console.error(err);
-      next(err);
+  try {
+    ["header_image", "map_image"].forEach((key) => {
+      if (req.body[key] !== undefined) {
+        try {
+          unlink("public/" + previous[key], () => console.log("successfully deleted " + previous[key]));
+        } catch (err) {}
+      }
     });
+
+    const afterUpdate = await MailForm.update({
+      where: {
+        id: req.mailform.id,
+      },
+      data: {
+        ...req.body,
+        updatedAt: new Date(),
+      },
+    });
+
+    res.status(204).json({ status: "sucess", data: afterUpdate });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("rere");
+  }
 };
 
-const destroy = (req, res, next) => {
+export const destroy = (req, res, next) => {
   req.mailform
     .destroy()
     .then((mailform) => {
@@ -76,12 +108,4 @@ const destroy = (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-};
-
-module.exports = {
-  index: index,
-  show: show,
-  store: store,
-  update: update,
-  destroy: destroy,
 };

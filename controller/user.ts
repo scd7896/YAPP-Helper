@@ -16,6 +16,7 @@ export const login = async (req, res) => {
     redisClient.set(accessToken, JSON.stringify(user));
     res.status(200).json({ token: accessToken });
   } catch (err) {
+    console.log(err);
     res.status(500).send("데이터 베이스 조회 에러");
   }
 };
