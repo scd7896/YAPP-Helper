@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
-
-export const MailForm = prisma.mailForms;
-export const User = prisma.users;
+const client = new PrismaClient();
+export const MailForm = client.mailForms;
+export const User = client.users;

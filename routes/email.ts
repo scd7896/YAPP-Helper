@@ -1,6 +1,7 @@
-const express = require("express");
+import * as express from "express";
 const router = express.Router();
-const controller = require("../controller/email");
+import * as controller from "../controller/email";
+
 const authMiddleWare = require("../middleware/auth");
 const { body, matchedData, validationResult } = require("express-validator");
 

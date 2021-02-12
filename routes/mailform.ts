@@ -1,12 +1,14 @@
-const express = require("express");
+import * as crypto from "crypto";
+import * as express from "express";
+
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
-const crypto = require("crypto");
+
 const { body, param, matchedData, validationResult } = require("express-validator");
 const controller = require("../controller/mailform");
 const { MailForm } = require("../models");
-const authMiddleWare = require("../middleware/auth");
+import { authenticateJWT } from "../controller/user";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -50,7 +52,7 @@ const validate = (validations) => {
   };
 };
 
-router.route("*").all([authMiddleWare]);
+router.route("*").all([authenticateJWT]);
 router
   .route("/")
   .get(controller.index)

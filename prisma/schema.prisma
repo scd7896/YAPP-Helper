@@ -26,7 +26,7 @@ model SequelizeMeta {
 model Users {
   id        Int      @id @default(autoincrement())
   name      String?
-  token     String?
+  token     String   @unique
   createdAt DateTime
   updatedAt DateTime
 }

@@ -1,5 +1,4 @@
-const express = require("express");
-const authMiddleWare = require("../middleware/auth");
+import * as express from "express";
 const router = express.Router();
 
 const apiRouter = express.Router();

@@ -1,4 +1,4 @@
-const express = require("express");
+import * as express from "express";
 const server = express.Router();
 const db = require("../model/firebase");
 const authMiddleWare = require("../middleware/auth");

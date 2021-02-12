@@ -19,7 +19,7 @@ const sendUserResult = (io, user, error) => {
   io.emit("list-add", toClient);
 };
 
-const reSend = async (req, res) => {
+export const reSend = async (req, res) => {
   const { key } = req.body;
   const io = req.app.get("socketio");
   redisClient.get(key, (error, data) => {
@@ -59,7 +59,7 @@ const reSend = async (req, res) => {
  *   ]
  * }
  */
-const send = async (req, res) => {
+export const send = async (req, res) => {
   const mailforms = await MailForm.findMany();
   const io = req.app.get("socketio");
   if (mailforms.length !== 2 || mailforms[0].pass !== true || mailforms[1].pass !== false) {
@@ -72,7 +72,7 @@ const send = async (req, res) => {
     .map((user) => {
       const mailform = user.pass ? mailforms[0] : mailforms[1];
       return {
-        from: "YAPP <no-reply@yapp.co.kr>",
+        from: "YAPP <support@yapp.co.kr>",
         to: user.email,
         subject: mailform.title,
         html: `<html>
@@ -99,9 +99,4 @@ const send = async (req, res) => {
     redisClient.set(key, JSON.stringify(failList.filter(Boolean)));
     io.emit("send-key", key);
   });
-};
-
-module.exports = {
-  send: send,
-  reSend: reSend,
 };

@@ -1,11 +1,10 @@
-const { User } = require("../models");
 const redisClient = require("../config/redis");
 const jwt = require("jsonwebtoken");
-const jwt_expiration = 60 * 10;
-const jwt_refresh_expiration = 60 * 60 * 24 * 30;
-const login = async (req, res) => {
+import { User } from "../models";
+
+export const login = async (req, res) => {
   try {
-    const user = await User.findFirst({
+    const user = await User.findUnique({
       where: {
         token: req.body.token,
       },
@@ -21,6 +20,20 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = {
-  login,
+export const authenticateJWT = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+    const token = authHeader.split(" ")[1];
+    redisClient.get(token, (err, reply) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+
+      req.user = JSON.parse(reply);
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
 };

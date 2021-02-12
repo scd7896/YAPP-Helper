@@ -1,16 +1,16 @@
 import * as express from "express";
+import * as dotenv from "dotenv";
+import * as fs from "fs";
+const cors = require("cors");
 class App {
   public application: express.Application;
   constructor() {
     this.application = express();
   }
 }
-const dotenv = require("dotenv");
-const path = require("path");
+
 dotenv.config();
 const app = new App().application;
-const { unlink } = require("fs");
-const cors = require("cors");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +27,7 @@ app.use((err, req, res, next) => {
     Object.values(req.files)
       .flat()
       .forEach((file: any) => {
-        unlink(file.path, (err) => {
+        fs.unlink(file.path, (err) => {
           if (err) {
             return next(err);
           }
@@ -43,5 +43,6 @@ app.use((err, req, res, next) => {
 });
 
 const server = app.listen(9170, () => console.log("서버 진행중 9170"));
+
 const io = require("socket.io")(server);
 app.set("socketio", io);
