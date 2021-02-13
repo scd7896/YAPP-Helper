@@ -4,7 +4,7 @@ import { WrapperSection, TemplateBodySection } from "./RecruitTemplate.styles";
 import SelectLayout from "../SelectLayout/SelectLayout";
 
 interface RecruitTemplateProp {
-  children: React.ReactElement;
+  children: React.ReactElement | string;
 }
 
 const RecruitTemplate = ({ children }: RecruitTemplateProp) => {

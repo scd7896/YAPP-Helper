@@ -11,6 +11,8 @@ export const WrapperSection = styled.section`
 export const TemplateBodySection = styled.section`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: ${color.gray_1};
   height: 100%;
 `;

@@ -6,6 +6,8 @@ import RecruitInputContainer from "organisms/RecruitInputContainer/RecruitInputC
 // Hooks
 import useRecruit from "hooks/recruit";
 
+import { WrapperDiv } from "./RecruitPage.styles";
+
 const RecruitPage = () => {
   const recruit = useRecruit();
   useEffect(() => {
@@ -14,7 +16,7 @@ const RecruitPage = () => {
   return (
     <div>
       <RecruitTemplate>
-        <div>{recruit.isLoaded ? <RecruitInputContainer /> : "로딩 중 입니다."}</div>
+        <WrapperDiv>{recruit.isLoaded ? <RecruitInputContainer /> : "로딩 중 입니다."}</WrapperDiv>
       </RecruitTemplate>
     </div>
   );
