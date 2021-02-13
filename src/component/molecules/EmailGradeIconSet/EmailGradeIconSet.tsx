@@ -4,7 +4,7 @@ const WrapperDiv = styled.div`
   display: flex;
   align-items: center;
 `;
-import { GradeGuideIcon, DotIcon } from "atomic";
+import { GradeGuideIcon, ArrowIcon } from "atomic";
 interface EmailGradeIconSetProp {
   gradeNumber: number;
   text: string;
@@ -13,7 +13,7 @@ interface EmailGradeIconSetProp {
 const EmailGradeIconSet = ({ gradeNumber, text }: EmailGradeIconSetProp) => {
   return (
     <WrapperDiv>
-      <DotIcon gradeNumber={gradeNumber}></DotIcon>
+      <ArrowIcon gradeNumber={gradeNumber}></ArrowIcon>
       <GradeGuideIcon gradeNumber={gradeNumber} text={text}></GradeGuideIcon>
     </WrapperDiv>
   );

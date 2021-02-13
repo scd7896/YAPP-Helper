@@ -5,6 +5,7 @@ export const WrapperHeader = styled.header`
   display: flex;
   padding: 18px 39px;
   background-color: var(--gray1);
+  background-color: #ffffff;
 `;
 
 export const ContentsWrapperSection = styled.section`

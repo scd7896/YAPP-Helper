@@ -13,7 +13,7 @@ export { default as MailWriter } from "./MailWriter";
 export { default as Modal } from "./Modal/Modal";
 
 export { default as GradeGuideIcon } from "./IconWrapper/GradeGuide/GradeGuide";
-export { default as DotIcon } from "./IconWrapper/DotIcon/DotIcon";
+export { default as ArrowIcon } from "./IconWrapper/ArrowIcon/ArrowIcon";
 
 export { default as RecruitingFont } from "./FontStyle/RecruitingFont/RecruitingFont";
 export { default as ToggleButton } from "./InputStyle/Recruit/ToggleButton/ToggleButton";

@@ -1,10 +1,9 @@
 import styled from "styled-components";
-
+import * as color from "utils/styles/color";
 export const GradeIconWrapperDiv = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
+  margin: 0px 10px;
 `;
 
 export const GradeNumIcon = styled.div`
@@ -13,11 +12,10 @@ export const GradeNumIcon = styled.div`
   align-items: center;
   font-size: 9px;
   width: 15px;
-  height: 13px;
-  padding-top: 2px;
-  border-radius: 7px;
-  color: #ffffff;
-  background-color: ${({ isAccepted }) => (isAccepted ? "#3751ff" : "#bcbbd6")};
+  border-radius: 100%;
+  color: ${({ isAccepted }) => (isAccepted ? color.helper_blue : color.gray_4)};
+  line-height: 1.5;
+  background-color: ${({ isAccepted }) => (isAccepted ? color.light_blue_1 : color.gray_2)};
 `;
 
 export const GradeIconTextP = styled.p`
@@ -25,6 +23,6 @@ export const GradeIconTextP = styled.p`
   font-size: 12px;
   letter-spacing: -0.44px;
   margin-left: 5px;
-  color: #3751ff;
+  color: ${({ isAccepted }) => (isAccepted ? color.helper_blue : color.gray_5)};
   font-weight: ${({ isAccepted }) => isAccepted && "bold"};
 `;

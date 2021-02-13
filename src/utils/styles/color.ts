@@ -14,3 +14,4 @@ export const helper_blue2 = "#e7efff";
 export const success_green = "#8dd895";
 export const failure_red = "#ff6667";
 export const white = "#ffffff";
+export const light_blue_1 = "#f5f7ff";
