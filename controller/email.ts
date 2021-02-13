@@ -1,4 +1,5 @@
 import * as crypto from "crypto";
+import { createJsend } from "lib";
 import { MailForm } from "../models";
 const mailgun = require("mailgun-js")({
   //mailgun 모듈
@@ -24,7 +25,7 @@ export const reSend = async (req, res) => {
   const io = req.app.get("socketio");
   redisClient.get(key, (error, data) => {
     if (error || data === null) {
-      return res.status(500).send("레디스 데이터 가져오지 못함");
+      return res.status(500).json(createJsend("failure", "데이터가 없음"));
     }
     res.sendStatus(200);
     const mailgunPromises = JSON.parse(data).map((data) => {

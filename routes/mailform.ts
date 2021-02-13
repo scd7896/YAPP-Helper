@@ -23,10 +23,7 @@ const validate = (validations) => {
 };
 
 router.route("*").all([authenticateJWT]);
-router
-  .route("/")
-  .get(controller.index)
-  .post([...fileController.saveUploadedFiles(["header_image", "map_image"]), controller.store]);
+router.route("/").get(controller.index);
 
 router
   .route("/:mailform_id")

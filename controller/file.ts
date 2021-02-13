@@ -13,24 +13,17 @@ export const storage = multer.diskStorage({
   },
 });
 export const upload = multer({ storage });
-export const saveUploadedFiles = (fields) => {
-  try {
-  } catch (err) {
-    console.log(err);
-  } finally {
-    return [
-      upload.fields(
-        fields.map((field) => {
-          return { name: field };
-        })
-      ),
-      (req, res, next) => {
-        req.body = fields.reduce((body, field) => {
-          body[field] = ((req.files[field] || [])[0] || {}).filename;
-          return body;
-        }, req.body);
-        next();
-      },
-    ];
-  }
-};
+export const saveUploadedFiles = (fields) => [
+  upload.fields(
+    fields.map((field) => {
+      return { name: field };
+    })
+  ),
+  (req, res, next) => {
+    req.body = fields.reduce((body, field) => {
+      body[field] = ((req.files[field] || [])[0] || {}).filename;
+      return body;
+    }, req.body);
+    next();
+  },
+];

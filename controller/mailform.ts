@@ -1,50 +1,26 @@
-import { MailForm } from "../models";
+import { createJsend } from "lib";
+import { MailFormModel } from "../models";
 const { unlink } = require("fs");
 
 export const findUnique = async (req, res, next) => {
   try {
-    const target = await MailForm.findUnique({
-      select: {
-        id: true,
-        title: true,
-        contents: true,
-        header_image: true,
-        map_image: true,
-        updatedAt: true,
-        createdAt: true,
-      },
-      where: { id: parseInt(req.params.mailform_id, 10) },
-    });
+    const target = await MailFormModel.findMailFormById(parseInt(req.params.mailform_id, 10));
     if (!target) {
-      res.status(404).send("없습니다.");
+      res.status(404).json(createJsend("failure", "타겟이 없습니다"));
       throw new Error("Not Found");
     }
     req.mailform = target;
     next();
   } catch (err) {
     console.log(err);
-    res.status(500).send("dberror");
+    res.status(500).json(createJsend("failure", "dbConnectError"));
   }
 };
 
 export const index = async (req, res, next) => {
   try {
-    const mailforms = await MailForm.findMany({
-      orderBy: {
-        id: "asc",
-      },
-    });
-    res.json(
-      mailforms.map((mailform) => ({
-        id: mailform.id,
-        title: mailform.title,
-        type: mailform.type,
-        pass: mailform.pass,
-        contents: mailform.contents,
-        header_image: `/${mailform.header_image}`,
-        map_image: `/${mailform.map_image}`,
-      }))
-    );
+    const mailforms = await MailFormModel.findMailFormOrderById();
+    res.json(mailforms);
   } catch (err) {
     console.log(err);
     res.status(500).send("에러");
@@ -53,16 +29,6 @@ export const index = async (req, res, next) => {
 
 export const show = (req, res) => {
   res.json(req.mailform);
-};
-
-export const store = (req, res, next) => {
-  MailForm.create(req.body)
-    .then((mailform) => {
-      res.status(201).json(mailform);
-    })
-    .catch((err) => {
-      next(err);
-    });
 };
 
 export const update = async (req, res, next) => {
@@ -79,20 +45,11 @@ export const update = async (req, res, next) => {
       }
     });
 
-    const afterUpdate = await MailForm.update({
-      where: {
-        id: req.mailform.id,
-      },
-      data: {
-        ...req.body,
-        updatedAt: new Date(),
-      },
-    });
+    const afterUpdate = await MailFormModel.updateMailForm(parseInt(req.mailform.id, 10), req.body);
 
-    res.status(204).json({ status: "sucess", data: afterUpdate });
+    res.status(204).json(createJsend("success", afterUpdate));
   } catch (err) {
-    console.log(err);
-    res.status(500).send("rere");
+    res.status(500).json(createJsend("failure", "dbError"));
   }
 };
 
