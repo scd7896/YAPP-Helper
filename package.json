@@ -7,10 +7,9 @@
     "watch": "webpack --watch",
     "start": "ts-node index.ts",
     "prod": "webpack --mode=production",
-    "migrate": "prisma migrate dev --preview-feature",
-    "migrate-up": "prisma migrate up --experimental",
+    "migrate": "prisma db push --preview-feature",
+    "migrate-up": "prisma migrate dev --preview-feature",
     "generate": "prisma generate",
-    "migrate:undo": "sequelize-cli db:migrate:undo",
     "seed": "ts-node ./seeders/index.ts"
   },
   "author": "",
