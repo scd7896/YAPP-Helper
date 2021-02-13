@@ -1,5 +1,5 @@
 import * as crypto from "crypto";
-import { createJsend } from "lib";
+import { createJsend } from "../lib";
 import { MailForm } from "../models";
 const mailgun = require("mailgun-js")({
   //mailgun 모듈

@@ -1,4 +1,4 @@
-import { createJsend } from "lib";
+import { createJsend } from "../lib";
 import { MailFormModel } from "../models";
 const { unlink } = require("fs");
 
