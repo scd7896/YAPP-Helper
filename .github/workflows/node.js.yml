@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   deploy:
@@ -24,4 +24,4 @@ jobs:
             npm install
             npm run prod
             npm run migrate
-            pm2 start ecosystem.config.js
+            pm2 start index.ts
