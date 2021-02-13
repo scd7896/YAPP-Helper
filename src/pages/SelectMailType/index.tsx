@@ -2,11 +2,8 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import * as io from "socket.io-client";
 
-import SelectMailTemplate from "template/SelectMailTemplate";
-import SelectLayout from "template/SelectLayout";
-import BigSubTitle from "atomic/FontStyle/Subtitle/Big";
-import SmallSubTitle from "atomic/FontStyle/Subtitle/Small";
-import HeadTitleText from "atomic/FontStyle/HeadTitle";
+import SelectMailTemplate from "template/SelectMailTemplate/SelectMailTemplate";
+import SelectLayout from "template/SelectLayout/SelectLayout";
 
 const SelectMailType = () => {
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);

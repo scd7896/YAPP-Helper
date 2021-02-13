@@ -1,11 +1,9 @@
 import * as React from "react";
-import classNames from "classnames/bind";
-import styles from "./MailViewForm.module.scss";
 import useModal from "hooks/useModal";
 interface IProp {
   mailTemplate: MailState;
 }
-const cx = classNames.bind(styles);
+
 const MailViewForm: React.FC<IProp> = ({ mailTemplate }) => {
   const { openModal } = useModal();
 
@@ -27,7 +25,6 @@ const MailViewForm: React.FC<IProp> = ({ mailTemplate }) => {
       <article>
         <p>첨부파일</p>
         <div
-          className={cx("subFileName")}
           onClick={() => {
             openModal(() => (
               <div>

@@ -1,12 +1,11 @@
 import * as React from "react";
-import RecruitGuide from "molecules/RecruitGuide";
-
-import { setRecruitValue } from "actions/recruit";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { TextInput, RecruitingFont } from "atomic";
-import classNames from "classnames/bind";
-import styles from "./styles.scss";
-const cx = classNames.bind(styles);
+import RecruitGuide from "molecules/RecruitGuide/RecruitGuide";
+import { setRecruitValue } from "actions/recruit";
+
+import { RecruitBodySection, RecruitInputDataWrapperDiv, RecruitDataWrapperDiv } from "./RecruitInputContainer.styles";
+
 const OpenTrueBody = () => {
   const dispatch = useDispatch();
   const changeValueHandler = (value: string, name: string) => {
@@ -18,12 +17,12 @@ const OpenTrueBody = () => {
   };
 
   return (
-    <section className={cx("recruit-input-body")}>
+    <RecruitBodySection>
       <RecruitGuide type="string" name="generation" title="지원기수" />
-      <div className={cx("recruit-date-wrapper")}>
+      <RecruitDataWrapperDiv>
         <RecruitingFont>모집기간</RecruitingFont>
         {/* 역시 recruitGuide를 재사용하는 방향이 맞네 */}
-        <div className={cx("recruit-date-input-wrapper")}>
+        <RecruitInputDataWrapperDiv>
           <TextInput
             onChangeFunc={(value) => changeValueHandler(value, "startDay")}
             placeholder="0000.00.00"
@@ -36,10 +35,10 @@ const OpenTrueBody = () => {
             defaultValue="2020.07.20"
             width="105px"
           />
-        </div>
-      </div>
+        </RecruitInputDataWrapperDiv>
+      </RecruitDataWrapperDiv>
       <RecruitGuide type="string" name="URL" title="지원링크" />
-    </section>
+    </RecruitBodySection>
   );
 };
 

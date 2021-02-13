@@ -13,10 +13,11 @@
       "actions/*": ["./src/store/action/*"]
     },
     "sourceMap": true,
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es6",
     "jsx": "react",
-    "noImplicitAny": true,
+    "lib": ["ES2019", "ESNext", "DOM"],
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "types": ["node"],
     "typeRoots": ["./src/types", "./action"]

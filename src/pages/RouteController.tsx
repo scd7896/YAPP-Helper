@@ -2,12 +2,12 @@ import * as React from "react";
 import { Switch, Route } from "react-router-dom";
 import loadable from "@loadable/component";
 import { Modal } from "atomic";
-const Recruit = loadable(() => import(/* webpackChunkName: "recruit" */ "./Recruit"));
-const SelectPage = loadable(() => import(/* webpackChunkName: "select" */ "./Select"));
+const Recruit = loadable(() => import(/* webpackChunkName: "recruit" */ "./Recruit/RecruitPage"));
+const SelectPage = loadable(() => import(/* webpackChunkName: "select" */ "./Select/SelectPage"));
 const Index = loadable(() => import(/* webpackChunkName: "root" */ "./Index"));
 const SelectMailType = loadable(() => import(/* webpackChunkName: "mail_type_select" */ "./SelectMailType"));
 const EmailPage = loadable(() => import(/* webpackChunkName: "email_page" */ "./EmailPage"));
-const MailFormPage = loadable(() => import(/* webpackChunkName: "mail_form" */ "./MailForm"));
+const MailFormPage = loadable(() => import(/* webpackChunkName: "mail_form" */ "./MailForm/MailFormPage"));
 const RouteController = () => {
   return (
     <React.Suspense fallback={() => <div>로딩중</div>}>
