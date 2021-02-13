@@ -1,19 +1,15 @@
 import styled from "styled-components";
 
 export const FormWrapperDiv = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  padding: 24px 30px;
+  display: block;
+  background-color: #ffffff;
 `;
 
 export const TitleWrapperSection = styled.section`
-  width: 100%;
   display: flex;
   align-items: center;
-  padding-bottom: 15.5px;
-  margin-bottom: 23.5px;
+  max-width: 100%;
+  padding: 16px 66px 16px 30px;
   border-bottom: 1px solid #dfdfdf;
 `;
 
@@ -24,11 +20,10 @@ export const TitleLableSpan = styled.span`
 
 export const HeaderImageWrapperSection = styled.section`
   display: flex;
-  width: 100%;
+  max-width: 100%;
   flex-direction: column;
   border-bottom: 1px solid #dfdfdf;
-  padding-bottom: 15.5px;
-  margin-bottom: 23.5px;
+  padding: 24px 66px 24px 30px;
 `;
 
 export const HeaderImageLabelSpan = styled.span`
@@ -43,19 +38,17 @@ export const HeaderImg = styled.img`
 
 export const MailContentWrapperSection = styled.section`
   display: flex;
-  width: 100%;
+  max-width: 100%;
   flex-direction: column;
-  padding-bottom: 15.5px;
-  margin-bottom: 23.5px;
+  padding: 24px 66px 24px 30px;
   border-bottom: 1px solid #dfdfdf;
 `;
 
 export const AttchFileWrapperDiv = styled.div`
-  width: 100%;
+  max-width: 100%;
   display: flex;
   align-items: center;
-  padding-bottom: 15.5px;
-  margin-bottom: 23.5px;
+  padding: 24px 66px 24px 30px;
   border-bottom: 1px solid #dfdfdf;
 `;
 
@@ -80,4 +73,5 @@ export const SubImg = styled.img`
 export const Footer = styled.footer`
   width: 100%;
   display: flex;
+  padding: 24px 30px;
 `;

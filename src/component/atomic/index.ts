@@ -28,3 +28,5 @@ export { default as SmallIconWrapper } from "./IconWrapper/Small/SmallIconWrappe
 
 export { default as PageHeader } from "./PageHeader/PageHeader";
 export { default as TabBar } from "./Nav/TabBar/TabBar";
+
+export * from "./FontStyle";

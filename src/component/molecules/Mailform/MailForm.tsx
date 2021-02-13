@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useCallback } from "react";
-import { MailWriter, FileInputSecond, TextInput, NomalButton as NormalButton } from "atomic";
+import { MailWriter, FileInputSecond, TextInput, NomalButton as NormalButton, ClickUnderLineSpan } from "atomic";
 
 import { useDispatch } from "react-redux";
 import {
@@ -75,17 +75,17 @@ const MailForm = () => {
       {!subImageEditMode && (
         <AttchFileWrapperDiv>
           <AttchFileLabel>첨부파일</AttchFileLabel>
-          <NormalButton color="grayOutLine" size="default" onClick={subImageClick}>
-            파일 불러오기
-          </NormalButton>
+          {subImageURL ? (
+            <ClickUnderLineSpan onClick={subImageClick}>{subImageURL}</ClickUnderLineSpan>
+          ) : (
+            <NormalButton color="grayOutLine" size="default" onClick={subImageClick}>
+              파일 불러오기
+            </NormalButton>
+          )}
         </AttchFileWrapperDiv>
       )}
 
-      {subImageEditMode ? (
-        <FileInputSecond targetImage="sub" fileTypes={["image", "xlsx", "zip"]} />
-      ) : (
-        <SubImg src={subImageURL} onClick={subImageClick} />
-      )}
+      {subImageEditMode && <FileInputSecond targetImage="sub" fileTypes={["image", "xlsx", "zip"]} />}
 
       <Footer>
         <NormalButton color="default" size="default" onClick={submitMailFormPut}>

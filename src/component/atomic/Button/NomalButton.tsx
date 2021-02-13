@@ -53,6 +53,7 @@ const Button = styled.button`
   color: ${({ concept = "default" }) => textColor[concept]};
   border: ${({ concept = "default" }) => border[concept]};
   border-radius: ${({ size = "default" }) => radius[size]}px;
+  cursor: pointer;
   &:hover {
     background-color: ${({ concept = "default" }) => hoverBackground[concept]};
     color: ${({ concept = "default" }) => hoverTextColor[concept]};

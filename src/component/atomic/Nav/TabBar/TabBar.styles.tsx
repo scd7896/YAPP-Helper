@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as color from "utils/styles/color";
 
 export const WrapperDiv = styled.div`
   display: flex;
@@ -6,6 +7,7 @@ export const WrapperDiv = styled.div`
   align-items: center;
   width: 153px;
   height: 54px;
-  background-color: ${({ select }) => (select ? "#f5f6fa" : "#d8d8d8")};
-  border-right: 1px solid #f5f6fa;
+  background-color: ${({ select }) => (select ? "#ffffff" : color.gray_2)};
+  border-radius: 8px 8px 0px 0px;
+  cursor: pointer;
 `;

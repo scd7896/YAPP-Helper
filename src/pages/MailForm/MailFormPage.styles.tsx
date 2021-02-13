@@ -11,10 +11,10 @@ export const BodySection = styled.section`
 
 export const FormWrapperDiv = styled.div`
   flex: 1;
-  background-color: #ffffff;
 `;
 
 export const TabBarWrapperDiv = styled.div`
   display: flex;
-  background-color: #d8d8d8;
+  background-color: ${color.gray_2};
+  border-radius: 8px 8px 0px 0px;
 `;
