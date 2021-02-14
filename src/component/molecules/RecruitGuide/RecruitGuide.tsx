@@ -7,10 +7,6 @@ const WrapperDiv = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-
-  > p {
-    margin-right: 28px;
-  }
 `;
 
 interface RecruitGuide {

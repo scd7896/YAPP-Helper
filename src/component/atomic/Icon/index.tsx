@@ -1,4 +1,7 @@
 import * as React from "react";
+import styled from "styled-components";
+import * as color from "utils/styles/color";
+
 interface SelectCheck {
   isSelect?: boolean;
 }
@@ -179,3 +182,14 @@ export const ExelUploadCompleteIcon = () => (
     </g>
   </svg>
 );
+
+export const LineIcon = styled.div`
+  width: 16px;
+  height: 1px;
+  border-top: solid 1px ${color.gray_2};
+  margin: 0 8px;
+
+  &::after {
+    content: " ";
+  }
+`;

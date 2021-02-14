@@ -31,6 +31,7 @@ export const RecruitInputDataWrapperDiv = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  margin-left: 10px;
 `;
 
 export const RecruitDataWrapperDiv = styled.div`
@@ -40,10 +41,6 @@ export const RecruitDataWrapperDiv = styled.div`
   justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 20px;
-
-  > p {
-    margin-right: 28px;
-  }
 `;
 
 export const RecruitInputBodySection = styled.section`

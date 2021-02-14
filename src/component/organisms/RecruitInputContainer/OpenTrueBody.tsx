@@ -5,6 +5,7 @@ import RecruitGuide from "molecules/RecruitGuide/RecruitGuide";
 import { setRecruitValue } from "actions/recruit";
 
 import { RecruitBodySection, RecruitInputDataWrapperDiv, RecruitDataWrapperDiv } from "./RecruitInputContainer.styles";
+import { LineIcon } from "../../atomic/Icon/index";
 
 const OpenTrueBody = () => {
   const dispatch = useDispatch();
@@ -21,19 +22,19 @@ const OpenTrueBody = () => {
       <RecruitGuide type="string" name="generation" title="지원기수" />
       <RecruitDataWrapperDiv>
         <RecruitingFont>모집기간</RecruitingFont>
-        {/* 역시 recruitGuide를 재사용하는 방향이 맞네 */}
         <RecruitInputDataWrapperDiv>
           <TextInput
             onChangeFunc={(value) => changeValueHandler(value, "startDay")}
             placeholder="0000.00.00"
             defaultValue="2020.07.10"
-            width="105px"
+            width="86px"
           />
+          <LineIcon />
           <TextInput
             onChangeFunc={(value) => changeValueHandler(value, "lastDay")}
             placeholder="0000.00.00"
             defaultValue="2020.07.20"
-            width="105px"
+            width="86px"
           />
         </RecruitInputDataWrapperDiv>
       </RecruitDataWrapperDiv>

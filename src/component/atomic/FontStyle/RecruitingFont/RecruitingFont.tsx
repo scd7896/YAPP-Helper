@@ -2,13 +2,9 @@ import * as React from "react";
 import styled from "styled-components";
 const Text = styled.p`
   font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.25px;
   color: var(--gray6);
   word-break: keep-all;
+  width: 79px;
 `;
 
 const RecruitingFont = ({ children }: FontStyle) => {
