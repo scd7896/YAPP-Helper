@@ -4,8 +4,8 @@ import useHisotryRoute from "hooks/useHistoryRoute";
 import Filter from "atomic/InputStyle/Filter/Filter";
 import NomalButton from "atomic/Button/NomalButton";
 import Table from "organisms/Table/Table";
-import EmailGradeTitle from "atomic/FontStyle/EmailGradeTitle/EmailGradeTitle";
 import useDesire from "hooks/useDesire";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "atomic";
 import { WrapperDiv, FilterWrapperDiv, InnerGradeFooter } from "./EmailThirdGrade.styles";
 
 type FilterString = "all" | "pass" | "fail";
@@ -47,8 +47,8 @@ const EmailThirdGrade = () => {
   const headItems = ["name", "email", "isPass", "meetingTime"];
   return (
     <WrapperDiv>
-      <EmailGradeTitle>3. 셀 분류확인</EmailGradeTitle>
-      <span>분류 완료! 명단을 확인하세요 👀</span>
+      <EmailGradeTitleSpan>3. 셀 분류확인</EmailGradeTitleSpan>
+      <EmailGradeSubTitleSpan>분류 완료! 명단을 확인하세요 👀</EmailGradeSubTitleSpan>
       <FilterWrapperDiv>
         <Filter onClick={filterClick} value="all" filterValue={filterStr}>
           전체

@@ -1,8 +1,8 @@
 import * as React from "react";
-import { FileInput, NomalButton, EmailGradeTitle } from "atomic";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan, FileInput, NomalButton } from "atomic";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
-import { InnerGradeBodySizeSection, InnerGradeFooter } from "./EmailFirstGrade.styles";
+import { InnerGradeBodySizeSection, InnerGradeFooter, WrapperHeader, TitleWrapperDiv } from "./EmailFirstGrade.styles";
 
 const EmailFirstGrade = () => {
   const { pushHistory } = useHisotryRoute();
@@ -12,8 +12,12 @@ const EmailFirstGrade = () => {
 
   return (
     <div className={""}>
-      <EmailGradeTitle>1.엑셀파일 업로드</EmailGradeTitle>
-      <span>📂엑셀파일을 업로드 해주세요</span>
+      <WrapperHeader>
+        <TitleWrapperDiv>
+          <EmailGradeTitleSpan>1.엑셀파일 업로드</EmailGradeTitleSpan>
+        </TitleWrapperDiv>
+        <EmailGradeSubTitleSpan>📂엑셀파일을 업로드 해주세요</EmailGradeSubTitleSpan>
+      </WrapperHeader>
       <InnerGradeBodySizeSection>
         <FileInput fileName={filename} />
       </InnerGradeBodySizeSection>

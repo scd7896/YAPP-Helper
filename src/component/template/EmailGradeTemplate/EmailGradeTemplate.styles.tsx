@@ -21,5 +21,6 @@ export const BodyWrapperSection = styled.section`
   justify-content: center;
   align-items: center;
   height: 100%;
+  padding: 44px 0px 54px;
   background-color: ${color.gray_1};
 `;

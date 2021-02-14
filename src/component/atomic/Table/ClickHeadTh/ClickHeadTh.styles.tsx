@@ -9,7 +9,8 @@ export const WrapperTh = styled.th`
 export const HeadPrintStringSpan = styled.span`
   display: flex;
   align-items: center;
-  color: ${({ selected }) => (selected ? "#3562ff" : color.gray_6)};
+  color: ${({ selected }) => (selected ? color.helper_blue : color.gray_6)};
+  cursor: pointer;
   font-size: 14px;
   > * {
     margin-right: 8px;
@@ -21,10 +22,20 @@ export const SelectMenuUl = styled.ul`
   position: absolute;
   left: 0;
   top: 10px;
-  background: white;
+  background: #ffffff;
+  border: 1px solid ${color.gray_3};
+  border-radius: 12px;
+  box-shadow: 6px 6px 20px 0 rgba(0, 0, 0, 0.08);
   list-style: none;
-  padding: 0;
+  padding: 0 8px;
   width: 162px;
+`;
+export const SelectMenuHeaderLi = styled.li`
+  font-size: 10px;
+  color: ${color.gray_5};
+  padding: 10px;
+
+  text-align: left;
 `;
 
 export const Button = styled.button`

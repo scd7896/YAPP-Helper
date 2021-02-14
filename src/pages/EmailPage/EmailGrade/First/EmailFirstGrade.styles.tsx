@@ -1,12 +1,22 @@
 import styled from "styled-components";
 import * as color from "utils/styles/color";
 
-export const InnerGradeBodySizeSection = styled.section`
-  width: 703px;
+export const WrapperHeader = styled.header`
   display: flex;
   flex-direction: column;
-  background-color: white;
-  padding: 32px 42px 32px 32px;
+  margin-bottom: 24px;
+`;
+
+export const TitleWrapperDiv = styled.div`
+  margin-bottom: 14px;
+`;
+
+export const InnerGradeBodySizeSection = styled.section`
+  width: 846px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 20px;
 `;
 
 export const InnerGradeFooter = styled.footer`

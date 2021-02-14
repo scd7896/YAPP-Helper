@@ -1,38 +1,29 @@
 import * as React from "react";
-import NavLink from "molecules/NavLink/NavLink";
 import LogOutButton from "atomic/Button/LogOutButton";
 import IconSelector from "molecules/IconSelector/IconSelector";
 import useNavKeyString from "hooks/useNavKeyString";
-import { WrapperNav, LinkListContainerArticle, ButtonWrapperDiv, LogOutArticle } from "./LeftNav.styles";
+import { WrapperNav, LinkListContainerArticle, ButtonWrapperLink, LogOutArticle, TextSpan } from "./LeftNav.styles";
 
 const LeftNav = () => {
   const { getIsSelected } = useNavKeyString();
   return (
     <WrapperNav>
       <LinkListContainerArticle>
-        <ButtonWrapperDiv>
-          <NavLink to="/select" keyString="select">
-            홈으로 가기
-          </NavLink>
-        </ButtonWrapperDiv>
-        <ButtonWrapperDiv>
+        <ButtonWrapperLink to="/select" keyString="select">
+          <TextSpan>홈으로 가기</TextSpan>
+        </ButtonWrapperLink>
+        <ButtonWrapperLink to="/recruit" isSelect={getIsSelected("recruit")}>
           <IconSelector icon="folder" isSelect={getIsSelected("recruit")} />
-          <NavLink to="/recruit" keyString="recruit">
-            리쿠르트 오픈
-          </NavLink>
-        </ButtonWrapperDiv>
-        <ButtonWrapperDiv>
+          <TextSpan isSelect={getIsSelected("recruit")}>리쿠르팅 오픈</TextSpan>
+        </ButtonWrapperLink>
+        <ButtonWrapperLink to="/email/1" keyString="email" isSelect={getIsSelected("email")}>
           <IconSelector icon="send" isSelect={getIsSelected("email")} />
-          <NavLink to="/email/1" keyString="email">
-            결과메일 발송
-          </NavLink>
-        </ButtonWrapperDiv>
-        <ButtonWrapperDiv>
+          <TextSpan isSelect={getIsSelected("email")}>결과메일 발송</TextSpan>
+        </ButtonWrapperLink>
+        <ButtonWrapperLink to="/mailform" isSelect={getIsSelected("mailform")}>
           <IconSelector icon="pencil" isSelect={getIsSelected("mailform")} />
-          <NavLink to="/mailform" keyString="mailform">
-            메일양식 관리
-          </NavLink>
-        </ButtonWrapperDiv>
+          <TextSpan isSelect={getIsSelected("mailform")}>메일양식 관리</TextSpan>
+        </ButtonWrapperLink>
       </LinkListContainerArticle>
       <LogOutArticle>
         <LogOutButton />

@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { emailHeadNameList } from "utils/constact";
 
-import { WrapperTh, HeadPrintStringSpan, SelectMenuUl } from "./ClickHeadTh.styles";
+import { WrapperTh, HeadPrintStringSpan, SelectMenuUl, SelectMenuHeaderLi } from "./ClickHeadTh.styles";
 import MenuItem from "../MenuItem/MenuItem";
 import { ArrowBottom } from "../../Icon";
 
@@ -37,9 +37,26 @@ const ClickHeadTh = ({ children, index }: ClickHeadThProp) => {
       return children;
     }
   }, [isSelected, keySet]);
-  const toggleOpen = useCallback(() => {
-    setIsMenuOpen(!isMenuOpen);
-  }, [isMenuOpen]);
+
+  const toggleOpen = useCallback(
+    (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+      e.stopPropagation();
+      setIsMenuOpen((prev) => !prev);
+    },
+    [isMenuOpen]
+  );
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false);
+  }, [setIsMenuOpen]);
+
+  useEffect(() => {
+    window.addEventListener("click", closeMenu);
+
+    return () => {
+      window.removeEventListener("click", closeMenu);
+    };
+  }, [closeMenu]);
+
   return (
     <WrapperTh>
       <HeadPrintStringSpan selected={isSelected} onClick={toggleOpen}>
@@ -49,14 +66,14 @@ const ClickHeadTh = ({ children, index }: ClickHeadThProp) => {
       <menu>
         {isMenuOpen && (
           <SelectMenuUl open={isMenuOpen}>
-            <li>셀 역할 선택</li>
+            <SelectMenuHeaderLi onClick={(e) => e.stopPropagation()}>셀 역할 선택</SelectMenuHeaderLi>
             {Object.keys(keySet).map((el, keyIndex) => {
               return (
                 <MenuItem
                   key={`item${el}${keyIndex}${index}`}
                   keyItem={el as SetFormKey}
                   index={index}
-                  closeFunction={toggleOpen}
+                  closeFunction={closeMenu}
                 />
               );
             })}

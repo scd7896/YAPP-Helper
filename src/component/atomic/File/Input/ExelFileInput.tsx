@@ -11,13 +11,14 @@ import {
   IconMarginDiv,
   OrSpan,
   DropBoxButtonSpan,
-} from "./FileInputSecond.styles";
+} from "./ExelFileInput.styles";
+import { ExelFileIcon, ExelUploadCompleteIcon } from "../../Icon";
 
 interface IProp {
   fileName?: string;
 }
 
-const FileInput: React.FC<IProp> = ({ fileName }) => {
+const ExelFileInput: React.FC<IProp> = ({ fileName }) => {
   const [isOver, setIsOver] = useState(false);
   const isError = useSelector<RootStore>((state) => state.desire.isError);
   const dispatch = useDispatch();
@@ -66,16 +67,14 @@ const FileInput: React.FC<IProp> = ({ fileName }) => {
       isUploaded={fileName}
       isOver={isOver}
     >
-      <IconMarginDiv>
-        <SmallIconWrapper width={70} height={70} />
-      </IconMarginDiv>
+      <IconMarginDiv>{fileName ? <ExelUploadCompleteIcon /> : <ExelFileIcon />}</IconMarginDiv>
       <DropBoxGuideTextSpan isUploaded={fileName}>
         {fileName ? (
           <>
             <FileNameTextSpan>{fileName}</FileNameTextSpan> 업로드 완료!
           </>
         ) : (
-          "파일을 이곳에 끌어다 놓으세요"
+          "엑셀파일을 이곳에 끌어다 놓으세요"
         )}
       </DropBoxGuideTextSpan>
       {!fileName && <OrSpan>또는</OrSpan>}
@@ -84,4 +83,4 @@ const FileInput: React.FC<IProp> = ({ fileName }) => {
   );
 };
 
-export default FileInput;
+export default ExelFileInput;

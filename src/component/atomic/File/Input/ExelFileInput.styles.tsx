@@ -9,7 +9,6 @@ export const FileDropBoxDiv = styled.div`
   width: 100%;
   height: 346px;
   border-radius: 6px;
-  border: 1px dashed #d8d8d8;
   background-color: ${({ isUploaded, isOver }) => {
     if (isOver) {
       return "rgba(228, 230, 240, 0.5)";
@@ -17,12 +16,12 @@ export const FileDropBoxDiv = styled.div`
     if (isUploaded) {
       return "#f8faff";
     }
-    return "#fbfbfd";
+    return color.gray_1;
   }};
 `;
 
 export const IconMarginDiv = styled.div`
-  margin-bottom: 18px;
+  margin-bottom: 8px;
 `;
 
 export const DropBoxGuideTextSpan = styled.span`
@@ -52,6 +51,9 @@ export const DropBoxButtonSpan = styled.span`
   width: 120px;
   height: 40px;
   border-radius: 4px;
-  background-color: silver;
+  background-color: #ffffff;
+  border: solid 1px #e3e3e3;
+  color: ${color.gray_5};
+  font-size: 14px;
   cursor: pointer;
 `;

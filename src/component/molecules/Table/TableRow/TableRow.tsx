@@ -27,6 +27,7 @@ interface IIsHaed {
   isHead: boolean;
 }
 const DrawTableData: FCCheckFunction<IIsHaed> = ({ isHead }) => (isHead ? ClickHeadTh : ViewTd);
+
 const TableRow: FC<IProp> = ({ items, isHead }) => {
   const DrawTableMemo = useMemo(() => {
     return DrawTableData({ isHead });
