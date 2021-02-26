@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useEffect } from "react";
 import useHisotryRoute from "hooks/useHistoryRoute";
-import NomalButton from "atomic/Button/NomalButton";
-import Table from "organisms/Table/Table";
+import { NomalButton } from "atomic";
+import { Table } from "organisms";
 import useDesire from "hooks/useDesire";
 import { TableWrapperDiv, InnerGradeFooter } from "./EmailSecondGrade.styles";
 const EmailSecondGrade = () => {
