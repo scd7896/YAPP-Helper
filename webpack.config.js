@@ -1,4 +1,6 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -17,6 +19,11 @@ module.exports = {
       pages: path.resolve(__dirname, "src/pages"),
       utils: path.resolve(__dirname, "src/utils"),
     },
+    fallback: {
+      crypto: require.resolve("crypto-browserify"),
+      buffer: require.resolve("buffer"),
+      stream: require.resolve("stream-browserify"),
+    },
   },
 
   module: {
@@ -31,14 +38,20 @@ module.exports = {
       },
       {
         test: /.css$/,
-        loader: ["style-loader", "css-loader"],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
   output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "/dist/", // publicPath를 기본 도메인으로 설정을 한다. cdn주소를 쓴다면 여기다쓰자
+    filename: "index.js",
+    path: path.resolve(__dirname, "public"),
+    // publicPath: "/dist/", // publicPath를 기본 도메인으로 설정을 한다. cdn주소를 쓴다면 여기다쓰자
     // chunkFilename: "[name].js",
   },
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
+  ],
 };

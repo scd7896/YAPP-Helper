@@ -13,7 +13,6 @@ apiRouter.use("*", (req, res) => res.sendStatus(404));
 router.use("/api", apiRouter);
 
 router.use(express.static("public"));
-router.use("/dist", express.static("dist")); // react 쓰기위한 것
-router.get("*", (req, res) => res.render("index"));
+router.get("*", (req, res) => res.render("index.html"));
 
 module.exports = router;

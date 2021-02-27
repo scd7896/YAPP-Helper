@@ -2,7 +2,8 @@ import * as express from "express";
 import * as dotenv from "dotenv";
 import * as fs from "fs";
 import * as fileController from "./controller/file";
-
+import * as path from "path";
+import * as cons from "consolidate";
 const cors = require("cors");
 class App {
   public application: express.Application;
@@ -20,7 +21,10 @@ app.use(
   })
 );
 
-app.set("view engine", "ejs"); // .env를 사용하기 위한 ejs
+// view engine setup
+app.engine("html", cons.swig);
+app.set("views", path.join(__dirname, "public"));
+app.set("view engine", "html");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

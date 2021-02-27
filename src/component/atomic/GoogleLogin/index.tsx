@@ -8,7 +8,9 @@ const GoogleLogin = () => {
   const history = useHistory();
   const errorCallback = (response: any) => {};
   const successCallback = (response: GoogleLoginResponse) => {
+    console.log(crypto);
     const accessToken = crypto.createHash("sha512").update(response.googleId).digest("base64");
+
     request
       .post("/api/login", {
         body: { token: accessToken },
