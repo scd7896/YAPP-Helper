@@ -22,6 +22,7 @@ jobs:
             pm2 kill
             git pull origin master  
             npm install
+            npm run generate
             npm run prod
             npm run migrate
             pm2 start index.ts
