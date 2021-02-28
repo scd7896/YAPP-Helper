@@ -12,6 +12,7 @@ import {
   MAILTEMPLATES_ALLFETCH_SUCCESS,
   MAILTEMPLATES_ALLFETCH_FAILURE,
   SENDMAIL_USER_RESULT,
+  DESIRE_INIT,
 } from "./actionTypes";
 
 export const setExcelValueRequset = (payload: File) => {
@@ -96,6 +97,13 @@ export const mailSendResultSet = (payload: SendUserResult) => {
     payload,
   };
 };
+
+export const initDesireAction = () => {
+  return {
+    type: DESIRE_INIT,
+  };
+};
+
 export type DesireACtionTypes =
   | SetExcelValueSuccess
   | ReturnType<typeof setExcelValueRequset>
@@ -109,4 +117,5 @@ export type DesireACtionTypes =
   | ReturnType<typeof getMailTemplatesAllList>
   | ReturnType<typeof getMailTemplatesAllListSuccess>
   | ReturnType<typeof getMailTemplatesAllListFail>
-  | ReturnType<typeof mailSendResultSet>;
+  | ReturnType<typeof mailSendResultSet>
+  | ReturnType<typeof initDesireAction>;

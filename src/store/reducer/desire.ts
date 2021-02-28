@@ -10,6 +10,7 @@ import {
   MAILTEMPLATES_ALLFETCH_REQUEST,
   MAILTEMPLATES_FETCH_FAILURE,
   SENDMAIL_USER_RESULT,
+  DESIRE_INIT,
 } from "../action/actionTypes";
 
 const initialState: DesireState = {
@@ -83,6 +84,9 @@ const desire = (state: DesireState = initialState, action: DesireACtionTypes): D
       const targetIndex = copyState.allList.findIndex((userData) => user === userData.email);
       copyState.allList[targetIndex].isError = isError;
       return copyState;
+
+    case DESIRE_INIT:
+      return initialState;
     default:
       return { ...state };
   }

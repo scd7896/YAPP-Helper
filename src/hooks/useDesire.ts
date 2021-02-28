@@ -1,6 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useCallback } from "react";
-import { mailSendResultSet, getMailTemplatesListFetch, setUserDataByFormRequest } from "actions/desire";
+import {
+  mailSendResultSet,
+  getMailTemplatesListFetch,
+  setUserDataByFormRequest,
+  initDesireAction,
+} from "actions/desire";
+
 const useDesire = () => {
   const dispatch = useDispatch();
   const desireState = useSelector<RootStore, RootStore["desire"]>((state) => state.desire);
@@ -20,11 +26,16 @@ const useDesire = () => {
     dispatch(setUserDataByFormRequest());
   }, [dispatch]);
 
+  const initDesire = useCallback(() => {
+    dispatch(initDesireAction());
+  }, []);
+
   return {
     desireState,
     mailResultSetData,
     mailTemplatesListFetch,
     setUserData,
+    initDesire,
   };
 };
 

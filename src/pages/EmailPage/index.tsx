@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import EmailGradeTemplate from "template/EmailGradeTemplate/EmailGradeTemplate";
 import EmailGradeFirst from "./EmailGrade/First/EmailFirstGrade";
@@ -6,8 +7,16 @@ import EmailGradeSecond from "./EmailGrade/Second/EmailSecondGrade";
 import EmailGradeThird from "./EmailGrade/Third/EmailThirdGrade";
 import EmailGradeFourth from "./EmailGrade/Fourth/EmailFourthGrade";
 import EmailGradeFiveth from "./EmailGrade/Fiveth/EmailFivethGrade";
+import useDesire from "hooks/useDesire";
 
 const EmailPage = () => {
+  const { initDesire } = useDesire();
+
+  useEffect(() => {
+    return () => {
+      initDesire();
+    };
+  }, []);
   return (
     <div>
       <EmailGradeTemplate>
