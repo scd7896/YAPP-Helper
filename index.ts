@@ -4,6 +4,8 @@ import * as fs from "fs";
 import * as fileController from "./controller/file";
 import * as path from "path";
 import * as cons from "consolidate";
+import * as cookieParser from "cookie-parser";
+
 const cors = require("cors");
 class App {
   public application: express.Application;
@@ -20,6 +22,7 @@ app.use(
     origin: true,
   })
 );
+app.use(cookieParser());
 
 // view engine setup
 app.engine("html", cons.swig);

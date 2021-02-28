@@ -1,4 +1,5 @@
 import * as express from "express";
+import * as UserController from "../controller/user";
 const router = express.Router();
 
 const apiRouter = express.Router();
@@ -13,6 +14,15 @@ apiRouter.use("*", (req, res) => res.sendStatus(404));
 router.use("/api", apiRouter);
 
 router.use(express.static("public"));
-router.get("*", (req, res) => res.render("index.html"));
 
+router.get("/", (req, res) => {
+  res.status(200).render("index.html");
+});
+
+router.get("*", [
+  UserController.authenticateJWT,
+  (req, res) => {
+    res.status(200).render("index.html");
+  },
+]);
 module.exports = router;

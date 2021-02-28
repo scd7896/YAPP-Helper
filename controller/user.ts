@@ -22,7 +22,7 @@ export const login = async (req, res) => {
 };
 
 export const authenticateJWT = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization || `Token ${req.cookies.token}`;
 
   if (authHeader) {
     const token = authHeader.split(" ")[1];
