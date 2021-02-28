@@ -9,3 +9,9 @@ export const WrapperDiv = styled.div`
   min-height: 100vh;
   background-color: ${color.gray_pale};
 `;
+
+export const TitleHeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+`;

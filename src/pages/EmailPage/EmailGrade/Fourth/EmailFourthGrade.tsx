@@ -3,8 +3,14 @@ import { useState, useEffect, useMemo } from "react";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
 import { MailViewForm, MailModifyForm } from "organisms";
-import { ModifyButton, NomalButton } from "atomic";
-import { ContentWrapperSection, HeadNavSpan, BodySection, InnerGradeFooter } from "./EmailFourthGrade.styles";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan, ModifyButton, NomalButton } from "atomic";
+import {
+  ContentWrapperSection,
+  HeadNavSpan,
+  BodySection,
+  InnerGradeFooter,
+  TitleHeaderWrapper,
+} from "./EmailFourthGrade.styles";
 
 const EmailFourthGrade = () => {
   const { pushHistory } = useHisotryRoute();
@@ -42,8 +48,10 @@ const EmailFourthGrade = () => {
 
   return (
     <section>
-      <p>4.메일내용 확인</p>
-      <p>잠깐! 보내기 전에 메일내용 확인하세요</p>
+      <TitleHeaderWrapper>
+        <EmailGradeTitleSpan style={{ marginBottom: "14px" }}>4.메일내용 확인</EmailGradeTitleSpan>
+        <EmailGradeSubTitleSpan>✋잠깐! 보내기 전에 메일내용 확인하세요</EmailGradeSubTitleSpan>
+      </TitleHeaderWrapper>
       <ContentWrapperSection>
         <header>
           <HeadNavSpan selected={viewPage} onClick={clickHeaderTab(true)}>

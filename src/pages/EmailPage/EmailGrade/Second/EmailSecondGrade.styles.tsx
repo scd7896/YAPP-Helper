@@ -10,3 +10,9 @@ export const InnerGradeFooter = styled.footer`
   align-items: center;
   margin: 29px 0px 54px 0px;
 `;
+
+export const TitleHeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+`;

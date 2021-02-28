@@ -6,7 +6,8 @@ import ObjectArrayTable from "organisms/Table/ObjectArray/ObjectArrayTable";
 import useDesire from "hooks/useDesire";
 
 import { url } from "../../../../_data";
-import { WrapperDiv } from "./EmailFivethGrade.styles";
+import { WrapperDiv, TitleHeaderWrapper } from "./EmailFivethGrade.styles";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "atomic";
 
 const EmailFivethGrade = () => {
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
@@ -38,9 +39,10 @@ const EmailFivethGrade = () => {
   return (
     <WrapperDiv>
       <div>
-        <header>
-          <span>실시간 전송 확인</span>
-        </header>
+        <TitleHeaderWrapper>
+          <EmailGradeTitleSpan style={{ marginBottom: "14px" }}>5.실시간 전송 확인</EmailGradeTitleSpan>
+          <EmailGradeSubTitleSpan>📮메일을 실시간으로 전송하고 있어요!</EmailGradeSubTitleSpan>
+        </TitleHeaderWrapper>
         <ObjectArrayTable datas={allList} />
       </div>
     </WrapperDiv>
