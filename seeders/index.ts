@@ -14,19 +14,7 @@ const userCreate = async () => {
     create: {
       token: crypto.createHash("sha512").update(process.env.GOOGLE_ACCESS.toString()).digest("base64") as string,
       name: "supportYapp",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    update: {},
-  });
-
-  await prisma.users.upsert({
-    where: {
-      token: crypto.createHash("sha512").update(process.env.CDO_ACCESSTOKEN.toString()).digest("base64"),
-    },
-    create: {
-      token: crypto.createHash("sha512").update(process.env.CDO_ACCESSTOKEN.toString()).digest("base64"),
-      name: "supportYapp",
+      isAdmin: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
