@@ -22,5 +22,5 @@
     "types": ["node"],
     "typeRoots": ["./src/types", "./action"]
   },
-  "exclude": ["node_modules"]
+  "exclude": ["/node_modules"]
 }

@@ -31,10 +31,12 @@ module.exports = {
       {
         test: /\.js$/,
         loader: "babel-loader",
+        exclude: ["/node_modules"],
       },
       {
         test: /\.ts(x?)$/,
         use: ["babel-loader", "ts-loader"],
+        exclude: ["/node_modules", "/index.ts"],
       },
       {
         test: /.css$/,
