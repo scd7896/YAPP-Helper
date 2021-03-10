@@ -39,4 +39,4 @@ router.post("/resend", [
   controller.reSend,
 ]);
 
-module.exports = router;
+export default router;

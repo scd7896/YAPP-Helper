@@ -29,4 +29,5 @@ server.put("/", async (req, res) => {
     res.status(500).send("파이어베이스 에러가 발생했습니다");
   }
 });
-module.exports = server;
+
+export default server;

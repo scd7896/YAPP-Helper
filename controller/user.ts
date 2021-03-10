@@ -21,6 +21,23 @@ export const login = async (req, res) => {
   }
 };
 
+export const getUsersData = async (_, res) => {
+  try {
+    const users = await User.findMany({
+      select: {
+        isAdmin: true,
+        token: false,
+        name: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+    res.status(200).json({ status: "success", data: users });
+  } catch (err) {
+    res.status(500).json({ status: "error", message: "서버 내부 오류" });
+  }
+};
+
 export const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization || `Token ${req.cookies.token}`;
 
@@ -32,9 +49,18 @@ export const authenticateJWT = (req, res, next) => {
       }
 
       req.user = JSON.parse(reply);
+
       next();
     });
   } else {
     res.sendStatus(401);
+  }
+};
+
+export const authenticateAdmin = (req, res, next) => {
+  if (req.user.isAdmin) {
+    next();
+  } else {
+    res.status(403).json({ status: "error", message: "어드민이 아닙니다." });
   }
 };

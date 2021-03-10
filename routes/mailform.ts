@@ -46,4 +46,4 @@ router
   ])
   .delete(controller.destroy);
 
-module.exports = router;
+export default router;

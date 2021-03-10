@@ -1,13 +1,20 @@
 import * as express from "express";
 import * as UserController from "../controller/user";
+import mailformRoute from "./mailform";
+import emailRoute from "./email";
+import recruitRoute from "./recruit";
+import loginRoute from "./login";
+import userRoute from "./user";
+
 const router = express.Router();
 
 const apiRouter = express.Router();
 
-apiRouter.use("/mailforms", require("./mailform"));
-apiRouter.use("/email", require("./email"));
-apiRouter.use("/recruit", require("./recruit"));
-apiRouter.use("/login", require("./login"));
+apiRouter.use("/mailforms", mailformRoute);
+apiRouter.use("/email", emailRoute);
+apiRouter.use("/recruit", recruitRoute);
+apiRouter.use("/login", loginRoute);
+apiRouter.use("/users", userRoute);
 // apiRouter.use('/file', require('../controller/file'));
 apiRouter.use("*", (req, res) => res.sendStatus(404));
 
