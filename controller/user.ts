@@ -1,6 +1,9 @@
-const redisClient = require("../config/redis");
-const jwt = require("jsonwebtoken");
+import * as jwt from "jsonwebtoken";
+import * as crypto from "crypto";
+
+import { createJsend } from "../lib";
 import { User } from "../models";
+import redisClient from "../config/redis";
 
 export const login = async (req, res) => {
   try {
@@ -36,6 +39,38 @@ export const getUsersData = async (_, res) => {
   } catch (err) {
     res.status(500).json({ status: "error", message: "서버 내부 오류" });
   }
+};
+
+export const invitationUser = (req, res) => {
+  const token = req.body.token;
+  if (!token) {
+    return res.status(400).json(createJsend("failure", { message: "토큰이 없습니다" }));
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+    if (err) {
+      return res.status(403).json(createJsend("failure", { message: err.message }));
+    }
+    const user = await User.upsert({
+      where: {
+        token: decoded.mail,
+      },
+      create: {
+        token: crypto.createHash("sha512").update(decoded.mail).digest("base64") as string,
+        name: decoded.mail,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      update: {},
+      select: {
+        token: true,
+        name: true,
+      },
+    });
+    const accessToken = jwt.sign({ name: user.name, token: user.token }, process.env.JWT_SECRET);
+    redisClient.set(accessToken, JSON.stringify(user));
+    return res.status(200).json({ token: accessToken });
+  });
 };
 
 export const authenticateJWT = (req, res, next) => {

@@ -9,6 +9,7 @@ const SelectMailType = loadable(() => import(/* webpackChunkName: "mail_type_sel
 const EmailPage = loadable(() => import(/* webpackChunkName: "email_page" */ "./EmailPage"));
 const MailFormPage = loadable(() => import(/* webpackChunkName: "mail_form" */ "./MailForm/MailFormPage"));
 const UsersPage = loadable(() => import(/* webpackChunkName: "users" */ "./Users/Users"));
+const InvitationPage = loadable(() => import(/* webpackChunkName: "invitation" */ "./Invitation/Invitation"));
 
 const RouteController = () => {
   return (
@@ -22,6 +23,7 @@ const RouteController = () => {
         <Route path="/email" component={SelectMailType} />
         <Route path="/mailform" component={MailFormPage} />
         <Route path="/users" exact component={UsersPage} />
+        <Route path="/invitation" exact component={InvitationPage} />
       </Switch>
     </React.Suspense>
   );
