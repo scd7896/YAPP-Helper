@@ -4,6 +4,13 @@ import * as crypto from "crypto";
 import { createJsend } from "../lib";
 import { User } from "../models";
 import redisClient from "../config/redis";
+import { Users } from "@prisma/client";
+
+const createJWTToken = (user: Pick<Users, "name" | "token" | "isAdmin">) => {
+  const token = jwt.sign({ name: user.name, token: user.token, isAdmin: user.isAdmin }, process.env.JWT_SECRET);
+  redisClient.set(token, JSON.stringify(user));
+  return token;
+};
 
 export const login = async (req, res) => {
   try {
@@ -15,9 +22,9 @@ export const login = async (req, res) => {
     if (!user) {
       return res.status(403).send("로그인 정보가 맞지않습니다");
     }
-    const accessToken = jwt.sign({ name: user.name, token: user.token }, process.env.JWT_SECRET);
-    redisClient.set(accessToken, JSON.stringify(user));
-    res.status(200).json({ token: accessToken });
+    const token = createJWTToken(user);
+
+    res.status(200).json({ token });
   } catch (err) {
     console.log(err);
     res.status(500).send("데이터 베이스 조회 에러");
@@ -58,6 +65,7 @@ export const invitationUser = (req, res) => {
       create: {
         token: crypto.createHash("sha512").update(decoded.mail).digest("base64") as string,
         name: decoded.mail,
+        isAdmin: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -65,11 +73,11 @@ export const invitationUser = (req, res) => {
       select: {
         token: true,
         name: true,
+        isAdmin: true,
       },
     });
-    const accessToken = jwt.sign({ name: user.name, token: user.token }, process.env.JWT_SECRET);
-    redisClient.set(accessToken, JSON.stringify(user));
-    return res.status(200).json({ token: accessToken });
+    const token = createJWTToken(user);
+    return res.status(200).json({ token });
   });
 };
 
