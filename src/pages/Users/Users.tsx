@@ -1,12 +1,10 @@
 import * as React from "react";
-import { useEffect } from "react";
-import request from "utils/request";
+import useUserData from "hooks/ServiceHook/useUserData";
+import { NormalTable } from "organisms";
 
 const Users = () => {
-  useEffect(() => {
-    request.get("/api/users");
-  }, []);
-  return <div>users 정보 받아오기</div>;
+  const { userList } = useUserData();
+  return <div> {userList && <NormalTable items={userList} />}</div>;
 };
 
 export default Users;

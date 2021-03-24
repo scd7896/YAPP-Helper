@@ -13,3 +13,5 @@ interface CheckInterFace {
   [key: string]: boolean;
 }
 type FCCheckFunction<T> = (T: CheckInterFace) => (arg: any) => JSX.Element;
+
+export * from "./viewModel";
