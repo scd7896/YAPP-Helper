@@ -11,6 +11,14 @@ const preErrorSet = (err: any) => {
   return Promise.reject(err);
 };
 
+const responseHandle = (res) => res;
+const errorHandle = (err) => {
+  if (err.response.data.message) {
+    alert(err.response.data.message);
+  }
+  return Promise.reject(err);
+};
+
 interface IUseBodyReuqestOption {
   body?: any;
   query?: any;
@@ -23,6 +31,7 @@ class RequestObject {
       baseURL: "/",
     });
     this.client.interceptors.request.use(preRequestSet, preErrorSet);
+    this.client.interceptors.response.use(responseHandle, errorHandle);
   }
   public static get Instance() {
     return this._instance || (this._instance = new this());

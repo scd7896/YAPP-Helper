@@ -51,12 +51,12 @@ export const getUsersData = async (_, res) => {
 export const invitationUser = (req, res) => {
   const token = req.body.token;
   if (!token) {
-    return res.status(400).json(createJsend("failure", { message: "토큰이 없습니다" }));
+    return res.status(400).json(createJsend("failure", "토큰이 없습니다"));
   }
 
   jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
     if (err) {
-      return res.status(403).json(createJsend("failure", { message: err.message }));
+      return res.status(403).json(createJsend("failure", err.message));
     }
     const user = await User.upsert({
       where: {
