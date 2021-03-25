@@ -34,6 +34,7 @@ const Input = styled.input`
 
 import { useDispatch, useSelector } from "react-redux";
 import { setRecruitValue } from "actions/recruit";
+import { RecruitState, RootStore } from "@types";
 
 const RecruitInput = ({ name, placeholder, style }: RecruitInputNameProp) => {
   const dispatch = useDispatch();

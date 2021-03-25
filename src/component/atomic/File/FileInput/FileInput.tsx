@@ -13,6 +13,7 @@ import {
 } from "actions/mail";
 import { DropBoxFileButtonP, DropBoxGuideTextP, FileDropBoxDiv, IconMarginWrapperDiv } from "./FileInput.styles";
 import SmallIconWrapper from "../../IconWrapper/Small/SmallIconWrapper";
+import { RootStore } from "@types";
 
 type fileType = "image" | "xlsx" | "zip";
 

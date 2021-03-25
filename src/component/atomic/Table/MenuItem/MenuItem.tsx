@@ -4,6 +4,7 @@ import { emailHeadNameList } from "utils/constact";
 import { useDispatch } from "react-redux";
 import { setExcelKeyValue } from "actions/excelKeySetForm";
 import * as color from "utils/styles/color";
+import { SetFormKey } from "@types";
 
 const Li = styled.li`
   padding: 8px 0px 8px 10px;

@@ -1,3 +1,4 @@
+import { RecruitModel } from "@types";
 import request from "utils/request";
 
 export const getRecruitData = async (): Promise<RecruitModel> => {

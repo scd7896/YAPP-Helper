@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import NavText from "atomic/FontStyle/NavText/NavText";
+import { NavText } from "@font";
 
 export const StyleLink = styled(Link)`
   text-decoration: none;

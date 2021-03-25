@@ -1,10 +1,11 @@
 import * as React from "react";
 import { useEffect } from "react";
 import useHisotryRoute from "hooks/useHistoryRoute";
-import { EmailGradeTitleSpan, NomalButton, EmailGradeSubTitleSpan } from "atomic";
+import { NomalButton } from "atomic";
 import { Table } from "organisms";
 import useDesire from "hooks/useDesire";
 import { TableWrapperDiv, InnerGradeFooter, TitleHeaderWrapper } from "./EmailSecondGrade.styles";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
 const EmailSecondGrade = () => {
   const { pushHistory } = useHisotryRoute();
   const {

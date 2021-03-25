@@ -9,6 +9,7 @@ import {
   OnImageCoverDiv,
   CoverTextSpan,
 } from "./MailModifyForm.styles";
+import { MailState } from "@types";
 interface IProp {
   mailTemplate: MailState;
 }

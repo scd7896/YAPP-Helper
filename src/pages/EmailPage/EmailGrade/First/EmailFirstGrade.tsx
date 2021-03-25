@@ -1,8 +1,9 @@
 import * as React from "react";
-import { EmailGradeSubTitleSpan, EmailGradeTitleSpan, FileInput, NomalButton } from "atomic";
+import { FileInput, NomalButton } from "atomic";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
 import { InnerGradeBodySizeSection, InnerGradeFooter, WrapperHeader, TitleWrapperDiv } from "./EmailFirstGrade.styles";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
 
 const EmailFirstGrade = () => {
   const { pushHistory } = useHisotryRoute();

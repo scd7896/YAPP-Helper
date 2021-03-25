@@ -1,6 +1,7 @@
 import * as React from "react";
 import useNavKeyString from "hooks/useNavKeyString";
 import styled from "styled-components";
+import { FontStyle } from "@types";
 
 const Text = styled.span`
   font-family: "Spoqa Han Sans";

@@ -16,6 +16,7 @@ import {
 import { xlsxRead } from "utils/xlsxreader";
 import { setExcelValueRequset, setUserDataByFormRequest, getMailTemplatesListFetch } from "actions/desire";
 import { getMailFormByType, getMailFormAll } from "utils/api/index";
+import { DesireState, excelKeySetFormState, MailState } from "@types";
 function* excelReadSetValues(action: ReturnType<typeof setExcelValueRequset>) {
   try {
     const row = yield call(xlsxRead, action.payload);

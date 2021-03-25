@@ -12,6 +12,7 @@ import {
   SENDMAIL_USER_RESULT,
   DESIRE_INIT,
 } from "../action/actionTypes";
+import { DesireState } from "@types";
 
 const initialState: DesireState = {
   keys: [],

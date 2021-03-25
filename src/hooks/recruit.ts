@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { recruitDataRequest, setRecruitValue } from "../store/action/recruit";
 import { useCallback } from "react";
+import { RootStore } from "@types";
 
 const useRecruit = () => {
   const dispatch = useDispatch();

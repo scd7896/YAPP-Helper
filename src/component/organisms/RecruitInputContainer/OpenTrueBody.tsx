@@ -1,11 +1,12 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import { TextInput, RecruitingFont } from "atomic";
+import { TextInput } from "atomic";
 import RecruitGuide from "molecules/RecruitGuide/RecruitGuide";
 import { setRecruitValue } from "actions/recruit";
 
 import { RecruitBodySection, RecruitInputDataWrapperDiv, RecruitDataWrapperDiv } from "./RecruitInputContainer.styles";
 import { LineIcon } from "../../atomic/Icon/index";
+import { RecruitingFont } from "@font";
 
 const OpenTrueBody = () => {
   const dispatch = useDispatch();

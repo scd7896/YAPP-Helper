@@ -10,7 +10,9 @@
       "organisms": ["./src/component/organisms"],
       "template/*": ["./src/component/template/*"],
       "hooks/*": ["./src/hooks/*"],
-      "actions/*": ["./src/store/action/*"]
+      "actions/*": ["./src/store/action/*"],
+      "@font": ["./src/component/atomic/FontStyle"],
+      "@types": ["./src/types"]
     },
     "sourceMap": true,
     "module": "commonjs",

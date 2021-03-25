@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { modalCloseActionCreate, modalOpenActionCreate } from "actions/modal";
 import { useDispatch, useSelector } from "react-redux";
+import { RootStore } from "@types";
 
 const useModal = () => {
   const dispatch = useDispatch();

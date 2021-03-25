@@ -1,5 +1,6 @@
 import { ExcelKeySetAction } from "../action/excelKeySetForm";
 import { SET_EXCEL_TEXT } from "../action/actionTypes";
+import { excelKeySetFormState, SetFormKey } from "@types";
 const initialState = {
   name: -1,
   email: -1,

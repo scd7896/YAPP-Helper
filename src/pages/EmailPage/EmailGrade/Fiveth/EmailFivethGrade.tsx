@@ -7,7 +7,8 @@ import useDesire from "hooks/useDesire";
 
 import { url } from "../../../../_data";
 import { WrapperDiv, TitleHeaderWrapper } from "./EmailFivethGrade.styles";
-import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "atomic";
+import { SendUserResult } from "@types";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
 
 const EmailFivethGrade = () => {
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);

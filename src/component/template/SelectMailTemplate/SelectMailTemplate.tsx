@@ -1,6 +1,6 @@
 import * as React from "react";
 import SelectLinkBox from "molecules/SelectLinkBox/SelectLinkBox";
-import { SmallSubTitle, BigSubTitle } from "atomic";
+import { BigSubTitle, SmallSubTitle } from "@font";
 import {
   WrapperSection,
   ContentsWrapperDiv,

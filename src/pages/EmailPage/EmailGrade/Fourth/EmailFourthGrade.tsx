@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
 import { MailViewForm, MailModifyForm } from "organisms";
-import { EmailGradeSubTitleSpan, EmailGradeTitleSpan, ModifyButton, NomalButton } from "atomic";
+import { ModifyButton, NomalButton } from "atomic";
 import {
   ContentWrapperSection,
   HeadNavSpan,
@@ -11,6 +11,7 @@ import {
   InnerGradeFooter,
   TitleHeaderWrapper,
 } from "./EmailFourthGrade.styles";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
 
 const EmailFourthGrade = () => {
   const { pushHistory } = useHisotryRoute();

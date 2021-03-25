@@ -1,6 +1,7 @@
 import { all, fork, takeLatest, put, select, call } from "redux-saga/effects";
 import { PUT_MAIL_FORM_REQUEST, PUT_MAIL_FORM_FAILURE, PUT_MAIL_FORM_SUCCESS } from "actions/actionTypes";
 import { putMailForm } from "utils/api";
+import { MailInputState } from "@types";
 
 function* putMailRequest() {
   try {

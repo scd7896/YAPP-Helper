@@ -1,4 +1,4 @@
-interface MailState {
+export interface MailState {
   id: number;
   text: string;
   title: string;
@@ -10,7 +10,7 @@ interface MailState {
   pass: boolean | null;
 }
 
-interface MailInputState extends MailState {
+export interface MailInputState extends MailState {
   headImage?: File;
   subImage?: File;
   zipFile?: File;

@@ -1,6 +1,7 @@
 import { all, takeLatest, put, call, fork } from "redux-saga/effects";
 import { RECRUIT_DATA_REQUEST, RECRUIT_DATA_FAILURE, RECRUIT_DATA_SUCCESS } from "actions/actionTypes";
 import { getRecruitData } from "utils/api/index";
+import { RecruitModel } from "@types";
 function* requestRecruitData() {
   try {
     const data: RecruitModel = yield call(getRecruitData);
