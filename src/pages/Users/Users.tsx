@@ -11,10 +11,14 @@ import { EmailInputForm } from "@molecules";
 
 const Users = () => {
   const { userList } = useUserData();
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
-  const sendMailSubmit = useCallback((address: string) => {
-    api.postInvitationSendMail(address);
+  const sendMailSubmit = useCallback(async (address: string) => {
+    const res = await api.postInvitationSendMail(address);
+    if (res.data.payload) {
+      alert(res.data.payload);
+      closeModal();
+    }
   }, []);
 
   const clickListner = useCallback(() => {
@@ -25,7 +29,7 @@ const Users = () => {
       <WrapperDiv>
         <HeadTitleText>유저 정보 보기</HeadTitleText>
         <NomalButton color="default" size="default" onClick={clickListner}>
-          유저한테 보내기
+          권한 초대하기
         </NomalButton>
       </WrapperDiv>
       {userList && <NormalTable items={userList} />}
