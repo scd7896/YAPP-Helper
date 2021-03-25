@@ -19,6 +19,7 @@ module.exports = {
       pages: path.resolve(__dirname, "src/pages"),
       utils: path.resolve(__dirname, "src/utils"),
       "@font": path.resolve(__dirname, "src/component/atomic/FontStyle"),
+      "@molecules": path.resolve(__dirname, "src/component/molecules"),
     },
     fallback: {
       crypto: require.resolve("crypto-browserify"),
