@@ -24,6 +24,10 @@ const LeftNav = () => {
           <IconSelector icon="pencil" isSelect={getIsSelected("mailform")} />
           <TextSpan isSelect={getIsSelected("mailform")}>메일양식 관리</TextSpan>
         </ButtonWrapperLink>
+        <ButtonWrapperLink to="/users" isSelect={getIsSelected("users")}>
+          <IconSelector icon="pencil" isSelect={getIsSelected("users")} />
+          <TextSpan isSelect={getIsSelected("users")}>유저 정보 보기</TextSpan>
+        </ButtonWrapperLink>
       </LinkListContainerArticle>
       <LogOutArticle>
         <LogOutButton />

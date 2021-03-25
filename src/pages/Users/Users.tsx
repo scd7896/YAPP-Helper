@@ -8,6 +8,7 @@ import { NomalButton } from "atomic";
 import useModal from "hooks/useModal";
 import { WrapperDiv } from "./Users.styles";
 import { EmailInputForm } from "@molecules";
+import SelectLayout from "template/SelectLayout/SelectLayout";
 
 const Users = () => {
   const { userList } = useUserData();
@@ -25,7 +26,7 @@ const Users = () => {
     openModal(() => <EmailInputForm onSubmit={sendMailSubmit} />);
   }, []);
   return (
-    <div>
+    <SelectLayout>
       <WrapperDiv>
         <HeadTitleText>유저 정보 보기</HeadTitleText>
         <NomalButton color="default" size="default" onClick={clickListner}>
@@ -33,7 +34,7 @@ const Users = () => {
         </NomalButton>
       </WrapperDiv>
       {userList && <NormalTable items={userList} />}
-    </div>
+    </SelectLayout>
   );
 };
 
