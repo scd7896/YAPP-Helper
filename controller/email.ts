@@ -87,6 +87,7 @@ export const send = async (req, res) => {
       };
     })
     .map((data) => {
+      console.log(data);
       return mailgun
         .messages()
         .send(data)
@@ -102,6 +103,27 @@ export const send = async (req, res) => {
     redisClient.set(key, JSON.stringify(failList.filter(Boolean)));
     io.emit("send-key", key);
   });
+};
+
+export const certificateMailSend = async (req, res) => {
+  const { mail, title, contents } = req.body;
+
+  mailgun
+    .messages()
+    .send({
+      from: "YAPP <support@yapp.co.kr>",
+      to: mail,
+      subject: title,
+      html: contents,
+      attachment: path.join(__dirname, "../public/", req.file.filename),
+    })
+    .then(() => {
+      res.status(200).json(createJsend("success", "전송성공"));
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(createJsend("success", "전송실패"));
+    });
 };
 
 export const sendInvitationMail = async (req, res) => {
