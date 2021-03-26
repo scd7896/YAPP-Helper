@@ -70,7 +70,6 @@ export const send = async (req, res) => {
     return;
   }
 
-  res.sendStatus(200);
   const mailgunPromises = req.body.users
     .map((user) => {
       const mailform = user.pass ? mailforms[0] : mailforms[1];
@@ -103,6 +102,7 @@ export const send = async (req, res) => {
     redisClient.set(key, JSON.stringify(failList.filter(Boolean)));
     io.emit("send-key", key);
   });
+  res.sendStatus(200);
 };
 
 export const certificateMailSend = async (req, res) => {
