@@ -1,3 +1,4 @@
+import { ModalStore } from "@types";
 import { MODAL_CLOSE, MODAL_OPEN } from "actions/actionTypes";
 import { ModalActionTypes } from "actions/modal";
 const initalState: ModalStore = {

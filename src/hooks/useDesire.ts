@@ -6,6 +6,7 @@ import {
   setUserDataByFormRequest,
   initDesireAction,
 } from "actions/desire";
+import { RootStore, SendUserResult } from "@types";
 
 const useDesire = () => {
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   email: string;
   name: string;
   isPass: boolean;
@@ -6,10 +6,13 @@ interface User {
   meetingTime?: string | null;
 }
 
-interface FontStyle {
+export interface FontStyle {
   children: string;
 }
-interface CheckInterFace {
+export interface CheckInterFace {
   [key: string]: boolean;
 }
-type FCCheckFunction<T> = (T: CheckInterFace) => (arg: any) => JSX.Element;
+export type FCCheckFunction<T> = (T: CheckInterFace) => (arg: any) => JSX.Element;
+
+export * from "./viewModel";
+export * from "./reducer";

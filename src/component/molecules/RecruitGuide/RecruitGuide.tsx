@@ -1,5 +1,6 @@
 import * as React from "react";
-import { TextInput, ToggleButton, RecruitingFont } from "atomic";
+import { TextInput, ToggleButton } from "atomic";
+import { RecruitingFont } from "@font";
 import useRecruit from "hooks/recruit";
 import styled from "styled-components";
 const WrapperDiv = styled.div`

@@ -1,4 +1,7 @@
-interface DesireState {
+import { User } from "@types";
+import { MailState } from "./mail";
+
+export interface DesireState {
   keys: Array<string>;
   users: Array<Array<string>>;
   allList: Array<User>;
@@ -7,9 +10,9 @@ interface DesireState {
   filename: null | string;
 }
 
-type FormKeyType = "email" | "name" | "isPass" | "meetingTime";
+export type FormKeyType = "email" | "name" | "isPass" | "meetingTime";
 
-interface SendUserResult {
+export interface SendUserResult {
   user: string;
   isError: boolean;
 }

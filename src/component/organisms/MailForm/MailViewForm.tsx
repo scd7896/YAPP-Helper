@@ -1,5 +1,6 @@
 import * as React from "react";
 import useModal from "hooks/useModal";
+import { MailState } from "@types";
 interface IProp {
   mailTemplate: MailState;
 }

@@ -1,3 +1,4 @@
+import { MailInputState } from "@types";
 import {
   SET_MAIL_TEXT,
   SET_MAIL_FORM,

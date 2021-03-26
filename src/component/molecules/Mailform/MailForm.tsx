@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useCallback } from "react";
-import { MailWriter, FileInputSecond, TextInput, NomalButton as NormalButton, ClickUnderLineSpan } from "atomic";
+import { MailWriter, FileInputSecond, TextInput, NomalButton as NormalButton } from "atomic";
 
 import { useDispatch } from "react-redux";
 import {
@@ -24,6 +24,7 @@ import {
   SubImg,
   Footer,
 } from "./Mailform.styles";
+import { ClickUnderLineSpan } from "@font";
 
 const MailForm = () => {
   const dispatch = useDispatch();

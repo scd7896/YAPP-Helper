@@ -1,3 +1,4 @@
+import { MailInputState } from "@types";
 import request from "utils/request";
 
 export const putMailForm = async (payload: MailInputState) => {

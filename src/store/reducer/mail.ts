@@ -14,6 +14,7 @@ import {
   PUT_MAIL_FORM_SUCCESS,
   PUT_MAIL_FORM_FAILURE,
 } from "../action/actionTypes";
+import { MailInputState } from "@types";
 
 const initialState: MailInputState = {
   id: -1,

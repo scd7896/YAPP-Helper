@@ -26,16 +26,16 @@ interface IProp extends IIsHaed {
 interface IIsHaed {
   isHead: boolean;
 }
-const DrawTableData: FCCheckFunction<IIsHaed> = ({ isHead }) => (isHead ? ClickHeadTh : ViewTd);
+const DrawTableData = ({ isHead }) => (isHead ? ClickHeadTh : ViewTd);
 
 const TableRow: FC<IProp> = ({ items, isHead }) => {
-  const DrawTableMemo = useMemo(() => {
-    return DrawTableData({ isHead });
-  }, [isHead]);
+  const DrawTableMemo = useMemo(() => DrawTableData({ isHead }), [isHead]);
   return (
     <Tr>
       {items.map((item, index) => (
-        <DrawTableMemo index={isHead ? index : undefined}>{item}</DrawTableMemo>
+        <DrawTableMemo key={item} index={isHead ? index : undefined}>
+          {item}
+        </DrawTableMemo>
       ))}
     </Tr>
   );

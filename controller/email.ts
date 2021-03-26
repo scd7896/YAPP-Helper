@@ -1,6 +1,8 @@
 import * as crypto from "crypto";
 import { createJsend } from "../lib";
 import { MailForm } from "../models";
+import * as jwt from "jsonwebtoken";
+
 const mailgun = require("mailgun-js")({
   //mailgun 모듈
   apiKey: process.env.MAILGUN_API_KEY,
@@ -100,4 +102,30 @@ export const send = async (req, res) => {
     redisClient.set(key, JSON.stringify(failList.filter(Boolean)));
     io.emit("send-key", key);
   });
+};
+
+export const sendInvitationMail = async (req, res) => {
+  const mail = req.body.mail;
+  if (!mail) res.status(400).json(createJsend("failure", "메일 주소는 필수 입니다."));
+  const accessToken = jwt.sign({ mail }, process.env.JWT_SECRET, { expiresIn: "10m" });
+  const mailForm = {
+    from: "YAPP <support@yapp.co.kr>",
+    to: mail,
+    subject: "초대 메일입니다",
+    html: `<html>
+      <p>안녕하세요 YAPP 입니다.</p>
+      <p>업무에 필요 한 부분이 있어 어드민 페이지의 권한을 드리려고 합니다.</p>
+      <p>이 링크를 클릭해주세요</p>
+      <p>link: http://helper.yapp.co.kr/invitation?token=${accessToken}</p>
+      </html>`,
+  };
+  mailgun
+    .messages()
+    .send(mailForm)
+    .then(() => {
+      res.status(200).json(createJsend("success", "메일 전송 성공"));
+    })
+    .catch((err) => {
+      res.status(500).json(createJsend("success", { data: err }));
+    });
 };

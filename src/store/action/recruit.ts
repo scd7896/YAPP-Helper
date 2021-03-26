@@ -1,3 +1,4 @@
+import { RecruitModel } from "@types";
 import { SET_RECRUIT_VALUE, RECRUIT_DATA_REQUEST, RECRUIT_DATA_SUCCESS, RECRUIT_DATA_FAILURE } from "./actionTypes";
 
 export const recruitDataRequest = () => {

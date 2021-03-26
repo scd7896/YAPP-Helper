@@ -5,8 +5,9 @@ import Filter from "atomic/InputStyle/Filter/Filter";
 import NomalButton from "atomic/Button/NomalButton";
 import Table from "organisms/Table/Table";
 import useDesire from "hooks/useDesire";
-import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "atomic";
+
 import { WrapperDiv, FilterWrapperDiv, InnerGradeFooter } from "./EmailThirdGrade.styles";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
 
 type FilterString = "all" | "pass" | "fail";
 

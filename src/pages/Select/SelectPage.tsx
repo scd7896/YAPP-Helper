@@ -1,7 +1,6 @@
 import * as React from "react";
 import SelectLinkBox from "molecules/SelectLinkBox/SelectLinkBox";
-import BigSubTitle from "atomic/FontStyle/Subtitle/Big";
-import SmallSubTitle from "atomic/FontStyle/Subtitle/Small";
+
 import {
   WrapperMain,
   ContentsWrapperSection,
@@ -9,6 +8,7 @@ import {
   PageTitleSection,
   LinkBoxWrapperSection,
 } from "./SelectPage.styles";
+import { SmallSubTitle, BigSubTitle } from "@font";
 
 const SelectPage = () => {
   return (

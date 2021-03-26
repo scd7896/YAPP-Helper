@@ -5,6 +5,7 @@ import {
   RECRUIT_DATA_FAILURE,
   RECRUIT_DATA_SUCCESS,
 } from "../action/actionTypes";
+import { RecruitState } from "@types";
 
 export const initialState: RecruitState = {
   isLoaded: false,

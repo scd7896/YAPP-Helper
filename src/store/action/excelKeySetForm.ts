@@ -1,3 +1,4 @@
+import { excelValueChangePayload } from "@types";
 import { SET_EXCEL_TEXT } from "./actionTypes";
 
 export const setExcelKeyValue = (payload: excelValueChangePayload) => {

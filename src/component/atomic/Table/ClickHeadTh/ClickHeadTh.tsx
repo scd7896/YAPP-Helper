@@ -6,6 +6,7 @@ import { emailHeadNameList } from "utils/constact";
 import { WrapperTh, HeadPrintStringSpan, SelectMenuUl, SelectMenuHeaderLi } from "./ClickHeadTh.styles";
 import MenuItem from "../MenuItem/MenuItem";
 import { ArrowBottom } from "../../Icon";
+import { excelKeySetFormState, FontStyle, RootStore, SetFormKey } from "@types";
 
 interface ClickHeadThProp extends FontStyle {
   index: number;

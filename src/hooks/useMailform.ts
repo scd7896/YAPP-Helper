@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useCallback } from "react";
 import { setMailForm, setMailSelectIndex } from "actions/mail";
+import { MailState, RootStore } from "@types";
 
 const useMailform = () => {
   const dispatch = useDispatch();

@@ -1,4 +1,5 @@
 import request from "utils/request";
+import { User } from "@types";
 interface IMailSendArgument {
   users: User[];
 }

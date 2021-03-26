@@ -13,6 +13,7 @@ import {
   DropBoxButtonSpan,
 } from "./ExelFileInput.styles";
 import { ExelFileIcon, ExelUploadCompleteIcon } from "../../Icon";
+import { RootStore } from "@types";
 
 interface IProp {
   fileName?: string;

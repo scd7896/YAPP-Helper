@@ -1,3 +1,4 @@
+import { MailState, SendUserResult, User } from "@types";
 import {
   SET_EXCEL_REQUEST,
   SET_EXCEL_SUCCESS,

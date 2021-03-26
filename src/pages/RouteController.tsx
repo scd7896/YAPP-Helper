@@ -11,6 +11,8 @@ const MailFormPage = loadable(() => import(/* webpackChunkName: "mail_form" */ "
 const CertificateCompletion = loadable(
   () => import(/* webpackChunkName: "certificate" */ "./CertificateCompletion/CertificateCompletion")
 );
+const UsersPage = loadable(() => import(/* webpackChunkName: "users" */ "./Users/Users"));
+const InvitationPage = loadable(() => import(/* webpackChunkName: "invitation" */ "./Invitation/Invitation"));
 
 const RouteController = () => {
   return (
@@ -24,6 +26,8 @@ const RouteController = () => {
         <Route path="/email" component={SelectMailType} />
         <Route path="/mailform" component={MailFormPage} />
         <Route path="/certificate" component={CertificateCompletion} />
+        <Route path="/users" exact component={UsersPage} />
+        <Route path="/invitation" exact component={InvitationPage} />
       </Switch>
     </React.Suspense>
   );
