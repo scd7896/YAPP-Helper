@@ -39,7 +39,16 @@ const Users = () => {
           권한 초대하기
         </NomalButton>
       </WrapperDiv>
-      <div>{userList && <NewTable column={columns} dataSource={userList} />}</div>
+      <div>
+        {userList && (
+          <NewTable
+            selectOption={false}
+            column={columns}
+            dataSource={userList}
+            onRowClick={(object) => console.log(object)}
+          />
+        )}
+      </div>
     </SelectLayout>
   );
 };

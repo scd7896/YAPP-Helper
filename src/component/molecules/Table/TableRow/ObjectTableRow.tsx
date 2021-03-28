@@ -23,7 +23,7 @@ interface IProp {
 }
 const ObjectTableRow: FC<IProp> = ({ item, onRowClick }) => {
   const rowClickEventListner = useCallback(() => {
-    onRowClick(item);
+    if (onRowClick) onRowClick(item);
   }, []);
   return (
     <Tr onClick={rowClickEventListner}>
