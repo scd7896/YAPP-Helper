@@ -9,22 +9,22 @@ const LeftNav = () => {
   return (
     <WrapperNav>
       <LinkListContainerArticle>
-        <ButtonWrapperLink to="/select" keyString="select">
+        <ButtonWrapperLink to="/select" keystring="select">
           <TextSpan>홈으로 가기</TextSpan>
         </ButtonWrapperLink>
-        <ButtonWrapperLink to="/recruit" isSelect={getIsSelected("recruit")}>
+        <ButtonWrapperLink to="/recruit" selected={getIsSelected("recruit")}>
           <IconSelector icon="folder" isSelect={getIsSelected("recruit")} />
           <TextSpan isSelect={getIsSelected("recruit")}>리쿠르팅 오픈</TextSpan>
         </ButtonWrapperLink>
-        <ButtonWrapperLink to="/email/1" keyString="email" isSelect={getIsSelected("email")}>
+        <ButtonWrapperLink to="/email/1" keystring="email" selected={getIsSelected("email")}>
           <IconSelector icon="send" isSelect={getIsSelected("email")} />
           <TextSpan isSelect={getIsSelected("email")}>결과메일 발송</TextSpan>
         </ButtonWrapperLink>
-        <ButtonWrapperLink to="/mailform" isSelect={getIsSelected("mailform")}>
+        <ButtonWrapperLink to="/mailform" selected={getIsSelected("mailform")}>
           <IconSelector icon="pencil" isSelect={getIsSelected("mailform")} />
           <TextSpan isSelect={getIsSelected("mailform")}>메일양식 관리</TextSpan>
         </ButtonWrapperLink>
-        <ButtonWrapperLink to="/users" isSelect={getIsSelected("users")}>
+        <ButtonWrapperLink to="/users" selected={getIsSelected("users")}>
           <IconSelector icon="pencil" isSelect={getIsSelected("users")} />
           <TextSpan isSelect={getIsSelected("users")}>유저 정보 보기</TextSpan>
         </ButtonWrapperLink>

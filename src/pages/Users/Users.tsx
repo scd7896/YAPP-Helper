@@ -2,13 +2,19 @@ import * as React from "react";
 import * as api from "utils/api";
 import { useCallback } from "react";
 import useUserData from "hooks/ServiceHook/useUserData";
-import { NormalTable } from "organisms";
+import { NewTable, NormalTable } from "organisms";
 import { HeadTitleText } from "@font";
 import { NomalButton } from "atomic";
 import useModal from "hooks/useModal";
 import { WrapperDiv } from "./Users.styles";
 import { EmailInputForm } from "@molecules";
 import SelectLayout from "template/SelectLayout/SelectLayout";
+
+const columns = [
+  { title: "메일주소", dataIndex: "name" },
+  { title: "권한부여날짜", dataIndex: "createdAt" },
+  { title: "권한", dataIndex: "isAdmin" },
+];
 
 const Users = () => {
   const { userList } = useUserData();
@@ -33,7 +39,7 @@ const Users = () => {
           권한 초대하기
         </NomalButton>
       </WrapperDiv>
-      {userList && <NormalTable items={userList} />}
+      <div>{userList && <NewTable column={columns} dataSource={userList} />}</div>
     </SelectLayout>
   );
 };

@@ -21,8 +21,8 @@ interface NavLinkProp {
 
 const NavLink = ({ children, to, keyString, className }: NavLinkProp) => {
   return (
-    <StyleLink to={to}>
-      <NavText keyString={keyString}>{children}</NavText>
+    <StyleLink to={to} key={to}>
+      <NavText keyString={keyString.toLowerCase()}>{children}</NavText>
     </StyleLink>
   );
 };
