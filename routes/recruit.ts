@@ -1,9 +1,9 @@
 import * as express from "express";
 const server = express.Router();
 const db = require("../model/firebase");
-const authMiddleWare = require("../middleware/auth");
+import { authenticateAdmin, authenticateJWT } from "../controller/user";
 
-server.route("*").all([authMiddleWare]);
+server.route("*").all([authenticateJWT, authenticateAdmin]);
 
 server.get("/", async (req, res) => {
   try {
