@@ -49,7 +49,7 @@ module.exports = {
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, "public"),
-    // publicPath: "/dist/", // publicPath를 기본 도메인으로 설정을 한다. cdn주소를 쓴다면 여기다쓰자
+    publicPath: "/", // publicPath를 기본 도메인으로 설정을 한다. cdn주소를 쓴다면 여기다쓰자
     // chunkFilename: "[name].js",
   },
   plugins: [

@@ -2,6 +2,7 @@ import * as crypto from "crypto";
 import { createJsend } from "../lib";
 import { MailForm } from "../models";
 import * as jwt from "jsonwebtoken";
+import * as fs from "fs";
 
 const mailgun = require("mailgun-js")({
   //mailgun 모듈
@@ -124,6 +125,11 @@ export const certificateMailSend = async (req, res) => {
       console.log(err);
       res.status(500).json(createJsend("success", "전송실패"));
     });
+  fs.unlink(req.file.path, (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
 };
 
 export const sendInvitationMail = async (req, res) => {
