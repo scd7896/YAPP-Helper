@@ -29,7 +29,7 @@ const mailFormCreate = async () => {
     await prisma.mailForms.create({
       data: {
         title: "Lorem ipsum dolor sit amet",
-        type: "meeting",
+        type: "recruit",
         pass: true,
         contents: "test",
         header_image: "https://picsum.photos/500/100",
@@ -42,7 +42,7 @@ const mailFormCreate = async () => {
     await prisma.mailForms.create({
       data: {
         title: "Lorem ipsum dolor sit amet",
-        type: "meeting",
+        type: "recruit",
         pass: false,
         contents: "test1",
         header_image: "https://picsum.photos/500/100",

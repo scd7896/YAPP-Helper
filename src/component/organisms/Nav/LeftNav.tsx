@@ -28,6 +28,10 @@ const LeftNav = () => {
           <IconSelector icon="pencil" isSelect={getIsSelected("users")} />
           <TextSpan isSelect={getIsSelected("users")}>유저 정보 보기</TextSpan>
         </ButtonWrapperLink>
+        <ButtonWrapperLink to="/certificate" selected={getIsSelected("certificate")}>
+          <IconSelector icon="pencil" isSelect={getIsSelected("certificate")} />
+          <TextSpan isSelect={getIsSelected("certificate")}>수료증 발송</TextSpan>
+        </ButtonWrapperLink>
       </LinkListContainerArticle>
       <LogOutArticle>
         <LogOutButton />

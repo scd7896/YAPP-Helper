@@ -1,20 +1,18 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 
 import { TestDiv } from "./CertificateCompletion.styles";
+import { getPdfByElement } from "utils/pdf";
+import { useCallback } from "react";
 
 const CertificateCompletion = () => {
   const [image, setImage] = useState("");
+  const callbackPDFCheck = useCallback(async () => {
+    const pdf = await getPdfByElement(document.querySelector("body"), "test.pdf");
+    console.log(pdf);
+  }, []);
   useEffect(() => {
-    html2canvas(document.querySelector("body")).then(function (canvas) {
-      const doc = new jsPDF();
-      const imgData = canvas.toDataURL("image/png");
-      setImage(imgData);
-      doc.addImage(imgData, "PNG", 0, 0);
-      doc.save("sample-file.pdf");
-    });
+    callbackPDFCheck();
   }, []);
   return (
     <TestDiv id="test">
