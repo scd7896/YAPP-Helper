@@ -1,3 +1,6 @@
+import styled from "styled-components";
+import * as color from "utils/styles/color";
+
 export { default as ModifyButton } from "./Button/ModifyButton";
 export { default as NomalButton } from "./Button/NomalButton";
 
@@ -20,3 +23,14 @@ export { default as SmallIconWrapper } from "./IconWrapper/Small/SmallIconWrappe
 
 export { default as PageHeader } from "./PageHeader/PageHeader";
 export { default as TabBar } from "./Nav/TabBar/TabBar";
+
+export const FileButton = styled.button`
+  width: 120px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px #e3e3e3;
+  color: ${color.gray_5};
+  font-size: 14px;
+  cursor: pointer;
+`;

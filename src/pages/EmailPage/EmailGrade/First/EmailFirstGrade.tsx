@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FileInput, NomalButton } from "atomic";
+import { FileButton, FileInput, NomalButton } from "atomic";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
 import {
@@ -10,13 +10,20 @@ import {
   DescriptionWrapperDiv,
 } from "./EmailFirstGrade.styles";
 import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
-import { DropBoxButtonSpan } from "../../../../component/atomic/File/Input/ExelFileInput.styles";
 
 const EmailFirstGrade = () => {
   const { pushHistory } = useHisotryRoute();
   const {
     desireState: { users, filename },
   } = useDesire();
+
+  const excelFormDownload = React.useCallback(() => {
+    const link = document.createElement("a");
+    link.href = "/static/recruit_form_sheet.xlsx";
+    link.target = "_blank";
+    link.click();
+    link.remove();
+  }, []);
 
   return (
     <div className={""}>
@@ -26,9 +33,8 @@ const EmailFirstGrade = () => {
         </TitleWrapperDiv>
         <DescriptionWrapperDiv>
           <EmailGradeSubTitleSpan>📂엑셀파일을 업로드 해주세요</EmailGradeSubTitleSpan>
-          <a href="/static/recruit_form_sheet.xlsx" target="_blank" style={{ textDecoration: "none" }}>
-            <DropBoxButtonSpan>엑셀양식 다운로드</DropBoxButtonSpan>
-          </a>
+
+          <FileButton onClick={excelFormDownload}>엑셀양식 다운로드</FileButton>
         </DescriptionWrapperDiv>
       </WrapperHeader>
       <InnerGradeBodySizeSection>
