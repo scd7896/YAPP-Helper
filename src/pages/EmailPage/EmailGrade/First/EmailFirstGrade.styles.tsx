@@ -25,3 +25,8 @@ export const InnerGradeFooter = styled.footer`
   justify-content: center;
   align-items: center;
 `;
+
+export const DescriptionWrapperDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

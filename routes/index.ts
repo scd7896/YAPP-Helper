@@ -25,6 +25,7 @@ apiRouter.use("*", (req, res) => res.sendStatus(404));
 router.use("/api", apiRouter);
 
 router.use(express.static("public"));
+router.use("/static", express.static("static"));
 
 router.get("/", (_, res) => {
   res.status(200).render("index.html");

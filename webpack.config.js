@@ -11,6 +11,7 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
     alias: {
       atomic: path.resolve(__dirname, "src/component/atomic"),
+      atomic: path.resolve(__dirname, "src/component/atomic"),
       molecules: path.resolve(__dirname, "src/component/molecules"),
       organisms: path.resolve(__dirname, "src/component/organisms"),
       template: path.resolve(__dirname, "src/component/template"),
