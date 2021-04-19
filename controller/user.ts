@@ -54,7 +54,7 @@ export const invitationUser = (req, res) => {
     return res.status(400).json(createJsend("failure", "토큰이 없습니다"));
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+  jwt.verify(decodeURIComponent(token), process.env.JWT_SECRET, async (err, decoded) => {
     if (err) {
       return res.status(403).json(createJsend("failure", err.message));
     }

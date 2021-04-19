@@ -135,7 +135,7 @@ export const certificateMailSend = async (req, res) => {
 export const sendInvitationMail = async (req, res) => {
   const mail = req.body.mail;
   if (!mail) res.status(400).json(createJsend("failure", "메일 주소는 필수 입니다."));
-  const accessToken = jwt.sign({ mail }, process.env.JWT_SECRET, { expiresIn: "10m" });
+  const accessToken = jwt.sign({ mail }, process.env.JWT_SECRET, { expiresIn: "24h" });
   const mailForm = {
     from: "YAPP <support@yapp.co.kr>",
     to: mail,
@@ -144,7 +144,7 @@ export const sendInvitationMail = async (req, res) => {
       <p>안녕하세요 YAPP 입니다.</p>
       <p>업무에 필요 한 부분이 있어 어드민 페이지의 권한을 드리려고 합니다.</p>
       <p>이 링크를 클릭해주세요</p>
-      <p>link: http://helper.yapp.co.kr/invitation?token=${accessToken}</p>
+      <p>link: http://helper.yapp.co.kr/invitation?token=${encodeURIComponent(accessToken)}</p>
       </html>`,
   };
   mailgun
