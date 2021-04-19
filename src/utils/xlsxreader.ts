@@ -7,8 +7,8 @@ export const xlsxRead = async (file: File) => {
 
 export const xlsxReadJson = async (file: File) => {
   const data = await file.arrayBuffer();
-  var data1 = new Uint8Array(data);
-  var workBook = xlsx.read(data1, { type: "array" });
-  let rows = xlsx.utils.sheet_to_json(workBook.Sheets[workBook.SheetNames[0]]);
+  const data1 = new Uint8Array(data);
+  const workBook = xlsx.read(data1, { type: "array" });
+  const rows = xlsx.utils.sheet_to_json(workBook.Sheets[workBook.SheetNames[0]]);
   return rows;
 };
