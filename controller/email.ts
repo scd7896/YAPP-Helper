@@ -64,7 +64,7 @@ export const reSend = async (req, res) => {
  * }
  */
 export const send = async (req, res) => {
-  const mailforms = await MailForm.findMany();
+  const mailforms = await MailForm.findMany({ where: { type: "meeting" } });
   const io = req.app.get("socketio");
   if (mailforms.length !== 2 || mailforms[0].pass !== true || mailforms[1].pass !== false) {
     res.sendStatus(422);

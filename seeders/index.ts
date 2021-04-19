@@ -28,8 +28,8 @@ const mailFormCreate = async () => {
   if (mailforms.length < 2) {
     await prisma.mailForms.create({
       data: {
-        title: "Lorem ipsum dolor sit amet",
-        type: "recruit",
+        title: "리쿠르트 합격",
+        type: "meeting",
         pass: true,
         contents: "test",
         header_image: "https://picsum.photos/500/100",
@@ -41,8 +41,8 @@ const mailFormCreate = async () => {
 
     await prisma.mailForms.create({
       data: {
-        title: "Lorem ipsum dolor sit amet",
-        type: "recruit",
+        title: "리쿠르트 불합격",
+        type: "meeting",
         pass: false,
         contents: "test1",
         header_image: "https://picsum.photos/500/100",
@@ -54,8 +54,24 @@ const mailFormCreate = async () => {
   }
 };
 
+const completionMailFormCreate = async () => {
+  const mailforms = await prisma.mailForms.findMany({ where: { type: "completion" } });
+  if (mailforms.length < 1) {
+    await prisma.mailForms.create({
+      data: {
+        title: "기수 수료증 발송",
+        type: "completion",
+        pass: true,
+        contents: "한 기수 동안 수고 많으셨습니다.",
+        header_image: "https://picsum.photos/500/100",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    });
+  }
+};
 const init = () => {
-  Promise.all([mailFormCreate(), userCreate()]).then(() => {
+  Promise.all([mailFormCreate(), userCreate(), completionMailFormCreate()]).then(() => {
     process.exit();
   });
 };
