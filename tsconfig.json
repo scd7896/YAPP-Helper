@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
       "utils/*": ["./src/utils/*"],
@@ -14,7 +13,9 @@
       "hooks/*": ["./src/hooks/*"],
       "actions/*": ["./src/store/action/*"],
       "@font": ["./src/component/atomic/FontStyle"],
-      "@types": ["./src/types"]
+      "@types": ["./src/types"],
+      "@cmodel": ["./src/model"],
+      "@cmodel/*": ["./src/model/*"]
     },
     "sourceMap": true,
     "module": "commonjs",

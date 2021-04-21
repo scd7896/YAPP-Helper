@@ -13,6 +13,9 @@ const CertificateCompletion = loadable(
 );
 const UsersPage = loadable(() => import(/* webpackChunkName: "users" */ "./Users/Users"));
 const InvitationPage = loadable(() => import(/* webpackChunkName: "invitation" */ "./Invitation/Invitation"));
+const CertificateFormPage = loadable(
+  () => import(/* webpackChunkName: "certificate_form" */ "./CertificateForm/CertificateForm")
+);
 
 const RouteController = () => {
   return (
@@ -28,6 +31,7 @@ const RouteController = () => {
         <Route path="/certificate" component={CertificateCompletion} />
         <Route path="/users" exact component={UsersPage} />
         <Route path="/invitation" exact component={InvitationPage} />
+        <Route path="/certificate_form" exact component={CertificateFormPage} />
       </Switch>
     </React.Suspense>
   );

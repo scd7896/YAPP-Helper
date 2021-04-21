@@ -11,7 +11,6 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
     alias: {
       atomic: path.resolve(__dirname, "src/component/atomic"),
-      atomic: path.resolve(__dirname, "src/component/atomic"),
       molecules: path.resolve(__dirname, "src/component/molecules"),
       organisms: path.resolve(__dirname, "src/component/organisms"),
       template: path.resolve(__dirname, "src/component/template"),
@@ -21,6 +20,7 @@ module.exports = {
       utils: path.resolve(__dirname, "src/utils"),
       "@font": path.resolve(__dirname, "src/component/atomic/FontStyle"),
       "@molecules": path.resolve(__dirname, "src/component/molecules"),
+      "@cmodel": path.resolve(__dirname, "src/model"),
     },
     fallback: {
       crypto: require.resolve("crypto-browserify"),

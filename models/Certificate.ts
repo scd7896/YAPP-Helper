@@ -2,7 +2,12 @@ import { CertifiCate } from "@prisma/client";
 import { Certificate } from "./index";
 
 export const getAllList = async () => {
-  const res = await Certificate.findMany();
+  const res = await Certificate.findMany({
+    select: {
+      id: true,
+      title: true,
+    },
+  });
   return res;
 };
 
@@ -30,5 +35,15 @@ export const addCertificates = async ({
       backgroundImage,
     },
   });
+  return res;
+};
+
+export const findCertificateById = async (id: number) => {
+  const res = await Certificate.findUnique({
+    where: {
+      id,
+    },
+  });
+
   return res;
 };
