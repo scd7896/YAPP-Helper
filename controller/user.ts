@@ -1,8 +1,7 @@
 import * as jwt from "jsonwebtoken";
 import * as crypto from "crypto";
-
 import { createJsend } from "../lib";
-import { User } from "../models";
+import { UserModel } from "../models";
 import redisClient from "../config/redis";
 import { Users } from "@prisma/client";
 
@@ -14,11 +13,8 @@ const createJWTToken = (user: Pick<Users, "name" | "token" | "isAdmin">) => {
 
 export const login = async (req, res) => {
   try {
-    const user = await User.findUnique({
-      where: {
-        token: req.body.token,
-      },
-    });
+    const accessToken = crypto.createHash("sha512").update(req.body.email).digest("base64");
+    const user = await UserModel.findByUniqueByToken(accessToken);
     if (!user) {
       return res.status(403).send("로그인 정보가 맞지않습니다");
     }
@@ -33,15 +29,7 @@ export const login = async (req, res) => {
 
 export const getUsersData = async (_, res) => {
   try {
-    const users = await User.findMany({
-      select: {
-        isAdmin: true,
-        token: false,
-        name: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    });
+    const users = await UserModel.findUserList();
     res.status(200).json({ status: "success", data: users });
   } catch (err) {
     res.status(500).json({ status: "error", message: "서버 내부 오류" });
@@ -58,24 +46,7 @@ export const invitationUser = (req, res) => {
     if (err) {
       return res.status(403).json(createJsend("failure", err.message));
     }
-    const user = await User.upsert({
-      where: {
-        token: decoded.mail,
-      },
-      create: {
-        token: crypto.createHash("sha512").update(decoded.mail).digest("base64") as string,
-        name: decoded.mail,
-        isAdmin: false,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      update: {},
-      select: {
-        token: true,
-        name: true,
-        isAdmin: true,
-      },
-    });
+    const user = await UserModel.addUpsertUser(decoded.mail);
     const token = createJWTToken(user);
     return res.status(200).json({ token });
   });

@@ -7,3 +7,4 @@ export const Certificate = client.certifiCate;
 
 export * as MailFormModel from "./MailForm";
 export * as CertificateModel from "./Certificate";
+export * as UserModel from "./User";

@@ -1,18 +1,15 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import GoogleLoginComponent, { GoogleLoginResponse } from "react-google-login";
-import * as crypto from "crypto";
 import request from "utils/request";
 import { setCookie } from "utils/cookie";
 const GoogleLogin = () => {
   const history = useHistory();
   const errorCallback = (response: any) => {};
   const successCallback = (response: GoogleLoginResponse) => {
-    const accessToken = crypto.createHash("sha512").update(response.profileObj.email).digest("base64");
-
     request
       .post("/api/login", {
-        body: { token: accessToken },
+        body: { email: response.profileObj.email },
       })
       .then((res) => {
         setCookie("token", res.data.token, 1);
