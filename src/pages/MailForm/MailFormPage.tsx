@@ -9,6 +9,11 @@ import useDesire from "hooks/useDesire";
 import useMailform from "hooks/useMailform";
 import { BodySection, FormWrapperDiv, TabBarWrapperDiv } from "./MailFormPage.styles";
 
+const mailTypeText = {
+  meeting: "모집",
+  completion: "수료",
+};
+
 const MailFormPage = () => {
   const dispatch = useDispatch();
   const {
@@ -34,6 +39,16 @@ const MailFormPage = () => {
   const tabChangeHandler = (index: number) => () => {
     dispatch(setMailSelectIndex(index));
   };
+
+  const getKindText = React.useCallback((type, pass) => {
+    switch (type) {
+      case "meeting":
+        if (pass) return "합격";
+        else return "불합격";
+      default:
+        return "";
+    }
+  }, []);
   return (
     <MailFormTemplate>
       <PageHeader>메일양식 관리</PageHeader>
@@ -41,9 +56,9 @@ const MailFormPage = () => {
         <FormWrapperDiv>
           <TabBarWrapperDiv>
             {mailTemplates &&
-              mailTemplates.map(({ pass }, index) => (
+              mailTemplates.map(({ pass, type }, index) => (
                 <TabBar
-                  text={pass ? " 합격" : " 불합격"}
+                  text={`${mailTypeText[type]} ${getKindText(type, pass)} 양식`}
                   isSelected={index === selectIndex}
                   handler={tabChangeHandler(index)}
                 />
