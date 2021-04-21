@@ -12,5 +12,9 @@ class Users {
     return res.data;
   }
 
-  async deleteUser() {}
+  deleteUser(id: number) {
+    return request.delete(`/api/users/${id}`);
+  }
 }
+
+export default Users.Instance;

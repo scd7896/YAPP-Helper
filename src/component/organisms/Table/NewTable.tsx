@@ -23,15 +23,33 @@ export default function NewTable({ column, dataSource, onRowClick, selectOption 
     headerDataIndexs.map((dataIndex) => {
       bodyItem[dataIndex] = value[dataIndex];
     });
+
     return bodyItem;
   });
 
+  const tableClickListener = React.useCallback((event) => {
+    let parent = event.target.parentNode;
+
+    let id;
+    while (parent) {
+      if (parent.dataset.index !== undefined) {
+        id = parent.dataset.index;
+        break;
+      }
+      parent = parent.parentNode;
+    }
+    if (parent === null) return;
+    if (onRowClick) {
+      onRowClick(dataSource[Number(id)]);
+    }
+  }, []);
+
   return (
-    <StyleTable>
+    <StyleTable onClick={tableClickListener}>
       <TableHead items={headerTitles} selectOption={selectOption} />
       <tbody>
-        {bodyItems.map((item) => (
-          <ObjectTableRow key={JSON.stringify(item)} item={item} onRowClick={onRowClick} />
+        {bodyItems.map((item, i) => (
+          <ObjectTableRow key={JSON.stringify(item)} item={item} index={i} />
         ))}
       </tbody>
     </StyleTable>

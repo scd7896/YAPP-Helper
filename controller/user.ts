@@ -52,6 +52,19 @@ export const invitationUser = (req, res) => {
   });
 };
 
+export const deleteUser = async (req, res) => {
+  const id = req.params.id;
+  if (isNaN(Number(id))) {
+    return res.status(400).json(createJsend("failure", "잘못된 유저번호입니다."));
+  }
+  try {
+    await UserModel.deleteUser(Number(id));
+    res.status(200).json(createJsend("success", "삭제 성공"));
+  } catch (err) {
+    res.status(500).json(createJsend("failure", err));
+  }
+};
+
 export const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization || `Token ${req.cookies.token}`;
 
@@ -61,9 +74,7 @@ export const authenticateJWT = (req, res, next) => {
       if (err) {
         return res.sendStatus(403);
       }
-
       req.user = JSON.parse(reply);
-
       next();
     });
   } else {

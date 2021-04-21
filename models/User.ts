@@ -12,6 +12,7 @@ export const findByUniqueByToken = (token) => {
 export const findUserList = () => {
   return User.findMany({
     select: {
+      id: true,
       isAdmin: true,
       token: false,
       name: true,
@@ -40,4 +41,8 @@ export const addUpsertUser = (mail: string) => {
       isAdmin: true,
     },
   });
+};
+
+export const deleteUser = (id: number) => {
+  return User.delete({ where: { id } });
 };

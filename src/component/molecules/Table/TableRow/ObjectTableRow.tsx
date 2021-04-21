@@ -20,13 +20,14 @@ const Tr = styled.tr`
 interface IProp {
   item: object;
   onRowClick?: (item: object) => void;
+  index: number;
 }
-const ObjectTableRow: FC<IProp> = ({ item, onRowClick }) => {
+const ObjectTableRow: FC<IProp> = ({ item, onRowClick, index }) => {
   const rowClickEventListner = useCallback(() => {
     if (onRowClick) onRowClick(item);
   }, []);
   return (
-    <Tr onClick={rowClickEventListner}>
+    <Tr onClick={rowClickEventListner} data-index={index}>
       {Object.values(item).map((value) => (
         <ViewTd key={JSON.stringify(item) + value}>{value}</ViewTd>
       ))}

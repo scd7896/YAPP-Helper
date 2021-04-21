@@ -11,7 +11,9 @@ export default function useUserData() {
       name: user.name,
       createdAt: user.createdAt.substring(0, 10),
       isAdmin: user.isAdmin ? "관리자" : "일반",
+      id: user.id,
     }));
+    console.log(viewModel);
     setUserList(viewModel);
   }, []);
 
