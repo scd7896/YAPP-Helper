@@ -7,8 +7,8 @@
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
         "airbnb",
-        "eslint:recommended", 
-        "plugin:prettier/recommended"
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -27,11 +27,15 @@
         "quotes": ["error", "double", { "avoidEscape": true }],
         "react/jsx-filename-extension": [1, { "extensions": [".js" , ".jsx", ".tsx", ".ts"] }],
         "react-hooks/exhaustive-deps": "error",
+        "react/require-default-props": 0,
+        "react/prop-types": 0,
         "import/no-unresolved": 0,
         "no-use-before-define": 0,
         "prettier/prettier": "error",
         "import/extensions": 0,
         "no-throw-literal": 0,
+        "no-unused-vars": 0,
+        "no-undef": 0,
         "no-restricted-globals": [
             "error",
             {
@@ -42,6 +46,10 @@
                 "name": "fdescribe",
                 "message": "Do not commit fdescribe. Use describe instead."
             }
-        ]
+        ],
+        "no-alert": 0,
+        "comma-dangle": 0,
+        "@typescript-eslint/ban-types": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0
     }
 }

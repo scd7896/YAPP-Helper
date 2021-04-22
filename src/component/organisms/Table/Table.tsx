@@ -5,6 +5,7 @@ import TableHead from "molecules/Table/TableHead/TableHead";
 import TableBody from "molecules/Table/TableBody/TableBody";
 
 import { StyleTable } from "./Table.styles";
+
 interface IProp {
   headItems?: string[];
   bodyItems: string[][];

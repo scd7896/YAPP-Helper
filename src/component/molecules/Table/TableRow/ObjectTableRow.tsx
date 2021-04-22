@@ -1,8 +1,9 @@
 import * as React from "react";
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import ViewTd from "atomic/Table/ViewTd/ViewTd";
 import styled from "styled-components";
 import * as color from "utils/styles/color";
+
 const Tr = styled.tr`
   height: 50px;
   > td {
@@ -22,17 +23,12 @@ interface IProp {
   onRowClick?: (item: object) => void;
   index: number;
 }
-const ObjectTableRow: FC<IProp> = ({ item, onRowClick, index }) => {
-  const rowClickEventListner = useCallback(() => {
-    if (onRowClick) onRowClick(item);
-  }, []);
-  return (
-    <Tr onClick={rowClickEventListner} data-index={index}>
-      {Object.values(item).map((value) => (
-        <ViewTd key={JSON.stringify(item) + value}>{value}</ViewTd>
-      ))}
-    </Tr>
-  );
-};
+const ObjectTableRow: FC<IProp> = ({ item, index }) => (
+  <Tr data-index={index}>
+    {Object.values(item).map((value) => (
+      <ViewTd key={JSON.stringify(item) + value}>{value}</ViewTd>
+    ))}
+  </Tr>
+);
 
 export default ObjectTableRow;

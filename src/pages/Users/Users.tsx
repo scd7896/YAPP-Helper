@@ -2,35 +2,57 @@ import * as React from "react";
 import * as api from "utils/api";
 import { useCallback } from "react";
 import useUserData from "hooks/ServiceHook/useUserData";
-import { NewTable, NormalTable } from "organisms";
+import { NewTable } from "organisms";
 import { HeadTitleText } from "@font";
 import { NomalButton } from "atomic";
 import useModal from "hooks/useModal";
-import { WrapperDiv } from "./Users.styles";
 import { EmailInputForm } from "@molecules";
 import SelectLayout from "template/SelectLayout/SelectLayout";
-
-const columns = [
-  { title: "메일주소", dataIndex: "name" },
-  { title: "권한부여날짜", dataIndex: "createdAt" },
-  { title: "권한", dataIndex: "isAdmin" },
-];
+import { TableColumn } from "@types";
+import { WrapperDiv } from "./Users.styles";
 
 const Users = () => {
-  const { userList } = useUserData();
+  const { userList, deleteUser } = useUserData();
   const { openModal, closeModal } = useModal();
+  const columns: Array<TableColumn> = React.useMemo(
+    () => [
+      { title: "메일주소", dataIndex: "name" },
+      { title: "권한부여날짜", dataIndex: "createdAt" },
+      { title: "권한", dataIndex: "isAdmin" },
+      {
+        title: "삭제",
+        dataIndex: "delete",
+        render: (row, i) => (
+          <button
+            key={`button${i}`}
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteUser(row);
+            }}
+          >
+            권한 삭제
+          </button>
+        ),
+      },
+    ],
+    [deleteUser]
+  );
 
-  const sendMailSubmit = useCallback(async (address: string) => {
-    const res = await api.postInvitationSendMail(address);
-    if (res.data.payload) {
-      alert(res.data.payload);
-      closeModal();
-    }
-  }, []);
+  const sendMailSubmit = useCallback(
+    async (address: string) => {
+      const res = await api.postInvitationSendMail(address);
+      if (res.data.payload) {
+        alert(res.data.payload);
+        closeModal();
+      }
+    },
+    [closeModal]
+  );
 
   const clickListner = useCallback(() => {
     openModal(() => <EmailInputForm onSubmit={sendMailSubmit} />);
-  }, []);
+  }, [openModal, sendMailSubmit]);
   return (
     <SelectLayout>
       <WrapperDiv>
