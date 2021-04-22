@@ -6,7 +6,9 @@
     "extends": [
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
-        "airbnb"
+        "airbnb",
+        "eslint:recommended", 
+        "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -18,12 +20,27 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
     ],
     "rules": { 
         "quotes": ["error", "double", { "avoidEscape": true }],
         "react/jsx-filename-extension": [1, { "extensions": [".js" , ".jsx", ".tsx", ".ts"] }],
         "import/no-unresolved": 0,
-        "no-use-before-define": 0
+        "no-use-before-define": 0,
+        "prettier/prettier": "error",
+        "import/extensions": 0,
+        "no-throw-literal": 0,
+        "no-restricted-globals": [
+            "error",
+            {
+                "name": "event",
+                "message": "Use local parameter instead."
+            },
+            {
+                "name": "fdescribe",
+                "message": "Do not commit fdescribe. Use describe instead."
+            }
+        ]
     }
 }

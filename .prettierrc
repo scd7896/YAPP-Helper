@@ -1,17 +1,6 @@
 {
-  "semi": false,
-  "overrides": [
-    {
-      "files": "*.test.js",
-      "options": {
-        "semi": true
-      }
-    },
-    {
-      "files": ["./**/*.ts", "./**/*.js", "./**/*.jsx", "./**/*.tsx"],
-      "options": {
-        "tabWidth": 2
-      }
-    }
-  ]
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": false
 }

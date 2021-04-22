@@ -33,6 +33,7 @@ export const findByTitle = async (req, res) => {
 
 export const findByUniqueById = async (req: Request, res: Response) => {
   const { id } = req.params;
+
   if (isNaN(Number(id))) {
     return res.status(400).json(createJsend("failure", "id가 번호 타입이 아닙니다."));
   }
@@ -40,8 +41,8 @@ export const findByUniqueById = async (req: Request, res: Response) => {
   try {
     const certifiCate = await CertificateModel.findCertificateById(Number(id));
     if (!certifiCate) throw "인증서 양식이 없습니다";
-    res.status(200).json(createJsend("success", certifiCate));
+    return res.status(200).json(createJsend("success", certifiCate));
   } catch (err) {
-    res.status(500).json(createJsend("failure", err));
+    return res.status(500).json(createJsend("failure", err));
   }
 };
