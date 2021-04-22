@@ -16,7 +16,7 @@ const EmailPage = () => {
     return () => {
       initDesire();
     };
-  }, []);
+  }, [initDesire]);
   return (
     <div>
       <EmailGradeTemplate>

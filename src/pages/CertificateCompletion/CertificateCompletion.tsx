@@ -1,10 +1,8 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import SelectLayout from "template/SelectLayout/SelectLayout";
-
-import { TestDiv } from "./CertificateCompletion.styles";
 import { getPdfByElement } from "utils/pdf";
-import { useCallback } from "react";
+import { TestDiv } from "./CertificateCompletion.styles";
 
 const CertificateCompletion = () => {
   const [image, setImage] = useState("");
@@ -14,7 +12,7 @@ const CertificateCompletion = () => {
   }, []);
   useEffect(() => {
     callbackPDFCheck();
-  }, []);
+  }, [callbackPDFCheck]);
   return (
     <SelectLayout>
       <TestDiv id="test">
@@ -29,8 +27,7 @@ const CertificateCompletion = () => {
         <div>이 화면을 전체 끄집어내보자7</div>
         <div>이 화면을 전체 끄집어내보자8</div>
         <div>이 화면을 전체 끄집어내보자9</div>
-
-        <img src={image} />
+        <img src={image} alt="test" />
       </TestDiv>
     </SelectLayout>
   );

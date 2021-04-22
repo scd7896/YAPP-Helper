@@ -1,14 +1,15 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import * as io from "socket.io-client";
+
 import { postMailSend } from "utils/api/email/send/post";
 import ObjectArrayTable from "organisms/Table/ObjectArray/ObjectArrayTable";
 import useDesire from "hooks/useDesire";
+import { SendUserResult } from "@types";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
 
 import { url } from "../../../../_data";
 import { WrapperDiv, TitleHeaderWrapper } from "./EmailFivethGrade.styles";
-import { SendUserResult } from "@types";
-import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
 
 const EmailFivethGrade = () => {
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
@@ -29,10 +30,12 @@ const EmailFivethGrade = () => {
         setKeyString(key);
       });
     }
-  }, [socket]);
+  }, [socket, mailResultSetData]);
+
   useEffect(() => {
     postMailSend({ users: allList });
-  }, []);
+  }, [allList]);
+
   useEffect(() => {
     console.log(keyString);
   }, [keyString]);
