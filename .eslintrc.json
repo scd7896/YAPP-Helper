@@ -26,6 +26,7 @@
     "rules": { 
         "quotes": ["error", "double", { "avoidEscape": true }],
         "react/jsx-filename-extension": [1, { "extensions": [".js" , ".jsx", ".tsx", ".ts"] }],
+        "react-hooks/exhaustive-deps": "error",
         "import/no-unresolved": 0,
         "no-use-before-define": 0,
         "prettier/prettier": "error",

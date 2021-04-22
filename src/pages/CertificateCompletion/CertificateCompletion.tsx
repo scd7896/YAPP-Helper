@@ -10,9 +10,11 @@ const CertificateCompletion = () => {
     const pdf = await getPdfByElement(document.querySelector("body"), "test.pdf");
     console.log(pdf);
   }, []);
+
   useEffect(() => {
     callbackPDFCheck();
   }, [callbackPDFCheck]);
+
   return (
     <SelectLayout>
       <TestDiv id="test">
