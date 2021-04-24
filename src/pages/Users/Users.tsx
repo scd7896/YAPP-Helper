@@ -53,6 +53,7 @@ const Users = () => {
   const clickListner = useCallback(() => {
     openModal(() => <EmailInputForm onSubmit={sendMailSubmit} />);
   }, [openModal, sendMailSubmit]);
+
   return (
     <SelectLayout>
       <WrapperDiv>

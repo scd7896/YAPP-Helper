@@ -14,9 +14,10 @@ export default function CertificateFormPage() {
   React.useEffect(() => {
     requestCertificateList();
   }, [requestCertificateList]);
+
   const postModalOn = React.useCallback(() => {
-    openModal(CertificateEditForm);
-  }, [openModal]);
+    openModal(CertificateEditForm, { onClose: () => requestCertificateList() });
+  }, [openModal, requestCertificateList]);
 
   return (
     <SelectLayout>

@@ -2,13 +2,21 @@ import * as React from "react";
 import { CertifiCateModel } from "@cmodel";
 import * as color from "utils/styles/color";
 import { BasicFileInput, Form, Input, MailWriter } from "atomic";
+import useModal from "hooks/useModal";
 import { WrapperDiv } from "./CertificateEditForm.styles";
 
 export default function CertificateEditForm() {
-  const submitPostCertificates = React.useCallback((args) => {
-    args.append("subTitle", null);
-    CertifiCateModel.postCertificates(args);
-  }, []);
+  const { closeModal } = useModal();
+
+  const submitPostCertificates = React.useCallback(
+    async (args) => {
+      args.append("subTitle", null);
+      await CertifiCateModel.postCertificates(args);
+      alert("업로드 완료 했습니다.");
+      closeModal(true);
+    },
+    [closeModal]
+  );
 
   return (
     <WrapperDiv>
