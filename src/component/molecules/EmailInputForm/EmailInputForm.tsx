@@ -10,12 +10,7 @@ interface IProp {
 export default function EmailInputForm({ onSubmit }: IProp) {
   const [mail, setMail] = useState("");
   return (
-    <WrapperDiv
-      onClick={(e) => {
-        e.stopPropagation();
-        return false;
-      }}
-    >
+    <WrapperDiv>
       <div>이메일을 입력해주세요</div>
       <div>
         <TextInput onChangeFunc={setMail} defaultValue={mail} />

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import * as color from "utils/styles/color";
 
 import { LogOutIcon } from "../Icon";
+
 const Button = styled.button`
   width: 160px;
   height: 36px;
@@ -18,7 +19,8 @@ const Button = styled.button`
 
 const LogOutButton = () => (
   <Button>
-    <LogOutIcon /> &nbsp;로그아웃
+    <LogOutIcon />
+    &nbsp;로그아웃
   </Button>
 );
 export default LogOutButton;

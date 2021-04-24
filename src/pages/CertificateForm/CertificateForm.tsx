@@ -1,14 +1,27 @@
 import * as React from "react";
-import { CertifiCateModel } from "@cmodel";
 import SelectLayout from "template/SelectLayout/SelectLayout";
+import useCertificate from "hooks/ServiceHook/useCertificate";
 
-export default function CertificateForm() {
+import { NomalButton } from "atomic";
+import useModal from "hooks/useModal";
+import { WrapperDiv } from "./CertificateForm.styles";
+
+export default function CertificateFormPage() {
+  const { requestCertificateList } = useCertificate();
+  const { openModal } = useModal();
+
   React.useEffect(() => {
-    CertifiCateModel.getFindByTitle("test");
-  }, []);
+    requestCertificateList();
+  }, [requestCertificateList]);
+
   return (
     <SelectLayout>
-      <div>test</div>
+      <WrapperDiv>
+        <div>test</div>
+        <NomalButton color="default" size="default">
+          추가하기
+        </NomalButton>
+      </WrapperDiv>
     </SelectLayout>
   );
 }

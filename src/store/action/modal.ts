@@ -1,11 +1,9 @@
 import { MODAL_OPEN, MODAL_CLOSE } from "./actionTypes";
 
-export const modalOpenActionCreate = (payload: () => JSX.Element) => {
-  return {
-    type: MODAL_OPEN,
-    payload,
-  };
-};
+export const modalOpenActionCreate = (payload: () => JSX.Element) => ({
+  type: MODAL_OPEN,
+  payload,
+});
 
 export const modalCloseActionCreate = () => ({
   type: MODAL_CLOSE,

@@ -76,12 +76,10 @@ interface IProp {
   size: "default" | "small";
   disabled?: boolean;
 }
-const NomalButton = ({ onClick, children, color, size, disabled }: IProp) => {
-  return (
-    <Button concept={!disabled && color} size={size} onClick={onClick} disabled={disabled}>
-      {children}
-    </Button>
-  );
-};
+const NomalButton = ({ onClick, children, color, size, disabled }: IProp) => (
+  <Button concept={!disabled && color} size={size} onClick={onClick} disabled={disabled}>
+    {children}
+  </Button>
+);
 
 export default NomalButton;

@@ -1,9 +1,11 @@
+/* eslint-disable object-curly-newline */
 import * as express from "express";
-const router = express.Router();
 import { authenticateJWT, authenticateAdmin } from "../controller/user";
 import { findByUniqueById, findByTitle, postCertificate, getAllList } from "../controller/certificate";
 import { certificateMailSend } from "../controller/email";
 import { upload } from "../controller/file";
+
+const router = express.Router();
 
 router.route("*").all([authenticateJWT, authenticateAdmin]);
 

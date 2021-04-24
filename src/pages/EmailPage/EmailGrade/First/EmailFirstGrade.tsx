@@ -2,6 +2,7 @@ import * as React from "react";
 import { FileButton, FileInput, NomalButton } from "atomic";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
+import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
 import {
   InnerGradeBodySizeSection,
   InnerGradeFooter,
@@ -9,7 +10,6 @@ import {
   TitleWrapperDiv,
   DescriptionWrapperDiv,
 } from "./EmailFirstGrade.styles";
-import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
 
 const EmailFirstGrade = () => {
   const { pushHistory } = useHisotryRoute();
@@ -26,7 +26,7 @@ const EmailFirstGrade = () => {
   }, []);
 
   return (
-    <div className={""}>
+    <div>
       <WrapperHeader>
         <TitleWrapperDiv>
           <EmailGradeTitleSpan>1.엑셀파일 업로드</EmailGradeTitleSpan>
@@ -43,19 +43,10 @@ const EmailFirstGrade = () => {
       <InnerGradeFooter>
         <NomalButton
           size="default"
-          color="lightBlue"
-          onClick={() => {
-            pushHistory("/email");
-          }}
-        >
-          이전
-        </NomalButton>
-        <NomalButton
-          size="default"
           color="default"
           disabled={users.length === 0}
           onClick={() => {
-            pushHistory(`/email/2`);
+            pushHistory("/email/2");
           }}
         >
           다음
