@@ -23,6 +23,7 @@ export { default as SmallIconWrapper } from "./IconWrapper/Small/SmallIconWrappe
 
 export { default as PageHeader } from "./PageHeader/PageHeader";
 export { default as TabBar } from "./Nav/TabBar/TabBar";
+export { default as Form } from "./Form/Form";
 
 export const FileButton = styled.button`
   width: 120px;
@@ -33,4 +34,17 @@ export const FileButton = styled.button`
   color: ${color.gray_5};
   font-size: 14px;
   cursor: pointer;
+`;
+
+export const Input = styled.input`
+  width: ${({ width }) => `${width || 257}px`};
+  height: ${({ height }) => (height ? `${height}px` : "40px")};
+  border: solid 1px ${color.gray_2};
+  border-radius: ${({ borderRadius }) => (borderRadius ? `${borderRadius}px` : "4px")};
+  padding: ${({ padding }) => (padding ? `${padding}` : "10px 12px")};
+  font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : "14px")};
+  color: ${({ fontColor }) => `${fontColor || color.gray_5}`};
+  &::placeholder {
+    color: ${(placeHolderColor) => (placeHolderColor ? `${placeHolderColor}` : color.gray_4)};
+  }
 `;

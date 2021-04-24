@@ -14,6 +14,6 @@ router.get("/title", findByTitle);
 router.get("/:id", findByUniqueById);
 
 router.get("/", getAllList);
-router.post("/", [postCertificate]);
+router.post("/", [upload.single("backgroundImage"), postCertificate]);
 
 export default router;

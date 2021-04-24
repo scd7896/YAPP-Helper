@@ -6,3 +6,4 @@ export { default as Table } from "./Table/Table";
 export { default as NormalTable } from "./Table/NormalTable";
 export { default as NewTable } from "./Table/NewTable";
 export { default as ObjectArrayTable } from "./Table/ObjectArray/ObjectArrayTable";
+export * from "./Form";

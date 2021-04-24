@@ -3,13 +3,13 @@ import { createJsend } from "../lib";
 import { CertificateModel } from "../models";
 
 export const postCertificate = async (req, res) => {
-  const { title, contents, subTitle, backgroundImage } = req.body;
+  const { title, contents, subTitle } = req.body;
   try {
     const certifiCate = await CertificateModel.addCertificates({
       title,
       contents,
       subTitle,
-      backgroundImage,
+      backgroundImage: req.file.filename,
     });
     res.status(200).json(createJsend("success", certifiCate));
   } catch (err) {

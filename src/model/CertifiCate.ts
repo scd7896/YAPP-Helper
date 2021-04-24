@@ -1,9 +1,14 @@
 import { CertifiCate as CertifiCateModel } from "@prisma/client";
 import request from "utils/request";
 
+interface PostCertificate extends Omit<CertifiCateModel, "id" | "createdAt" | "updatedAt" | "backgroundImage"> {
+  backgroundImage: File | Blob;
+}
 class CertifiCate {
   private static _instance: CertifiCate;
+
   private constructor() {}
+
   public static get Instance() {
     return this._instance || (this._instance = new this());
   }
@@ -22,7 +27,8 @@ class CertifiCate {
     const res = await request.get("/api/certificate/title", { title });
     return res.data;
   }
-  async postCertificates(param: Omit<CertifiCateModel, "id" | "createdAt" | "updatedAt">) {
+
+  async postCertificates(param: PostCertificate) {
     const res = await request.post("/api/certificate", { body: param });
     return res.data;
   }
