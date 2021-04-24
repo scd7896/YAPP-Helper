@@ -6,3 +6,5 @@ export const WrapperDiv = styled.div`
   height: 100%;
   background-color: ${color.white};
 `;
+
+export const Button = "";

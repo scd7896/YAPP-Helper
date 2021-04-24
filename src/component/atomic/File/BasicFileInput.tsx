@@ -13,34 +13,40 @@ interface IProp {
   name: string;
   accept?: string;
   required?: boolean;
+  defaultImage?: string;
 }
 
-export default function BasicFileInput({ name, accept, required }: IProp) {
+export default function BasicFileInput({ name, accept, required, defaultImage }: IProp) {
   const [isOver, setIsOver] = React.useState(false);
-  const [fileName, setFileName] = React.useState<string>();
+  const [fileName, setFileName] = React.useState<string>(defaultImage);
   const inputRef = React.useRef<HTMLInputElement>();
 
   const dropHandler = React.useCallback((event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
     if (event.dataTransfer.files.length) {
-      console.log(event.dataTransfer.files);
       inputRef.current.files = event.dataTransfer.files;
       setFileName(event.dataTransfer.files.item(0).name);
     }
   }, []);
 
-  const dragOverHandler = React.useCallback((event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    if (isOver) return;
-    setIsOver(true);
-  }, []);
+  const dragOverHandler = React.useCallback(
+    (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      if (isOver) return;
+      setIsOver(true);
+    },
+    [isOver]
+  );
 
-  const dragLeaveHandler = React.useCallback((event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    if (!isOver) return;
-    setIsOver(false);
-  }, []);
+  const dragLeaveHandler = React.useCallback(
+    (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      if (!isOver) return;
+      setIsOver(false);
+    },
+    [isOver]
+  );
 
   const clickForExcelCall = React.useCallback(() => {
     inputRef.current.click();
@@ -62,7 +68,8 @@ export default function BasicFileInput({ name, accept, required }: IProp) {
       <DropBoxGuideTextSpan isUploaded={fileName}>
         {fileName ? (
           <>
-            <FileNameTextSpan>{fileName}</FileNameTextSpan> 업로드 완료!
+            <FileNameTextSpan>{fileName}</FileNameTextSpan>
+            업로드 완료!
           </>
         ) : (
           "엑셀파일을 이곳에 끌어다 놓으세요"
