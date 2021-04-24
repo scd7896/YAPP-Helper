@@ -12,9 +12,10 @@ import {
 interface IProp {
   name: string;
   accept?: string;
+  required?: boolean;
 }
 
-export default function BasicFileInput({ name, accept }: IProp) {
+export default function BasicFileInput({ name, accept, required }: IProp) {
   const [isOver, setIsOver] = React.useState(false);
   const [fileName, setFileName] = React.useState<string>();
   const inputRef = React.useRef<HTMLInputElement>();
@@ -76,6 +77,7 @@ export default function BasicFileInput({ name, accept }: IProp) {
         type="file"
         style={{ display: "none" }}
         accept={accept}
+        required={required}
       />
     </FileDropBoxDiv>
   );

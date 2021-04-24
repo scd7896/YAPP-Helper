@@ -9,9 +9,10 @@ interface MailWriterProps {
   value?: string;
   setValue?: (value: string) => void;
   name?: string;
+  required?: boolean;
 }
 
-const MailWriter = ({ className, value, setValue, name }: MailWriterProps) => {
+const MailWriter = ({ className, value, setValue, name, required }: MailWriterProps) => {
   const textAreaRef = React.useRef<HTMLTextAreaElement>();
   const handleChange = useCallback((value) => {
     if (setValue) {
@@ -31,7 +32,7 @@ const MailWriter = ({ className, value, setValue, name }: MailWriterProps) => {
       <div>
         <Quill value={value !== "" ? value : dummyText} onChange={handleChange} />
       </div>
-      <textarea ref={textAreaRef} name={name} style={{ display: "none" }}></textarea>
+      <textarea required={required} ref={textAreaRef} name={name} style={{ display: "none" }}></textarea>
     </div>
   );
 };

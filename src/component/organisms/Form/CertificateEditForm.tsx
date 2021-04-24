@@ -8,14 +8,14 @@ export default function CertificateEditForm() {
   const submitPostCertificates = React.useCallback((args) => {
     args.append("subTitle", null);
     CertifiCateModel.postCertificates(args);
-    console.log(args);
   }, []);
+
   return (
     <WrapperDiv>
       <Form onSubmit={submitPostCertificates} style={{ backgroundColor: color.white }} type="multipart/form-data">
-        <Input name="title" placeholder="title" />
-        <BasicFileInput name="backgroundImage" />
-        <MailWriter name="contents" />
+        <Input name="title" placeholder="title" required data-message="test" />
+        <BasicFileInput name="backgroundImage" required />
+        <MailWriter name="contents" required />
         <button type="submit">submit</button>
       </Form>
     </WrapperDiv>
