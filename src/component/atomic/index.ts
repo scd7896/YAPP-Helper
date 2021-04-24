@@ -6,6 +6,7 @@ export { default as NomalButton } from "./Button/NomalButton";
 
 export { default as FileInput } from "./File/Input/ExelFileInput";
 export { default as FileInputSecond } from "./File/FileInput/FileInput";
+export { default as BasicFileInput } from "./File/BasicFileInput";
 
 export { default as TextInput } from "./TextInput/TextInput";
 

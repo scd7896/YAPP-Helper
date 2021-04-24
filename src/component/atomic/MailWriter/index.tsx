@@ -7,14 +7,17 @@ import "react-quill/dist/quill.snow.css";
 interface MailWriterProps {
   className?: string;
   value?: string;
-  setValue: (value: string) => void;
+  setValue?: (value: string) => void;
+  name?: string;
 }
 
-const MailWriter = ({ className, value, setValue }: MailWriterProps) => {
+const MailWriter = ({ className, value, setValue, name }: MailWriterProps) => {
+  const textAreaRef = React.useRef<HTMLTextAreaElement>();
   const handleChange = useCallback((value) => {
     if (setValue) {
       setValue(value);
     }
+    textAreaRef.current.value = value;
   }, []);
 
   const dummyText = `
@@ -28,9 +31,7 @@ const MailWriter = ({ className, value, setValue }: MailWriterProps) => {
       <div>
         <Quill value={value !== "" ? value : dummyText} onChange={handleChange} />
       </div>
-      {/* <div style={{ marginTop: "200px" }}>
-        <button onClick={valueCheck}>값 확인 하기 ㅎㅎ</button>
-      </div> */}
+      <textarea ref={textAreaRef} name={name} style={{ display: "none" }}></textarea>
     </div>
   );
 };

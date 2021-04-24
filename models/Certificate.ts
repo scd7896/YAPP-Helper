@@ -33,6 +33,8 @@ export const addCertificates = async ({
       title,
       subTitle,
       backgroundImage,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
   });
   return res;

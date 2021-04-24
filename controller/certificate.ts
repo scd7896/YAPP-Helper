@@ -13,6 +13,7 @@ export const postCertificate = async (req, res) => {
     });
     res.status(200).json(createJsend("success", certifiCate));
   } catch (err) {
+    console.log(err);
     res.status(500).json(createJsend("failure", err));
   }
 };

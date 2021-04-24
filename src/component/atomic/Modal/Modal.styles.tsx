@@ -11,6 +11,7 @@ export const WrapperDiv = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  overflow: scroll;
 `;
 
 export const ContentWrapperDiv = styled.div`
@@ -19,5 +20,5 @@ export const ContentWrapperDiv = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: auto;
+  height: 100%;
 `;
