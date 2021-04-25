@@ -28,7 +28,7 @@ const RouteController = () => (
       <Route path="/email/:grade" component={EmailPage} />
       <Route path="/email" component={SelectMailType} />
       <Route path="/mailform" component={MailFormPage} />
-      <Route path="/certificate" component={CertificateCompletion} />
+      <Route path="/certificate/:id" component={CertificateCompletion} />
       <Route path="/users" exact component={UsersPage} />
       <Route path="/invitation" exact component={InvitationPage} />
       <Route path="/certificate_form" exact component={CertificateFormPage} />

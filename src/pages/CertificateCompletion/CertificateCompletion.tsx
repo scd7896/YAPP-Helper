@@ -1,36 +1,41 @@
 import * as React from "react";
 import { useState, useEffect, useCallback } from "react";
+import useCertificate from "hooks/ServiceHook/useCertificate";
+import { RenderCertificate } from "organisms";
+import { useParams } from "react-router-dom";
 import SelectLayout from "template/SelectLayout/SelectLayout";
-import { getPdfByElement } from "utils/pdf";
-import { TestDiv } from "./CertificateCompletion.styles";
+import { getPdfByElement, testImage } from "utils/pdf";
+import { ContentsWrapperDiv } from "./CertificateCompletion.styles";
 
 const CertificateCompletion = () => {
   const [image, setImage] = useState("");
+  const { id } = useParams<{ id: string }>();
+  const { certificate, requestCertificateDetail } = useCertificate();
   const callbackPDFCheck = useCallback(async () => {
-    const pdf = await getPdfByElement(document.querySelector("body"), "test.pdf");
-    console.log(pdf);
+    const pdf = await getPdfByElement(document.querySelector("#test"), "test.pdf");
+
+    // const imgData = await testImage(document.querySelector("#test"));
+    // setImage(imgData);
+    // console.log(pdf);
   }, []);
 
-  useEffect(() => {
-    callbackPDFCheck();
-  }, [callbackPDFCheck]);
+  // useEffect(() => {
+  //   callbackPDFCheck();
+  // }, [callbackPDFCheck]);
 
+  useEffect(() => {
+    requestCertificateDetail(parseInt(id, 10));
+  }, [requestCertificateDetail, id]);
+  if (!certificate) return <div>로딩중</div>;
   return (
     <SelectLayout>
-      <TestDiv id="test">
-        <h1>안녕세계</h1>
-        <div>이 화면을 전체 끄집어내보자</div>
-        <div>이 화면을 전체 끄집어내보자1</div>
-        <div>이 화면을 전체 끄집어내보자2</div>
-        <div>이 화면을 전체 끄집어내보자3</div>
-        <div>이 화면을 전체 끄집어내보자4</div>
-        <div>이 화면을 전체 끄집어내보자5</div>
-        <div>이 화면을 전체 끄집어내보자6</div>
-        <div>이 화면을 전체 끄집어내보자7</div>
-        <div>이 화면을 전체 끄집어내보자8</div>
-        <div>이 화면을 전체 끄집어내보자9</div>
-        <img src={image} alt="test" />
-      </TestDiv>
+      <button type="button" onClick={callbackPDFCheck}>
+        test download
+      </button>
+      {image && <img src={image} alt="ts" />}
+      <ContentsWrapperDiv id="test">
+        <RenderCertificate certificate={certificate} />
+      </ContentsWrapperDiv>
     </SelectLayout>
   );
 };

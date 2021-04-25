@@ -32,6 +32,11 @@ class CertifiCate {
     const res = await request.post("/api/certificate", { body: param });
     return res.data;
   }
+
+  async putCertificate(id: number, param) {
+    const res = await request.put(`/api/certificate/${id}`, { body: param });
+    return res.data;
+  }
 }
 
 export default CertifiCate.Instance;

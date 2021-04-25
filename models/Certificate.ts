@@ -49,3 +49,17 @@ export const findCertificateById = async (id: number) => {
 
   return res;
 };
+
+export const changeCertificate = async (id: number, param: Omit<CertifiCate, "createdAt" | "updatedAt">) => {
+  const res = await Certificate.update({
+    where: {
+      id,
+    },
+    data: {
+      ...param,
+      updatedAt: new Date(),
+    },
+  });
+
+  return res;
+};
