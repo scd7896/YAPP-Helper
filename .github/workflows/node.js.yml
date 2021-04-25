@@ -21,7 +21,9 @@ jobs:
             touch test.txt
             pm2 kill
             git pull origin master  
+            rm -rf node_modules
             npm install
+            npm run generate
             npm run migrate
             npm run prod
             pm2 start index.ts
