@@ -49,9 +49,9 @@ export default function CertificateEditForm({ id }: IProp) {
   return (
     <WrapperDiv>
       <Form onSubmit={submitPostCertificates} style={{ backgroundColor: color.white }} type="multipart/form-data">
-        <Input defaultValue={certificate.title} name="title" placeholder="title" required data-message="test" />
-        <BasicFileInput defaultImage={certificate.backgroundImage} name="backgroundImage" />
-        <MailWriter value={certificate.contents} name="contents" required />
+        <Input defaultValue={certificate?.title} name="title" placeholder="title" required data-message="test" />
+        <BasicFileInput defaultImage={certificate?.backgroundImage} name="backgroundImage" />
+        <MailWriter value={certificate?.contents} name="contents" required />
         <button type="submit">submit</button>
         {id && (
           <Link onClick={() => closeModal()} to={`/certificate/${id}`}>
