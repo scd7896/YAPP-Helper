@@ -1,5 +1,6 @@
 import { createJsend } from "../lib";
 import { MailFormModel } from "../models";
+
 const { unlink } = require("fs");
 
 export const findUnique = async (req, res, next) => {
@@ -40,7 +41,7 @@ export const update = async (req, res, next) => {
     ["header_image", "map_image"].forEach((key) => {
       if (req.body[key] !== undefined) {
         try {
-          unlink("public/" + previous[key], () => console.log("successfully deleted " + previous[key]));
+          unlink(`public/${previous[key]}`, () => console.log(`successfully deleted ${previous[key]}`));
         } catch (err) {}
       }
     });
@@ -59,7 +60,7 @@ export const destroy = (req, res, next) => {
     .then((mailform) => {
       res.sendStatus(204);
       ["header_image", "map_image"].forEach((key) => {
-        unlink(mailform[key], () => console.log("successfully deleted " + mailform[key]));
+        unlink(mailform[key], () => console.log(`successfully deleted ${mailform[key]}`));
       });
     })
     .catch((err) => {

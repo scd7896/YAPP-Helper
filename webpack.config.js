@@ -20,6 +20,7 @@ module.exports = {
       utils: path.resolve(__dirname, "src/utils"),
       "@font": path.resolve(__dirname, "src/component/atomic/FontStyle"),
       "@molecules": path.resolve(__dirname, "src/component/molecules"),
+      "@cmodel": path.resolve(__dirname, "src/model"),
     },
     fallback: {
       crypto: require.resolve("crypto-browserify"),
@@ -33,10 +34,12 @@ module.exports = {
       {
         test: /\.js$/,
         loader: "babel-loader",
+        exclude: ["/node_modules"],
       },
       {
         test: /\.ts(x?)$/,
         use: ["babel-loader", "ts-loader"],
+        exclude: ["/node_modules", "/index.ts"],
       },
       {
         test: /.css$/,
@@ -47,7 +50,7 @@ module.exports = {
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, "public"),
-    // publicPath: "/dist/", // publicPath를 기본 도메인으로 설정을 한다. cdn주소를 쓴다면 여기다쓰자
+    publicPath: "/", // publicPath를 기본 도메인으로 설정을 한다. cdn주소를 쓴다면 여기다쓰자
     // chunkFilename: "[name].js",
   },
   plugins: [

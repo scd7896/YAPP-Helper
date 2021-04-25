@@ -12,7 +12,13 @@ export interface FontStyle {
 export interface CheckInterFace {
   [key: string]: boolean;
 }
-export type FCCheckFunction<T> = (T: CheckInterFace) => (arg: any) => JSX.Element;
+export type FCCheckFunction<T> = (t: CheckInterFace) => (arg: any) => JSX.Element;
+
+export interface TableColumn {
+  dataIndex: string;
+  title: string;
+  render?: (rowItem, index) => JSX.Element;
+}
 
 export * from "./viewModel";
 export * from "./reducer";

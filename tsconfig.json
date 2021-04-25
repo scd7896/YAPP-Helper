@@ -1,19 +1,22 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
       "utils/*": ["./src/utils/*"],
       "pages": ["./src/pages/*"],
       "atomic": ["./src/component/atomic"],
+      "atomic/*": ["./src/component/atomic/*"],
       "molecules/*": ["./src/component/molecules/*"],
       "@molecules": ["./src/component/molecules"],
+      "organisms/*": ["./src/component/organisms/*"],
       "organisms": ["./src/component/organisms"],
       "template/*": ["./src/component/template/*"],
       "hooks/*": ["./src/hooks/*"],
       "actions/*": ["./src/store/action/*"],
       "@font": ["./src/component/atomic/FontStyle"],
-      "@types": ["./src/types"]
+      "@types": ["./src/types"],
+      "@cmodel": ["./src/model"],
+      "@cmodel/*": ["./src/model/*"]
     },
     "sourceMap": true,
     "module": "commonjs",
@@ -25,5 +28,5 @@
     "types": ["node"],
     "typeRoots": ["./src/types", "./action"]
   },
-  "exclude": ["node_modules"]
+  "exclude": ["/node_modules"]
 }

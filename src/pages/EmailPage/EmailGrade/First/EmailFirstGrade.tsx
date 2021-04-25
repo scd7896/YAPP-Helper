@@ -1,9 +1,15 @@
 import * as React from "react";
-import { FileInput, NomalButton } from "atomic";
+import { FileButton, FileInput, NomalButton } from "atomic";
 import useHisotryRoute from "hooks/useHistoryRoute";
 import useDesire from "hooks/useDesire";
-import { InnerGradeBodySizeSection, InnerGradeFooter, WrapperHeader, TitleWrapperDiv } from "./EmailFirstGrade.styles";
 import { EmailGradeSubTitleSpan, EmailGradeTitleSpan } from "@font";
+import {
+  InnerGradeBodySizeSection,
+  InnerGradeFooter,
+  WrapperHeader,
+  TitleWrapperDiv,
+  DescriptionWrapperDiv,
+} from "./EmailFirstGrade.styles";
 
 const EmailFirstGrade = () => {
   const { pushHistory } = useHisotryRoute();
@@ -11,13 +17,25 @@ const EmailFirstGrade = () => {
     desireState: { users, filename },
   } = useDesire();
 
+  const excelFormDownload = React.useCallback(() => {
+    const link = document.createElement("a");
+    link.href = "/static/recruit_form_sheet.xlsx";
+    link.target = "_blank";
+    link.click();
+    link.remove();
+  }, []);
+
   return (
-    <div className={""}>
+    <div>
       <WrapperHeader>
         <TitleWrapperDiv>
           <EmailGradeTitleSpan>1.엑셀파일 업로드</EmailGradeTitleSpan>
         </TitleWrapperDiv>
-        <EmailGradeSubTitleSpan>📂엑셀파일을 업로드 해주세요</EmailGradeSubTitleSpan>
+        <DescriptionWrapperDiv>
+          <EmailGradeSubTitleSpan>📂엑셀파일을 업로드 해주세요</EmailGradeSubTitleSpan>
+
+          <FileButton onClick={excelFormDownload}>엑셀양식 다운로드</FileButton>
+        </DescriptionWrapperDiv>
       </WrapperHeader>
       <InnerGradeBodySizeSection>
         <FileInput fileName={filename} />
@@ -25,19 +43,10 @@ const EmailFirstGrade = () => {
       <InnerGradeFooter>
         <NomalButton
           size="default"
-          color="lightBlue"
-          onClick={() => {
-            pushHistory("/email");
-          }}
-        >
-          이전
-        </NomalButton>
-        <NomalButton
-          size="default"
           color="default"
           disabled={users.length === 0}
           onClick={() => {
-            pushHistory(`/email/2`);
+            pushHistory("/email/2");
           }}
         >
           다음

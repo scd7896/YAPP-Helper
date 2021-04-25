@@ -2,6 +2,7 @@ import * as crypto from "crypto";
 import { createJsend } from "../lib";
 import { MailForm } from "../models";
 import * as jwt from "jsonwebtoken";
+import * as fs from "fs";
 
 const mailgun = require("mailgun-js")({
   //mailgun 모듈
@@ -63,14 +64,13 @@ export const reSend = async (req, res) => {
  * }
  */
 export const send = async (req, res) => {
-  const mailforms = await MailForm.findMany();
+  const mailforms = await MailForm.findMany({ where: { type: "meeting" } });
   const io = req.app.get("socketio");
   if (mailforms.length !== 2 || mailforms[0].pass !== true || mailforms[1].pass !== false) {
     res.sendStatus(422);
     return;
   }
 
-  res.sendStatus(200);
   const mailgunPromises = req.body.users
     .map((user) => {
       const mailform = user.pass ? mailforms[0] : mailforms[1];
@@ -87,6 +87,7 @@ export const send = async (req, res) => {
       };
     })
     .map((data) => {
+      console.log(data);
       return mailgun
         .messages()
         .send(data)
@@ -102,12 +103,39 @@ export const send = async (req, res) => {
     redisClient.set(key, JSON.stringify(failList.filter(Boolean)));
     io.emit("send-key", key);
   });
+  res.sendStatus(200);
+};
+
+export const certificateMailSend = async (req, res) => {
+  const { mail, title, contents } = req.body;
+
+  mailgun
+    .messages()
+    .send({
+      from: "YAPP <support@yapp.co.kr>",
+      to: mail,
+      subject: title,
+      html: contents,
+      attachment: path.join(__dirname, "../public/", req.file.filename),
+    })
+    .then(() => {
+      res.status(200).json(createJsend("success", "전송성공"));
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(createJsend("success", "전송실패"));
+    });
+  fs.unlink(req.file.path, (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
 };
 
 export const sendInvitationMail = async (req, res) => {
   const mail = req.body.mail;
   if (!mail) res.status(400).json(createJsend("failure", "메일 주소는 필수 입니다."));
-  const accessToken = jwt.sign({ mail }, process.env.JWT_SECRET, { expiresIn: "10m" });
+  const accessToken = jwt.sign({ mail }, process.env.JWT_SECRET, { expiresIn: "24h" });
   const mailForm = {
     from: "YAPP <support@yapp.co.kr>",
     to: mail,
@@ -116,7 +144,7 @@ export const sendInvitationMail = async (req, res) => {
       <p>안녕하세요 YAPP 입니다.</p>
       <p>업무에 필요 한 부분이 있어 어드민 페이지의 권한을 드리려고 합니다.</p>
       <p>이 링크를 클릭해주세요</p>
-      <p>link: http://helper.yapp.co.kr/invitation?token=${accessToken}</p>
+      <p>link: http://helper.yapp.co.kr/invitation?token=${encodeURIComponent(accessToken)}</p>
       </html>`,
   };
   mailgun

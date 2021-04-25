@@ -16,14 +16,12 @@ const store = createStore(
     : composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 sagaMiddleware.run(rootSaga);
-const App = () => {
-  return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <RouterController />
-      </BrowserRouter>
-    </Provider>
-  );
-};
+const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <RouterController />
+    </BrowserRouter>
+  </Provider>
+);
 
 export default App;

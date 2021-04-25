@@ -31,7 +31,7 @@ export const ButtonWrapperLink = styled(Link)`
   height: 34px;
   padding-left: 30px;
   text-decoration: none;
-  background-color: ${({ isSelect }) => isSelect && color.helper_blue2};
+  background-color: ${({ selected }) => (selected ? color.helper_blue2 : "none")};
   &:hover {
     background-color: ${color.helper_blue2};
   }

@@ -32,3 +32,13 @@ model Users {
   createdAt DateTime
   updatedAt DateTime
 }
+
+model CertifiCate {
+  id              Int       @id @default(autoincrement())
+  title           String
+  backgroundImage String
+  subTitle        String?
+  contents        String?   @db.Text
+  createdAt       DateTime?
+  updatedAt       DateTime?
+}

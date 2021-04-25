@@ -1,8 +1,7 @@
 import * as express from "express";
 const router = express.Router();
 import * as controller from "../controller/email";
-
-const authMiddleWare = require("../middleware/auth");
+import { authenticateJWT, authenticateAdmin } from "../controller/user";
 const { body, matchedData, validationResult } = require("express-validator");
 
 const validate = (validations) => {
@@ -20,7 +19,8 @@ const validate = (validations) => {
 };
 
 router.post("/send", [
-  authMiddleWare,
+  authenticateJWT,
+  authenticateAdmin,
   validate([body("users").exists().isArray()]),
   (req, res, next) => {
     req.body = matchedData(req);
@@ -30,7 +30,8 @@ router.post("/send", [
 ]);
 
 router.post("/resend", [
-  authMiddleWare,
+  authenticateJWT,
+  authenticateAdmin,
   validate([body("key").exists().notEmpty().trim()]),
   (req, res, next) => {
     req.body = matchedData(req);

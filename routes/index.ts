@@ -6,6 +6,7 @@ import recruitRoute from "./recruit";
 import loginRoute from "./login";
 import userRoute from "./user";
 import invitationRoute from "./invitation";
+import certifiCate from "./certificate";
 
 const router = express.Router();
 
@@ -17,12 +18,14 @@ apiRouter.use("/recruit", recruitRoute);
 apiRouter.use("/login", loginRoute);
 apiRouter.use("/users", userRoute);
 apiRouter.use("/invitation", invitationRoute);
+apiRouter.use("/certificate", certifiCate);
 // apiRouter.use('/file', require('../controller/file'));
 apiRouter.use("*", (req, res) => res.sendStatus(404));
 
 router.use("/api", apiRouter);
 
 router.use(express.static("public"));
+router.use("/static", express.static("static"));
 
 router.get("/", (_, res) => {
   res.status(200).render("index.html");

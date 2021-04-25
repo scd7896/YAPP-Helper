@@ -1,47 +1,41 @@
 import * as jwt from "jsonwebtoken";
 import * as crypto from "crypto";
-
-import { createJsend } from "../lib";
-import { User } from "../models";
-import redisClient from "../config/redis";
 import { Users } from "@prisma/client";
+import { createJsend } from "../lib";
+import { UserModel } from "../models";
+import redisClient from "../config/redis";
 
 const createJWTToken = (user: Pick<Users, "name" | "token" | "isAdmin">) => {
-  const token = jwt.sign({ name: user.name, token: user.token, isAdmin: user.isAdmin }, process.env.JWT_SECRET);
+  const token = jwt.sign(
+    {
+      name: user.name,
+      token: user.token,
+      isAdmin: user.isAdmin,
+    },
+    process.env.JWT_SECRET
+  );
   redisClient.set(token, JSON.stringify(user));
   return token;
 };
 
 export const login = async (req, res) => {
   try {
-    const user = await User.findUnique({
-      where: {
-        token: req.body.token,
-      },
-    });
+    const accessToken = crypto.createHash("sha512").update(req.body.email).digest("base64");
+    const user = await UserModel.findByUniqueByToken(accessToken);
     if (!user) {
       return res.status(403).send("로그인 정보가 맞지않습니다");
     }
     const token = createJWTToken(user);
 
-    res.status(200).json({ token });
+    return res.status(200).json({ token });
   } catch (err) {
-    console.log(err);
-    res.status(500).send("데이터 베이스 조회 에러");
+    return res.status(500).send("데이터 베이스 조회 에러");
   }
 };
 
 export const getUsersData = async (_, res) => {
   try {
-    const users = await User.findMany({
-      select: {
-        isAdmin: true,
-        token: false,
-        name: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    });
+    const users = await UserModel.findUserList();
     res.status(200).json({ status: "success", data: users });
   } catch (err) {
     res.status(500).json({ status: "error", message: "서버 내부 오류" });
@@ -49,36 +43,33 @@ export const getUsersData = async (_, res) => {
 };
 
 export const invitationUser = (req, res) => {
-  const token = req.body.token;
+  const { token } = req.body;
   if (!token) {
     return res.status(400).json(createJsend("failure", "토큰이 없습니다"));
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+  jwt.verify(decodeURIComponent(token), process.env.JWT_SECRET, async (err, decoded) => {
     if (err) {
       return res.status(403).json(createJsend("failure", err.message));
     }
-    const user = await User.upsert({
-      where: {
-        token: decoded.mail,
-      },
-      create: {
-        token: crypto.createHash("sha512").update(decoded.mail).digest("base64") as string,
-        name: decoded.mail,
-        isAdmin: false,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      update: {},
-      select: {
-        token: true,
-        name: true,
-        isAdmin: true,
-      },
-    });
-    const token = createJWTToken(user);
-    return res.status(200).json({ token });
+    const user = await UserModel.addUpsertUser(decoded.mail);
+    const createdToken = createJWTToken(user);
+    return res.status(200).json({ token: createdToken });
   });
+  return null;
+};
+
+export const deleteUser = async (req, res) => {
+  const { id } = req.params;
+  if (isNaN(Number(id))) {
+    return res.status(400).json(createJsend("failure", "잘못된 유저번호입니다."));
+  }
+  try {
+    await UserModel.deleteUser(Number(id));
+    return res.status(200).json(createJsend("success", "삭제 성공"));
+  } catch (err) {
+    return res.status(500).json(createJsend("failure", err));
+  }
 };
 
 export const authenticateJWT = (req, res, next) => {
@@ -90,14 +81,14 @@ export const authenticateJWT = (req, res, next) => {
       if (err) {
         return res.sendStatus(403);
       }
-
       req.user = JSON.parse(reply);
-
       next();
+      return null;
     });
   } else {
     res.sendStatus(401);
   }
+  return null;
 };
 
 export const authenticateAdmin = (req, res, next) => {
