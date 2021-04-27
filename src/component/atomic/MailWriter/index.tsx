@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useCallback } from "react";
-import Quill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
 
 import "react-quill/dist/quill.snow.css";
 
@@ -21,11 +21,9 @@ const toolbarOptions = [
   [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
   [{ direction: "rtl" }], // text direction
 
-  [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  [{ size: [false, "small", "large", "huge"] }], // custom dropdown
 
   [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-  [{ font: [] }],
   [{ align: [] }],
 
   ["clean"],
@@ -55,7 +53,7 @@ const MailWriter = ({ className, value, setValue, name, required }: MailWriterPr
   return (
     <div className={className || ""}>
       <div>
-        <Quill modules={quillModules} value={value !== "" ? value : dummyText} onChange={handleChange} />
+        <ReactQuill modules={quillModules} value={value !== "" ? value : dummyText} onChange={handleChange} />
       </div>
       <textarea required={required} ref={textAreaRef} name={name} style={{ display: "none" }} defaultValue={value} />
     </div>

@@ -11,7 +11,7 @@ export const getPdfByElement = async (element, fileName) => {
   let heightLeft = imgHeight - pageHeight;
   const margin = 20;
   let position = 0;
-  doc.addImage(imgData, "jpeg", margin, position, imgWidth - margin * 2, imgHeight - margin * 2);
+  doc.addImage(imgData, "jpeg", margin, 30, imgWidth - margin * 2, imgHeight - margin * 2);
 
   while (heightLeft > 20) {
     position = heightLeft - imgHeight;
