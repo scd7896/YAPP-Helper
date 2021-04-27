@@ -1,0 +1,15 @@
+html {
+  font-size: 16px;
+}
+
+.ql-size-huge {
+  font-size: 4rem !important;
+}
+
+.ql-size-large {
+  font-size: 2rem !important;
+}
+
+.ql-size-small {
+  font-size: 0.9rem !important;
+}
