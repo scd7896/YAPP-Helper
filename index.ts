@@ -5,7 +5,7 @@ import * as path from "path";
 import * as cons from "consolidate";
 import * as cookieParser from "cookie-parser";
 
-import * as fileController from "./controller/file";
+dotenv.config();
 
 const cors = require("cors");
 
@@ -16,8 +16,6 @@ class App {
     this.application = express();
   }
 }
-
-dotenv.config();
 const app = new App().application;
 
 app.use(
@@ -26,7 +24,6 @@ app.use(
   })
 );
 app.use(cookieParser());
-
 // view engine setup
 app.engine("html", cons.swig);
 app.set("views", path.join(__dirname, "public"));
@@ -55,12 +52,6 @@ app.use((req, res) => {
   if (!res.headersSent) {
     res.sendStatus(500);
   }
-});
-
-app.post("/test", fileController.upload.single("test"), (req, res) => {
-  console.log(req);
-  const { username } = req.body;
-  res.send(`<h1>Hello</h1> ${username}`);
 });
 
 const server = app.listen(9170, () => console.log("서버 진행중 9170"));

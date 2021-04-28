@@ -6,6 +6,7 @@ import { CertificateModel } from "../models";
 
 export const postCertificate = async (req, res) => {
   const { title, contents, subTitle } = req.body;
+  console.log(req.file);
   try {
     const certifiCate = await CertificateModel.addCertificates({
       title,
