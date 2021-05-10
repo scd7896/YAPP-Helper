@@ -9,7 +9,7 @@ const config = {
   secretAccessKey: process.env.STORAGE_SECRETS,
   region: "ap-northeast-2",
 };
-console.log(config, process.env.MAILGUN_HOST);
+
 const s3Client = new aws.S3(config);
 
 const s3Storage = multerS3({
@@ -17,9 +17,8 @@ const s3Storage = multerS3({
   bucket: "static-yapp-helper",
   acl: "public-read",
   key: (req, file, cb) => {
-    console.log(file, config);
     crypto.randomBytes(16, (err, raw) => {
-      cb(null, raw.toString("hex") + path.extname(file.originalname));
+      cb(null, `public/${raw.toString("hex")}${path.extname(file.originalname)}`);
     });
   },
 });
@@ -35,7 +34,14 @@ const storage = multer.diskStorage({
   },
 });
 
-export const upload = multer({ storage: s3Storage });
+const targetStorage = process.env.NODE_ENV === "production" ? s3Storage : storage;
+
+// eslint-disable-next-line operator-linebreak
+export const originPath =
+  process.env.NODE_ENV === "production" ? "https://static-yapp-helper.s3.ap-northeast-2.amazonaws.com" : "/";
+export const getFileName = (file) => (process.env.NODE_ENV === "production" ? file.key : file.filename);
+
+export const upload = multer({ storage: targetStorage });
 export const passUpload = multer();
 export const saveUploadedFiles = (fields) => [
   upload.fields(fields.map((field) => ({ name: field }))),

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import * as express from "express";
 import * as dotenv from "dotenv";
 import * as fs from "fs";
