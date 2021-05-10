@@ -17,7 +17,7 @@ jobs:
       - name: USE-NODEJS
         uses: actions/setup-node@v1
         with:
-          node-version: "14.x"
+          node-version: "16.x"
       - run: npm install
       - run: npm run prod
 
@@ -36,4 +36,4 @@ jobs:
             npm install
             npm run generate
             npm run migrate
-            NODE_ENV=production && pm2 start index.ts
+            pm2 start index.ts
