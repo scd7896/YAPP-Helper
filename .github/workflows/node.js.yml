@@ -5,6 +5,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
@@ -12,9 +13,13 @@ jobs:
           envkey_STORAGE_SECRETS: ${{ secrets.STORAGE_SECRETS }}
           envkey_STORAGE_ID: ${{ secrets.STORAGE_ID }}
           file_name: .env
-
-      - shell: bash
-        run: npm run prod
+      - name: UPLOAD-S3Front-file
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+          check-latest: true
+      - run: npm install
+      - run: npm prod
 
       - name: Deploy NodeJS app
         uses: appleboy/ssh-action@master
