@@ -1,18 +1,18 @@
 import * as crypto from "crypto";
-import { createJsend } from "../lib";
-import { MailForm } from "../models";
 import * as jwt from "jsonwebtoken";
 import * as fs from "fs";
+import { createJsend } from "../lib";
+import { MailForm } from "../models";
 
 const mailgun = require("mailgun-js")({
-  //mailgun 모듈
+  // mailgun 모듈
   apiKey: process.env.MAILGUN_API_KEY,
   domain: process.env.MAILGUN_DOMAIN,
   host: process.env.MAILGUN_HOST,
 });
-const redisClient = require("../config/redis");
 
 const path = require("path");
+const redisClient = require("../config/redis");
 
 const sendUserResult = (io, user, error) => {
   // 메일 보내는 것 성공여부에 관계없이 결과를 프론트에 던져준다.
@@ -31,16 +31,16 @@ export const reSend = async (req, res) => {
       return res.status(500).json(createJsend("failure", "데이터가 없음"));
     }
     res.sendStatus(200);
-    const mailgunPromises = JSON.parse(data).map((data) => {
-      return mailgun
+    const mailgunPromises = JSON.parse(data).map((data) =>
+      mailgun
         .messages()
         .send(data)
         .then(() => sendUserResult(io, data.to, false))
         .catch(() => {
           sendUserResult(io, data.to, true);
           return data;
-        });
-    });
+        })
+    );
 
     Promise.all(mailgunPromises).then((failList) => {
       redisClient.set(key, JSON.stringify(failList.filter(Boolean)));
@@ -133,7 +133,7 @@ export const certificateMailSend = async (req, res) => {
 };
 
 export const sendInvitationMail = async (req, res) => {
-  const mail = req.body.mail;
+  const { mail } = req.body;
   if (!mail) res.status(400).json(createJsend("failure", "메일 주소는 필수 입니다."));
   const accessToken = jwt.sign({ mail }, process.env.JWT_SECRET, { expiresIn: "24h" });
   const mailForm = {

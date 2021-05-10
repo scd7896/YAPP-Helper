@@ -3,15 +3,17 @@ import { Request, Response } from "express";
 import { unlinkSync } from "fs";
 import { createJsend } from "../lib";
 import { CertificateModel } from "../models";
+import { getFileName } from "./file";
 
 export const postCertificate = async (req, res) => {
   const { title, contents, subTitle } = req.body;
+  const fileName = getFileName(req.file);
   try {
     const certifiCate = await CertificateModel.addCertificates({
       title,
       contents,
       subTitle,
-      backgroundImage: req.file.filename,
+      backgroundImage: fileName,
     });
     res.status(200).json(createJsend("success", certifiCate));
   } catch (err) {
@@ -70,7 +72,7 @@ export const putCertificate = async (req, res: Response) => {
 
   if (file) {
     unlinkSync(`public/${targetCertificate.backgroundImage}`);
-    param.backgroundImage = req.file.filename;
+    param.backgroundImage = getFileName(req.file);
   } else {
     param.backgroundImage = targetCertificate.backgroundImage;
   }
