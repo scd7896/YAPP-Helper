@@ -5,24 +5,21 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    strategy:
-    matrix:
-      node-version: [14.x]
 
     steps:
+      - uses: actions/checkout@v2
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_STORAGE_SECRETS: ${{ secrets.STORAGE_SECRETS }}
           envkey_STORAGE_ID: ${{ secrets.STORAGE_ID }}
           file_name: .env
-      - name: UPLOAD-S3Front-file
-        uses: actions/setup-node@v2
+      - name: USE-NODEJS
+        uses: actions/setup-node@v1
         with:
-          node-version: "14"
-          check-latest: true
+          node-version: "14.x"
       - run: npm install
-      - run: npm prod
+      - run: npm run prod
 
       - name: Deploy NodeJS app
         uses: appleboy/ssh-action@master
