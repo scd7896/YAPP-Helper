@@ -31,13 +31,12 @@ router.use(express.static("public"));
 router.use("/static", express.static("static"));
 
 const renderHTML = async (_, res) => {
-  if (true) {
+  if (process.env.NODE_ENV === "production") {
     const encodeVersion = encodeURIComponent(version);
     const response = await axios.get(
-      `https://static-yapp-helper.s3.ap-northeast-2.amazonaws.com/${encodeVersion}/index.html`
+      `https://static-yapp-helper.s3.ap-northeast-2.amazonaws.com/dist/${encodeVersion}/index.html`
     );
     const html = response.data;
-    console.log(html);
     res.setHeader("Content-Type", "text/html");
     res.status(200).send(html);
   } else {
