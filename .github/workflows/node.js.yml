@@ -36,4 +36,4 @@ jobs:
             npm install
             npm run generate
             npm run migrate
-            pm2 start index.ts
+            NODE_ENV=production && pm2 start index.ts
