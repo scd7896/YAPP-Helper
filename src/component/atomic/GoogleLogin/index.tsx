@@ -3,25 +3,27 @@ import { useHistory } from "react-router-dom";
 import GoogleLoginComponent, { GoogleLoginResponse } from "react-google-login";
 import request from "utils/request";
 import { setCookie } from "utils/cookie";
+
 const GoogleLogin = () => {
   const history = useHistory();
-  const errorCallback = (response: any) => {};
+  const errorCallback = () => {
+    alert("구글 오류");
+  };
   const successCallback = (response: GoogleLoginResponse) => {
     request
       .post("/api/login", {
-        body: { email: response.profileObj.email },
+        body: { accessToken: response.accessToken },
       })
       .then((res) => {
         setCookie("token", res.data.token, 1);
 
         history.push("/select");
       })
-      .catch((err) => {
-        console.log("err", err);
+      .catch(() => {
         alert("로그인 실패");
       });
   };
-  const autoLoadFinishCallback = (sucessLogin: boolean) => {};
+  const autoLoadFinishCallback = () => null;
   return (
     <div>
       <GoogleLoginComponent
