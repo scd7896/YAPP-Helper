@@ -1,9 +1,12 @@
 import * as jwt from "jsonwebtoken";
 import * as crypto from "crypto";
 import { Users } from "@prisma/client";
+import { google } from "googleapis";
 import { createJsend } from "../lib";
 import { UserModel } from "../models";
 import redisClient from "../config/redis";
+
+const { OAuth2 } = google.auth;
 
 const createJWTToken = (user: Pick<Users, "name" | "token" | "isAdmin">) => {
   const token = jwt.sign(
@@ -20,17 +23,29 @@ const createJWTToken = (user: Pick<Users, "name" | "token" | "isAdmin">) => {
 
 export const login = async (req, res) => {
   try {
-    const accessToken = crypto.createHash("sha512").update(req.body.email).digest("base64");
-    const user = await UserModel.findByUniqueByToken(accessToken);
-    if (!user) {
-      return res.status(403).send("로그인 정보가 맞지않습니다");
-    }
-    const token = createJWTToken(user);
+    const oauth2Client = new OAuth2();
+    oauth2Client.setCredentials({ access_token: req.body.accessToken });
+    const oauth2 = google.oauth2({
+      auth: oauth2Client,
+      version: "v2",
+    });
+    oauth2.userinfo.get(async (err, userInfo) => {
+      if (err) {
+        return res.status(500).json(createJsend("failure", "구글 api 조회 실패"));
+      }
+      const accessToken = crypto.createHash("sha512").update(userInfo.data.email).digest("base64");
+      const user = await UserModel.findByUniqueByToken(accessToken);
+      if (!user) {
+        return res.status(403).send("로그인 정보가 맞지않습니다");
+      }
+      const token = createJWTToken(user);
 
-    return res.status(200).json({ token });
+      return res.status(200).json({ token });
+    });
   } catch (err) {
     return res.status(500).send("데이터 베이스 조회 에러");
   }
+  return null;
 };
 
 export const getUsersData = async (_, res) => {
