@@ -1,7 +1,7 @@
 {
   "name": "yapp_mail_system",
-  "version": "2.0.0",
-  "prevVersion": "1.9.9",
+  "version": "2.0.1",
+  "prevVersion": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
