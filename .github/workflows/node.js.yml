@@ -29,10 +29,10 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd ~/YAPP-Helper
-            npm run prod:kill
             git pull origin master  
             rm -rf node_modules
             npm install
+            npm run prod:kill
             npm run generate
             npm run migrate
             npm run prod:start
