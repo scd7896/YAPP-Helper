@@ -5,6 +5,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as cons from "consolidate";
 import * as cookieParser from "cookie-parser";
+import route from "./routes";
 
 dotenv.config();
 
@@ -26,13 +27,15 @@ app.use(
 );
 app.use(cookieParser());
 // view engine setup
-app.engine("html", cons.swig);
-app.set("views", path.join(__dirname, "public"));
-app.set("view engine", "html");
+if (process.env.NODE_ENV !== "production") {
+  app.engine("html", cons.swig);
+  app.set("views", path.join(__dirname, "public"));
+  app.set("view engine", "html");
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(require("./routes"));
+app.use(route);
 
 app.use((err, req, res, next) => {
   if (typeof req.files === "object") {

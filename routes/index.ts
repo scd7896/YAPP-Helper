@@ -51,4 +51,4 @@ router.get("/invitation", (_, res) => {
 });
 
 router.get("*", [UserController.authenticateJWT, renderHTML]);
-module.exports = router;
+export default router;
