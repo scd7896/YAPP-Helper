@@ -37,21 +37,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(route);
 
-app.use((err, req, res, next) => {
-  if (typeof req.files === "object") {
-    Object.values(req.files)
-      .flat()
-      .forEach((file: any) => {
-        fs.unlink(file.path, (fileError) => {
-          if (fileError) {
-            return next(fileError);
-          }
-          return null;
-        });
-      });
-  }
-  next(err);
-});
 app.use((req, res) => {
   if (!res.headersSent) {
     res.sendStatus(500);

@@ -1,7 +1,7 @@
+import { unlink } from "fs";
 import { createJsend } from "../lib";
 import { MailFormModel } from "../models";
-
-const { unlink } = require("fs");
+import * as FileController from "./file";
 
 export const findUnique = async (req, res, next) => {
   try {
@@ -37,12 +37,21 @@ export const update = async (req, res, next) => {
     header_image: req.mailform.header_image,
     map_image: req.mailform.map_image,
   };
+
   try {
     ["header_image", "map_image"].forEach((key) => {
       if (req.body[key] !== undefined) {
         try {
-          unlink(`public/${previous[key]}`, () => console.log(`successfully deleted ${previous[key]}`));
-        } catch (err) {}
+          if (process.env.NODE_ENV === "production") {
+            FileController.removeS3Item(previous[key], (err, data) => {
+              console.log(err);
+            });
+          } else {
+            unlink(`public/${previous[key]}`, () => console.log(`successfully deleted ${previous[key]}`));
+          }
+        } catch (err) {
+          console.log(err);
+        }
       }
     });
 

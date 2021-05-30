@@ -1,14 +1,23 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-confusing-arrow */
+/* eslint-disable implicit-arrow-linebreak */
 import * as crypto from "crypto";
 import * as jwt from "jsonwebtoken";
 import * as fs from "fs";
+import axios from "axios";
+import { GetObjectOutput } from "aws-sdk/clients/s3";
 import { createJsend } from "../lib";
 import { MailForm } from "../models";
+import { getFileData, originPath } from "./file";
 
-const mailgun = require("mailgun-js")({
-  // mailgun 모듈
-  apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN,
-  host: process.env.MAILGUN_HOST,
+const FormData = require("form-data");
+const Mailgun = require("mailgun.js");
+
+const mailgun = new Mailgun(FormData);
+
+const mg = mailgun.client({
+  key: process.env.MAILGUN_API_KEY,
+  username: "api",
 });
 
 const path = require("path");
@@ -32,7 +41,7 @@ export const reSend = async (req, res) => {
     }
     res.sendStatus(200);
     const mailgunPromises = JSON.parse(data).map((data) =>
-      mailgun
+      mg
         .messages()
         .send(data)
         .then(() => sendUserResult(io, data.to, false))
@@ -48,6 +57,8 @@ export const reSend = async (req, res) => {
   });
 };
 
+const getImagePath = (name: string) =>
+  process.env.NODE_ENV === "production" ? `${originPath}${name}` : path.join(__dirname, "../public/", name);
 /**
  * 지원자들 리스트를 받아서 그냥 메일을 쭈욱 보낸다.
  * TODO: 보낸 결과를 io.emit으로 전송한다.
@@ -70,47 +81,47 @@ export const send = async (req, res) => {
     res.sendStatus(422);
     return;
   }
-
-  const mailgunPromises = req.body.users
-    .map((user) => {
-      const mailform = user.pass ? mailforms[0] : mailforms[1];
-      return {
-        from: "YAPP <support@yapp.co.kr>",
-        to: user.email,
-        subject: mailform.title,
-        html: `<html>
-          <img src="cid:${mailform.header_image}" width="750px" height="150px">
+  getFileData(mailforms[0].map_image, (_, object) => {
+    const mailgunPromises = req.body.users
+      .map((user) => {
+        const mailform = user.pass ? mailforms[0] : mailforms[1];
+        return {
+          from: "YAPP <support@yapp.co.kr>",
+          to: user.email,
+          subject: mailform.title,
+          html: `<html>
+          <img src="${originPath}${mailform.header_image}" width="750px" height="150px">
           <p>${mailform.contents.replace(/\[name\]/g, user.name).replace(/\[meetingTime\]/g, user.meetingTime)}</p>
           </html>`,
-        inline: path.join(__dirname, "../public/", mailform.header_image),
-        attachment: user.pass && path.join(__dirname, "../public/", mailform.map_image),
-      };
-    })
-    .map((data) => {
-      console.log(data);
-      return mailgun
-        .messages()
-        .send(data)
-        .then(() => sendUserResult(io, data.to, false))
-        .catch(() => {
-          sendUserResult(io, data.to, true);
-          return data;
-        });
-    });
-
-  Promise.all(mailgunPromises).then((failList) => {
-    const key = crypto.randomBytes(16).toString("hex");
-    redisClient.set(key, JSON.stringify(failList.filter(Boolean)));
-    io.emit("send-key", key);
+          attachment: { data: object.Body, filename: "mapimage.jpg" },
+        };
+      })
+      .map((data) =>
+        mg.messages
+          .create("yapp.co.kr", data)
+          .then(() => sendUserResult(io, data.to, false))
+          .catch((err) => {
+            console.log(err);
+            sendUserResult(io, data.to, true);
+            return data;
+          })
+      );
+    try {
+      Promise.all(mailgunPromises).then((failList) => {
+        const key = crypto.randomBytes(16).toString("hex");
+        io.emit("send-key", key);
+      });
+    } catch (err) {
+      console.log("전송에러임");
+    }
+    res.sendStatus(200);
   });
-  res.sendStatus(200);
 };
 
 export const certificateMailSend = async (req, res) => {
   const { mail, title, contents } = req.body;
 
-  mailgun
-    .messages()
+  mg.messages()
     .send({
       from: "YAPP <support@yapp.co.kr>",
       to: mail,
@@ -147,8 +158,7 @@ export const sendInvitationMail = async (req, res) => {
       <p>link: http://helper.yapp.co.kr/invitation?token=${encodeURIComponent(accessToken)}</p>
       </html>`,
   };
-  mailgun
-    .messages()
+  mg.messages()
     .send(mailForm)
     .then(() => {
       res.status(200).json(createJsend("success", "메일 전송 성공"));

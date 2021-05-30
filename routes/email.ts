@@ -1,21 +1,21 @@
 import * as express from "express";
-const router = express.Router();
 import * as controller from "../controller/email";
 import { authenticateJWT, authenticateAdmin } from "../controller/user";
+
+const router = express.Router();
+
 const { body, matchedData, validationResult } = require("express-validator");
 
-const validate = (validations) => {
-  return async (req, res, next) => {
-    await Promise.all(validations.map((validation) => validation.run(req)));
+const validate = (validations) => async (req, res, next) => {
+  await Promise.all(validations.map((validation) => validation.run(req)));
 
-    const errors = validationResult(req);
-    if (errors.isEmpty()) {
-      return next();
-    }
+  const errors = validationResult(req);
+  if (errors.isEmpty()) {
+    return next();
+  }
 
-    res.sendStatus(400);
-    next(errors.array());
-  };
+  res.sendStatus(400);
+  next(errors.array());
 };
 
 router.post("/send", [

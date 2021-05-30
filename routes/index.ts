@@ -35,7 +35,7 @@ const renderHTML = async (_, res) => {
   const encodeVersion = encodeURIComponent(version);
   // eslint-disable-next-line operator-linebreak
   const url =
-    process.env.NODE_ENV === "production"
+    process.env.NODE_ENV === "production" && false
       ? `https://static-yapp-helper.s3.ap-northeast-2.amazonaws.com/dist/${encodeVersion}/index.html`
       : "/index.html";
   const response = await axios.get(url);
