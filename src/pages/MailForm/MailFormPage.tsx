@@ -44,7 +44,7 @@ const MailFormPage = () => {
     switch (type) {
       case "meeting":
         if (pass) return "합격";
-        else return "불합격";
+        return "불합격";
       default:
         return "";
     }

@@ -29,7 +29,7 @@ const useDesire = () => {
 
   const initDesire = useCallback(() => {
     dispatch(initDesireAction());
-  }, []);
+  }, [dispatch]);
 
   return {
     desireState,

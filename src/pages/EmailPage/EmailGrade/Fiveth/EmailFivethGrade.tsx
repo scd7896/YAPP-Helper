@@ -12,6 +12,7 @@ import { url } from "../../../../_data";
 import { WrapperDiv, TitleHeaderWrapper } from "./EmailFivethGrade.styles";
 
 const EmailFivethGrade = () => {
+  const canRequest = React.useRef(true);
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
   const {
     desireState: { allList },
@@ -20,9 +21,11 @@ const EmailFivethGrade = () => {
   const [keyString, setKeyString] = useState("");
 
   useEffect(() => {
-    if (socket === null) {
-      setSocket(io(url));
-    } else {
+    setSocket(io(url));
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
       socket.on("list-add", (data: SendUserResult) => {
         mailResultSetData(data);
       });
@@ -33,12 +36,12 @@ const EmailFivethGrade = () => {
   }, [socket, mailResultSetData]);
 
   useEffect(() => {
-    postMailSend({ users: allList });
+    if (canRequest.current) {
+      postMailSend({ users: allList });
+      canRequest.current = false;
+    }
+    console.log("aaaaa");
   }, [allList]);
-
-  useEffect(() => {
-    console.log(keyString);
-  }, [keyString]);
 
   return (
     <WrapperDiv>
@@ -53,4 +56,4 @@ const EmailFivethGrade = () => {
   );
 };
 
-export default EmailFivethGrade;
+export default React.memo(EmailFivethGrade);
