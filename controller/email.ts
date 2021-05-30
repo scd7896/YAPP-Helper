@@ -1,3 +1,4 @@
+/* eslint-disable function-paren-newline */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-confusing-arrow */
 /* eslint-disable implicit-arrow-linebreak */
@@ -81,7 +82,7 @@ export const send = async (req, res) => {
     res.sendStatus(422);
     return;
   }
-  getFileData(mailforms[0].map_image, (_, object) => {
+  getFileData(mailforms[0].map_image, async (_, object) => {
     const mailgunPromises = req.body.users
       .map((user) => {
         const mailform = user.pass ? mailforms[0] : mailforms[1];
@@ -93,7 +94,7 @@ export const send = async (req, res) => {
           <img src="${originPath}${mailform.header_image}" width="750px" height="150px">
           <p>${mailform.contents.replace(/\[name\]/g, user.name).replace(/\[meetingTime\]/g, user.meetingTime)}</p>
           </html>`,
-          attachment: { data: object.Body, filename: "mapimage.jpg" },
+          attachment: user.pass ? { data: object.Body, filename: "mapimage.jpg" } : undefined,
         };
       })
       .map((data) =>
@@ -107,10 +108,10 @@ export const send = async (req, res) => {
           })
       );
     try {
-      Promise.all(mailgunPromises).then((failList) => {
-        const key = crypto.randomBytes(16).toString("hex");
-        io.emit("send-key", key);
-      });
+      const failList = await Promise.all(mailgunPromises);
+      const key = crypto.randomBytes(16).toString("hex");
+      io.emit("send-key", key);
+      io.close();
     } catch (err) {
       console.log("전송에러임");
     }
