@@ -1,8 +1,10 @@
+/* eslint-disable implicit-arrow-linebreak */
 import { MailForms } from "@prisma/client";
+import { originPath } from "../controller/file";
 import { MailForm } from "./index";
 
-export const findMailFormById = (id: number) => {
-  return MailForm.findUnique({
+export const findMailFormById = (id: number) =>
+  MailForm.findUnique({
     select: {
       id: true,
       title: true,
@@ -14,7 +16,6 @@ export const findMailFormById = (id: number) => {
     },
     where: { id },
   });
-};
 
 export const findMailFormOrderById = async () => {
   const mailforms = await MailForm.findMany({
@@ -29,13 +30,13 @@ export const findMailFormOrderById = async () => {
     type: mailform.type,
     pass: mailform.pass,
     contents: mailform.contents,
-    header_image: `/${mailform.header_image}`,
-    map_image: `/${mailform.map_image}`,
+    header_image: `${originPath}${mailform.header_image}`,
+    map_image: `${originPath}${mailform.map_image}`,
   }));
 };
 
-export const updateMailForm = (id: number, data: MailForms) => {
-  return MailForm.update({
+export const updateMailForm = (id: number, data: MailForms) =>
+  MailForm.update({
     where: {
       id,
     },
@@ -44,4 +45,3 @@ export const updateMailForm = (id: number, data: MailForms) => {
       updatedAt: new Date(),
     },
   });
-};

@@ -11,6 +11,7 @@ import {
   setMailTextValue,
 } from "actions/mail";
 import useMailform from "hooks/useMailform";
+import { ClickUnderLineSpan } from "@font";
 import {
   FormWrapperDiv,
   TitleWrapperSection,
@@ -24,7 +25,6 @@ import {
   SubImg,
   Footer,
 } from "./Mailform.styles";
-import { ClickUnderLineSpan } from "@font";
 
 const MailForm = () => {
   const dispatch = useDispatch();
@@ -32,10 +32,14 @@ const MailForm = () => {
     mailformState: { title, headImageURL, subImageURL, headImageEditMode, subImageEditMode, text },
   } = useMailform();
 
-  const changeValue = useCallback((value: string) => {
-    dispatch(setMailTitle(value));
-  }, []);
-  const headImageClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+  const changeValue = useCallback(
+    (value: string) => {
+      dispatch(setMailTitle(value));
+    },
+    [dispatch]
+  );
+
+  const headImageClick = () => {
     dispatch(toggleMailHeadImageEditMode());
   };
 
@@ -45,11 +49,14 @@ const MailForm = () => {
 
   const submitMailFormPut = useCallback(() => {
     dispatch(putMailFormRequest());
-  }, []);
+  }, [dispatch]);
 
-  const mailDescriptionChange = useCallback((value: string) => {
-    dispatch(setMailTextValue(value));
-  }, []);
+  const mailDescriptionChange = useCallback(
+    (value: string) => {
+      dispatch(setMailTextValue(value));
+    },
+    [dispatch]
+  );
 
   return (
     <FormWrapperDiv>
