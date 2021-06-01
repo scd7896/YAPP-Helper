@@ -58,8 +58,7 @@ export const reSend = async (req, res) => {
   });
 };
 
-const getImagePath = (name: string) =>
-  process.env.NODE_ENV === "production" ? `${originPath}${name}` : path.join(__dirname, "../public/", name);
+const getImagePath = (name: string) => `${originPath}${name}`;
 /**
  * 지원자들 리스트를 받아서 그냥 메일을 쭈욱 보낸다.
  * TODO: 보낸 결과를 io.emit으로 전송한다.

@@ -33,26 +33,9 @@ export const removeS3Item = (param, callback) => {
   };
   s3Client.deleteObject(params, callback);
 };
+const targetStorage = s3Storage;
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, "public");
-  },
-  filename(req, file, cb) {
-    crypto.randomBytes(16, (err, raw) => {
-      cb(err, err ? undefined : raw.toString("hex") + path.extname(file.originalname));
-    });
-  },
-});
-
-const targetStorage = process.env.NODE_ENV === "production" ? s3Storage : storage;
-
-// eslint-disable-next-line operator-linebreak
-export const originPath =
-  process.env.NODE_ENV === "production" ? "https://static-yapp-helper.s3.ap-northeast-2.amazonaws.com/" : "/";
-
-export const imageOriginPath =
-  process.env.NODE_ENV === "production" ? "https://static-yapp-helper.s3.ap-northeast-2.amazonaws.com/public/" : "/";
+export const originPath = "https://static-yapp-helper.s3.ap-northeast-2.amazonaws.com/";
 
 export const getFileName = (file) => (process.env.NODE_ENV === "production" ? file.key : file.filename);
 

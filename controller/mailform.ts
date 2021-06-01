@@ -42,13 +42,9 @@ export const update = async (req, res, next) => {
     ["header_image", "map_image"].forEach((key) => {
       if (req.body[key] !== undefined) {
         try {
-          if (process.env.NODE_ENV === "production") {
-            FileController.removeS3Item(previous[key], (err, data) => {
-              console.log(err);
-            });
-          } else {
-            unlink(`public/${previous[key]}`, () => console.log(`successfully deleted ${previous[key]}`));
-          }
+          FileController.removeS3Item(previous[key], (err, data) => {
+            console.log(err);
+          });
         } catch (err) {
           console.log(err);
         }
