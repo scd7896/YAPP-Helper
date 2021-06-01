@@ -8,7 +8,7 @@ import SelectLayout from "template/SelectLayout/SelectLayout";
 const SelectMailType = () => {
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
   useEffect(() => {
-    setSocket(io("http://helper.yapp.co.kr:9170/"));
+    setSocket(io("https://helper.yapp.co.kr:9170/"));
   }, []);
 
   useEffect(() => {

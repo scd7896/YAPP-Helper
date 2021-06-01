@@ -155,7 +155,7 @@ export const sendInvitationMail = async (req, res) => {
       <p>안녕하세요 YAPP 입니다.</p>
       <p>업무에 필요 한 부분이 있어 어드민 페이지의 권한을 드리려고 합니다.</p>
       <p>이 링크를 클릭해주세요</p>
-      <p>link: http://helper.yapp.co.kr/invitation?token=${encodeURIComponent(accessToken)}</p>
+      <p>link: https://helper.yapp.co.kr/invitation?token=${encodeURIComponent(accessToken)}</p>
       </html>`,
   };
   mg.messages()
