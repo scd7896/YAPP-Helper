@@ -40,7 +40,6 @@ const EmailFivethGrade = () => {
       postMailSend({ users: allList });
       canRequest.current = false;
     }
-    console.log("aaaaa");
   }, [allList]);
 
   return (
