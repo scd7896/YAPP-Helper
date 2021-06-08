@@ -1,37 +1,37 @@
-on:
-  push:
-    branches: []
+# on:
+#   push:
+#     branches: [master]
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_STORAGE_SECRETS: ${{ secrets.STORAGE_SECRETS }}
-          envkey_STORAGE_ID: ${{ secrets.STORAGE_ID }}
-          file_name: .env
-      - name: USE-NODEJS
-        uses: actions/setup-node@v1
-        with:
-          node-version: "16.x"
-      - run: npm install
-      - run: npm run prod
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Make envfile
+#         uses: SpicyPizza/create-envfile@v1
+#         with:
+#           envkey_STORAGE_SECRETS: ${{ secrets.STORAGE_SECRETS }}
+#           envkey_STORAGE_ID: ${{ secrets.STORAGE_ID }}
+#           file_name: .env
+#       - name: USE-NODEJS
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: "16.x"
+#       - run: npm install
+#       - run: npm run prod
 
-      - name: Deploy NodeJS app
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd ~/YAPP-Helper
-            git pull origin master  
-            npm install
-            npm run prod:kill
-            npm run generate
-            npm run migrate
-            npm run prod:start
+#       - name: Deploy NodeJS app
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ secrets.SSH_HOST }}
+#           username: ${{ secrets.SSH_USER }}
+#           key: ${{ secrets.SSH_KEY }}
+#           script: |
+#             cd ~/YAPP-Helper
+#             git pull origin master
+#             npm install
+#             npm run prod:kill
+#             npm run generate
+#             npm run migrate
+#             npm run prod:start
