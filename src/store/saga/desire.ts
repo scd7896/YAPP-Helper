@@ -68,9 +68,9 @@ function* watchUserListSetByForm() {
   yield takeLatest(USERLIST_SET_BY_FORMDATA_REQUEST, userListSetByForm);
 }
 
-function* mailtemplatesFetch(action: ReturnType<typeof getMailTemplatesListFetch>) {
+function* mailtemplatesFetch({ payload }: ReturnType<typeof getMailTemplatesListFetch>) {
   try {
-    const data = yield call(getMailFormAll);
+    const data = yield call(getMailFormAll, payload);
     yield put({
       type: MAILTEMPLATES_FETCH_SUCCESS,
       payload: data,

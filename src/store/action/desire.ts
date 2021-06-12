@@ -54,9 +54,10 @@ const setUserDataByFormResult = (payload: Array<User>) => {
   };
 };
 
-export const getMailTemplatesListFetch = () => {
+export const getMailTemplatesListFetch = (payload) => {
   return {
     type: MAILTEMPLATES_FETCH_REQUEST,
+    payload,
   };
 };
 

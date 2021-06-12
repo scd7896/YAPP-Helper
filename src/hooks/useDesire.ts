@@ -19,9 +19,12 @@ const useDesire = () => {
     [dispatch]
   );
 
-  const mailTemplatesListFetch = useCallback(() => {
-    dispatch(getMailTemplatesListFetch());
-  }, [dispatch]);
+  const mailTemplatesListFetch = useCallback(
+    (type) => {
+      dispatch(getMailTemplatesListFetch(type));
+    },
+    [dispatch]
+  );
 
   const setUserData = useCallback(() => {
     dispatch(setUserDataByFormRequest());

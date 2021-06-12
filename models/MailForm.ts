@@ -17,8 +17,11 @@ export const findMailFormById = (id: number) =>
     where: { id },
   });
 
-export const findMailFormOrderById = async () => {
+export const findMailFormOrderById = async ({ type }) => {
   const mailforms = await MailForm.findMany({
+    where: {
+      type,
+    },
     orderBy: {
       id: "asc",
     },
