@@ -1,4 +1,3 @@
-import { unlink } from "fs";
 import { createJsend } from "../lib";
 import { MailFormModel } from "../models";
 import * as FileController from "./file";
@@ -65,7 +64,9 @@ export const destroy = (req, res, next) => {
     .then((mailform) => {
       res.sendStatus(204);
       ["header_image", "map_image"].forEach((key) => {
-        unlink(mailform[key], () => console.log(`successfully deleted ${mailform[key]}`));
+        FileController.removeS3Item(mailform[key], (a, b) => {
+          console.log(a, b);
+        });
       });
     })
     .catch((err) => {

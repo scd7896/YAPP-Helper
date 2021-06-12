@@ -9,9 +9,6 @@ import {
   MAILTEMPLATES_FETCH_SUCCESS,
   MAILTEMPLATES_FETCH_FAILURE,
   MAILTEMPLATES_ALLFETCH_REQUEST,
-  MAILTEMPLATES_ALLFETCH_FAILURE,
-  MAILTEMPLATES_ALLFETCH_SUCCESS,
-  SET_MAIL_FORM,
 } from "../action/actionTypes";
 import { xlsxRead } from "utils/xlsxreader";
 import { setExcelValueRequset, setUserDataByFormRequest, getMailTemplatesListFetch } from "actions/desire";

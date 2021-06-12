@@ -13,7 +13,8 @@
     "migrate": "prisma migrate deploy",
     "migrate-up": "prisma migrate dev",
     "generate": "prisma generate",
-    "seed": "ts-node ./seeders/index.ts"
+    "seed": "ts-node ./seeders/index.ts",
+    "build:server": "webpack --config=webpack.config.server.js"
   },
   "author": "",
   "license": "ISC",
