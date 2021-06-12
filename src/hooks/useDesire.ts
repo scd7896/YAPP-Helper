@@ -20,7 +20,7 @@ const useDesire = () => {
   );
 
   const mailTemplatesListFetch = useCallback(
-    (type) => {
+    (type?: string) => {
       dispatch(getMailTemplatesListFetch(type));
     },
     [dispatch]
