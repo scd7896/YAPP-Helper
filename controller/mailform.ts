@@ -20,7 +20,7 @@ export const findUnique = async (req, res, next) => {
 
 export const index = async (req, res, next) => {
   try {
-    const mailforms = await MailFormModel.findMailFormOrderById();
+    const mailforms = await MailFormModel.findMailFormOrderById({ type: req.query.type });
     res.json(mailforms);
   } catch (err) {
     console.log(err);

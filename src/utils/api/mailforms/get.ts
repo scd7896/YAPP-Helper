@@ -1,7 +1,7 @@
 import request from "utils/request";
 
-export const getMailFormAll = async () => {
-  const res = await request.get("/api/mailforms");
+export const getMailFormAll = async (type = null) => {
+  const res = await request.get(`/api/mailforms`, { type });
   const data = res.data;
   const dataList = data.map((mailForm: any) => {
     return {

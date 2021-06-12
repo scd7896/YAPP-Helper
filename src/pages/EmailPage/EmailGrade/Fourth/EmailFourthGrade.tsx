@@ -43,7 +43,7 @@ const EmailFourthGrade = () => {
 
   useEffect(() => {
     if (mailTemplates === null) {
-      mailTemplatesListFetch();
+      mailTemplatesListFetch("meeting");
     }
   }, [mailTemplates, mailTemplatesListFetch]);
 
