@@ -21,6 +21,7 @@ const EmailFirstGrade = () => {
     const link = document.createElement("a");
     link.href = "/static/recruit_form_sheet.xlsx";
     link.target = "_blank";
+    link.download = "엑셀양식.xlsx";
     link.click();
     link.remove();
   }, []);
