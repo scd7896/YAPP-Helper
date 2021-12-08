@@ -1,9 +1,9 @@
 import { CertifiCate } from "@prisma/client";
 import { Request, Response } from "express";
-import { unlinkSync } from "fs";
+
 import { createJsend } from "../lib";
 import { CertificateModel } from "../models";
-import { getFileName } from "./file";
+import { getFileName, removeS3Item } from "./file";
 
 export const postCertificate = async (req, res) => {
   const { title, contents, subTitle } = req.body;
@@ -71,7 +71,10 @@ export const putCertificate = async (req, res: Response) => {
   }
 
   if (file) {
-    unlinkSync(`public/${targetCertificate.backgroundImage}`);
+    removeS3Item(`public/${targetCertificate.backgroundImage}`, (a, b) => {
+      console.log(a, b);
+    });
+
     param.backgroundImage = getFileName(req.file);
   } else {
     param.backgroundImage = targetCertificate.backgroundImage;
