@@ -37,10 +37,9 @@ const targetStorage = s3Storage;
 
 export const originPath = "https://static-yapp-helper.s3.ap-northeast-2.amazonaws.com/";
 
-export const getFileName = (file) => (process.env.NODE_ENV === "production" ? file.key : file.filename);
+export const getFileName = (file) => file.key;
 
 export const upload = multer({ storage: targetStorage });
-export const passUpload = multer();
 export const saveUploadedFiles = (fields) => [
   upload.fields(fields.map((field) => ({ name: field }))),
   (req, res, next) => {

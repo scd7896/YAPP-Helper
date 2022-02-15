@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import * as express from "express";
 import * as dotenv from "dotenv";
-import * as fs from "fs";
-import * as path from "path";
-import * as cons from "consolidate";
 import * as cookieParser from "cookie-parser";
 import route from "./routes";
 
@@ -26,12 +23,6 @@ app.use(
   })
 );
 app.use(cookieParser());
-// view engine setup
-if (process.env.NODE_ENV !== "production") {
-  app.engine("html", cons.swig);
-  app.set("views", path.join(__dirname, "public"));
-  app.set("view engine", "html");
-}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

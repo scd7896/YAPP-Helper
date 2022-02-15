@@ -2,21 +2,16 @@ import * as React from "react";
 import { Switch, Route } from "react-router-dom";
 import loadable from "@loadable/component";
 import { Modal } from "atomic";
-
-const Recruit = loadable(() => import(/* webpackChunkName: "recruit" */ "./Recruit/RecruitPage"));
-const SelectPage = loadable(() => import(/* webpackChunkName: "select" */ "./Select/SelectPage"));
-const Index = loadable(() => import(/* webpackChunkName: "root" */ "./Index"));
-const SelectMailType = loadable(() => import(/* webpackChunkName: "mail_type_select" */ "./SelectMailType"));
-const EmailPage = loadable(() => import(/* webpackChunkName: "email_page" */ "./EmailPage"));
-const MailFormPage = loadable(() => import(/* webpackChunkName: "mail_form" */ "./MailForm/MailFormPage"));
-const CertificateCompletion = loadable(
-  () => import(/* webpackChunkName: "certificate" */ "./CertificateCompletion/CertificateCompletion")
-);
-const UsersPage = loadable(() => import(/* webpackChunkName: "users" */ "./Users/Users"));
-const InvitationPage = loadable(() => import(/* webpackChunkName: "invitation" */ "./Invitation/Invitation"));
-const CertificateFormPage = loadable(
-  () => import(/* webpackChunkName: "certificate_form" */ "./CertificateForm/CertificateForm")
-);
+import Recruit from './Recruit/RecruitPage';
+import SelectPage from './Select/SelectPage';
+import Index from './Index';
+import SelectMailType from './SelectMailType'
+import EmailPage from './EmailPage'
+import MailFormPage from './MailForm/MailFormPage'
+import CertificateCompletion from './CertificateCompletion/CertificateCompletion' 
+import UsersPage from './Users/Users'
+import InvitationPage from './Invitation/Invitation'
+import CertificateFormPage from './CertificateForm/CertificateForm'
 
 const RouteController = () => (
   <React.Suspense fallback={() => <div>로딩중</div>}>
