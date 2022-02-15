@@ -5,9 +5,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 
-const S3Plugin = require("webpack-s3-plugin");
-const { version } = require("./package.json");
-
 dotenv.config();
 module.exports = function (env, { mode }) {
   const plugins = [
@@ -16,30 +13,11 @@ module.exports = function (env, { mode }) {
       process: "process/browser",
     }),
   ];
-  const versionEncode = encodeURIComponent(version);
 
-  const publicPath =
-    mode === "production" ? `https://static-yapp-helper.s3.ap-northeast-2.amazonaws.com/dist/${versionEncode}/` : "/";
+  const publicPath = "/";
 
-  const directoryPath =
-    mode === "production" ? path.resolve(__dirname, `dist/${versionEncode}`) : path.resolve(__dirname, "public");
+  const directoryPath = path.resolve(__dirname, "public");
 
-  if (mode === "production") {
-    plugins.push(
-      new S3Plugin({
-        s3Options: {
-          accessKeyId: process.env.STORAGE_ID,
-          secretAccessKey: process.env.STORAGE_SECRETS,
-          region: "ap-northeast-2",
-        },
-        s3UploadOptions: {
-          Bucket: "static-yapp-helper",
-          acl: "public-read",
-        },
-        directory: `./dist/${versionEncode}`,
-      })
-    );
-  }
   return {
     mode: "development",
     entry: {
