@@ -9,7 +9,7 @@
     "start": "ts-node index.ts",
     "prod:start": "forever start -v -c ts-node index.ts",
     "prod:kill": "forever stopall",
-    "prod": "webpack --mode=production",
+    "prod": "webpack",
     "migrate": "prisma migrate deploy",
     "migrate-up": "prisma migrate dev",
     "generate": "prisma generate",
