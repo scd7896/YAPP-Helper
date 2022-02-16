@@ -25,6 +25,12 @@ const EmailFivethGrade = () => {
   }, []);
 
   useEffect(() => {
+    return () => {
+      socket?.close();
+    }
+  }, []);
+
+  useEffect(() => {
     if (socket) {
       socket.on("list-add", (data: SendUserResult) => {
         mailResultSetData(data);
@@ -32,6 +38,11 @@ const EmailFivethGrade = () => {
       socket.on("send-key", (key: string) => {
         setKeyString(key);
       });
+      socket.on("close", () => {
+        console.log("closed")
+        socket.close();
+        setSocket(null);
+      })
     }
   }, [socket, mailResultSetData]);
 

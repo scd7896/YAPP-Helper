@@ -44,7 +44,7 @@ function* userListSetByForm(action: ReturnType<typeof setUserDataByFormRequest>)
       return {
         name: user[setForm.name],
         email: user[setForm.email],
-        isPass: user[setForm.isPass] === "합격",
+        isPass: user[setForm.isPass] === "합격" || user[setForm.isPass] === "O",
         meetingTime: user[setForm.meetingTime],
         isError: null,
       };

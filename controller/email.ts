@@ -5,8 +5,6 @@
 import * as crypto from "crypto";
 import * as jwt from "jsonwebtoken";
 import * as fs from "fs";
-import axios from "axios";
-import { GetObjectOutput } from "aws-sdk/clients/s3";
 import { createJsend } from "../lib";
 import { MailForm } from "../models";
 import { getFileData, originPath } from "./file";
@@ -24,13 +22,17 @@ const mg = mailgun.client({
 const path = require("path");
 const redisClient = require("../config/redis");
 
-const sendUserResult = (io, user, error) => {
+const sendUserResult = (io, user, error, taskCompleteArray = []) => {
   // 메일 보내는 것 성공여부에 관계없이 결과를 프론트에 던져준다.
   const toClient = {
     user,
     isError: error,
   };
   io.emit("list-add", toClient);
+  if (taskCompleteArray.every(value => value)) {
+    io.emit("close");
+    io = null;
+  }
 };
 
 export const reSend = async (req, res) => {
@@ -58,7 +60,6 @@ export const reSend = async (req, res) => {
   });
 };
 
-const getImagePath = (name: string) => `${originPath}${name}`;
 /**
  * 지원자들 리스트를 받아서 그냥 메일을 쭈욱 보낸다.
  * TODO: 보낸 결과를 io.emit으로 전송한다.
@@ -82,38 +83,35 @@ export const send = async (req, res) => {
     return;
   }
   getFileData(mailforms[0].map_image, async (_, object) => {
-    const mailgunPromises = req.body.users
+    const taskCompleteArray = new Array(req.body.users.length).fill(false);
+    req.body.users
       .map((user) => {
         const mailform = user.pass ? mailforms[0] : mailforms[1];
-        return {
-          from: "YAPP <support@yapp.co.kr>",
+        const mailData: any = {
+          from: "kimserver <kimserver@askkimserver.com>",
           to: user.email,
           subject: mailform.title,
           html: `<html>
           <img src="${originPath}${mailform.header_image}" width="750px" height="150px">
           <p>${mailform.contents.replace(/\[name\]/g, user.name).replace(/\[meetingTime\]/g, user.meetingTime)}</p>
           </html>`,
-          attachment: user.pass ? { data: object.Body, filename: "mapimage.jpg" } : undefined,
-        };
+        }
+
+        if (user.pass && object?.Body) mailData.attachment = { data: object.Body, filename: "mapimage.jpg" }
+        return mailData;
       })
-      .map((data) =>
-        mg.messages
-          .create("yapp.co.kr", data)
-          .then(() => sendUserResult(io, data.to, false))
-          .catch((err) => {
-            console.log(err);
-            sendUserResult(io, data.to, true);
-            return data;
+      .map((data, index) => {
+        return mg.messages
+          .create("askkimserver.com", data)
+          .then(() => {
+            taskCompleteArray[index] = true;
+            sendUserResult(io, data.to, false, taskCompleteArray)
           })
-      );
-    try {
-      const failList = await Promise.all(mailgunPromises);
-      const key = crypto.randomBytes(16).toString("hex");
-      io.emit("send-key", key);
-      io.close();
-    } catch (err) {
-      console.log("전송에러임");
-    }
+          .catch((err) => {
+            taskCompleteArray[index] = true;
+            sendUserResult(io, data.to, true, taskCompleteArray);
+          })
+      });
     res.sendStatus(200);
   });
 };
@@ -123,7 +121,7 @@ export const certificateMailSend = async (req, res) => {
 
   mg.messages()
     .send({
-      from: "YAPP <support@yapp.co.kr>",
+      from: "kimserver@askkimserver.com",
       to: mail,
       subject: title,
       html: contents,
@@ -148,7 +146,7 @@ export const sendInvitationMail = async (req, res) => {
   if (!mail) res.status(400).json(createJsend("failure", "메일 주소는 필수 입니다."));
   const accessToken = jwt.sign({ mail }, process.env.JWT_SECRET, { expiresIn: "24h" });
   const mailForm = {
-    from: "YAPP <support@yapp.co.kr>",
+    from: "kimserver@askkimserver.com",
     to: mail,
     subject: "초대 메일입니다",
     html: `<html>

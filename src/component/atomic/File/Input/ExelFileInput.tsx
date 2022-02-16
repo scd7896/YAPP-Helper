@@ -2,7 +2,6 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setExcelValueRequset } from "actions/desire";
-import SmallIconWrapper from "../../IconWrapper/Small/SmallIconWrapper";
 
 import {
   DropBoxGuideTextSpan,
