@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import * as crypto from "crypto";
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const prisma = new PrismaClient();
 
