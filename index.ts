@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import * as express from "express";
 import * as dotenv from "dotenv";
+dotenv.config();
 import * as cookieParser from "cookie-parser";
 import route from "./routes";
 
-dotenv.config();
 
 const cors = require("cors");
 
